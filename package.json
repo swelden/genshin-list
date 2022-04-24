@@ -2,6 +2,12 @@
   "name": "genshin-list",
   "version": "0.1.0",
   "private": true,
+  "author": "Steven Welden",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Swelden/genshin-list"
+  },
+  "license": "MIT",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
