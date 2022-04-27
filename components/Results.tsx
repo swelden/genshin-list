@@ -4,7 +4,7 @@ const Results: React.FC<{ characters: CharacterFilterInfo[] }> = ({
   characters,
 }) => {
   return (
-    <div className="flex flex-wrap items-start justify-center">
+    <div className="grid grid-cols-[repeat(auto-fill,_120px)] justify-center gap-3 md:gap-6">
       {characters.map((character) => (
         <CharacterCard key={character.name} character={character} />
       ))}
@@ -16,7 +16,7 @@ const CharacterCard: React.FC<{ character: CharacterFilterInfo }> = ({
   character,
 }) => {
   return (
-    <div className="m-3 flex w-[120px] flex-col overflow-hidden rounded-xl bg-yellow-300">
+    <div className="flex flex-col overflow-hidden rounded-xl bg-yellow-300">
       <Image
         src={`https://api.genshin.dev/characters/${character.name_url}/icon`}
         alt={`${character} thumb`}
