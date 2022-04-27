@@ -4,6 +4,8 @@ import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import Results from "../components/Results";
 import Filters from "../components/Filters";
+import useCharacters from "../hooks/useCharacters";
+import React from "react";
 
 export async function getStaticProps() {
   const urlBase = "https://api.genshin.dev/characters";
@@ -36,8 +38,13 @@ export async function getStaticProps() {
 }
 
 const Home: NextPage<{ characters: CharacterFilterInfo[] }> = ({
-  characters,
+  characters: allCharacters,
 }) => {
+  const { characters, filter, setFilter } = useCharacters(allCharacters);
+
+  const onSetFilter = (event: React.ChangeEvent<HTMLInputElement>) =>
+    setFilter(event.target.value);
+
   return (
     <div className="relative flex flex-col gap-6">
       <Head>
@@ -52,7 +59,7 @@ const Home: NextPage<{ characters: CharacterFilterInfo[] }> = ({
       <div className="min-h-screen">
         <Navbar />
         <main className="container flex flex-col gap-6">
-          <Filters />
+          <Filters onSetFilter={onSetFilter} />
           <Results characters={characters} />
         </main>
       </div>

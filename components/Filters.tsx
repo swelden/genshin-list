@@ -1,10 +1,12 @@
 import React from "react";
 import { CloseIcon, FilterIcon, ReverseIcon, SearchIcon } from "./icons";
 
-const Filters = () => {
+const Filters: React.FC<{
+  onSetFilter: (event: React.ChangeEvent<HTMLInputElement>) => void;
+}> = ({ onSetFilter }) => {
   return (
     <div className="grid grid-cols-1 items-center justify-between gap-4 sm:grid-cols-2">
-      <Search />
+      <Search onSetFilter={onSetFilter} />
       <div className="grid grid-cols-4 gap-2 lg:gap-4">
         <FilterButton icon={<FilterIcon />} span={1} />
         <FilterButton icon={<SortDropdown />} span={2} />
@@ -31,7 +33,9 @@ const FilterButton: React.FC<{ icon: JSX.Element; span: number }> = ({
   );
 };
 
-const Search = () => {
+const Search: React.FC<{
+  onSetFilter: (event: React.ChangeEvent<HTMLInputElement>) => void;
+}> = ({ onSetFilter }) => {
   return (
     <div className="flex items-center rounded-full border-2 transition-colors ease-in-out focus-within:border-yellow-500">
       <div className="flex w-10 justify-center">
@@ -42,6 +46,7 @@ const Search = () => {
         type="text"
         aria-label="Search"
         placeholder="Search for characters..."
+        onChange={onSetFilter}
       />
       <div className="flex w-10 cursor-pointer justify-center">
         {/* TODO: make CloseIcon hidden if input text is empty string */}
