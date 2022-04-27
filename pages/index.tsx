@@ -39,7 +39,7 @@ const Home: NextPage<{ characters: CharacterFilterInfo[] }> = ({
   characters,
 }) => {
   return (
-    <div className="relative flex flex-col gap-2">
+    <div className="relative flex flex-col gap-6">
       <Head>
         <title>Genshin List</title>
         <meta

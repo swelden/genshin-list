@@ -3,12 +3,12 @@ import { CloseIcon, FilterIcon, ReverseIcon, SearchIcon } from "./icons";
 
 const Filters = () => {
   return (
-    <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
+    <div className="grid grid-cols-1 items-center justify-between gap-4 sm:grid-cols-2">
       <Search />
-      <div className="flex items-center gap-4">
-        <FilterButton icon={<FilterIcon />} />
-        <FilterButton icon={<SortDropdown />} />
-        <FilterButton icon={<ReverseIcon />} />
+      <div className="grid grid-cols-4 gap-2 lg:gap-4">
+        <FilterButton icon={<FilterIcon />} span={1} />
+        <FilterButton icon={<SortDropdown />} span={2} />
+        <FilterButton icon={<ReverseIcon />} span={1} />
       </div>
     </div>
   );
@@ -18,9 +18,14 @@ const SortDropdown = () => {
   return <div className="">Default</div>;
 };
 
-const FilterButton: React.FC<{ icon: JSX.Element }> = ({ icon }) => {
+const FilterButton: React.FC<{ icon: JSX.Element; span: number }> = ({
+  icon,
+  span,
+}) => {
   return (
-    <div className="flex h-9 cursor-pointer items-center justify-center rounded-full bg-amber-100 px-5 shadow-sm">
+    <div
+      className={`col-span-${span} flex h-9 cursor-pointer items-center justify-center rounded-full bg-amber-100 shadow-sm`}
+    >
       {icon}
     </div>
   );
@@ -28,7 +33,7 @@ const FilterButton: React.FC<{ icon: JSX.Element }> = ({ icon }) => {
 
 const Search = () => {
   return (
-    <div className="flex w-full items-center rounded-full border-2 transition-colors ease-in-out focus-within:border-yellow-500">
+    <div className="flex items-center rounded-full border-2 transition-colors ease-in-out focus-within:border-yellow-500">
       <div className="flex w-10 justify-center">
         <SearchIcon />
       </div>
