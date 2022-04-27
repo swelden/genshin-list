@@ -3,11 +3,11 @@ import Head from "next/head";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import Results from "../components/Results";
-import Sidebar from "../components/Sidebar";
+import Filters from "../components/Filters";
 
 const Home: NextPage = () => {
   return (
-    <div className="relative flex flex-col">
+    <div className="relative flex flex-col gap-2">
       <Head>
         <title>Genshin List</title>
         <meta
@@ -16,12 +16,14 @@ const Home: NextPage = () => {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Navbar />
 
-      <main className="container flex h-screen auto-rows-min grid-cols-[0.3fr_1fr] flex-col gap-6 pt-24 md:grid md:gap-10 md:pt-28">
-        <Sidebar />
-        <Results />
-      </main>
+      <div className="h-screen">
+        <Navbar />
+        <main className="container flex flex-col gap-6">
+          <Filters />
+          <Results />
+        </main>
+      </div>
 
       <Footer></Footer>
     </div>

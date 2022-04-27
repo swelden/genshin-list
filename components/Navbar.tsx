@@ -1,8 +1,9 @@
 import Link from "next/link";
+import { MoonIcon } from "./icons";
 
 const Navbar = () => {
   return (
-    <nav className="absolute w-full py-5">
+    <nav className="mb-4 w-full py-5">
       <div className="container flex items-center justify-between">
         <Link href="/">
           <a
@@ -14,7 +15,13 @@ const Navbar = () => {
         </Link>
         {/* NOTE: might make links for filtering different categories (characters, artifacts, weapons, etc.) */}
         <div>
-          <span className="font-medium">Characters</span>
+          <button
+            className="rounded-full p-2"
+            aria-label="Toggle theme"
+            title="Toggle theme"
+          >
+            <MoonIcon />
+          </button>
         </div>
       </div>
     </nav>
