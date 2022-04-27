@@ -8,27 +8,10 @@ const Filters: React.FC<{
     <div className="grid grid-cols-1 items-center justify-between gap-4 sm:grid-cols-2">
       <Search onSetFilter={onSetFilter} />
       <div className="grid grid-cols-4 gap-2 lg:gap-4">
-        <FilterButton icon={<FilterIcon />} span={1} />
-        <FilterButton icon={<SortDropdown />} span={2} />
-        <FilterButton icon={<ReverseIcon />} span={1} />
+        <FilterButton icon={<FilterIcon />} />
+        <FilterDropdown />
+        <FilterButton icon={<ReverseIcon />} />
       </div>
-    </div>
-  );
-};
-
-const SortDropdown = () => {
-  return <div className="">Default</div>;
-};
-
-const FilterButton: React.FC<{ icon: JSX.Element; span: number }> = ({
-  icon,
-  span,
-}) => {
-  return (
-    <div
-      className={`col-span-${span} flex h-9 cursor-pointer items-center justify-center rounded-full bg-amber-100 shadow-sm`}
-    >
-      {icon}
     </div>
   );
 };
@@ -52,6 +35,22 @@ const Search: React.FC<{
         {/* TODO: make CloseIcon hidden if input text is empty string */}
         <CloseIcon />
       </div>
+    </div>
+  );
+};
+
+const FilterButton: React.FC<{ icon: JSX.Element }> = ({ icon }) => {
+  return (
+    <div className="col-span-1 flex h-9 cursor-pointer items-center justify-center rounded-full bg-amber-100 shadow-sm">
+      {icon}
+    </div>
+  );
+};
+
+const FilterDropdown = () => {
+  return (
+    <div className="col-span-2 flex h-9 cursor-pointer items-center justify-center rounded-full bg-amber-100 shadow-sm">
+      Default
     </div>
   );
 };
