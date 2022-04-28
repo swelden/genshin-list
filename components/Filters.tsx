@@ -1,5 +1,12 @@
-import React from "react";
-import { CloseIcon, FilterIcon, ReverseIcon, SearchIcon } from "./icons";
+import React, { useRef, useState } from "react";
+import useOnClickOutside from "../hooks/useOnClickOutside";
+import {
+  CloseIcon,
+  DropDownIcon,
+  FilterIcon,
+  ReverseIcon,
+  SearchIcon,
+} from "./icons";
 
 const Filters: React.FC<{
   onSetFilter: (event: React.ChangeEvent<HTMLInputElement>) => void;
@@ -47,10 +54,55 @@ const FilterButton: React.FC<{ icon: JSX.Element }> = ({ icon }) => {
   );
 };
 
+const options = ["Sort by Elemental Type", "Sort by Weapon Type", "Default"];
+
 const FilterDropdown = () => {
+  const ref = useRef(null);
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectedOption, setSelectedOption] = useState(options.length - 1);
+
+  const handleClickOutside = () => {
+    // Your custom logic here
+    // console.log("clicked outside");
+    setIsOpen(false);
+  };
+
+  const handleClickInside = () => {
+    // Your custom logic here
+    // console.log("clicked inside");
+    setIsOpen(!isOpen);
+  };
+
+  useOnClickOutside(ref, handleClickOutside);
+
   return (
-    <div className="col-span-2 flex h-9 cursor-pointer items-center rounded-full bg-ui pl-6 font-medium text-ui-contrast shadow-sm">
-      Default
+    <div ref={ref} className="relative col-span-2">
+      <button
+        onClick={handleClickInside}
+        className="flex h-9 w-full cursor-pointer items-center justify-between rounded-full bg-ui pl-5 pr-3 font-medium text-ui-contrast shadow-sm"
+      >
+        <span className="truncate">{options[selectedOption]}</span>
+        <DropDownIcon />
+      </button>
+      {isOpen && (
+        <ul className="absolute z-10 w-full cursor-pointer overflow-hidden rounded-2xl bg-yellow-100">
+          {options.map((option, index) => (
+            <li
+              className="p-2 hover:bg-yellow-200"
+              key={option}
+              role="option"
+              aria-selected={selectedOption == index}
+              tabIndex={0}
+              onClick={() => {
+                setIsOpen(false);
+                setSelectedOption(index);
+              }}
+            >
+              {option}
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 };
