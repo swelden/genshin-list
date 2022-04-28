@@ -12,7 +12,15 @@ module.exports = {
         lg: "8rem",
       },
     },
-    extend: {},
+    extend: {
+      colors: {
+        rare4: "#796BAC", // purple
+        rare5: "#B27C3C", // gold
+        colab: "#A14556", // red
+        ui: "#ECE5D8",
+        "card-title": "#E9E5DC",
+      },
+    },
   },
   plugins: [],
 };

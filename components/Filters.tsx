@@ -41,7 +41,7 @@ const Search: React.FC<{
 
 const FilterButton: React.FC<{ icon: JSX.Element }> = ({ icon }) => {
   return (
-    <div className="col-span-1 flex h-9 cursor-pointer items-center justify-center rounded-full bg-amber-100 shadow-sm">
+    <div className="col-span-1 flex h-9 cursor-pointer items-center justify-center rounded-full bg-ui shadow-sm">
       {icon}
     </div>
   );
@@ -49,7 +49,7 @@ const FilterButton: React.FC<{ icon: JSX.Element }> = ({ icon }) => {
 
 const FilterDropdown = () => {
   return (
-    <div className="col-span-2 flex h-9 cursor-pointer items-center justify-center rounded-full bg-amber-100 shadow-sm">
+    <div className="col-span-2 flex h-9 cursor-pointer items-center rounded-full bg-ui pl-6 font-medium shadow-sm">
       Default
     </div>
   );

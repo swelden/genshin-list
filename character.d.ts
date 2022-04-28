@@ -1,5 +1,5 @@
 type Weapons = "Bow" | "Catalyst" | "Claymore" | "Polearm" | "Sword";
-type Nations = "Inazuma" | "Liyue" | "Mondstadt";
+type Nations = "Inazuma" | "Liyue" | "Mondstadt" | "Unknown";
 type Rarity = 4 | 5;
 type Visions =
   | "Pyro"
