@@ -21,7 +21,7 @@ const Search: React.FC<{
 }> = ({ onSetFilter }) => {
   return (
     <div className="flex items-center rounded-full border-2 transition-colors ease-in-out focus-within:border-yellow-500">
-      <div className="flex w-10 justify-center">
+      <div className="flex w-10 justify-center text-ui-contrast">
         <SearchIcon />
       </div>
       <input
@@ -31,7 +31,7 @@ const Search: React.FC<{
         placeholder="Search for characters..."
         onChange={onSetFilter}
       />
-      <div className="flex w-10 cursor-pointer justify-center">
+      <div className="flex w-10 cursor-pointer justify-center text-ui-contrast">
         {/* TODO: make CloseIcon hidden if input text is empty string */}
         <CloseIcon />
       </div>
@@ -41,7 +41,7 @@ const Search: React.FC<{
 
 const FilterButton: React.FC<{ icon: JSX.Element }> = ({ icon }) => {
   return (
-    <div className="col-span-1 flex h-9 cursor-pointer items-center justify-center rounded-full bg-ui shadow-sm">
+    <div className="col-span-1 flex h-9 cursor-pointer items-center justify-center rounded-full bg-ui text-ui-contrast shadow-sm">
       {icon}
     </div>
   );
@@ -49,7 +49,7 @@ const FilterButton: React.FC<{ icon: JSX.Element }> = ({ icon }) => {
 
 const FilterDropdown = () => {
   return (
-    <div className="col-span-2 flex h-9 cursor-pointer items-center rounded-full bg-ui pl-6 font-medium shadow-sm">
+    <div className="col-span-2 flex h-9 cursor-pointer items-center rounded-full bg-ui pl-6 font-medium text-ui-contrast shadow-sm">
       Default
     </div>
   );

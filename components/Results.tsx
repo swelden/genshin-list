@@ -32,7 +32,7 @@ const CharacterCard: React.FC<{ character: CharacterFilterInfo }> = ({
         width={130}
         height={130}
       />
-      <div className="truncate bg-card-title px-2 py-1 text-center font-medium capitalize">
+      <div className="truncate bg-card-title px-2 py-1 text-center font-medium capitalize text-card-contrast">
         {character.name}
       </div>
     </div>

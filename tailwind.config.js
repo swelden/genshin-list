@@ -18,7 +18,9 @@ module.exports = {
         rare5: "#B27C3C", // gold
         colab: "#A14556", // red
         ui: "#ECE5D8",
+        "ui-contrast": "#495366",
         "card-title": "#E9E5DC",
+        "card-contrast": "#3B4255",
       },
     },
   },
