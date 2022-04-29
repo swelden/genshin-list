@@ -42,9 +42,6 @@ const Home: NextPage<{ characters: CharacterFilterInfo[] }> = ({
 }) => {
   const { characters, filter, setFilter } = useCharacters(allCharacters);
 
-  const onSetFilter = (event: React.ChangeEvent<HTMLInputElement>) =>
-    setFilter(event.target.value);
-
   // dark:bg-zinc-900
   return (
     <div className="relative flex flex-col gap-6 bg-zinc-50">
@@ -60,7 +57,7 @@ const Home: NextPage<{ characters: CharacterFilterInfo[] }> = ({
       <div className="min-h-screen">
         <Navbar />
         <main className="container flex flex-col gap-6">
-          <Filters onSetFilter={onSetFilter} />
+          <Filters setFilter={setFilter} />
           <Results characters={characters} />
         </main>
       </div>
