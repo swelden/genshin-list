@@ -45,8 +45,9 @@ const Home: NextPage<{ characters: CharacterFilterInfo[] }> = ({
   const onSetFilter = (event: React.ChangeEvent<HTMLInputElement>) =>
     setFilter(event.target.value);
 
+  // dark:bg-zinc-900
   return (
-    <div className="relative flex flex-col gap-6">
+    <div className="relative flex flex-col gap-6 bg-zinc-50">
       <Head>
         <title>Genshin List</title>
         <meta
