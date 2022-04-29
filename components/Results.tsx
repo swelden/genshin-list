@@ -19,7 +19,7 @@ const CharacterCard: React.FC<{ character: CharacterFilterInfo }> = ({
   // console.log(character);
   return (
     <div
-      className={`overflow-hidden rounded-md border-0 border-white shadow-sm transition duration-[400ms] hover:scale-110 hover:border-2 hover:shadow`}
+      className={`translate box-content scale-100 transform-gpu overflow-hidden rounded-md border-0 border-white shadow-sm transition-all duration-500 hover:scale-110 hover:border-2 hover:shadow`}
     >
       <div
         className={`relative flex ${

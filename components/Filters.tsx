@@ -48,7 +48,7 @@ const Search: React.FC<{
 
 const FilterButton: React.FC<{ icon: JSX.Element }> = ({ icon }) => {
   return (
-    <div className="col-span-1 flex h-9 cursor-pointer items-center justify-center rounded-full bg-ui text-ui-contrast shadow-sm">
+    <div className="col-span-1 flex h-9 cursor-pointer items-center justify-center rounded-full border-white bg-ui text-ui-contrast shadow-sm hover:border-2 hover:shadow-inner">
       {icon}
     </div>
   );
@@ -79,26 +79,32 @@ const FilterDropdown = () => {
     <div ref={ref} className="relative col-span-2">
       <button
         onClick={handleClickInside}
-        className="flex h-9 w-full cursor-pointer items-center justify-between rounded-full bg-ui pl-5 pr-3 font-medium text-ui-contrast shadow-sm"
+        className="flex h-9 w-full cursor-pointer items-center justify-between rounded-full border-0 border-white bg-ui pl-5 pr-3 font-medium text-ui-contrast shadow-sm hover:border-2 hover:shadow-inner focus:border-2 focus:shadow-inner"
       >
         <span className="truncate">{options[selectedOption]}</span>
         <DropDownIcon />
       </button>
       {isOpen && (
-        <ul className="absolute z-10 w-full cursor-pointer overflow-hidden rounded-2xl bg-yellow-100">
+        <ul className="absolute top-[2.15rem] z-10 w-full cursor-pointer overflow-hidden rounded-2xl bg-ui-contrast">
           {options.map((option, index) => (
             <li
-              className="p-2 hover:bg-yellow-200"
+              className="group p-0.5 py-[0.035rem] first:pt-0.5 last:pb-0.5"
               key={option}
               role="option"
-              aria-selected={selectedOption == index}
+              aria-selected={selectedOption === index}
               tabIndex={0}
               onClick={() => {
                 setIsOpen(false);
                 setSelectedOption(index);
               }}
             >
-              {option}
+              <div
+                className={`rounded-full p-0.5 pl-3 font-medium text-sort-text group-hover:bg-sort-hover-bg group-hover:text-sort-hover-text ${
+                  selectedOption === index ? "bg-sort-hover-bg" : ""
+                }`}
+              >
+                {option}
+              </div>
             </li>
           ))}
         </ul>
