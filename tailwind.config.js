@@ -19,11 +19,13 @@ module.exports = {
         colab: "#A14556", // red
         ui: "#ECE5D8",
         "ui-contrast": "#495366", // also sort-bg
+        "ui-bg-click": "#A89C96",
         "card-title": "#E9E5DC",
         "card-contrast": "#3B4255",
         "sort-text": "#ECE5D8",
         "sort-hover-bg": "#606979",
         "sort-hover-text": "#EBE4D8",
+        "filter-bg": "#263240",
       },
     },
   },

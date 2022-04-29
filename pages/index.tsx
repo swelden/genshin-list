@@ -3,7 +3,7 @@ import Head from "next/head";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import Results from "../components/Results";
-import Filters from "../components/Filters";
+import Filters from "../components/Filters/Filters";
 import useCharacters from "../hooks/useCharacters";
 import React from "react";
 
