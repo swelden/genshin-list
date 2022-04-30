@@ -53,8 +53,8 @@ const FilterContainer: React.FC<{
   setAttrFilter: React.Dispatch<React.SetStateAction<Attributes>>;
 }> = ({ attrData, category, attrFilter, setAttrFilter }) => {
   const handleFilter = (attr: Visions | Weapons | Nations | Rarity) => {
-    const newSet = new Set(
-      attrFilter[category] as Set<Visions | Weapons | Nations | Rarity>
+    const newSet = new Set<Visions | Weapons | Nations | Rarity>(
+      attrFilter[category]
     );
 
     if (newSet.has(attr)) {
@@ -67,15 +67,21 @@ const FilterContainer: React.FC<{
   };
 
   return (
-    <div className="flex gap-2">
+    <div className="flex gap-2 rounded-lg bg-slate-300 p-1">
       {attrData.map((attr) => (
-        <div
+        <button
           key={attr}
           onClick={() => handleFilter(attr)}
-          className="cursor-pointer"
+          className={`cursor-pointer rounded-md p-1 px-2 hover:bg-blue-50 ${
+            (
+              attrFilter[category] as Set<Visions | Weapons | Nations | Rarity>
+            ).has(attr)
+              ? "bg-blue-100"
+              : ""
+          }`}
         >
           {attr}
-        </div>
+        </button>
       ))}
     </div>
   );

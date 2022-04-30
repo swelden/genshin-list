@@ -45,17 +45,17 @@ const SortDropdown: React.FC<{
       </Button>
       {isOpen && (
         <ul className="absolute top-[2.15rem] z-10 w-full cursor-pointer overflow-hidden rounded-2xl bg-ui-contrast">
-          {options.map((option, index) => (
+          {options.map(({ title, value }, index) => (
             <li
               className="group p-0.5 py-[0.035rem] first:pt-0.5 last:pb-0.5"
-              key={option.title}
+              key={title}
               role="option"
               aria-selected={selectedOption === index}
               tabIndex={0}
               onClick={() => {
                 setIsOpen(false);
                 setSelectedOption(index);
-                setSortKey(option.value);
+                setSortKey(value);
               }}
             >
               <div
@@ -63,7 +63,7 @@ const SortDropdown: React.FC<{
                   selectedOption === index ? "bg-sort-hover-bg" : ""
                 }`}
               >
-                {option.title}
+                {title}
               </div>
             </li>
           ))}
