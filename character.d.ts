@@ -59,3 +59,10 @@ interface CharacterFilterInfo {
 
 type CharacterFilterKeys = "name" | "name_url" | "vision" | "weapon" | "nation";
 // | "rarity";
+
+interface Attributes {
+  vision: Set<Visions>;
+  weapon: Set<Weapons>;
+  nation: Set<Nations>;
+  rarity: Set<Rarity>;
+}

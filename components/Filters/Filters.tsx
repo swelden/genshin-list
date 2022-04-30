@@ -10,7 +10,9 @@ const Filters: React.FC<{
   setFilter: React.Dispatch<React.SetStateAction<string>>;
   setSortKey: React.Dispatch<React.SetStateAction<CharacterFilterKeys>>;
   setIsReversed: React.Dispatch<React.SetStateAction<boolean>>;
-}> = ({ setFilter, setSortKey, setIsReversed }) => {
+  attrFilter: Attributes;
+  setAttrFilter: React.Dispatch<React.SetStateAction<Attributes>>;
+}> = ({ setFilter, setSortKey, setIsReversed, attrFilter, setAttrFilter }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -25,7 +27,12 @@ const Filters: React.FC<{
           <ReverseIcon />
         </Button>
       </div>
-      {isOpen && <AttributeFilter />}
+      {isOpen && (
+        <AttributeFilter
+          attrFilter={attrFilter}
+          setAttrFilter={setAttrFilter}
+        />
+      )}
     </div>
   );
 };
