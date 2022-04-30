@@ -40,7 +40,8 @@ export async function getStaticProps() {
 const Home: NextPage<{ characters: CharacterFilterInfo[] }> = ({
   characters: allCharacters,
 }) => {
-  const { characters, filter, setFilter } = useCharacters(allCharacters);
+  const { characters, filter, setFilter, setSortKey, setIsReversed } =
+    useCharacters(allCharacters);
 
   // dark:bg-zinc-900
   return (
@@ -57,7 +58,11 @@ const Home: NextPage<{ characters: CharacterFilterInfo[] }> = ({
       <div className="min-h-screen">
         <Navbar />
         <main className="container flex flex-col gap-6">
-          <Filters setFilter={setFilter} />
+          <Filters
+            setFilter={setFilter}
+            setSortKey={setSortKey}
+            setIsReversed={setIsReversed}
+          />
           <Results characters={characters} />
         </main>
       </div>

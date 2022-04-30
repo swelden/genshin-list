@@ -8,7 +8,9 @@ import SortDropdown from "./SortFilter";
 // NOTE: might use memo for components to prevent rerender on isOpen change
 const Filters: React.FC<{
   setFilter: React.Dispatch<React.SetStateAction<string>>;
-}> = ({ setFilter }) => {
+  setSortKey: React.Dispatch<React.SetStateAction<CharacterFilterKeys>>;
+  setIsReversed: React.Dispatch<React.SetStateAction<boolean>>;
+}> = ({ setFilter, setSortKey, setIsReversed }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -18,8 +20,8 @@ const Filters: React.FC<{
         <Button onClick={() => setIsOpen(!isOpen)}>
           <FilterIcon />
         </Button>
-        <SortDropdown />
-        <Button onClick={() => console.log("Reverse Clicked")}>
+        <SortDropdown setSortKey={setSortKey} />
+        <Button onClick={() => setIsReversed((prev) => !prev)}>
           <ReverseIcon />
         </Button>
       </div>

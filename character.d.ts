@@ -56,3 +56,6 @@ interface CharacterFilterInfo {
   nation: Nations;
   rarity: Rarity;
 }
+
+type CharacterFilterKeys = "name" | "name_url" | "vision" | "weapon" | "nation";
+// | "rarity";

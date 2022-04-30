@@ -3,10 +3,22 @@ import useOnClickOutside from "../../hooks/useOnClickOutside";
 import { DropDownIcon } from "../icons";
 import Button from "./Button";
 
-// TODO: add sort function value to options
-const options = ["Sort by Elemental Type", "Sort by Weapon Type", "Default"];
+interface Options {
+  title: string;
+  value: CharacterFilterKeys;
+}
 
-const SortDropdown = () => {
+// TODO: add sort function value to options
+const options: Options[] = [
+  { title: "Sort by Elemental Type", value: "vision" },
+  { title: "Sort by Weapon Type", value: "weapon" },
+  { title: "Sort by Nation", value: "nation" },
+  { title: "Default", value: "name" },
+];
+
+const SortDropdown: React.FC<{
+  setSortKey: React.Dispatch<React.SetStateAction<CharacterFilterKeys>>;
+}> = ({ setSortKey }) => {
   const ref = useRef(null);
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState(options.length - 1);
@@ -28,7 +40,7 @@ const SortDropdown = () => {
   return (
     <div ref={ref} className="relative col-span-2">
       <Button onClick={handleClickInside} className="justify-between pl-4 pr-3">
-        <span className="truncate">{options[selectedOption]}</span>
+        <span className="truncate">{options[selectedOption].title}</span>
         <DropDownIcon />
       </Button>
       {isOpen && (
@@ -36,13 +48,14 @@ const SortDropdown = () => {
           {options.map((option, index) => (
             <li
               className="group p-0.5 py-[0.035rem] first:pt-0.5 last:pb-0.5"
-              key={option}
+              key={option.title}
               role="option"
               aria-selected={selectedOption === index}
               tabIndex={0}
               onClick={() => {
                 setIsOpen(false);
                 setSelectedOption(index);
+                setSortKey(option.value);
               }}
             >
               <div
@@ -50,7 +63,7 @@ const SortDropdown = () => {
                   selectedOption === index ? "bg-sort-hover-bg" : ""
                 }`}
               >
-                {option}
+                {option.title}
               </div>
             </li>
           ))}
