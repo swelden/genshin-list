@@ -13,7 +13,7 @@ const options: Options[] = [
   { title: "Sort by Elemental Type", value: "vision" },
   { title: "Sort by Weapon Type", value: "weapon" },
   { title: "Sort by Nation", value: "nation" },
-  { title: "Default", value: "name" },
+  { title: "Sort by Name", value: "name" },
 ];
 
 type SortDropdownProps = React.FC<{
@@ -46,7 +46,7 @@ const SortDropdown: SortDropdownProps = ({ setSortKey }) => {
         <DropDownIcon />
       </Button>
       {isOpen && (
-        <ul className="absolute top-[2.15rem] z-10 w-full cursor-pointer overflow-hidden rounded-2xl bg-ui-contrast">
+        <ul className="absolute top-[2.15rem] z-10 w-full cursor-pointer overflow-hidden rounded-2xl bg-ui-contrast shadow-md">
           {options.map(({ title, value }, index) => (
             <li
               className="group p-0.5 py-[0.035rem] first:pt-0.5 last:pb-0.5"

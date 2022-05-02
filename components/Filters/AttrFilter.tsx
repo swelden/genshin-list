@@ -42,14 +42,14 @@ const AttributeFilter: React.FC<{
         setAttrFilter={setAttrFilter}
       />
       <FilterContainer
-        attrData={rarities}
-        category="rarity"
+        attrData={nations}
+        category="nation"
         attrFilter={attrFilter}
         setAttrFilter={setAttrFilter}
       />
       <FilterContainer
-        attrData={nations}
-        category="nation"
+        attrData={rarities}
+        category="rarity"
         attrFilter={attrFilter}
         setAttrFilter={setAttrFilter}
       />
@@ -81,18 +81,18 @@ const FilterContainer: FilterContainerProps = ({
   };
 
   return (
-    <div className="flex gap-2 rounded-lg bg-slate-300 p-1">
+    <div className="flex flex-wrap items-center justify-center gap-1 rounded-lg bg-attr-bg p-1.5 text-attr-text sm:gap-2">
       {attrData.map((attr) => (
         <button
           key={attr}
           onClick={() => handleFilter(attr)}
-          className={`cursor-pointer rounded-md p-1 px-2 hover:bg-blue-50 ${
+          className={`cursor-pointer rounded-md p-1 px-2 transition ${
             (attrFilter[category] as Set<Attribute>).has(attr)
-              ? "bg-blue-100"
-              : ""
+              ? "bg-attr-bg-click text-attr-text-click"
+              : "hover:bg-attr-hover-bg hover:text-white"
           }`}
         >
-          {attr}
+          {typeof attr === "number" ? `${attr} ★` : attr}
         </button>
       ))}
     </div>
