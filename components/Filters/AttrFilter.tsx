@@ -1,4 +1,4 @@
-const visions: Visions[] = [
+const visions: readonly Vision[] = [
   "Pyro",
   "Hydro",
   "Dendro",
@@ -6,10 +6,22 @@ const visions: Visions[] = [
   "Anemo",
   "Cryo",
   "Geo",
-];
-const weapons: Weapons[] = ["Bow", "Catalyst", "Claymore", "Polearm", "Sword"];
-const nations: Nations[] = ["Inazuma", "Liyue", "Mondstadt", "Unknown"];
-const rarities: Rarity[] = [4, 5];
+] as const;
+const weapons: readonly Weapon[] = [
+  "Bow",
+  "Catalyst",
+  "Claymore",
+  "Polearm",
+  "Sword",
+] as const;
+const nations: readonly Nation[] = [
+  "Mondstadt",
+  "Liyue",
+  "Inazuma",
+  "Outlander",
+  "Unknown",
+] as const;
+const rarities: readonly Rarity[] = [4, 5] as const;
 
 const AttributeFilter: React.FC<{
   attrFilter: Attributes;
@@ -30,14 +42,14 @@ const AttributeFilter: React.FC<{
         setAttrFilter={setAttrFilter}
       />
       <FilterContainer
-        attrData={nations}
-        category="nation"
+        attrData={rarities}
+        category="rarity"
         attrFilter={attrFilter}
         setAttrFilter={setAttrFilter}
       />
       <FilterContainer
-        attrData={rarities}
-        category="rarity"
+        attrData={nations}
+        category="nation"
         attrFilter={attrFilter}
         setAttrFilter={setAttrFilter}
       />
@@ -45,23 +57,25 @@ const AttributeFilter: React.FC<{
   );
 };
 
-type AttrData = Visions[] | Weapons[] | Nations[] | Rarity[];
-const FilterContainer: React.FC<{
-  attrData: AttrData;
+type Attribute = Vision | Weapon | Nation | Rarity;
+
+type FilterContainerProps = React.FC<{
+  attrData: Readonly<Attribute[]>;
   category: keyof Attributes;
   attrFilter: Attributes;
   setAttrFilter: React.Dispatch<React.SetStateAction<Attributes>>;
-}> = ({ attrData, category, attrFilter, setAttrFilter }) => {
-  const handleFilter = (attr: Visions | Weapons | Nations | Rarity) => {
-    const newSet = new Set<Visions | Weapons | Nations | Rarity>(
-      attrFilter[category]
-    );
+}>;
 
-    if (newSet.has(attr)) {
-      newSet.delete(attr);
-    } else {
-      newSet.add(attr);
-    }
+const FilterContainer: FilterContainerProps = ({
+  attrData,
+  category,
+  attrFilter,
+  setAttrFilter,
+}) => {
+  const handleFilter = (attr: Attribute) => {
+    const newSet = new Set<Attribute>(attrFilter[category]);
+
+    newSet.has(attr) ? newSet.delete(attr) : newSet.add(attr);
 
     setAttrFilter({ ...attrFilter, [category]: newSet });
   };
@@ -73,9 +87,7 @@ const FilterContainer: React.FC<{
           key={attr}
           onClick={() => handleFilter(attr)}
           className={`cursor-pointer rounded-md p-1 px-2 hover:bg-blue-50 ${
-            (
-              attrFilter[category] as Set<Visions | Weapons | Nations | Rarity>
-            ).has(attr)
+            (attrFilter[category] as Set<Attribute>).has(attr)
               ? "bg-blue-100"
               : ""
           }`}

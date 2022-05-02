@@ -5,7 +5,7 @@ import Button from "./Button";
 
 interface Options {
   title: string;
-  value: CharacterFilterKeys;
+  value: CharacterSortKeys;
 }
 
 // TODO: add sort function value to options
@@ -16,9 +16,11 @@ const options: Options[] = [
   { title: "Default", value: "name" },
 ];
 
-const SortDropdown: React.FC<{
-  setSortKey: React.Dispatch<React.SetStateAction<CharacterFilterKeys>>;
-}> = ({ setSortKey }) => {
+type SortDropdownProps = React.FC<{
+  setSortKey: React.Dispatch<React.SetStateAction<CharacterSortKeys>>;
+}>;
+
+const SortDropdown: SortDropdownProps = ({ setSortKey }) => {
   const ref = useRef(null);
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState(options.length - 1);

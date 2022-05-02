@@ -1,8 +1,7 @@
 import Image from "next/image";
 
-const Results: React.FC<{ characters: CharacterFilterInfo[] }> = ({
-  characters,
-}) => {
+type ResultsProps = React.FC<{ characters: CharacterFilterInfo[] }>;
+const Results: ResultsProps = ({ characters }) => {
   return (
     <div className="grid grid-cols-[repeat(auto-fill,_100px)] justify-center gap-3 sm:grid-cols-[repeat(auto-fill,_120px)] sm:gap-4 md:gap-6">
       {characters.map((character) => (
@@ -12,11 +11,9 @@ const Results: React.FC<{ characters: CharacterFilterInfo[] }> = ({
   );
 };
 
+type CharacterCardProps = React.FC<{ character: CharacterFilterInfo }>;
 // TODO: add motion-safe or motion-reduce where needed
-const CharacterCard: React.FC<{ character: CharacterFilterInfo }> = ({
-  character,
-}) => {
-  // console.log(character);
+const CharacterCard: CharacterCardProps = ({ character }) => {
   return (
     <div
       className={`translate box-content scale-100 transform-gpu overflow-hidden rounded-md border-0 border-white shadow-sm transition-all duration-500 hover:scale-110 hover:border-2 hover:shadow`}

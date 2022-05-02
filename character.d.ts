@@ -1,7 +1,4 @@
-type Weapons = "Bow" | "Catalyst" | "Claymore" | "Polearm" | "Sword";
-type Nations = "Inazuma" | "Liyue" | "Mondstadt" | "Unknown";
-type Rarity = 4 | 5;
-type Visions =
+type Vision =
   | "Pyro"
   | "Hydro"
   | "Dendro"
@@ -9,6 +6,9 @@ type Visions =
   | "Anemo"
   | "Cryo"
   | "Geo";
+type Weapon = "Bow" | "Catalyst" | "Claymore" | "Polearm" | "Sword";
+type Nation = "Mondstadt" | "Liyue" | "Inazuma" | "Outlander" | "Unknown";
+type Rarity = 4 | 5;
 
 interface SkillTalents {
   name: string;
@@ -33,9 +33,9 @@ interface Constellations {
 
 interface CharacterResponse {
   name: string;
-  vision: Visions;
-  weapon: Weapons;
-  nation: Nations;
+  vision: Vision;
+  weapon: Weapon;
+  nation: Nation;
   affiliation: string;
   rarity: Rarity;
   constellation: string;
@@ -51,18 +51,17 @@ interface CharacterResponse {
 interface CharacterFilterInfo {
   name: string;
   name_url: string;
-  vision: Visions;
-  weapon: Weapons;
-  nation: Nations;
+  vision: Vision;
+  weapon: Weapon;
+  nation: Nation;
   rarity: Rarity;
 }
 
-type CharacterFilterKeys = "name" | "name_url" | "vision" | "weapon" | "nation";
-// | "rarity";
+type CharacterSortKeys = keyof Omit<CharacterFilterInfo, "rarity" | "name_url">;
 
 interface Attributes {
-  vision: Set<Visions>;
-  weapon: Set<Weapons>;
-  nation: Set<Nations>;
+  vision: Set<Vision>;
+  weapon: Set<Weapon>;
+  nation: Set<Nation>;
   rarity: Set<Rarity>;
 }

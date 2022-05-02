@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { CloseIcon, SearchIcon } from "../icons";
 
-const Search: React.FC<{
+type SearchProps = React.FC<{
   setFilter: React.Dispatch<React.SetStateAction<string>>;
-}> = ({ setFilter }) => {
+}>;
+
+const Search: SearchProps = ({ setFilter }) => {
   const [value, setValue] = useState("");
 
   // Input Field handler

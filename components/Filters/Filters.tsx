@@ -5,14 +5,21 @@ import Button from "./Button";
 import Search from "./SearchFilter";
 import SortDropdown from "./SortFilter";
 
-// NOTE: might use memo for components to prevent rerender on isOpen change
-const Filters: React.FC<{
+type FiltersProps = React.FC<{
   setFilter: React.Dispatch<React.SetStateAction<string>>;
-  setSortKey: React.Dispatch<React.SetStateAction<CharacterFilterKeys>>;
+  setSortKey: React.Dispatch<React.SetStateAction<CharacterSortKeys>>;
   setIsReversed: React.Dispatch<React.SetStateAction<boolean>>;
   attrFilter: Attributes;
   setAttrFilter: React.Dispatch<React.SetStateAction<Attributes>>;
-}> = ({ setFilter, setSortKey, setIsReversed, attrFilter, setAttrFilter }) => {
+}>;
+// NOTE: might use memo for components to prevent rerender on isOpen change
+const Filters: FiltersProps = ({
+  setFilter,
+  setSortKey,
+  setIsReversed,
+  attrFilter,
+  setAttrFilter,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (

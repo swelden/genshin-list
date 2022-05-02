@@ -1,8 +1,10 @@
-const Button: React.FC<{
+type ButtonProps = React.FC<{
   children: React.ReactNode;
   onClick: () => void;
   className?: string;
-}> = ({ children, onClick, className = "" }) => {
+}>;
+
+const Button: ButtonProps = ({ children, onClick, className = "" }) => {
   return (
     <button
       onClick={onClick}
