@@ -8,6 +8,7 @@ const Navbar = () => {
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
+    // to prevent isDarkMode differing on the server and the client
     setIsLoaded(true);
   }, []);
 
@@ -37,6 +38,7 @@ const Navbar = () => {
             aria-label="Toggle theme"
             title="Toggle theme"
           >
+            {/* BUG: there is still a flash of the MoonIcon on initial load */}
             {isLoaded && isDarkMode ? <SunIcon /> : <MoonIcon />}
           </button>
         </div>
