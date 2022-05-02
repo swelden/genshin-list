@@ -1,6 +1,7 @@
 import Image from "next/image";
 
 type ResultsProps = React.FC<{ characters: CharacterFilterInfo[] }>;
+// NOTE: might iterate through allCharacters and set display none to characters that were filtered out
 const Results: ResultsProps = ({ characters }) => {
   return (
     <div className="grid grid-cols-[repeat(auto-fill,_100px)] justify-center gap-3 sm:grid-cols-[repeat(auto-fill,_120px)] sm:gap-4 md:gap-6">
@@ -16,10 +17,10 @@ type CharacterCardProps = React.FC<{ character: CharacterFilterInfo }>;
 const CharacterCard: CharacterCardProps = ({ character }) => {
   return (
     <div
-      className={`translate box-content scale-100 transform-gpu overflow-hidden rounded-md border-0 border-white shadow-sm transition-all duration-500 hover:scale-110 hover:border-2 hover:shadow`}
+      className={`translate scale-100 transform-gpu overflow-hidden rounded-md border-white shadow-sm transition duration-500 hover:scale-110 hover:shadow-lg`}
     >
       <div
-        className={`relative flex ${
+        className={`relative flex overflow-hidden ${
           character.rarity === 4
             ? "bg-rare4"
             : character.nation === "Unknown"
