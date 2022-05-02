@@ -50,9 +50,8 @@ const Home: NextPage<{ characters: CharacterFilterInfo[] }> = ({
     setAttrFilter,
   } = useCharacters(allCharacters);
 
-  // dark:bg-zinc-900
   return (
-    <div className="relative flex flex-col gap-6 bg-zinc-50">
+    <div className="relative flex flex-col gap-6 bg-zinc-50 transition-colors dark:bg-zinc-900 dark:text-white">
       <Head>
         <title>Genshin List</title>
         <meta
