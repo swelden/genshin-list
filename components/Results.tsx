@@ -35,8 +35,11 @@ const CharacterCard: CharacterCardProps = ({ character }) => {
           height={120}
         />
       </div>
-      <div className="truncate bg-card-title px-2 py-0.5 text-center font-medium capitalize text-card-contrast">
-        {character.name}
+      {/* box-shadow y has to be half of before: height */}
+      <div className="relative w-full bg-card-title px-2 py-0.5 before:absolute before:-top-10 before:right-0 before:h-10 before:w-12 before:rounded-br-[50%] before:bg-transparent before:shadow-[0_1.25rem_0_0] before:shadow-card-title">
+        <span className="relative block w-full truncate text-center font-medium capitalize text-card-contrast">
+          {character.name}
+        </span>
       </div>
     </div>
   );
