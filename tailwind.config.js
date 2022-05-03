@@ -19,6 +19,7 @@ module.exports = {
         rare5: "#B27C3C", // gold
         colab: "#A14556", // red
         ui: "#ECE5D8",
+        "ui-outline": "#83829D", // for circle buttons
         "ui-contrast": "#495366", // also sort-bg
         "ui-bg-click": "#A89C96",
         "card-title": "#E9E5DC",

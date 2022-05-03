@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import useDarkMode from "../hooks/useDarkMode";
+import { CircleButton } from "./Filters/Button";
 import { MoonIcon, SunIcon } from "./icons";
 
 const Navbar = () => {
@@ -31,17 +32,10 @@ const Navbar = () => {
           </a>
         </Link>
         {/* NOTE: might make links for filtering different categories (characters, artifacts, weapons, etc.) */}
-        <div>
-          <button
-            onClick={toggle}
-            className="rounded-full p-2"
-            aria-label="Toggle theme"
-            title="Toggle theme"
-          >
-            {/* BUG: there is still a flash of the MoonIcon on initial load */}
-            {isLoaded && isDarkMode ? <SunIcon /> : <MoonIcon />}
-          </button>
-        </div>
+        <CircleButton onClick={toggle}>
+          {/* BUG: there is still a flash of the MoonIcon on initial load */}
+          {isLoaded && isDarkMode ? <SunIcon /> : <MoonIcon />}
+        </CircleButton>
       </div>
     </nav>
   );
