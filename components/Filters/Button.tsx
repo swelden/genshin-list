@@ -3,6 +3,8 @@ interface ButtonProps {
   onClick?: () => void;
   className?: string;
   isCircle?: boolean;
+  ariaHaspopup?: boolean;
+  ariaExpanded?: boolean;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -10,6 +12,8 @@ const Button: React.FC<ButtonProps> = ({
   onClick,
   className = "",
   isCircle = false,
+  ariaHaspopup,
+  ariaExpanded,
 }) => {
   return (
     <button
@@ -17,6 +21,8 @@ const Button: React.FC<ButtonProps> = ({
       className={`flex cursor-pointer items-center justify-center rounded-full border-0 border-white bg-ui font-medium text-ui-contrast shadow-sm transition duration-75 hover:border-2 hover:shadow-inner focus-visible:border-2 focus-visible:shadow-inner active:border-opacity-70 active:bg-ui-bg-click active:text-white active:shadow-lg ${
         isCircle ? "h-8 w-8" : "h-9 w-full"
       } ${className}`}
+      aria-haspopup={ariaHaspopup}
+      aria-expanded={ariaExpanded}
     >
       {children}
     </button>
