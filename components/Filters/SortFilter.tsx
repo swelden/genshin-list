@@ -41,19 +41,19 @@ const SortDropdown: SortDropdownProps = ({ setSortKey }) => {
 
   return (
     <div ref={ref} className="relative col-span-2">
+      {/* TODO: add aria attributes to Button (ex: aria-haspopup="true" aria-expanded="false") */}
       <Button onClick={handleClickInside} className="justify-between pl-4 pr-3">
         <span className="truncate">{options[selectedOption].title}</span>
         <DropDownIcon />
       </Button>
       {isOpen && (
-        <ul className="absolute top-[2.15rem] z-10 w-full cursor-pointer overflow-hidden rounded-2xl bg-ui-contrast shadow-md">
+        <div className="absolute top-[2.15rem] z-10 w-full cursor-pointer overflow-hidden rounded-2xl bg-ui-contrast shadow-md">
           {options.map(({ title, value }, index) => (
-            <li
-              className="group p-0.5 py-[0.035rem] first:pt-0.5 last:pb-0.5"
+            <button
+              className="group w-full p-0.5 py-[0.035rem] text-left outline-none first:pt-0.5 last:pb-0.5"
               key={title}
               role="option"
               aria-selected={selectedOption === index}
-              tabIndex={0}
               onClick={() => {
                 setIsOpen(false);
                 setSelectedOption(index);
@@ -61,15 +61,15 @@ const SortDropdown: SortDropdownProps = ({ setSortKey }) => {
               }}
             >
               <div
-                className={`rounded-full p-0.5 pl-4 font-medium text-sort-text group-hover:bg-sort-hover-bg group-hover:text-sort-hover-text ${
+                className={`rounded-full p-0.5 pl-4 font-medium text-sort-text group-hover:bg-sort-hover-bg group-hover:text-sort-hover-text group-focus-visible:outline group-focus-visible:outline-1 ${
                   selectedOption === index ? "bg-sort-hover-bg" : ""
                 }`}
               >
                 {title}
               </div>
-            </li>
+            </button>
           ))}
-        </ul>
+        </div>
       )}
     </div>
   );
