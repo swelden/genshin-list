@@ -16,9 +16,7 @@ type CharacterCardProps = React.FC<{ character: CharacterFilterInfo }>;
 // TODO: add motion-safe or motion-reduce where needed
 const CharacterCard: CharacterCardProps = ({ character }) => {
   return (
-    <div
-      className={`translate scale-100 transform-gpu overflow-hidden rounded-md border-white shadow-sm transition duration-500 hover:scale-110 hover:shadow-lg`}
-    >
+    <div className="translate scale-100 transform-gpu overflow-hidden rounded-md border-white shadow-sm transition duration-500 hover:scale-110 hover:shadow-lg dark:shadow-zinc-600/50">
       <div
         className={`relative flex overflow-hidden ${
           character.rarity === 4

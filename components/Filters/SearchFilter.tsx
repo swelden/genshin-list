@@ -21,8 +21,8 @@ const Search: SearchProps = ({ setFilter }) => {
   };
 
   return (
-    <div className="flex items-center rounded-full border-2 transition-colors ease-in-out focus-within:border-yellow-500">
-      <div className="flex w-10 justify-center text-ui-contrast">
+    <div className="flex items-center rounded-full border-2 border-gray-200 transition-colors ease-in-out focus-within:border-yellow-500 dark:border-ui-contrast">
+      <div className="flex w-10 justify-center text-ui-contrast dark:text-gray-200">
         <SearchIcon />
       </div>
       <input
@@ -34,7 +34,7 @@ const Search: SearchProps = ({ setFilter }) => {
         onChange={handleUserInput}
       />
       <div
-        className="flex w-10 cursor-pointer justify-center text-ui-contrast"
+        className="flex w-10 cursor-pointer justify-center text-ui-contrast dark:text-gray-200"
         onClick={resetInputField}
       >
         <CloseIcon />
