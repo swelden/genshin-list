@@ -1,4 +1,4 @@
-import type { NextPage } from "next";
+import type { GetStaticProps, NextPage } from "next";
 import Head from "next/head";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
@@ -7,7 +7,7 @@ import Filters from "../components/Filters/Filters";
 import useCharacters from "../hooks/useCharacters";
 import React from "react";
 
-export async function getStaticProps() {
+export const getStaticProps: GetStaticProps = async () => {
   const urlBase = "https://api.genshin.dev/characters";
   const resp = await fetch(urlBase);
   const characters: string[] = await resp.json();
@@ -35,7 +35,7 @@ export async function getStaticProps() {
       characters: characterProps,
     },
   };
-}
+};
 
 const Home: NextPage<{ characters: CharacterFilterInfo[] }> = ({
   characters: allCharacters,
