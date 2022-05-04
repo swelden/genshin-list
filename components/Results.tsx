@@ -32,6 +32,14 @@ const CharacterCard: CharacterCardProps = ({ character }) => {
           width={120}
           height={120}
         />
+        <div className="absolute top-0.5 left-0.5">
+          <Image
+            src={`/element-icons/${character.vision}-icon.png`}
+            alt={`${character.vision} icon`}
+            width={30}
+            height={30}
+          />
+        </div>
       </div>
       {/* box-shadow y has to be half of before: height */}
       <div className="relative w-full bg-card-title px-2 py-0.5 before:absolute before:-top-10 before:right-0 before:h-10 before:w-12 before:rounded-br-[50%] before:bg-transparent before:shadow-[0_1.25rem_0_0] before:shadow-card-title">
