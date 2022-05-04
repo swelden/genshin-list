@@ -1,3 +1,5 @@
+const defaultTheme = require("tailwindcss/defaultTheme");
+
 module.exports = {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx}",
@@ -33,6 +35,9 @@ module.exports = {
         "attr-text": "#ECE5D8",
         "attr-bg-click": "#FAFBFB",
         "attr-text-click": "#454F66",
+      },
+      fontFamily: {
+        sans: ["HYWenHei-85W", ...defaultTheme.fontFamily.sans],
       },
     },
   },
