@@ -1,11 +1,44 @@
 import type { GetStaticProps, NextPage } from "next";
 import Head from "next/head";
-import Footer from "../components/Footer";
-import Navbar from "../components/Navbar";
 import Results from "../components/Results";
 import Filters from "../components/Filters/Filters";
 import useCharacters from "../hooks/useCharacters";
 import React from "react";
+
+const Home: NextPage<{ characters: CharacterFilterInfo[] }> = ({
+  characters: allCharacters,
+}) => {
+  const {
+    characters,
+    filter,
+    setFilter,
+    setSortKey,
+    setIsReversed,
+    attrFilter,
+    setAttrFilter,
+  } = useCharacters(allCharacters);
+
+  return (
+    <main className="container flex flex-col gap-6">
+      <Head>
+        <title>Genshin List</title>
+        <meta
+          name="description"
+          content="Find and filter characters from Genshin Impact"
+        />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <Filters
+        setFilter={setFilter}
+        setSortKey={setSortKey}
+        setIsReversed={setIsReversed}
+        attrFilter={attrFilter}
+        setAttrFilter={setAttrFilter}
+      />
+      <Results characters={characters} />
+    </main>
+  );
+};
 
 export const getStaticProps: GetStaticProps = async () => {
   const urlBase = "https://api.genshin.dev/characters";
@@ -35,49 +68,6 @@ export const getStaticProps: GetStaticProps = async () => {
       characters: characterProps,
     },
   };
-};
-
-const Home: NextPage<{ characters: CharacterFilterInfo[] }> = ({
-  characters: allCharacters,
-}) => {
-  const {
-    characters,
-    filter,
-    setFilter,
-    setSortKey,
-    setIsReversed,
-    attrFilter,
-    setAttrFilter,
-  } = useCharacters(allCharacters);
-
-  return (
-    <div className="relative flex flex-col gap-6">
-      <Head>
-        <title>Genshin List</title>
-        <meta
-          name="description"
-          content="Find and filter characters from Genshin Impact"
-        />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <div className="min-h-screen">
-        <Navbar />
-        <main className="container flex flex-col gap-6">
-          <Filters
-            setFilter={setFilter}
-            setSortKey={setSortKey}
-            setIsReversed={setIsReversed}
-            attrFilter={attrFilter}
-            setAttrFilter={setAttrFilter}
-          />
-          <Results characters={characters} />
-        </main>
-      </div>
-
-      <Footer></Footer>
-    </div>
-  );
 };
 
 export default Home;

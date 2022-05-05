@@ -1,5 +1,23 @@
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import { ParsedUrlQuery } from "querystring";
+import Head from "next/head";
+
+const CharacterPage: NextPage<Props> = ({ character }) => {
+  console.log(character);
+  return (
+    <main className="container flex flex-col gap-6 md:flex-row">
+      <Head>
+        <title>Genshin List - {character.name}</title>
+        <meta
+          name="description"
+          content="Find and filter characters from Genshin Impact"
+        />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      {character.name}
+    </main>
+  );
+};
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const urlBase = "https://api.genshin.dev/characters";
@@ -31,11 +49,6 @@ export const getStaticProps: GetStaticProps<Props, Params> = async (
   const character: CharacterResponse = await resp.json();
 
   return { props: { character } };
-};
-
-const CharacterPage: NextPage<Props> = ({ character }) => {
-  console.log(character);
-  return <div>{character.name}</div>;
 };
 
 export default CharacterPage;
