@@ -5,7 +5,7 @@ type ResultsProps = React.FC<{ characters: CharacterFilterInfo[] }>;
 // NOTE: might iterate through allCharacters and set display none to characters that were filtered out
 const Results: ResultsProps = ({ characters }) => {
   return (
-    <div className="grid grid-cols-[repeat(auto-fill,_100px)] justify-center gap-3 sm:grid-cols-[repeat(auto-fill,_120px)] sm:gap-4 md:gap-6">
+    <div className="grid grid-cols-[repeat(auto-fill,_100px)] justify-center gap-3 sm:grid-cols-[repeat(auto-fill,_128px)] sm:gap-4 md:gap-6">
       {characters.map((character) => (
         <CharacterCard key={character.name} character={character} />
       ))}
@@ -18,7 +18,7 @@ type CharacterCardProps = React.FC<{ character: CharacterFilterInfo }>;
 const CharacterCard: CharacterCardProps = ({ character }) => {
   return (
     <Link href={`/${character.name_url}`}>
-      <a className="translate scale-100 transform-gpu overflow-hidden rounded-md border-white shadow-sm transition duration-500 hover:scale-110 hover:shadow-lg dark:shadow-zinc-600/50">
+      <a className="overflow-hidden rounded-md shadow-sm transition duration-300 ease-in-out hover:scale-110 hover:shadow-[0_0_2px_4px_#e9e5dc;] dark:shadow-zinc-600/50 dark:hover:shadow-white">
         <div
           className={`relative flex overflow-hidden ${
             character.rarity === 4
@@ -29,10 +29,10 @@ const CharacterCard: CharacterCardProps = ({ character }) => {
           }`}
         >
           <Image
-            src={`https://api.genshin.dev/characters/${character.name_url}/icon`}
+            src={`/characters/${character.name_url}-icon-big.png`}
             alt={`${character.name} thumb`}
-            width={120}
-            height={120}
+            width={128}
+            height={128}
           />
           <div className="absolute top-0.5 left-0.5">
             <Image
