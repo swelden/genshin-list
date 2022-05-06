@@ -21,7 +21,7 @@ const Search: SearchProps = ({ setFilter }) => {
   };
 
   return (
-    <div className="flex items-center rounded-full border-2 border-gray-200 transition-colors ease-in-out focus-within:border-yellow-500 dark:border-ui-contrast">
+    <div className="flex items-center rounded-full border-2 border-gray-200 transition-colors ease-in-out focus-within:border-yellow-500 dark:border-ui-contrast dark:focus-within:border-yellow-600">
       <div className="flex w-10 justify-center text-ui-contrast dark:text-gray-200">
         <SearchIcon />
       </div>
@@ -32,6 +32,7 @@ const Search: SearchProps = ({ setFilter }) => {
         placeholder="Search for characters..."
         value={value}
         onChange={handleUserInput}
+        spellCheck="false"
       />
       <div
         className="flex w-10 cursor-pointer justify-center text-ui-contrast dark:text-gray-200"
