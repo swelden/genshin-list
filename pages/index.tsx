@@ -43,17 +43,16 @@ const Home: NextPage<{ characters: CharacterFilterInfo[] }> = ({
 export const getStaticProps: GetStaticProps = async () => {
   const urlBase = "https://api.genshin.dev/characters";
   const resp = await fetch(urlBase);
-  const characters: string[] = await resp.json();
+  const characters: string[] = ((await resp.json()) as string[]).filter(
+    (character) => !character.startsWith("traveler")
+  );
 
   const characterProps: CharacterFilterInfo[] = await Promise.all(
     characters.map(async (character): Promise<CharacterFilterInfo> => {
       const characterResp = await fetch(`${urlBase}/${character}`);
       const characterInfo: CharacterResponse = await characterResp.json();
       return {
-        name:
-          characterInfo.name === "Traveler"
-            ? `${characterInfo.name} (${characterInfo.vision})`
-            : characterInfo.name,
+        name: characterInfo.name,
         name_url: character,
         vision: characterInfo.vision,
         weapon: characterInfo.weapon,

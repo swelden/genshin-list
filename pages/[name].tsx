@@ -14,7 +14,7 @@ const CharacterPage: NextPage<Props> = ({ character }) => {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      {character.name}
+      <div>{character.name}</div>
     </main>
   );
 };
@@ -22,7 +22,9 @@ const CharacterPage: NextPage<Props> = ({ character }) => {
 export const getStaticPaths: GetStaticPaths = async () => {
   const urlBase = "https://api.genshin.dev/characters";
   const resp = await fetch(urlBase);
-  const characters: string[] = await resp.json();
+  const characters: string[] = ((await resp.json()) as string[]).filter(
+    (character) => !character.startsWith("traveler")
+  );
 
   return {
     paths: characters.map((character) => ({
@@ -33,7 +35,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 type Props = {
-  character: CharacterResponse;
+  character: AllCharacterInfo;
 };
 
 interface Params extends ParsedUrlQuery {
@@ -43,10 +45,13 @@ interface Params extends ParsedUrlQuery {
 export const getStaticProps: GetStaticProps<Props, Params> = async (
   context
 ) => {
-  const params = context.params!;
+  const { name } = context.params!;
   const urlBase = "https://api.genshin.dev/characters";
-  const resp = await fetch(`${urlBase}/${params.name}`);
-  const character: CharacterResponse = await resp.json();
+  const resp = await fetch(`${urlBase}/${name}`);
+  const character: AllCharacterInfo = {
+    ...(await resp.json()),
+    name_url: name,
+  };
 
   return { props: { character } };
 };

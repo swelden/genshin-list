@@ -18,7 +18,6 @@ const nations: readonly Nation[] = [
   "Mondstadt",
   "Liyue",
   "Inazuma",
-  "Outlander",
   "Unknown",
 ] as const;
 const rarities: readonly Rarity[] = [4, 5] as const;

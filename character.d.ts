@@ -7,7 +7,7 @@ type Vision =
   | "Cryo"
   | "Geo";
 type Weapon = "Bow" | "Catalyst" | "Claymore" | "Polearm" | "Sword";
-type Nation = "Mondstadt" | "Liyue" | "Inazuma" | "Outlander" | "Unknown";
+type Nation = "Mondstadt" | "Liyue" | "Inazuma" | "Unknown";
 type Rarity = 4 | 5;
 
 interface SkillTalents {
@@ -46,6 +46,10 @@ interface CharacterResponse {
   constellations: Constellations[];
   vision_key: string;
   weapon_type: string;
+}
+
+interface AllCharacterInfo extends CharacterResponse {
+  name_url: string;
 }
 
 interface CharacterFilterInfo {
