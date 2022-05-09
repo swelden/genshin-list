@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ["api.genshin.dev"],
+    domains: ["res.cloudinary.com"],
   },
 };
 

@@ -2,12 +2,12 @@ import { useMemo, useState } from "react";
 
 const useCharacters = (allCharacters: CharacterFilterInfo[]) => {
   const [filter, setFilter] = useState("");
-  const [sortKey, setSortKey] = useState<CharacterSortKeys>("name");
+  const [sortKey, setSortKey] = useState<CharacterSortKeys>("version");
   const [isReversed, setIsReversed] = useState(false);
   const [attrFilter, setAttrFilter] = useState<Attributes>({
-    vision: new Set<Vision>(),
-    weapon: new Set<Weapon>(),
-    nation: new Set<Nation>(),
+    element: new Set<Vision>(),
+    weapontype: new Set<Weapon>(),
+    region: new Set<Nation>(),
     rarity: new Set<Rarity>(),
   });
 

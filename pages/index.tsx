@@ -3,6 +3,7 @@ import Head from "next/head";
 import Results from "../components/Results";
 import Filters from "../components/Filters/Filters";
 import useCharacters from "../hooks/useCharacters";
+import * as genshindb from "genshin-db";
 import React from "react";
 
 const Home: NextPage<{ characters: CharacterFilterInfo[] }> = ({
@@ -41,26 +42,22 @@ const Home: NextPage<{ characters: CharacterFilterInfo[] }> = ({
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  const urlBase = "https://api.genshin.dev/characters";
-  const resp = await fetch(urlBase);
-  const characters: string[] = ((await resp.json()) as string[]).filter(
-    (character) => !character.startsWith("traveler")
-  );
+  const characters: string[] = genshindb
+    .characters("names", { matchCategories: true })
+    .filter((character) => character !== "Aether" && character !== "Lumine");
 
-  const characterProps: CharacterFilterInfo[] = await Promise.all(
-    characters.map(async (character): Promise<CharacterFilterInfo> => {
-      const characterResp = await fetch(`${urlBase}/${character}`);
-      const characterInfo: CharacterResponse = await characterResp.json();
-      return {
-        name: characterInfo.name,
-        name_url: character,
-        vision: characterInfo.vision,
-        weapon: characterInfo.weapon,
-        nation: characterInfo.nation,
-        rarity: characterInfo.rarity,
-      };
-    })
-  );
+  const characterProps: CharacterFilterInfo[] = characters.map((character) => {
+    const characterInfo = genshindb.characters(character)!;
+    return {
+      name: characterInfo.name,
+      nameicon: characterInfo.images.nameicon,
+      element: characterInfo.element,
+      weapontype: characterInfo.weapontype,
+      region: characterInfo.region,
+      rarity: characterInfo.rarity,
+      version: characterInfo.version,
+    };
+  });
 
   return {
     props: {

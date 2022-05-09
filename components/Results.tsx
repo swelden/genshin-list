@@ -17,27 +17,27 @@ type CharacterCardProps = React.FC<{ character: CharacterFilterInfo }>;
 // TODO: add motion-safe or motion-reduce where needed
 const CharacterCard: CharacterCardProps = ({ character }) => {
   return (
-    <Link href={`/${character.name_url}`}>
+    <Link href={`/${character.name.toLowerCase().replace(/\s/g, "-")}`}>
       <a className="overflow-hidden rounded-md shadow-sm transition duration-300 ease-in-out hover:scale-110 hover:shadow-[0_0_2px_4px_#e9e5dc;] dark:shadow-zinc-600/50 dark:hover:shadow-white">
         <div
           className={`relative flex overflow-hidden ${
-            character.rarity === 4
+            character.rarity === "4"
               ? "bg-rare4"
-              : character.nation === "Unknown"
+              : character.region === ""
               ? "bg-colab"
               : "bg-rare5"
           }`}
         >
           <Image
-            src={`/characters/${character.name_url}-icon-big.png`}
+            src={`https://res.cloudinary.com/genshin/image/upload/sprites/${character.nameicon}.png`}
             alt={`${character.name} thumb`}
             width={128}
             height={128}
           />
           <div className="absolute top-0.5 left-0.5">
             <Image
-              src={`/element-icons/${character.vision}-icon.png`}
-              alt={`${character.vision} icon`}
+              src={`/element-icons/${character.element}-icon.png`}
+              alt={`${character.element} icon`}
               width={30}
               height={30}
             />
