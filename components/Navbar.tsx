@@ -21,7 +21,7 @@ const Navbar = () => {
   // console.log(isDarkMode);
 
   return (
-    <nav className="mb-4 w-full py-5">
+    <nav className="z-50 mb-4 w-full py-5">
       <div className="container flex items-center justify-between">
         <Link href="/">
           <a
