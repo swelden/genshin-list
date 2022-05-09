@@ -11,10 +11,10 @@ const useCharacters = (allCharacters: CharacterFilterInfo[]) => {
     rarity: new Set<Rarity>(),
   });
 
-  // NOTE: might make separate memo for storing sorted/reversed array
+  // NOTE: might make separate memo for storing sorted array
   const characters = useMemo(() => {
     const lcFilter = filter.toLowerCase(); // case insensitive
-    const filteredCharacters = allCharacters
+    return allCharacters
       .filter(
         (character) =>
           character.name.toLowerCase().includes(lcFilter) &&
@@ -24,9 +24,11 @@ const useCharacters = (allCharacters: CharacterFilterInfo[]) => {
               : value.has(character[key as keyof CharacterFilterInfo])
           )
       )
-      .sort((a, b) => a[sortKey].localeCompare(b[sortKey]));
-
-    return isReversed ? filteredCharacters.reverse() : filteredCharacters;
+      .sort(
+        isReversed
+          ? (b, a) => a[sortKey].localeCompare(b[sortKey])
+          : (a, b) => a[sortKey].localeCompare(b[sortKey])
+      );
   }, [filter, sortKey, isReversed, attrFilter, allCharacters]);
 
   return {
