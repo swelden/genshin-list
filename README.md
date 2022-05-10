@@ -1,6 +1,6 @@
 # Genshin List
 
-Genshin List is a web app to help filter and display characters from the game Genshin Impact. Each character's card can be clicked on to see a more in-depth description of facts, stats, and abilities, as well as lists the number of materials to fully ascend them.
+Genshin List is a web app to help filter and display characters from the game Genshin Impact. The character cards can be clicked on to see a more in-depth description of stats, facts, and abilities. The materials to fully ascend a character are also listed.
 
 Built with [Next.js](https://nextjs.org/) + [Tailwind CSS](https://tailwindcss.com/)
 
