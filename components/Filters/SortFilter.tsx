@@ -10,8 +10,8 @@ interface Options {
 
 // TODO: add sort function value to options
 const options: Options[] = [
-  { title: "Sort by Elemental Type", value: "element" },
-  { title: "Sort by Weapon Type", value: "weapontype" },
+  { title: "Sort by Element", value: "element" },
+  { title: "Sort by Weapon", value: "weapontype" },
   { title: "Sort by Region", value: "region" },
   { title: "Sort by Name", value: "name" },
   { title: "Default", value: "version" },

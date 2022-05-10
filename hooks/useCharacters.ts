@@ -3,7 +3,7 @@ import { useMemo, useState } from "react";
 const useCharacters = (allCharacters: CharacterFilterInfo[]) => {
   const [filter, setFilter] = useState("");
   const [sortKey, setSortKey] = useState<CharacterSortKeys>("version");
-  const [isReversed, setIsReversed] = useState(false);
+  const [isReversed, setIsReversed] = useState(true);
   const [attrFilter, setAttrFilter] = useState<Attributes>({
     element: new Set<Vision>(),
     weapontype: new Set<Weapon>(),

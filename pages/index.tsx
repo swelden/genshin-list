@@ -61,7 +61,9 @@ export const getStaticProps: GetStaticProps = async () => {
 
   return {
     props: {
-      characters: characterProps,
+      characters: characterProps
+        .sort((a, b) => b.name.localeCompare(a.name))
+        .sort((a, b) => b.rarity.localeCompare(a.rarity)),
     },
   };
 };
