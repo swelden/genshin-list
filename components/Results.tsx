@@ -22,10 +22,10 @@ const CharacterCard: CharacterCardProps = ({ character }) => {
         <div
           className={`relative flex overflow-hidden ${
             character.rarity === "4"
-              ? "bg-rare4"
+              ? "bg-gradient-to-b from-[#5e5789] to-[#9c75b7]" // 4 star - purple
               : character.region === ""
-              ? "bg-colab"
-              : "bg-rare5"
+              ? "bg-gradient-to-b from-[#9b3c56] to-[#b4455a]" // colab  - red
+              : "bg-gradient-to-b from-[#945c2c] to-[#b27330]" // 5 star - gold
           }`}
         >
           <Image

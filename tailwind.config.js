@@ -17,9 +17,6 @@ module.exports = {
     },
     extend: {
       colors: {
-        rare4: "#796BAC", // purple
-        rare5: "#B27C3C", // gold
-        colab: "#A14556", // red
         ui: "#ECE5D8",
         "ui-outline": "#83829D", // for circle buttons
         "ui-contrast": "#495366", // also sort-bg
