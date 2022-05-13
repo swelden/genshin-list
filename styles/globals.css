@@ -1,9 +1,48 @@
 @font-face {
   font-family: "HYWenHei-85W";
   src: url("./fonts/ja-jp.woff2") format("woff2"),
-       url("./fonts/ja-jp.woff") format("woff");
+    url("./fonts/ja-jp.woff") format("woff");
 }
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --scrollbar-rgb: 55, 68, 88;
+  --scrollbar-opacity: 0.5;
+  --scrollbar-opacity-hov: 0.7;
+}
+
+html.dark {
+  --scrollbar-rgb: 130, 145, 170;
+  --scrollbar-opacity: 0.2;
+  --scrollbar-opacity-hov: 0.4;
+}
+
+/* Scrollbar Styles */
+html {
+  /* both properties are for firefox support */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(var(--scrollbar-rgb), var(--scrollbar-opacity))
+    rgba(0, 0, 0, 0);
+}
+
+body::-webkit-scrollbar {
+  width: 8px;
+}
+
+body::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0);
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: rgba(var(--scrollbar-rgb), var(--scrollbar-opacity));
+  border: 3px solid rgba(0, 0, 0, 0);
+  border-radius: 10px;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  background: rgba(var(--scrollbar-rgb), var(--scrollbar-opacity-hov));
+  border: 1px solid hsla(0, 0%, 50%, 0.3);
+}
