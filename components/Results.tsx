@@ -18,9 +18,9 @@ type CharacterCardProps = React.FC<{ character: CharacterFilterInfo }>;
 const CharacterCard: CharacterCardProps = ({ character }) => {
   return (
     <Link href={`/${character.name.toLowerCase().replace(/\s/g, "-")}`}>
-      <a className="overflow-hidden rounded-md shadow-sm transition duration-300 ease-in-out hover:scale-110 hover:shadow-[0_0_2px_4px_#e9e5dc;] dark:shadow-zinc-600/50 dark:hover:shadow-white">
+      <a className="overflow-hidden rounded-md bg-card-title shadow-sm outline-none ring-black/20 ring-offset-4 ring-offset-white transition duration-300 ease-in-out hover:scale-110 hover:ring-1 focus-visible:scale-110 focus-visible:ring-1 dark:shadow-zinc-600/50">
         <div
-          className={`relative flex overflow-hidden ${
+          className={`relative flex overflow-hidden rounded-br-[1.25rem] ${
             character.rarity === "4"
               ? "bg-gradient-to-b from-[#5e5789] to-[#9c75b7]" // 4 star - purple
               : character.region === ""
@@ -43,8 +43,7 @@ const CharacterCard: CharacterCardProps = ({ character }) => {
             />
           </div>
         </div>
-        {/* box-shadow y has to be half of before: height */}
-        <div className="relative w-full bg-card-title px-2 py-0.5 before:absolute before:-top-10 before:right-0 before:h-10 before:w-12 before:rounded-br-[50%] before:bg-transparent before:shadow-[0_1.25rem_0_0] before:shadow-card-title">
+        <div className="relative w-full px-2 py-0.5">
           <span className="relative block w-full truncate text-center font-medium capitalize text-card-contrast">
             {character.name}
           </span>
