@@ -47,8 +47,8 @@ const HeroSection: React.FC<Pick<Props, "character">> = ({ character }) => {
         {/* TODO: make after pseudo-element */}
         <div className="absolute bottom-0 h-16 w-full bg-gradient-to-t from-zinc-50 dark:from-zinc-900"></div>
       </div>
+      <DetailHeader character={character} />
       <div className="col-start-6 col-end-[-1] row-span-full flex flex-col items-center justify-center gap-2">
-        <DetailHeader character={character} />
         <AttrTable character={character} />
       </div>
     </div>
@@ -97,17 +97,19 @@ const AttrRow: React.FC<{ title: string; info: string }> = ({
 
 const DetailHeader: React.FC<Pick<Props, "character">> = ({ character }) => {
   return (
-    <div className="w-full rounded-md bg-zinc-50/90 p-3 backdrop-blur-sm dark:bg-zinc-900/90">
-      <div className="mb-1 flex h-min items-center gap-3">
-        <h1 className="text-3xl">{character.name}</h1>
-        <Image
-          src={`/element-icons/${character.element}-icon.png`}
-          alt={`${character.element} icon`}
-          width={24}
-          height={24}
-        />
+    <div className="col-start-2 col-end-[-1] row-span-full mb-3 flex items-center">
+      <div className="rounded-md bg-zinc-50/90 p-3 backdrop-blur-sm dark:bg-zinc-900/90">
+        <div className="mb-1 flex h-min items-center gap-3">
+          <h1 className="text-3xl">{character.name}</h1>
+          <Image
+            src={`/element-icons/${character.element}-icon.png`}
+            alt={`${character.element} icon`}
+            width={24}
+            height={24}
+          />
+        </div>
+        <StarRating rarity={character.rarity} />
       </div>
-      <StarRating rarity={character.rarity} />
     </div>
   );
 };
