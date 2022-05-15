@@ -13,7 +13,7 @@ const CharacterPage: NextPage<Props> = ({
   console.log(talents);
   console.log(constellations);
   return (
-    <main className="relative mb-14 lg:flex-1">
+    <main className="container relative flex flex-col gap-3">
       <Head>
         <title>Genshin List - {character.name}</title>
         <meta
@@ -22,7 +22,21 @@ const CharacterPage: NextPage<Props> = ({
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="top-0 left-0 right-0 bottom-0 -z-10 items-start justify-center lg:absolute lg:flex lg:items-center">
+
+      <HeroSection character={character} />
+      <div className="grid gap-3">
+        <div className="bg-gray-500/30 py-32">Ascensions</div>
+        <div className="bg-gray-500/30 py-32">Talents</div>
+        <div className="bg-gray-500/30 py-32">Constellations</div>
+      </div>
+    </main>
+  );
+};
+
+const HeroSection: React.FC<Pick<Props, "character">> = ({ character }) => {
+  return (
+    <div className="grid-cols-7 lg:grid">
+      <div className="relative -z-10 col-span-full row-span-full flex items-center justify-center">
         <Image
           src={`https://res.cloudinary.com/genshin/image/upload/sprites/${character.image}.png`} // gacha-splash
           alt={`${character.name} gacha splash`}
@@ -30,14 +44,92 @@ const CharacterPage: NextPage<Props> = ({
           height={960}
           // priority={true}
         />
+        {/* TODO: make after pseudo-element */}
+        <div className="absolute bottom-0 h-16 w-full bg-gradient-to-t from-zinc-50 dark:from-zinc-900"></div>
       </div>
-      <div className="container grid grid-cols-none grid-rows-1 items-stretch gap-6 lg:grid-cols-[2fr_4fr_3fr]">
-        <div className="lg:col-start-1">{character.name}</div>
-        <div className="lg:col-start-3">{character.affiliation}</div>
+      <div className="col-start-6 col-end-[-1] row-span-full flex flex-col items-center justify-center gap-2">
+        <DetailHeader character={character} />
+        <AttrTable character={character} />
       </div>
-    </main>
+    </div>
   );
 };
+
+const AttrTable: React.FC<Pick<Props, "character">> = ({ character }) => {
+  return (
+    <div className="flex flex-col gap-2 rounded-md bg-white/95 p-3 ring-1 ring-black/5 backdrop-blur-sm dark:bg-zinc-800/95 dark:ring-white/5">
+      <h2 className="px-2 text-2xl">Attributes</h2>
+      <table className="w-full">
+        <tbody className="">
+          {/* <AttrRow title="Name" info={character.name} /> */}
+          <AttrRow title="Birthday" info={character.birthdaymmdd} />
+          <AttrRow title="Constellation" info={character.constellation} />
+          <AttrRow title="Title" info={character.title} />
+          <AttrRow title="Vision" info={character.element} />
+          <AttrRow title="Affiliation" info={character.affiliation} />
+        </tbody>
+      </table>
+      <div className="px-2 text-black/90 dark:text-white/90">
+        {character.description}
+      </div>
+    </div>
+  );
+};
+
+const AttrRow: React.FC<{ title: string; info: string }> = ({
+  title,
+  info,
+}) => {
+  return (
+    <tr className="border-b border-neutral-500/20 odd:bg-zinc-300/20 dark:odd:bg-zinc-600/10">
+      <th
+        className="py-3 px-2 text-left font-normal text-black/60 dark:text-white/60"
+        scope="row"
+      >
+        {title}
+      </th>
+      <td className="px-2 text-right text-black/90 dark:text-white/90">
+        {info}
+      </td>
+    </tr>
+  );
+};
+
+const DetailHeader: React.FC<Pick<Props, "character">> = ({ character }) => {
+  return (
+    <div className="w-full rounded-md bg-zinc-50/90 p-3 backdrop-blur-sm dark:bg-zinc-900/90">
+      <div className="mb-1 flex h-min items-center gap-3">
+        <h1 className="text-3xl">{character.name}</h1>
+        <Image
+          src={`/element-icons/${character.element}-icon.png`}
+          alt={`${character.element} icon`}
+          width={24}
+          height={24}
+        />
+      </div>
+      <StarRating rarity={character.rarity} />
+    </div>
+  );
+};
+
+const StarRating: React.FC<{ rarity: number }> = ({ rarity }) => {
+  return (
+    <div className="flex flex-nowrap">
+      {[...Array(rarity)].map((_, i) => (
+        <Image
+          key={`star-${i}`}
+          src="/star-rating.png"
+          alt="Star Icon"
+          width={18}
+          height={18}
+          quality={100}
+        />
+      ))}
+    </div>
+  );
+};
+
+// === SERVER BELOW ===
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const characters: string[] = genshindb
