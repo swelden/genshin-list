@@ -13,7 +13,7 @@ const CharacterPage: NextPage<Props> = ({
   console.log(talents);
   console.log(constellations);
   return (
-    <main className="container relative flex flex-col gap-3">
+    <main className="container relative flex flex-col gap-5">
       <Head>
         <title>Genshin List - {character.name}</title>
         <meta
@@ -24,7 +24,7 @@ const CharacterPage: NextPage<Props> = ({
       </Head>
 
       <HeroSection character={character} />
-      <div className="grid gap-3">
+      <div className="grid gap-5">
         <div className="bg-gray-500/30 py-32">Ascensions</div>
         <div className="bg-gray-500/30 py-32">Talents</div>
         <div className="bg-gray-500/30 py-32">Constellations</div>
@@ -35,7 +35,7 @@ const CharacterPage: NextPage<Props> = ({
 
 const HeroSection: React.FC<Pick<Props, "character">> = ({ character }) => {
   return (
-    <div className="grid-cols-7 lg:grid">
+    <div className="grid-cols-10 text-sm lg:grid xl:text-base">
       <div className="relative -z-10 col-span-full row-span-full flex items-center justify-center">
         <Image
           src={`https://res.cloudinary.com/genshin/image/upload/sprites/${character.image}.png`} // gacha-splash
@@ -48,7 +48,7 @@ const HeroSection: React.FC<Pick<Props, "character">> = ({ character }) => {
         <div className="absolute bottom-0 h-16 w-full bg-gradient-to-t from-zinc-50 dark:from-zinc-900"></div>
       </div>
       <DetailHeader character={character} />
-      <div className="col-start-6 col-end-[-1] row-span-full flex flex-col items-center justify-center gap-2">
+      <div className="col-span-3 col-end-[-1] row-span-full flex flex-col items-center justify-center gap-2">
         <AttrTable character={character} />
       </div>
     </div>
@@ -67,6 +67,7 @@ const AttrTable: React.FC<Pick<Props, "character">> = ({ character }) => {
           <AttrRow title="Title" info={character.title} />
           <AttrRow title="Vision" info={character.element} />
           <AttrRow title="Affiliation" info={character.affiliation} />
+          <AttrRow title="English VA" info={character.cv.english} />
         </tbody>
       </table>
       <div className="px-2 text-black/90 dark:text-white/90">
@@ -97,7 +98,7 @@ const AttrRow: React.FC<{ title: string; info: string }> = ({
 
 const DetailHeader: React.FC<Pick<Props, "character">> = ({ character }) => {
   return (
-    <div className="col-start-2 col-end-[-1] row-span-full mb-3 flex items-center">
+    <div className="col-span-full col-start-2 row-span-full mb-3 flex items-center">
       <div className="rounded-md bg-zinc-50/90 p-3 backdrop-blur-sm dark:bg-zinc-900/90">
         <div className="mb-1 flex h-min items-center gap-3">
           <h1 className="text-3xl">{character.name}</h1>
@@ -116,7 +117,7 @@ const DetailHeader: React.FC<Pick<Props, "character">> = ({ character }) => {
 
 const StarRating: React.FC<{ rarity: number }> = ({ rarity }) => {
   return (
-    <div className="flex flex-nowrap">
+    <div className="flex flex-nowrap gap-1">
       {[...Array(rarity)].map((_, i) => (
         <Image
           key={`star-${i}`}
