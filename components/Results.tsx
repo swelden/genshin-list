@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { imageUrl } from "../utils/urls";
 
 type ResultsProps = React.FC<{ characters: CharacterFilterInfo[] }>;
 // NOTE: might iterate through allCharacters and set display none to characters that were filtered out
@@ -29,7 +30,7 @@ const CharacterCard: CharacterCardProps = ({ character }) => {
           }`}
         >
           <Image
-            src={`https://res.cloudinary.com/genshin/image/upload/sprites/${character.nameicon}.png`}
+            src={imageUrl(character.nameicon)}
             alt={`${character.name} thumb`}
             width={128}
             height={128}
