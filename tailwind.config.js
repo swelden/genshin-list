@@ -16,7 +16,12 @@ module.exports = {
       },
     },
     extend: {
+      // TODO: consolidate colors
       colors: {
+        gold: {
+          400: "#FFD780",
+          500: "#F0A400",
+        },
         ui: "#ECE5D8",
         "ui-outline": "#83829D", // for circle buttons
         "ui-contrast": "#495366", // also sort-bg

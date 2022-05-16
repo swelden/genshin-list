@@ -3,6 +3,7 @@ import { ParsedUrlQuery } from "querystring";
 import Head from "next/head";
 import Image from "next/image";
 import * as genshindb from "genshin-db";
+import { imageUrl } from "../utils/urls";
 
 const CharacterPage: NextPage<Props> = ({
   character,
@@ -27,9 +28,43 @@ const CharacterPage: NextPage<Props> = ({
       <div className="grid gap-5">
         <div className="bg-gray-500/30 py-32">Ascensions</div>
         <div className="bg-gray-500/30 py-32">Talents</div>
-        <div className="bg-gray-500/30 py-32">Constellations</div>
+        <ConstellationSection constellations={constellations} />
       </div>
     </main>
+  );
+};
+
+const ConstellationSection: React.FC<Pick<Props, "constellations">> = ({
+  constellations,
+}) => {
+  return (
+    <section className="flex flex-col gap-3 rounded-lg bg-white p-3 ring-1 ring-black/5 dark:bg-zinc-800 dark:ring-white/5 lg:p-5">
+      <h2 className="text-2xl">Constellations</h2>
+      {constellations.map((constellation) => (
+        <div
+          className="border-b border-neutral-500/20 pb-4 last:border-0 last:pb-0"
+          key={constellation.name}
+        >
+          <div className="flex items-center gap-2">
+            <Image
+              src={constellation.icon} // gacha-splash
+              alt={`${constellation.name} gacha splash`}
+              width={48}
+              height={48}
+              className="invert dark:filter-none"
+              // priority={true}
+            />
+            <h3 className="text-lg">{constellation.name}</h3>
+          </div>
+          <div
+            className="mt-2 text-black/60 dark:text-white/60"
+            dangerouslySetInnerHTML={{
+              __html: constellation.effect,
+            }}
+          />
+        </div>
+      ))}
+    </section>
   );
 };
 
@@ -38,7 +73,7 @@ const HeroSection: React.FC<Pick<Props, "character">> = ({ character }) => {
     <div className="grid-cols-10 text-sm lg:grid xl:text-base">
       <div className="relative -z-10 col-span-full row-span-full flex items-center justify-center">
         <Image
-          src={`https://res.cloudinary.com/genshin/image/upload/sprites/${character.image}.png`} // gacha-splash
+          src={imageUrl(character.image)} // gacha-splash
           alt={`${character.name} gacha splash`}
           width={1920}
           height={960}
@@ -57,7 +92,7 @@ const HeroSection: React.FC<Pick<Props, "character">> = ({ character }) => {
 
 const AttrTable: React.FC<Pick<Props, "character">> = ({ character }) => {
   return (
-    <div className="flex flex-col gap-2 rounded-md bg-white/95 p-3 ring-1 ring-black/5 backdrop-blur-sm dark:bg-zinc-800/95 dark:ring-white/5">
+    <div className="flex flex-col gap-2 rounded-lg bg-white/95 p-3 ring-1 ring-black/5 backdrop-blur-sm dark:bg-zinc-800/95 dark:ring-white/5">
       <h2 className="px-2 text-2xl">Attributes</h2>
       <table className="w-full">
         <tbody className="">
@@ -99,7 +134,7 @@ const AttrRow: React.FC<{ title: string; info: string }> = ({
 const DetailHeader: React.FC<Pick<Props, "character">> = ({ character }) => {
   return (
     <div className="col-span-full col-start-2 row-span-full mb-3 flex items-center">
-      <div className="rounded-md bg-zinc-50/90 p-3 backdrop-blur-sm dark:bg-zinc-900/90">
+      <div className="rounded-lg bg-zinc-50/90 p-3 backdrop-blur-sm dark:bg-zinc-900/90">
         <div className="mb-1 flex h-min items-center gap-3">
           <h1 className="text-3xl">{character.name}</h1>
           <Image
@@ -145,6 +180,16 @@ export const getStaticPaths: GetStaticPaths = async () => {
     })),
     fallback: false,
   };
+};
+
+// NOTE: might sanitize because I don't have control over text
+// NOTE: might add different color for dark and light
+// TODO: add color span for elemental damage (Pyro DMG, Cryo DMG etc.)
+const formatMarkdown = (text: string): string => {
+  return text.replace(
+    /\*\*([^*]+)\*\*/g, // **text** -> <span>text</span>
+    '<span class="text-gold-500 dark:text-gold-400">$1</span>'
+  );
 };
 
 interface ActiveTalent extends genshindb.PassiveTalentDetail {
@@ -330,27 +375,33 @@ export const getStaticProps: GetStaticProps<Props, Params> = async (
 
   const constellationProps = [
     {
-      ...characterConstellations.c1,
+      name: characterConstellations.c1.name,
+      effect: formatMarkdown(characterConstellations.c1.effect),
       icon: characterConstellations.images.c1,
     },
     {
-      ...characterConstellations.c2,
+      name: characterConstellations.c2.name,
+      effect: formatMarkdown(characterConstellations.c2.effect),
       icon: characterConstellations.images.c2,
     },
     {
-      ...characterConstellations.c3,
+      name: characterConstellations.c3.name,
+      effect: formatMarkdown(characterConstellations.c3.effect),
       icon: characterConstellations.images.c3,
     },
     {
-      ...characterConstellations.c4,
+      name: characterConstellations.c4.name,
+      effect: formatMarkdown(characterConstellations.c4.effect),
       icon: characterConstellations.images.c4,
     },
     {
-      ...characterConstellations.c5,
+      name: characterConstellations.c5.name,
+      effect: formatMarkdown(characterConstellations.c5.effect),
       icon: characterConstellations.images.c5,
     },
     {
-      ...characterConstellations.c6,
+      name: characterConstellations.c6.name,
+      effect: formatMarkdown(characterConstellations.c6.effect),
       icon: characterConstellations.images.c6,
     },
   ];
