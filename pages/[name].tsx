@@ -13,6 +13,7 @@ import {
 
 const CharacterPage: NextPage<Props> = ({
   character,
+  ascensions,
   talents,
   constellations,
 }) => {
@@ -31,7 +32,7 @@ const CharacterPage: NextPage<Props> = ({
 
       <HeroSection character={character} />
       <div className="grid gap-5">
-        <AscensionSection ascensions={character.ascensions} />
+        <AscensionSection ascensions={ascensions} />
         <TalentSection talents={talents} />
         <ConstellationSection constellations={constellations} />
       </div>
@@ -62,11 +63,13 @@ const HeroSection: React.FC<Pick<Props, "character">> = ({ character }) => {
 };
 
 const DetailHeader: React.FC<Pick<Props, "character">> = ({ character }) => {
+  // TODO: add container that spans max of 3 columns (to prevent long names from covering image)
   return (
     <div className="col-span-full col-start-2 row-span-full mb-3 flex items-center">
       <div className="rounded-lg bg-zinc-50/90 p-3 backdrop-blur-sm dark:bg-zinc-900/90">
         <div className="mb-1 flex h-min items-center gap-3">
           <h1 className="text-3xl">{character.name}</h1>
+          {/* TODO: move element icon to left/middle of name (like the gacha splash format) */}
           <Image
             src={`/element-icons/${character.element}-icon.png`}
             alt={`${character.element} icon`}
@@ -264,12 +267,11 @@ interface CharacterInfo
   > {
   image: string;
   rarity: number;
-  ascensions: Ascensions;
-  stats: any;
 }
 
 interface Ascensions extends Pick<genshindb.Character, "costs"> {
   materialIcons: MaterialIconMap;
+  stats: any;
 }
 
 interface TalentInfo {
@@ -287,6 +289,7 @@ interface ConstellationInfo {
 
 export interface Props {
   character: CharacterInfo;
+  ascensions: Ascensions;
   talents: TalentInfo;
   constellations: ConstellationInfo[];
 }
@@ -318,12 +321,13 @@ export const getStaticProps: GetStaticProps<Props, Params> = async (
     birthdaymmdd: characterInfo.birthdaymmdd,
     constellation: characterInfo.constellation,
     cv: characterInfo.cv, // NOTE: might only get english cv
-    ascensions: {
-      costs: { ...characterInfo.costs },
-      materialIcons: getMaterialIcons(characterInfo.costs),
-    },
     image: characterInfo.images.namegachasplash!,
+  };
+
+  const ascensionProps: Ascensions = {
+    costs: { ...characterInfo.costs },
     stats: getCharStats(characterInfo.stats),
+    materialIcons: getMaterialIcons(characterInfo.costs),
   };
 
   const talentProps: TalentInfo = {
@@ -369,6 +373,7 @@ export const getStaticProps: GetStaticProps<Props, Params> = async (
   return {
     props: {
       character: characterProps,
+      ascensions: ascensionProps,
       talents: talentProps,
       constellations: constellationProps,
     },
