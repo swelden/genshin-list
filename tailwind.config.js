@@ -16,20 +16,17 @@ module.exports = {
       },
     },
     extend: {
-      // TODO: consolidate colors
       colors: {
-        gold: {
-          400: "#FFD780",
-          500: "#F0A400",
-        },
-        pyro: "#FF9999",
-        hydro: "#80C0FF",
-        dendro: "#B2EA2A",
-        electro: "#FFACFF",
-        anemo: "#80FFD7",
-        cryo: "#99FFFF",
-        geo: "#FFE699",
+        gold: "var(--gold)",
+        pyro: "var(--pyro)",
+        hydro: "var(--hydro)",
+        dendro: "var(--dendro)",
+        electro: "var(--electro)",
+        anemo: "var(--anemo)",
+        cryo: "var(--cryo)",
+        geo: "var(--geo)",
 
+        // TODO: consolidate colors
         ui: "#ECE5D8",
         "ui-outline": "#83829D", // for circle buttons
         "ui-contrast": "#495366", // also sort-bg

@@ -9,12 +9,35 @@
 @tailwind utilities;
 
 :root {
+  /* colors */
+  /* NOTE: some light mode colors need updating */
+  --gold: #f0a400;
+  --pyro: #ff5c5c;
+  --hydro: #52a8ff;
+  --dendro: #98cc14;
+  --electro: #ff70ff;
+  --anemo: #3dffc2;
+  --cryo: #4dffff;
+  --geo: #ebb000;
+
+  /* scrollbar */
   --scrollbar-rgb: 55, 68, 88;
   --scrollbar-opacity: 0.5;
   --scrollbar-opacity-hov: 0.7;
 }
 
 html.dark {
+  /* colors */
+  --gold: #ffd780;
+  --pyro: #ff9999;
+  --hydro: #80c0ff;
+  --dendro: #b3ea2a;
+  --electro: #ffacff;
+  --anemo: #80ffd7;
+  --cryo: #99ffff;
+  --geo: #ffe699;
+
+  /* scrollbar */
   --scrollbar-rgb: 130, 145, 170;
   --scrollbar-opacity: 0.2;
   --scrollbar-opacity-hov: 0.4;

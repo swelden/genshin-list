@@ -115,7 +115,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
   };
 };
 
-// TODO: add different color for dark and light
 const ElementColor = {
   Pyro: "text-pyro",
   Hydro: "text-hydro",
@@ -131,7 +130,7 @@ const formatMarkdown = (text: string): string => {
   return text
     .replace(
       /\*\*([^*]+)\*\*/g, // **text** -> <span>text</span>
-      '<span class="text-gold-500 dark:text-gold-400">$1</span>'
+      '<span class="text-gold">$1</span>'
     )
     .replace(
       /(AoE\s)?(Pyro|Hydro|Dendro|Electro|Anemo|Cryo|Geo)(\s(?:DMG|RES))?(\sBonus)?(-related\sElemental\sReaction)?(?=\W)/g,
