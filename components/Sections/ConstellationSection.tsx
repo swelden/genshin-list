@@ -5,6 +5,7 @@ import { Props } from "../../pages/[name]";
 const ConstellationSection: React.FC<Pick<Props, "constellations">> = ({
   constellations,
 }) => {
+  console.log(constellations);
   return (
     <Section title="Constellations">
       {constellations.map((constellation) => (

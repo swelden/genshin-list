@@ -4,7 +4,12 @@ import Head from "next/head";
 import Image from "next/image";
 import * as genshindb from "genshin-db";
 import { imageUrl } from "../utils/urls";
-import { AttributeSection, ConstellationSection } from "../components/Sections";
+import {
+  AttributeSection,
+  AscensionSection,
+  TalentSection,
+  ConstellationSection,
+} from "../components/Sections";
 
 const CharacterPage: NextPage<Props> = ({
   character,
@@ -12,8 +17,6 @@ const CharacterPage: NextPage<Props> = ({
   constellations,
 }) => {
   console.log(character);
-  console.log(talents);
-  console.log(constellations);
 
   return (
     <main className="container relative flex flex-col gap-5">
@@ -28,8 +31,8 @@ const CharacterPage: NextPage<Props> = ({
 
       <HeroSection character={character} />
       <div className="grid gap-5">
-        <div className="bg-gray-500/30 py-32">Ascensions</div>
-        <div className="bg-gray-500/30 py-32">Talents</div>
+        <AscensionSection ascensions={character.ascensions} />
+        <TalentSection talents={talents} />
         <ConstellationSection constellations={constellations} />
       </div>
     </main>
@@ -251,6 +254,7 @@ interface CharacterInfo
     genshindb.Character,
     | "association"
     | "birthday"
+    | "costs"
     | "fullname"
     | "images"
     | "rarity"
@@ -260,8 +264,12 @@ interface CharacterInfo
   > {
   image: string;
   rarity: number;
-  materialIcons: MaterialIconMap;
+  ascensions: Ascensions;
   stats: any;
+}
+
+interface Ascensions extends Pick<genshindb.Character, "costs"> {
+  materialIcons: MaterialIconMap;
 }
 
 interface TalentInfo {
@@ -295,7 +303,7 @@ export const getStaticProps: GetStaticProps<Props, Params> = async (
   const characterTalents = genshindb.talents(name)!;
   const characterConstellations = genshindb.constellations(name)!;
 
-  const characterProps = {
+  const characterProps: CharacterInfo = {
     name: characterInfo.name,
     title: characterInfo.title,
     description: characterInfo.description,
@@ -310,9 +318,11 @@ export const getStaticProps: GetStaticProps<Props, Params> = async (
     birthdaymmdd: characterInfo.birthdaymmdd,
     constellation: characterInfo.constellation,
     cv: characterInfo.cv, // NOTE: might only get english cv
-    costs: characterInfo.costs,
+    ascensions: {
+      costs: { ...characterInfo.costs },
+      materialIcons: getMaterialIcons(characterInfo.costs),
+    },
     image: characterInfo.images.namegachasplash!,
-    materialIcons: getMaterialIcons(characterInfo.costs),
     stats: getCharStats(characterInfo.stats),
   };
 
@@ -323,7 +333,7 @@ export const getStaticProps: GetStaticProps<Props, Params> = async (
     materialIcons: getMaterialIcons(characterTalents.costs),
   };
 
-  const constellationProps = [
+  const constellationProps: ConstellationInfo[] = [
     {
       name: characterConstellations.c1.name,
       effect: formatMarkdown(characterConstellations.c1.effect),
