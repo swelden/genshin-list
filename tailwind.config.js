@@ -22,6 +22,14 @@ module.exports = {
           400: "#FFD780",
           500: "#F0A400",
         },
+        pyro: "#FF9999",
+        hydro: "#80C0FF",
+        dendro: "#B2EA2A",
+        electro: "#FFACFF",
+        anemo: "#80FFD7",
+        cryo: "#99FFFF",
+        geo: "#FFE699",
+
         ui: "#ECE5D8",
         "ui-outline": "#83829D", // for circle buttons
         "ui-contrast": "#495366", // also sort-bg

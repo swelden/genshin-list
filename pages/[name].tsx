@@ -109,14 +109,37 @@ export const getStaticPaths: GetStaticPaths = async () => {
   };
 };
 
+// TODO: add different color for dark and light
+const ElementColor = {
+  Pyro: "text-pyro",
+  Hydro: "text-hydro",
+  Dendro: "text-dendro",
+  Electro: "text-electro",
+  Anemo: "text-anemo",
+  Cryo: "text-cryo",
+  Geo: "text-geo",
+};
+
 // NOTE: might sanitize because I don't have control over text
-// NOTE: might add different color for dark and light
-// TODO: add color span for elemental damage (Pyro DMG, Cryo DMG etc.)
 const formatMarkdown = (text: string): string => {
-  return text.replace(
-    /\*\*([^*]+)\*\*/g, // **text** -> <span>text</span>
-    '<span class="text-gold-500 dark:text-gold-400">$1</span>'
-  );
+  return text
+    .replace(
+      /\*\*([^*]+)\*\*/g, // **text** -> <span>text</span>
+      '<span class="text-gold-500 dark:text-gold-400">$1</span>'
+    )
+    .replace(
+      /(AoE\s)?(Pyro|Hydro|Dendro|Electro|Anemo|Cryo|Geo)(\s(?:DMG|RES))?(\sBonus)?(?=\W)/g,
+      (
+        match,
+        _p1: string | undefined,
+        p2: Vision,
+        _p3: string | undefined,
+        _p4: string | undefined
+      ) => {
+        // p1 -> p4 because there are 4 capture groups
+        return `<span class="${ElementColor[p2]}">${match}</span>`;
+      }
+    );
 };
 
 interface ActiveTalent extends genshindb.PassiveTalentDetail {
