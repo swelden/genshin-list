@@ -128,7 +128,7 @@ const formatMarkdown = (text: string): string => {
       '<span class="text-gold-500 dark:text-gold-400">$1</span>'
     )
     .replace(
-      /(AoE\s)?(Pyro|Hydro|Dendro|Electro|Anemo|Cryo|Geo)(\s(?:DMG|RES))?(\sBonus)?(?=\W)/g,
+      /(AoE\s)?(Pyro|Hydro|Dendro|Electro|Anemo|Cryo|Geo)(\s(?:DMG|RES))?(\sBonus)?(-related\sElemental\sReaction)?(?=\W)/g,
       (
         match,
         _p1: string | undefined,
