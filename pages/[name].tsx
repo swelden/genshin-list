@@ -4,6 +4,7 @@ import Head from "next/head";
 import Image from "next/image";
 import * as genshindb from "genshin-db";
 import { imageUrl } from "../utils/urls";
+import { AttributeSection, ConstellationSection } from "../components/Sections";
 
 const CharacterPage: NextPage<Props> = ({
   character,
@@ -13,6 +14,7 @@ const CharacterPage: NextPage<Props> = ({
   console.log(character);
   console.log(talents);
   console.log(constellations);
+
   return (
     <main className="container relative flex flex-col gap-5">
       <Head>
@@ -34,40 +36,6 @@ const CharacterPage: NextPage<Props> = ({
   );
 };
 
-const ConstellationSection: React.FC<Pick<Props, "constellations">> = ({
-  constellations,
-}) => {
-  return (
-    <section className="flex flex-col gap-3 rounded-lg bg-white p-3 ring-1 ring-black/5 dark:bg-zinc-800 dark:ring-white/5 lg:p-5">
-      <h2 className="text-2xl">Constellations</h2>
-      {constellations.map((constellation) => (
-        <div
-          className="border-b border-neutral-500/20 pb-4 last:border-0 last:pb-0"
-          key={constellation.name}
-        >
-          <div className="flex items-center gap-2">
-            <Image
-              src={constellation.icon} // gacha-splash
-              alt={`${constellation.name} gacha splash`}
-              width={48}
-              height={48}
-              className="invert dark:filter-none"
-              // priority={true}
-            />
-            <h3 className="text-lg">{constellation.name}</h3>
-          </div>
-          <div
-            className="mt-2 text-black/60 dark:text-white/60"
-            dangerouslySetInnerHTML={{
-              __html: constellation.effect,
-            }}
-          />
-        </div>
-      ))}
-    </section>
-  );
-};
-
 const HeroSection: React.FC<Pick<Props, "character">> = ({ character }) => {
   return (
     <div className="grid-cols-10 text-sm lg:grid xl:text-base">
@@ -84,50 +52,9 @@ const HeroSection: React.FC<Pick<Props, "character">> = ({ character }) => {
       </div>
       <DetailHeader character={character} />
       <div className="col-span-3 col-end-[-1] row-span-full flex flex-col items-center justify-center gap-2">
-        <AttrTable character={character} />
+        <AttributeSection character={character} />
       </div>
     </div>
-  );
-};
-
-const AttrTable: React.FC<Pick<Props, "character">> = ({ character }) => {
-  return (
-    <div className="flex flex-col gap-2 rounded-lg bg-white/95 p-3 ring-1 ring-black/5 backdrop-blur-sm dark:bg-zinc-800/95 dark:ring-white/5">
-      <h2 className="px-2 text-2xl">Attributes</h2>
-      <table className="w-full">
-        <tbody className="">
-          {/* <AttrRow title="Name" info={character.name} /> */}
-          <AttrRow title="Birthday" info={character.birthdaymmdd} />
-          <AttrRow title="Constellation" info={character.constellation} />
-          <AttrRow title="Title" info={character.title} />
-          <AttrRow title="Vision" info={character.element} />
-          <AttrRow title="Affiliation" info={character.affiliation} />
-          <AttrRow title="English VA" info={character.cv.english} />
-        </tbody>
-      </table>
-      <div className="px-2 text-black/90 dark:text-white/90">
-        {character.description}
-      </div>
-    </div>
-  );
-};
-
-const AttrRow: React.FC<{ title: string; info: string }> = ({
-  title,
-  info,
-}) => {
-  return (
-    <tr className="border-b border-neutral-500/20 odd:bg-zinc-300/20 dark:odd:bg-zinc-600/10">
-      <th
-        className="py-3 px-2 text-left font-normal text-black/60 dark:text-white/60"
-        scope="row"
-      >
-        {title}
-      </th>
-      <td className="px-2 text-right text-black/90 dark:text-white/90">
-        {info}
-      </td>
-    </tr>
   );
 };
 
@@ -327,7 +254,7 @@ interface ConstellationInfo {
   effect: string;
 }
 
-interface Props {
+export interface Props {
   character: CharacterInfo;
   talents: TalentInfo;
   constellations: ConstellationInfo[];
