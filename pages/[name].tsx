@@ -7,7 +7,7 @@ import { imageUrl } from "../utils/urls";
 import {
   AttributeSection,
   AscensionSection,
-  TalentSection,
+  ActiveTalentSection,
   ConstellationSection,
 } from "../components/Sections";
 
@@ -33,7 +33,8 @@ const CharacterPage: NextPage<Props> = ({
       <HeroSection character={character} />
       <div className="grid gap-5">
         <AscensionSection ascensions={ascensions} />
-        <TalentSection talents={talents} />
+        <ActiveTalentSection talents={talents} />
+        {/* TODO: add PassiveTalentSection passives={talents.passives} */}
         <ConstellationSection constellations={constellations} />
       </div>
     </main>
@@ -144,10 +145,11 @@ const formatMarkdown = (text: string): string => {
         // p1 -> p4 because there are 4 capture groups
         return `<span class="${ElementColor[p2]}">${match}</span>`;
       }
-    );
+    )
+    .replace(/\n/g, "<br>");
 };
 
-interface ActiveTalent extends genshindb.PassiveTalentDetail {
+interface ActiveTalent extends genshindb.CombatTalentDetail {
   category: string;
   icon: string;
 }
@@ -158,18 +160,26 @@ const getActives = (talents: genshindb.Talent): ActiveTalent[] => {
   return [
     {
       category: "Normal Attack",
-      ...talents.combat1,
+      name: talents.combat1.name,
+      info: formatMarkdown(talents.combat1.info),
+      description: talents.combat1.description ?? "", // only combat1 may not have description
+      attributes: talents.combat1.attributes, // TODO: reformat attributes
       icon: images.combat1,
     },
     {
       category: "Elemental Skill",
-      ...talents.combat2,
+      name: talents.combat2.name,
+      info: formatMarkdown(talents.combat2.info),
+      description: talents.combat2.description,
+      attributes: talents.combat2.attributes, // TODO: reformat attributes
       icon: images.combat2,
     },
     {
       category: "Elemental Burst",
-
-      ...talents.combat3,
+      name: talents.combat3.name,
+      info: formatMarkdown(talents.combat3.info),
+      description: talents.combat3.description,
+      attributes: talents.combat3.attributes, // TODO: reformat attributes
       icon: images.combat3,
     },
     // So far only Mona and Ayaka have an alternate sprint
@@ -177,7 +187,10 @@ const getActives = (talents: genshindb.Talent): ActiveTalent[] => {
       ? [
           {
             category: "Alternate Sprint",
-            ...talents.combatsp,
+            name: talents.combatsp.name,
+            info: formatMarkdown(talents.combatsp.info),
+            description: talents.combatsp.description,
+            attributes: talents.combatsp.attributes, // TODO: reformat attributes
             icon: images.combatsp!,
           },
         ]
