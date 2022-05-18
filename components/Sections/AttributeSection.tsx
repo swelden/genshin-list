@@ -7,7 +7,8 @@ const AttributeSection: React.FC<Pick<Props, "character">> = ({
   return (
     <Section
       title="Attributes"
-      className="lg:bg-opacity-90 lg:p-3 lg:backdrop-blur-sm lg:dark:bg-opacity-95"
+      lgPadding="lg:p-3"
+      className="lg:bg-opacity-90 lg:backdrop-blur-sm lg:dark:bg-opacity-95"
     >
       <table className="w-full">
         <tbody className="">
