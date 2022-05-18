@@ -4,6 +4,7 @@ import Head from "next/head";
 import Image from "next/image";
 import * as genshindb from "genshin-db";
 import { imageUrl } from "../utils/urls";
+import { formatMarkdown } from "../utils/markdown";
 import {
   AttributeSection,
   AscensionSection,
@@ -114,39 +115,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
     })),
     fallback: false,
   };
-};
-
-const ElementColor = {
-  Pyro: "text-pyro",
-  Hydro: "text-hydro",
-  Dendro: "text-dendro",
-  Electro: "text-electro",
-  Anemo: "text-anemo",
-  Cryo: "text-cryo",
-  Geo: "text-geo",
-};
-
-// NOTE: might sanitize because I don't have control over text
-const formatMarkdown = (text: string): string => {
-  return text
-    .replace(
-      /\*\*([^*]+)\*\*/g, // **text** -> <span>text</span>
-      '<span class="text-gold">$1</span>'
-    )
-    .replace(
-      /(AoE\s)?(Pyro|Hydro|Dendro|Electro|Anemo|Cryo|Geo)(\s(?:DMG|RES))?(\sBonus)?(-related\sElemental\sReaction)?(?=\W)/g,
-      (
-        match,
-        _p1: string | undefined,
-        p2: Vision,
-        _p3: string | undefined,
-        _p4: string | undefined
-      ) => {
-        // p1 -> p4 because there are 4 capture groups
-        return `<span class="${ElementColor[p2]}">${match}</span>`;
-      }
-    )
-    .replace(/\n/g, "<br>");
 };
 
 interface ActiveTalent extends genshindb.CombatTalentDetail {
