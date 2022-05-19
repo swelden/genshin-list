@@ -267,7 +267,7 @@ interface TalentInfo {
 interface ConstellationInfo {
   icon: string;
   name: string;
-  effect: string;
+  info: string;
 }
 
 export interface Props {
@@ -323,32 +323,32 @@ export const getStaticProps: GetStaticProps<Props, Params> = async (
   const constellationProps: ConstellationInfo[] = [
     {
       name: characterConstellations.c1.name,
-      effect: formatMarkdown(characterConstellations.c1.effect),
+      info: formatMarkdown(characterConstellations.c1.effect),
       icon: characterConstellations.images.c1,
     },
     {
       name: characterConstellations.c2.name,
-      effect: formatMarkdown(characterConstellations.c2.effect),
+      info: formatMarkdown(characterConstellations.c2.effect),
       icon: characterConstellations.images.c2,
     },
     {
       name: characterConstellations.c3.name,
-      effect: formatMarkdown(characterConstellations.c3.effect),
+      info: formatMarkdown(characterConstellations.c3.effect),
       icon: characterConstellations.images.c3,
     },
     {
       name: characterConstellations.c4.name,
-      effect: formatMarkdown(characterConstellations.c4.effect),
+      info: formatMarkdown(characterConstellations.c4.effect),
       icon: characterConstellations.images.c4,
     },
     {
       name: characterConstellations.c5.name,
-      effect: formatMarkdown(characterConstellations.c5.effect),
+      info: formatMarkdown(characterConstellations.c5.effect),
       icon: characterConstellations.images.c5,
     },
     {
       name: characterConstellations.c6.name,
-      effect: formatMarkdown(characterConstellations.c6.effect),
+      info: formatMarkdown(characterConstellations.c6.effect),
       icon: characterConstellations.images.c6,
     },
   ];
