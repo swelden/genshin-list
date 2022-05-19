@@ -9,6 +9,7 @@ import {
   AttributeSection,
   AscensionSection,
   ActiveTalentSection,
+  PassiveTalentSection,
   ConstellationSection,
 } from "../components/Sections";
 
@@ -35,7 +36,7 @@ const CharacterPage: NextPage<Props> = ({
       <div className="grid gap-5">
         <AscensionSection ascensions={ascensions} />
         <ActiveTalentSection talents={talents} />
-        {/* TODO: add PassiveTalentSection passives={talents.passives} */}
+        <PassiveTalentSection passives={talents.passives} />
         <ConstellationSection constellations={constellations} />
       </div>
     </main>
@@ -177,10 +178,12 @@ const getPassives = (talents: genshindb.Talent): PassiveTalent[] => {
   const passives: PassiveTalent[] = [];
 
   while (talents.hasOwnProperty(passiveStr)) {
+    const passiveTalent = talents[
+      passiveStr as keyof genshindb.Talent
+    ] as genshindb.PassiveTalentDetail;
     passives.push({
-      ...(talents[
-        passiveStr as keyof genshindb.Talent
-      ] as genshindb.PassiveTalentDetail),
+      name: passiveTalent.name,
+      info: formatMarkdown(passiveTalent.info),
       icon: images[passiveStr as keyof typeof images]!,
     });
     passiveNum++;

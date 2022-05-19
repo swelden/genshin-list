@@ -10,7 +10,7 @@ const ActiveTalentSection: React.FC<Pick<Props, "talents">> = ({ talents }) => {
     <Section title="Active Talents">
       {talents.actives.map((activeTalent) => (
         <div
-          className="border-b border-neutral-500/20 pb-4 text-black/70 last:border-0 last:pb-0 dark:text-white/70"
+          className="border-b border-neutral-500/20 pb-4 last:border-0 last:pb-0 "
           key={activeTalent.name}
         >
           <div className="flex items-center gap-2">
@@ -21,12 +21,10 @@ const ActiveTalentSection: React.FC<Pick<Props, "talents">> = ({ talents }) => {
               height={48}
               className="invert dark:filter-none"
             />
-            <h3 className="text-lg text-black dark:text-white">
-              {activeTalent.name}
-            </h3>
+            <h3 className="text-lg">{activeTalent.name}</h3>
           </div>
           <div
-            className="mt-2"
+            className="mt-2 text-black/70 dark:text-white/70"
             dangerouslySetInnerHTML={{
               __html: activeTalent.info,
             }}
@@ -34,7 +32,9 @@ const ActiveTalentSection: React.FC<Pick<Props, "talents">> = ({ talents }) => {
           {activeTalent.description && (
             <>
               <br />
-              <i>{activeTalent.description}</i>
+              <i className="text-black/60 dark:text-white/60">
+                {activeTalent.description}
+              </i>
             </>
           )}
         </div>
