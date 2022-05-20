@@ -4,7 +4,7 @@ import Head from "next/head";
 import Image from "next/image";
 import * as genshindb from "genshin-db";
 import { imageUrl } from "../utils/urls";
-import { formatMarkdown } from "../utils/markdown";
+import { formatAttributes, formatMarkdown } from "../utils/markdown";
 import {
   AttributeSection,
   AscensionSection,
@@ -118,8 +118,10 @@ export const getStaticPaths: GetStaticPaths = async () => {
   };
 };
 
-interface ActiveTalent extends genshindb.CombatTalentDetail {
+interface ActiveTalent
+  extends Omit<genshindb.CombatTalentDetail, "attributes"> {
   category: string;
+  attributes: { label: string; params: string[] }[];
   icon: string;
 }
 
@@ -132,7 +134,7 @@ const getActives = (talents: genshindb.Talent): ActiveTalent[] => {
       name: talents.combat1.name,
       info: formatMarkdown(talents.combat1.info),
       description: talents.combat1.description ?? "", // only combat1 may not have description
-      attributes: talents.combat1.attributes, // TODO: reformat attributes
+      attributes: formatAttributes(talents.combat1.attributes, "Normal Attack"),
       icon: images.combat1,
     },
     {
@@ -140,7 +142,10 @@ const getActives = (talents: genshindb.Talent): ActiveTalent[] => {
       name: talents.combat2.name,
       info: formatMarkdown(talents.combat2.info),
       description: talents.combat2.description,
-      attributes: talents.combat2.attributes, // TODO: reformat attributes
+      attributes: formatAttributes(
+        talents.combat2.attributes,
+        "Elemental Skill"
+      ),
       icon: images.combat2,
     },
     {
@@ -148,7 +153,10 @@ const getActives = (talents: genshindb.Talent): ActiveTalent[] => {
       name: talents.combat3.name,
       info: formatMarkdown(talents.combat3.info),
       description: talents.combat3.description,
-      attributes: talents.combat3.attributes, // TODO: reformat attributes
+      attributes: formatAttributes(
+        talents.combat3.attributes,
+        "Elemental Burst"
+      ),
       icon: images.combat3,
     },
     // So far only Mona and Ayaka have an alternate sprint
@@ -159,7 +167,10 @@ const getActives = (talents: genshindb.Talent): ActiveTalent[] => {
             name: talents.combatsp.name,
             info: formatMarkdown(talents.combatsp.info),
             description: talents.combatsp.description,
-            attributes: talents.combatsp.attributes, // TODO: reformat attributes
+            attributes: formatAttributes(
+              talents.combatsp.attributes,
+              "Alternate Sprint"
+            ),
             icon: images.combatsp!,
           },
         ]

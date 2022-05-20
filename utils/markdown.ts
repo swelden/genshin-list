@@ -1,4 +1,5 @@
-import { Props } from "../pages/[name]";
+import { CombatTalentDetail } from "genshin-db";
+import { myRound } from "./math";
 
 const ElementColor = {
   Pyro: "text-pyro",
@@ -68,34 +69,55 @@ export const formatMarkdown = (text: string): string => {
     .replace(/\n/g, "<br>");
 };
 
-type Parameters = Pick<
-  Props,
-  "talents"
->["talents"]["actives"][number]["attributes"]["parameters"];
-
-// NOTE: might format the labels in the backend
-export const formatTalentLabels = (
+export const formatTalentLabel = (
   label: string,
-  parameters: Parameters,
+  parameters: CombatTalentDetail["attributes"]["parameters"],
   talentlevel: number
 ): string => {
-  return label.replace(/{(.*?)}/g, (match, p1) => {
+  return label.replace(/{(.*?)}/g, (_match, p1: string) => {
     // console.log(match, p1);
     const [paramnum, format] = p1.split(":");
     const value = parameters[paramnum][talentlevel - 1];
+    const precision = format.includes("F") ? parseInt(format[1]) : 1;
+
     if (format === "I") {
       // integer
       return `${value}`;
     } else if (format.includes("P")) {
       // percent
-      return `${(value * 100).toFixed(format[1])}%`;
+      return `${myRound(value * 100, precision)}%`;
     } else if (format.includes("F")) {
       // float
-      // TODO: round to n position based on number after F (like F2 rounds to 2 decimal places)
-      // TODO: remove trailing zero if exists
-      return `${value.toFixed(format[1])}`;
+      return `${myRound(value, precision)}`;
     } else {
       return `${value}`;
     }
+  });
+};
+
+const MAX_LVL_MAP: { [key: string]: number } = {
+  "Normal Attack": 11,
+  "Elemental Skill": 14,
+  "Elemental Burst": 14,
+  "Alternate Sprint": 1,
+} as const;
+
+export const formatAttributes = (
+  attributes: CombatTalentDetail["attributes"],
+  category: string
+): { label: string; params: string[] }[] => {
+  return attributes.labels.map((label) => {
+    const [heading, params] = label.split("|");
+    const maxLvl = Math.min(
+      attributes.parameters.param1.length,
+      MAX_LVL_MAP[category]
+    );
+
+    return {
+      label: heading,
+      params: Array.from(Array(maxLvl).keys()).map((i) =>
+        formatTalentLabel(params, attributes.parameters, i + 1)
+      ),
+    };
   });
 };

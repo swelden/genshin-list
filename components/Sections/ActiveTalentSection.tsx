@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Props } from "../../pages/[name]";
-import { formatTalentLabels } from "../../utils/markdown";
 import { DropDownIcon } from "../icons";
 import Section from "./Section";
 import SectionRow from "./SectionRow";
@@ -31,10 +30,7 @@ const ActiveTalentAttributes: React.FC<{
   talent: Talents["talents"]["actives"][number];
 }> = ({ talent }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const maxLvl = Math.min(
-    talent.attributes.parameters.param1.length,
-    MaxLvlMap[talent.category]
-  );
+  const maxLvl = talent.attributes[0].params.length;
 
   return (
     <div>
@@ -59,23 +55,17 @@ const ActiveTalentAttributes: React.FC<{
                     <TableHeading key={i}>{`Lv.${i + 1}`}</TableHeading>
                   ))}
                 </tr>
-                {talent.attributes.labels.map((label) => {
-                  const [heading, params] = label.split("|");
+                {talent.attributes.map(({ label, params }) => {
+                  // const [heading, params] = label.split("|");
 
                   return (
                     <tr
-                      key={heading}
+                      key={label}
                       className={`border-b last:border-0 ${sharedBorderClasses}`}
                     >
-                      <TableHeading>{heading}</TableHeading>
-                      {Array.from(Array(maxLvl).keys()).map((i) => (
-                        <TableCell key={i}>
-                          {formatTalentLabels(
-                            params,
-                            talent.attributes.parameters,
-                            i + 1
-                          )}
-                        </TableCell>
+                      <TableHeading>{label}</TableHeading>
+                      {params.map((param, i) => (
+                        <TableCell key={i}>{param}</TableCell>
                       ))}
                     </tr>
                   );
