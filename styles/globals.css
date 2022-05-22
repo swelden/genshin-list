@@ -51,21 +51,29 @@ html {
     rgba(0, 0, 0, 0);
 }
 
-body::-webkit-scrollbar {
+body::-webkit-scrollbar,
+.scrollbar::-webkit-scrollbar {
   width: 8px;
+  height: 8px;
 }
 
 body::-webkit-scrollbar-track {
   background: rgba(0, 0, 0, 0);
 }
 
-body::-webkit-scrollbar-thumb {
+.scrollbar::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.15);
+}
+
+body::-webkit-scrollbar-thumb,
+.scrollbar::-webkit-scrollbar-thumb {
   background-color: rgba(var(--scrollbar-rgb), var(--scrollbar-opacity));
   border: 3px solid rgba(0, 0, 0, 0);
   border-radius: 10px;
 }
 
-body::-webkit-scrollbar-thumb:hover {
+body::-webkit-scrollbar-thumb:hover,
+.scrollbar::-webkit-scrollbar-thumb:hover {
   background: rgba(var(--scrollbar-rgb), var(--scrollbar-opacity-hov));
   border: 1px solid hsla(0, 0%, 50%, 0.3);
 }

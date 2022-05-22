@@ -42,7 +42,7 @@ const ActiveTalentAttributes: React.FC<{
       </button>
       {isOpen && (
         <div
-          className={`mt-4 w-full overflow-x-auto rounded-lg border ${sharedBorderClasses}`}
+          className={`scrollbar mt-4 w-full overflow-x-auto rounded-lg border ${sharedBorderClasses}`}
         >
           <div
             className={`overflow-hidden ${maxLvl === 1 ? "w-auto" : "w-max"}`}
