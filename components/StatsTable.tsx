@@ -1,12 +1,10 @@
 import React from "react";
-import { Props } from "../pages/[name]";
-
-type Talents = Pick<Props, "talents">;
 
 const StatsTable: React.FC<{
-  talent: Talents["talents"]["actives"][number];
+  data: { label: string; params: string[] }[];
+  topHeadings: string[];
   numCols: number;
-}> = ({ talent, numCols }) => {
+}> = ({ data, topHeadings, numCols }) => {
   return (
     <div
       className={`scrollbar mt-4 w-full overflow-x-auto rounded-lg border ${sharedBorderClasses}`}
@@ -15,12 +13,12 @@ const StatsTable: React.FC<{
         <table className="w-full text-left text-sm">
           <tbody>
             <TableRow heading="Level">
-              {Array.from(Array(numCols).keys()).map((i) => (
+              {topHeadings.map((heading, i) => (
                 // TODO: add class to change width of top row heading
-                <TableHeading key={i}>{`Lv.${i + 1}`}</TableHeading>
+                <TableHeading key={i}>{heading}</TableHeading>
               ))}
             </TableRow>
-            {talent.attributes.map(({ label, params }) => {
+            {data.map(({ label, params }) => {
               return (
                 <TableRow heading={label} key={label}>
                   {params.map((param, i) => (

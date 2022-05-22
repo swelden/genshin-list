@@ -34,7 +34,15 @@ const ActiveTalentAttributes: React.FC<{
           <DropDownIcon />
         </span>
       </button>
-      {isOpen && <StatsTable talent={talent} numCols={maxCols} />}
+      {isOpen && (
+        <StatsTable
+          data={talent.attributes}
+          numCols={maxCols}
+          topHeadings={Array.from(Array(maxCols).keys()).map(
+            (lvl) => `Lv.${lvl + 1}`
+          )}
+        />
+      )}
     </div>
   );
 };
