@@ -12,6 +12,7 @@ import {
   PassiveTalentSection,
   ConstellationSection,
 } from "../components/Sections";
+import { myRound } from "../utils/math";
 
 const CharacterPage: NextPage<Props> = ({
   character,
@@ -223,27 +224,59 @@ const getMaterialIcons = (costItem: {
   return materialIconMap;
 };
 
-// TODO: Implement this function
 // Get array of stats at all ascension levels and include lvl 1 and 90
-const getCharStats = (stats: genshindb.StatFunction) => {
+const getCharStats = (
+  stats: genshindb.StatFunction,
+  substat: string
+): { data: { label: string; params: string[] }[]; headings: string[] } => {
   // ascension levels at 20, 40, 50, 60, 70, 80
-  // const params = [
-  //   ["1"],
-  //   ["20"],
-  //   ["20", "+"],
-  //   ["40"],
-  //   ["40", "+"],
-  //   ["50"],
-  //   ["50", "+"],
-  //   ["60"],
-  //   ["60", "+"],
-  //   ["70"],
-  //   ["70", "+"],
-  //   ["80"],
-  //   ["80", "+"],
-  //   ["90"],
-  // ];
-  return "";
+  const levels: [number, "-" | "+"][] = [
+    [1, "-"],
+    [20, "-"],
+    [20, "+"],
+    [40, "-"],
+    [40, "+"],
+    [50, "-"],
+    [50, "+"],
+    [60, "-"],
+    [60, "+"],
+    [70, "-"],
+    [70, "+"],
+    [80, "-"],
+    [80, "+"],
+    [90, "-"],
+  ];
+
+  const headings = levels.map(
+    ([level, isAscended]) => `Lv.${level}${isAscended === "+" ? "+" : ""}`
+  );
+
+  const statResults = levels.map((level) => stats(...level));
+
+  const labelsKeyMap: {
+    label: string;
+    key: keyof genshindb.StatResult;
+    isPossiblePercent: boolean;
+  }[] = [
+    { label: "Base HP", key: "hp", isPossiblePercent: false },
+    { label: "Base ATK", key: "attack", isPossiblePercent: false },
+    { label: "Base DEF", key: "defense", isPossiblePercent: false },
+    { label: substat, key: "specialized", isPossiblePercent: true },
+  ];
+
+  return {
+    headings,
+    data: labelsKeyMap.map(({ label, isPossiblePercent, key }) => {
+      return {
+        label,
+        params: statResults.map((result) =>
+          isPossiblePercent && Number.isInteger(result[key]) === false
+            ? `${myRound((result[key] ?? 0) * 100, 1)}%`
+            : `${Math.round(result[key] ?? 0)}`
+        ),
+      };
+    }),
+  };
 };
 
 interface CharacterInfo
@@ -265,7 +298,7 @@ interface CharacterInfo
 
 interface Ascensions extends Pick<genshindb.Character, "costs"> {
   materialIcons: MaterialIconMap;
-  stats: any;
+  stats: { data: { label: string; params: string[] }[]; headings: string[] };
 }
 
 interface TalentInfo {
@@ -320,7 +353,7 @@ export const getStaticProps: GetStaticProps<Props, Params> = async (
 
   const ascensionProps: Ascensions = {
     costs: { ...characterInfo.costs },
-    stats: getCharStats(characterInfo.stats),
+    stats: getCharStats(characterInfo.stats, characterInfo.substat),
     materialIcons: getMaterialIcons(characterInfo.costs),
   };
 
