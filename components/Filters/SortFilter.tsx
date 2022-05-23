@@ -1,14 +1,13 @@
 import { useRef, useState } from "react";
 import useOnClickOutside from "../../hooks/useOnClickOutside";
+import Button from "../Button";
 import { DropDownIcon } from "../icons";
-import Button from "./Button";
 
 interface Options {
   title: string;
   value: CharacterSortKeys;
 }
 
-// TODO: add sort function value to options
 const options: Options[] = [
   { title: "Sort by Element", value: "element" },
   { title: "Sort by Weapon", value: "weapontype" },

@@ -7,6 +7,8 @@ interface ButtonProps {
   ariaExpanded?: boolean;
 }
 
+// TODO: add link button that has same styles as Button (mainly for 404 page)
+
 const Button: React.FC<ButtonProps> = ({
   children,
   onClick,

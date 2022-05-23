@@ -1,7 +1,7 @@
 import React, { useState } from "react";
+import Button from "../Button";
 import { FilterIcon, ReverseIcon } from "../icons";
 import AttributeFilter from "./AttrFilter";
-import Button from "./Button";
 import Search from "./SearchFilter";
 import SortDropdown from "./SortFilter";
 

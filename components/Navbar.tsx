@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import useDarkMode from "../hooks/useDarkMode";
-import { CircleButton } from "./Filters/Button";
+import { CircleButton } from "./Button";
 import { MoonIcon, SunIcon } from "./icons";
 
 const Navbar = () => {
