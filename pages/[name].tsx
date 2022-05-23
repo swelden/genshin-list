@@ -204,24 +204,31 @@ const getPassives = (talents: genshindb.Talent): PassiveTalent[] => {
   return passives;
 };
 
-interface MaterialIconMap {
-  [key: string]: string;
+interface MaterialDataMap {
+  [key: string]: { nameicon: string; sortorder: number; daysofweek?: string[] };
 }
 
-const getMaterialIcons = (costItem: {
+const getMaterialData = (costItem: {
   [key: string]: genshindb.Items[];
-}): MaterialIconMap => {
-  const materialIconMap: MaterialIconMap = {};
+}): MaterialDataMap => {
+  const materialDataMap: MaterialDataMap = {};
   for (const items of Object.values(costItem)) {
     for (const { name } of items) {
       const {
         images: { nameicon },
+        sortorder,
+        daysofweek,
       } = genshindb.materials(name)!;
-      materialIconMap[name] = nameicon;
+
+      materialDataMap[name] = {
+        nameicon,
+        sortorder,
+        ...(daysofweek !== undefined && { daysofweek }),
+      };
     }
   }
 
-  return materialIconMap;
+  return materialDataMap;
 };
 
 // Get array of stats at all ascension levels and include lvl 1 and 90
@@ -297,7 +304,7 @@ interface CharacterInfo
 }
 
 interface Ascensions extends Pick<genshindb.Character, "costs"> {
-  materialIcons: MaterialIconMap;
+  materialIcons: MaterialDataMap;
   stats: { data: { label: string; params: string[] }[]; headings: string[] };
 }
 
@@ -305,7 +312,7 @@ interface TalentInfo {
   actives: ActiveTalent[];
   activeCosts: genshindb.Talent["costs"];
   passives: PassiveTalent[];
-  materialIcons: MaterialIconMap;
+  materialIcons: MaterialDataMap;
 }
 
 interface ConstellationInfo {
@@ -354,14 +361,14 @@ export const getStaticProps: GetStaticProps<Props, Params> = async (
   const ascensionProps: Ascensions = {
     costs: { ...characterInfo.costs },
     stats: getCharStats(characterInfo.stats, characterInfo.substat),
-    materialIcons: getMaterialIcons(characterInfo.costs),
+    materialIcons: getMaterialData(characterInfo.costs),
   };
 
   const talentProps: TalentInfo = {
     actives: getActives(characterTalents),
     activeCosts: characterTalents.costs,
     passives: getPassives(characterTalents),
-    materialIcons: getMaterialIcons(characterTalents.costs),
+    materialIcons: getMaterialData(characterTalents.costs),
   };
 
   const constellationProps: ConstellationInfo[] = [
