@@ -1,7 +1,6 @@
 import useRange from "../../hooks/useRange";
 import { Props } from "../../pages/[name]";
-import { imageUrl } from "../../utils/urls";
-import { ItemCard } from "../Card";
+import MaterialList, { calculateMaterialsRange } from "../MaterialList";
 import StatsTable from "../StatsTable";
 import Section from "./Section";
 
@@ -18,16 +17,18 @@ const AscensionSection: React.FC<Ascension> = ({ ascensions }) => {
       />
       <AscensionCalculator
         costs={ascensions.costs}
-        icons={ascensions.materialIcons}
+        materialData={ascensions.materialData}
       />
     </Section>
   );
 };
 
+type MaterialDataMap = Ascension["ascensions"]["materialData"];
+
 const AscensionCalculator: React.FC<{
   costs: Ascension["ascensions"]["costs"];
-  icons: Ascension["ascensions"]["materialIcons"];
-}> = ({ costs, icons }) => {
+  materialData: MaterialDataMap;
+}> = ({ costs, materialData }) => {
   const {
     start,
     decrementStart,
@@ -38,7 +39,7 @@ const AscensionCalculator: React.FC<{
     // reset,
   } = useRange(0, 6);
 
-  const totalMaterials = calculateAscensionRange(costs, start, end);
+  const totalMaterials = calculateMaterialsRange(costs, start, end);
   console.log(totalMaterials);
   return (
     <div className="flex flex-col">
@@ -61,49 +62,12 @@ const AscensionCalculator: React.FC<{
           +
         </button>
       </div>
-
-      <div className="flex flex-wrap gap-6">
-        {Object.entries(totalMaterials)
-          .sort((a, b) => icons[a[0]].sortorder - icons[b[0]].sortorder)
-          .map(([material, count]) => {
-            return (
-              <div
-                className="flex w-[92px] flex-col  items-center gap-2"
-                key={material}
-              >
-                <ItemCard
-                  label={count.toLocaleString()}
-                  imgSrc={imageUrl(icons[material].nameicon)}
-                />
-                <span className="text-center text-xs">{material}</span>
-              </div>
-            );
-          })}
-      </div>
+      <MaterialList
+        totalMaterials={totalMaterials}
+        materialData={materialData}
+      />
     </div>
   );
-};
-
-const calculateAscensionRange = (
-  costs: Ascension["ascensions"]["costs"],
-  start: number, // min of 0
-  end: number // max of 6 (max is len of array (not max index))
-) => {
-  const materials: { [key: string]: number } = {};
-  // console.log(`${start} - ${end}`);
-  // console.log(Object.entries(costs).slice(start, end));
-
-  for (const [_key, value] of Object.entries(costs).slice(start, end)) {
-    for (const { name, count } of value) {
-      if (materials.hasOwnProperty(name)) {
-        materials[name] += count;
-      } else {
-        materials[name] = count;
-      }
-    }
-  }
-
-  return materials;
 };
 
 export default AscensionSection;
