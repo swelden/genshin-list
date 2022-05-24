@@ -1,9 +1,9 @@
-import { Props } from "../../pages/[name]";
+import { TalentInfo } from "../../pages/[name]";
 import Section from "./Section";
 import SectionRow from "./SectionRow";
 
 const PassiveTalentSection: React.FC<{
-  passives: Pick<Props, "talents">["talents"]["passives"];
+  passives: TalentInfo["passives"];
 }> = ({ passives }) => {
   console.log(passives);
   return (

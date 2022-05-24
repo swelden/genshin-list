@@ -1,7 +1,7 @@
+import { CharacterInfo } from "../../pages/[name]";
 import Section from "./Section";
-import { Props } from "../../pages/[name]";
 
-const AttributeSection: React.FC<Pick<Props, "character">> = ({
+const AttributeSection: React.FC<{ character: CharacterInfo }> = ({
   character,
 }) => {
   return (

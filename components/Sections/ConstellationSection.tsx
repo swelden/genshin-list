@@ -1,10 +1,10 @@
+import { ConstellationInfo } from "../../pages/[name]";
 import Section from "./Section";
-import { Props } from "../../pages/[name]";
 import SectionRow from "./SectionRow";
 
-const ConstellationSection: React.FC<Pick<Props, "constellations">> = ({
-  constellations,
-}) => {
+const ConstellationSection: React.FC<{
+  constellations: ConstellationInfo[];
+}> = ({ constellations }) => {
   console.log(constellations);
   return (
     <Section title="Constellations">

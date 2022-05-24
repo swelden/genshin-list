@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import { Props } from "../../pages/[name]";
+import { TalentInfo } from "../../pages/[name]";
 import { DropDownIcon } from "../icons";
 import StatsTable from "../StatsTable";
 import Section from "./Section";
 import SectionRow from "./SectionRow";
 
-type Talents = Pick<Props, "talents">;
-
-const ActiveTalentSection: React.FC<Talents> = ({ talents }) => {
+const ActiveTalentSection: React.FC<{ talents: TalentInfo }> = ({
+  talents,
+}) => {
   console.log(talents);
   return (
     <Section title="Active Talents" className="overflow-hidden">
@@ -21,7 +21,7 @@ const ActiveTalentSection: React.FC<Talents> = ({ talents }) => {
 };
 
 const ActiveTalentAttributes: React.FC<{
-  talent: Talents["talents"]["actives"][number];
+  talent: TalentInfo["actives"][number];
 }> = ({ talent }) => {
   const [isOpen, setIsOpen] = useState(false);
   const maxCols = talent.attributes[0].params.length;

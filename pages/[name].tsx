@@ -204,7 +204,7 @@ const getPassives = (talents: genshindb.Talent): PassiveTalent[] => {
   return passives;
 };
 
-interface MaterialDataMap {
+export interface MaterialDataMap {
   [key: string]: { nameicon: string; sortorder: number; daysofweek?: string[] };
 }
 
@@ -286,7 +286,7 @@ const getCharStats = (
   };
 };
 
-interface CharacterInfo
+export interface CharacterInfo
   extends Omit<
     genshindb.Character,
     | "association"
@@ -303,25 +303,25 @@ interface CharacterInfo
   rarity: number;
 }
 
-interface Ascensions extends Pick<genshindb.Character, "costs"> {
-  materialIcons: MaterialDataMap;
+export interface Ascensions extends Pick<genshindb.Character, "costs"> {
+  materialData: MaterialDataMap;
   stats: { data: { label: string; params: string[] }[]; headings: string[] };
 }
 
-interface TalentInfo {
+export interface TalentInfo {
   actives: ActiveTalent[];
   activeCosts: genshindb.Talent["costs"];
   passives: PassiveTalent[];
-  materialIcons: MaterialDataMap;
+  materialData: MaterialDataMap;
 }
 
-interface ConstellationInfo {
+export interface ConstellationInfo {
   icon: string;
   name: string;
   info: string;
 }
 
-export interface Props {
+interface Props {
   character: CharacterInfo;
   ascensions: Ascensions;
   talents: TalentInfo;
@@ -361,14 +361,14 @@ export const getStaticProps: GetStaticProps<Props, Params> = async (
   const ascensionProps: Ascensions = {
     costs: { ...characterInfo.costs },
     stats: getCharStats(characterInfo.stats, characterInfo.substat),
-    materialIcons: getMaterialData(characterInfo.costs),
+    materialData: getMaterialData(characterInfo.costs),
   };
 
   const talentProps: TalentInfo = {
     actives: getActives(characterTalents),
     activeCosts: characterTalents.costs,
     passives: getPassives(characterTalents),
-    materialIcons: getMaterialData(characterTalents.costs),
+    materialData: getMaterialData(characterTalents.costs),
   };
 
   const constellationProps: ConstellationInfo[] = [

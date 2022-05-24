@@ -1,8 +1,8 @@
 import Image from "next/image";
-import { Props } from "../../pages/[name]";
+import { TalentInfo } from "../../pages/[name]";
 import { imageUrl } from "../../utils/urls";
 
-type Passives = Pick<Props, "talents">["talents"]["passives"][number];
+type Passives = TalentInfo["passives"][number];
 interface Ability extends Passives {
   description?: string;
 }

@@ -1,10 +1,7 @@
 import { Items } from "genshin-db";
-import { Props } from "../pages/[name]";
+import { MaterialDataMap } from "../pages/[name]";
 import { imageUrl } from "../utils/urls";
 import { ItemCard } from "./Card";
-
-type Ascension = Pick<Props, "ascensions">;
-type MaterialDataMap = Ascension["ascensions"]["materialData"];
 
 const MaterialList: React.FC<{
   totalMaterials: {

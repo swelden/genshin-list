@@ -1,12 +1,12 @@
 import useRange from "../../hooks/useRange";
-import { Props } from "../../pages/[name]";
+import { Ascensions, MaterialDataMap } from "../../pages/[name]";
 import MaterialList, { calculateMaterialsRange } from "../MaterialList";
 import StatsTable from "../StatsTable";
 import Section from "./Section";
 
-type Ascension = Pick<Props, "ascensions">;
-
-const AscensionSection: React.FC<Ascension> = ({ ascensions }) => {
+const AscensionSection: React.FC<{ ascensions: Ascensions }> = ({
+  ascensions,
+}) => {
   console.log(ascensions);
   return (
     <Section title="Ascensions" className="overflow-hidden">
@@ -23,10 +23,8 @@ const AscensionSection: React.FC<Ascension> = ({ ascensions }) => {
   );
 };
 
-type MaterialDataMap = Ascension["ascensions"]["materialData"];
-
 const AscensionCalculator: React.FC<{
-  costs: Ascension["ascensions"]["costs"];
+  costs: Ascensions["costs"];
   materialData: MaterialDataMap;
 }> = ({ costs, materialData }) => {
   const {
