@@ -9,7 +9,7 @@ type CharacterCardProps = React.FC<{ character: CharacterFilterInfo }>;
 export const CharacterCard: CharacterCardProps = ({ character }) => {
   return (
     <Link href={`/${character.name.toLowerCase().replace(/\s/g, "-")}`}>
-      <a className="overflow-hidden rounded-md bg-card-title shadow-sm outline-none ring-black/20 ring-offset-4 ring-offset-white transition duration-300 ease-in-out hover:scale-110 hover:ring-1 focus-visible:scale-110 focus-visible:ring-1 dark:shadow-zinc-600/50">
+      <a className="relative overflow-hidden rounded-md bg-card-title shadow-sm outline-none ring-black/20 ring-offset-4 ring-offset-white transition duration-300 ease-in-out hover:scale-110 hover:ring-1 focus-visible:scale-110 focus-visible:ring-1 dark:shadow-zinc-600/50">
         <InnerCard
           bgGradient={
             character.rarity === "4"
@@ -45,30 +45,34 @@ export const ItemCard: React.FC<{
   label,
   imgSrc,
   bgGradient = "bg-gradient-to-b from-[#323947] to-[#4a5366]",
-  size = 92,
+  size = 96,
 }) => {
   return (
-    <div className="overflow-hidden rounded-md bg-card-title shadow-sm dark:shadow-zinc-600/50">
+    <div className="relative overflow-hidden rounded-md bg-card-title shadow-sm dark:shadow-zinc-600/50">
       <InnerCard
         bgGradient={bgGradient}
         label={label}
         imgSrc={imgSrc}
         size={size}
+        className={"text-xs lg:text-sm"}
       />
     </div>
   );
 };
 
-// TODO: fix slight white corner border
 const InnerCard: React.FC<{
   bgGradient: string;
   label: string | number;
   imgSrc: string;
   size: number;
+  className?: string;
   children?: React.ReactNode;
-}> = ({ bgGradient, label, imgSrc, size, children }) => {
+}> = ({ bgGradient, label, imgSrc, size, className, children }) => {
   return (
     <>
+      {/* NOTE: this top div fixes slight white corner bug */}
+      {/* TODO: look for a better fix */}
+      <div className="absolute top-0 bottom-3/4 right-0 left-0 dark:bg-black"></div>
       <div
         className={`relative flex overflow-hidden rounded-t-md rounded-br-[1.25rem] ${bgGradient}`}
       >
@@ -76,7 +80,9 @@ const InnerCard: React.FC<{
         {children}
       </div>
       <div className="relative w-full px-2 py-0.5">
-        <span className="relative block w-full truncate text-center font-medium capitalize text-card-contrast">
+        <span
+          className={`relative block w-full truncate text-center font-medium capitalize text-card-contrast ${className}`}
+        >
           {label}
         </span>
       </div>

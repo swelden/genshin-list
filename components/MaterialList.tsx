@@ -10,7 +10,7 @@ const MaterialList: React.FC<{
   materialData: MaterialDataMap;
 }> = ({ totalMaterials, materialData }) => {
   return (
-    <div className="flex flex-wrap gap-6">
+    <div className="flex flex-wrap gap-4">
       {Object.entries(totalMaterials)
         .sort(
           (a, b) => materialData[a[0]].sortorder - materialData[b[0]].sortorder
@@ -18,14 +18,17 @@ const MaterialList: React.FC<{
         .map(([material, count]) => {
           return (
             <div
-              className="flex w-[92px] flex-col  items-center gap-2"
+              className="flex w-[84px] flex-col items-center  gap-2 lg:w-[96px]"
               key={material}
             >
               <ItemCard
                 label={count.toLocaleString()}
                 imgSrc={imageUrl(materialData[material].nameicon)}
+                size={96} // NOTE: make equal to lg:w-[??px]
               />
-              <span className="text-center text-xs">{material}</span>
+              <span className="hidden text-center text-xs lg:block">
+                {material}
+              </span>
             </div>
           );
         })}
