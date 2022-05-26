@@ -5,13 +5,13 @@ import StatsTable from "../StatsTable";
 import Section from "./Section";
 import SectionRow from "./SectionRow";
 
-const ActiveTalentSection: React.FC<{ talents: TalentInfo }> = ({
-  talents,
+const ActiveTalentSection: React.FC<{ actives: TalentInfo["actives"] }> = ({
+  actives,
 }) => {
-  console.log(talents);
+  console.log(actives);
   return (
     <Section title="Active Talents" className="overflow-hidden">
-      {talents.actives.map((activeTalent) => (
+      {actives.map((activeTalent) => (
         <SectionRow ability={activeTalent} key={activeTalent.name}>
           <ActiveTalentAttributes talent={activeTalent} />
         </SectionRow>

@@ -16,12 +16,12 @@ import { myRound } from "../utils/math";
 
 const CharacterPage: NextPage<Props> = ({
   character,
-  ascensions,
+  materials,
   talents,
   constellations,
 }) => {
   console.log(character);
-
+  console.log(materials);
   return (
     <main className="container relative flex flex-col gap-5">
       <Head>
@@ -34,9 +34,9 @@ const CharacterPage: NextPage<Props> = ({
       </Head>
 
       <HeroSection character={character} />
-      <div className="grid gap-5">
-        <AscensionSection ascensions={ascensions} />
-        <ActiveTalentSection talents={talents} />
+      <div className="grid gap-8">
+        <AscensionSection stats={character.stats} />
+        <ActiveTalentSection actives={talents.actives} />
         <PassiveTalentSection passives={talents.passives} />
         <ConstellationSection constellations={constellations} />
       </div>
@@ -205,54 +205,60 @@ const getPassives = (talents: genshindb.Talent): PassiveTalent[] => {
 };
 
 export interface MaterialDataMap {
-  [key: string]: { nameicon: string; sortorder: number; daysofweek?: string[] };
+  [key: string | number]: {
+    nameicon: string;
+    sortorder: number;
+    rarity: string;
+    daysofweek?: string[];
+  };
 }
 
 const getMaterialData = (costItem: {
   [key: string]: genshindb.Items[];
 }): MaterialDataMap => {
-  const materialDataMap: MaterialDataMap = {};
+  const names: string[] = [];
   for (const items of Object.values(costItem)) {
     for (const { name } of items) {
-      const {
-        images: { nameicon },
-        sortorder,
-        daysofweek,
-      } = genshindb.materials(name)!;
-
-      materialDataMap[name] = {
-        nameicon,
-        sortorder,
-        ...(daysofweek !== undefined && { daysofweek }),
-      };
+      names.push(name);
     }
+  }
+
+  return getMaterialDataFromNames(names);
+};
+
+const getMaterialDataFromNames = (names: string[]): MaterialDataMap => {
+  const materialDataMap: MaterialDataMap = {};
+  for (const name of names) {
+    const {
+      images: { nameicon },
+      sortorder,
+      daysofweek,
+      rarity,
+    } = genshindb.materials(name)!;
+
+    materialDataMap[name] = {
+      nameicon,
+      sortorder,
+      rarity: rarity ?? "1",
+      ...(daysofweek !== undefined && { daysofweek }),
+    };
   }
 
   return materialDataMap;
 };
 
+export interface CharacterStats {
+  data: { label: string; params: string[] }[];
+  headings: string[];
+}
+
 // Get array of stats at all ascension levels and include lvl 1 and 90
 const getCharStats = (
   stats: genshindb.StatFunction,
-  substat: string
-): { data: { label: string; params: string[] }[]; headings: string[] } => {
+  substat: string,
+  levels: [number, "-" | "+"][]
+): CharacterStats => {
   // ascension levels at 20, 40, 50, 60, 70, 80
-  const levels: [number, "-" | "+"][] = [
-    [1, "-"],
-    [20, "-"],
-    [20, "+"],
-    [40, "-"],
-    [40, "+"],
-    [50, "-"],
-    [50, "+"],
-    [60, "-"],
-    [60, "+"],
-    [70, "-"],
-    [70, "+"],
-    [80, "-"],
-    [80, "+"],
-    [90, "-"],
-  ];
 
   const headings = levels.map(
     ([level, isAscended]) => `Lv.${level}${isAscended === "+" ? "+" : ""}`
@@ -286,6 +292,83 @@ const getCharStats = (
   };
 };
 
+interface LevelupCosts {
+  [key: number]: genshindb.Items[];
+}
+const getLevelUpMaterials = (): [LevelupCosts, MaterialDataMap] => {
+  const xpBookNames = genshindb.materials("EXP_FRUIT", {
+    matchCategories: true,
+  }) as string[];
+
+  const xpBookMap = getMaterialDataFromNames(xpBookNames);
+  const rarityToName = Object.fromEntries(
+    Object.entries(xpBookMap).map(([name, info]) => [info.rarity, name])
+  );
+
+  const levelMats = {
+    1: {},
+    20: { "4": 6, "2": 1, Mora: 24200 },
+    40: { "4": 28, "3": 3, "2": 4, Mora: 115800 },
+    50: { "4": 29, Mora: 116000 },
+    60: { "4": 42, "3": 3, Mora: 171000 },
+    70: { "4": 59, "3": 3, "2": 1, Mora: 239200 },
+    80: { "4": 80, "3": 2, "2": 2, Mora: 322400 },
+    90: { "4": 171, "2": 4, Mora: 684800 },
+  };
+
+  const levelCosts: LevelupCosts = Object.fromEntries(
+    Object.entries(levelMats).map(([lvl, info]) => [
+      lvl,
+      Object.entries(info).map(([name, amt]) => {
+        return { name: rarityToName[name] ?? name, count: amt };
+      }),
+    ])
+  );
+
+  return [levelCosts, xpBookMap];
+};
+
+const getMaterialProps = (
+  characterInfo: genshindb.Character,
+  characterTalents: genshindb.Talent,
+  levels: [number, "-" | "+"][]
+): MaterialInfo => {
+  const lvltoAscensionMap: {
+    [key: number]: keyof genshindb.Character["costs"];
+  } = {
+    20: "ascend1",
+    40: "ascend2",
+    50: "ascend3",
+    60: "ascend4",
+    70: "ascend5",
+    80: "ascend6",
+  };
+
+  const [levelCosts, xpBookMap] = getLevelUpMaterials();
+
+  // NOTE: might remove Lv.1
+  const characterCosts: { [key: string]: genshindb.Items[] } =
+    Object.fromEntries(
+      levels.map(([lvl, isAscended]) => {
+        if (isAscended === "+") {
+          return [`Lv.${lvl}+`, characterInfo.costs[lvltoAscensionMap[lvl]]];
+        } else {
+          return [`Lv.${lvl}`, levelCosts[lvl]];
+        }
+      })
+    );
+
+  return {
+    characterCosts: characterCosts,
+    talentCosts: characterTalents.costs,
+    materialData: {
+      ...getMaterialData(characterInfo.costs),
+      ...getMaterialData(characterTalents.costs),
+      ...xpBookMap,
+    },
+  };
+};
+
 export interface CharacterInfo
   extends Omit<
     genshindb.Character,
@@ -301,17 +384,21 @@ export interface CharacterInfo
   > {
   image: string;
   rarity: number;
-}
-
-export interface Ascensions extends Pick<genshindb.Character, "costs"> {
-  materialData: MaterialDataMap;
-  stats: { data: { label: string; params: string[] }[]; headings: string[] };
+  stats: CharacterStats;
 }
 
 export interface TalentInfo {
   actives: ActiveTalent[];
-  activeCosts: genshindb.Talent["costs"];
   passives: PassiveTalent[];
+}
+
+export interface MaterialInfo {
+  characterCosts: {
+    [key: string]: genshindb.Items[];
+  };
+  talentCosts: {
+    [key: string]: genshindb.Items[];
+  };
   materialData: MaterialDataMap;
 }
 
@@ -323,8 +410,8 @@ export interface ConstellationInfo {
 
 interface Props {
   character: CharacterInfo;
-  ascensions: Ascensions;
   talents: TalentInfo;
+  materials: MaterialInfo;
   constellations: ConstellationInfo[];
 }
 
@@ -339,6 +426,22 @@ export const getStaticProps: GetStaticProps<Props, Params> = async (
   const characterInfo = genshindb.characters(name)!;
   const characterTalents = genshindb.talents(name)!;
   const characterConstellations = genshindb.constellations(name)!;
+  const levels: [number, "-" | "+"][] = [
+    [1, "-"],
+    [20, "-"],
+    [20, "+"],
+    [40, "-"],
+    [40, "+"],
+    [50, "-"],
+    [50, "+"],
+    [60, "-"],
+    [60, "+"],
+    [70, "-"],
+    [70, "+"],
+    [80, "-"],
+    [80, "+"],
+    [90, "-"],
+  ];
 
   const characterProps: CharacterInfo = {
     name: characterInfo.name,
@@ -355,21 +458,20 @@ export const getStaticProps: GetStaticProps<Props, Params> = async (
     birthdaymmdd: characterInfo.birthdaymmdd,
     constellation: characterInfo.constellation,
     cv: characterInfo.cv, // NOTE: might only get english cv
+    stats: getCharStats(characterInfo.stats, characterInfo.substat, levels),
     image: characterInfo.images.namegachasplash!,
-  };
-
-  const ascensionProps: Ascensions = {
-    costs: { ...characterInfo.costs },
-    stats: getCharStats(characterInfo.stats, characterInfo.substat),
-    materialData: getMaterialData(characterInfo.costs),
   };
 
   const talentProps: TalentInfo = {
     actives: getActives(characterTalents),
-    activeCosts: characterTalents.costs,
     passives: getPassives(characterTalents),
-    materialData: getMaterialData(characterTalents.costs),
   };
+
+  const materialProps = getMaterialProps(
+    characterInfo,
+    characterTalents,
+    levels
+  );
 
   const constellationProps: ConstellationInfo[] = [
     {
@@ -407,8 +509,8 @@ export const getStaticProps: GetStaticProps<Props, Params> = async (
   return {
     props: {
       character: characterProps,
-      ascensions: ascensionProps,
       talents: talentProps,
+      materials: materialProps,
       constellations: constellationProps,
     },
   };
