@@ -11,6 +11,7 @@ import {
   ActiveTalentSection,
   PassiveTalentSection,
   ConstellationSection,
+  MaterialCalculatorSection,
 } from "../components/Sections";
 import { myRound } from "../utils/math";
 
@@ -21,7 +22,7 @@ const CharacterPage: NextPage<Props> = ({
   constellations,
 }) => {
   console.log(character);
-  console.log(materials);
+
   return (
     <main className="container relative flex flex-col gap-5">
       <Head>
@@ -35,6 +36,7 @@ const CharacterPage: NextPage<Props> = ({
 
       <HeroSection character={character} />
       <div className="grid gap-8">
+        <MaterialCalculatorSection materials={materials} />
         <AscensionSection stats={character.stats} />
         <ActiveTalentSection actives={talents.actives} />
         <PassiveTalentSection passives={talents.passives} />
@@ -351,9 +353,9 @@ const getMaterialProps = (
     Object.fromEntries(
       levels.map(([lvl, isAscended]) => {
         if (isAscended === "+") {
-          return [`Lv.${lvl}+`, characterInfo.costs[lvltoAscensionMap[lvl]]];
+          return [`${lvl}+`, characterInfo.costs[lvltoAscensionMap[lvl]]];
         } else {
-          return [`Lv.${lvl}`, levelCosts[lvl]];
+          return [`${lvl}`, levelCosts[lvl]];
         }
       })
     );

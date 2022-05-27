@@ -37,13 +37,13 @@ const MaterialList: React.FC<{
 };
 
 export const calculateMaterialsRange = (
-  costs: { [key: string]: Items[] },
+  costs: Items[][],
   start: number, // min is 0
   end: number // max is len of array (not max index)
 ) => {
   const materials: { [key: string]: number } = {};
 
-  for (const [_key, value] of Object.entries(costs).slice(start, end)) {
+  for (const value of costs.slice(start, end)) {
     for (const { name, count } of value) {
       if (materials.hasOwnProperty(name)) {
         materials[name] += count;
