@@ -82,7 +82,7 @@ export const formatTalentLabel = (
 
     if (format === "I") {
       // integer
-      return `${value}`;
+      return `${Math.round(value)}`;
     } else if (format.includes("P")) {
       // percent
       return `${myRound(value * 100, precision)}%`;
