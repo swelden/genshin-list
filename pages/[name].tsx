@@ -24,7 +24,7 @@ const CharacterPage: NextPage<Props> = ({
   console.log(character);
 
   return (
-    <main className="container relative flex flex-col gap-5">
+    <main className="container relative flex flex-col gap-8">
       <Head>
         <title>Genshin List - {character.name}</title>
         <meta
@@ -348,7 +348,6 @@ const getMaterialProps = (
 
   const [levelCosts, xpBookMap] = getLevelUpMaterials();
 
-  // NOTE: might remove Lv.1
   const characterCosts: { [key: string]: genshindb.Items[] } =
     Object.fromEntries(
       levels.map(([lvl, isAscended]) => {
@@ -360,9 +359,17 @@ const getMaterialProps = (
       })
     );
 
+  const talentCosts: { [key: string]: genshindb.Items[] } = Object.fromEntries(
+    Object.entries(characterTalents.costs).map(([key, items]) => {
+      return [key.replace("lvl", ""), items];
+    })
+  );
+
+  talentCosts["1"] = [];
+
   return {
     characterCosts: characterCosts,
-    talentCosts: characterTalents.costs,
+    talentCosts: talentCosts,
     materialData: {
       ...getMaterialData(characterInfo.costs),
       ...getMaterialData(characterTalents.costs),

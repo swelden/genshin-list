@@ -1,45 +1,92 @@
 import { Dispatch, SetStateAction, useEffect, useMemo, useState } from "react";
-import { MaterialDataMap, MaterialInfo } from "../../pages/[name]";
-import MaterialList, { calculateMaterialsRange } from "../MaterialList";
+import useMinMax from "../../hooks/useMinMax";
+import { MaterialInfo } from "../../pages/[name]";
+import MaterialList, {
+  calculateMaterialsRange,
+  Materials,
+  mergeMaterials,
+} from "../MaterialList";
 import Section from "./Section";
 
 const MaterialCalculatorSection: React.FC<{ materials: MaterialInfo }> = ({
   materials,
 }) => {
-  console.log(materials);
+  const [totalMaterials, setTotalMaterials] = useState<Materials>({});
+  const [characterMaterials, setCharacterMaterials] = useState<Materials>({});
+  const [talentMaterials, setTalentMaterials] = useState<Materials>({});
+
+  useEffect(() => {
+    setTotalMaterials(mergeMaterials(characterMaterials, talentMaterials));
+  }, [characterMaterials, talentMaterials]);
+
+  // console.log(materials);
 
   return (
     <Section title="Material Calculator">
-      <AscensionCalculator
-        levels={materials.characterCosts}
-        materialData={materials.materialData}
-      />
+      <div className="grid gap-6 xl:grid-cols-[345px,_auto]">
+        <MaterialCalculator
+          levelCosts={materials.characterCosts}
+          setCharacterMaterials={setCharacterMaterials}
+          talentCosts={materials.talentCosts}
+          setTalentMaterials={setTalentMaterials}
+        />
+        <MaterialList
+          totalMaterials={totalMaterials}
+          materialData={materials.materialData}
+        />
+      </div>
     </Section>
   );
 };
 
-const AscensionCalculator: React.FC<{
-  levels: MaterialInfo["characterCosts"];
-  materialData: MaterialDataMap;
-}> = ({ levels, materialData }) => {
-  const [totalMaterials, setTotalMaterials] = useState({});
+const MaterialCalculator: React.FC<{
+  levelCosts: MaterialInfo["characterCosts"];
+  setCharacterMaterials: Dispatch<SetStateAction<Materials>>;
+  talentCosts: MaterialInfo["talentCosts"];
+  setTalentMaterials: Dispatch<SetStateAction<Materials>>;
+}> = ({
+  levelCosts,
+  setCharacterMaterials,
+  talentCosts,
+  setTalentMaterials,
+}) => {
+  return (
+    <div className="flex w-full flex-col gap-2">
+      <LevelCalculator
+        levelCosts={levelCosts}
+        setCharacterMaterials={setCharacterMaterials}
+      />
+      <TalentCalculator
+        talentCosts={talentCosts}
+        setTalentMaterials={setTalentMaterials}
+      />
+    </div>
+  );
+};
+
+const LevelCalculator: React.FC<{
+  levelCosts: MaterialInfo["characterCosts"];
+  setCharacterMaterials: Dispatch<SetStateAction<Materials>>;
+}> = ({ levelCosts, setCharacterMaterials }) => {
   const [min, setMin] = useState(0);
-  const [max, setMax] = useState(Object.keys(levels).length - 1);
+  const [max, setMax] = useState(Object.keys(levelCosts).length - 1);
 
   const [levelKeys, levelMats] = useMemo(() => {
-    const levelKeys = Object.keys(levels).sort();
-    const levelMats = levelKeys.map((key) => levels[key]);
+    const levelKeys = Object.keys(levelCosts).sort();
+    const levelMats = levelKeys.map((key) => levelCosts[key]);
     return [levelKeys, levelMats];
-  }, [levels]);
+  }, [levelCosts]);
 
   useEffect(() => {
     min >= max
-      ? setTotalMaterials({})
-      : setTotalMaterials(calculateMaterialsRange(levelMats, min + 1, max + 1));
-  }, [levelMats, min, max]);
+      ? setCharacterMaterials({})
+      : setCharacterMaterials(
+          calculateMaterialsRange(levelMats, min + 1, max + 1)
+        );
+  }, [setCharacterMaterials, levelMats, min, max]);
 
   return (
-    <div className="flex flex-col gap-4">
+    <>
       <LevelSelector
         label="Current Level"
         levelKeys={levelKeys}
@@ -52,9 +99,70 @@ const AscensionCalculator: React.FC<{
         currentValue={max}
         setValue={setMax}
       />
-      <MaterialList
-        totalMaterials={totalMaterials}
-        materialData={materialData}
+    </>
+  );
+};
+
+const TalentCalculator: React.FC<{
+  talentCosts: MaterialInfo["talentCosts"];
+  setTalentMaterials: Dispatch<SetStateAction<Materials>>;
+}> = ({ talentCosts, setTalentMaterials }) => {
+  const [levelKeys, levelMats] = useMemo(() => {
+    const levelKeys = Object.keys(talentCosts).sort(
+      (a, b) => parseInt(a) - parseInt(b)
+    );
+    const levelMats = levelKeys.map((key) => talentCosts[key]);
+    return [levelKeys, levelMats];
+  }, [talentCosts]);
+
+  const [attackMin, setAttackMin, attackMax, setAttackMax, attackMaterials] =
+    useMinMax(0, levelKeys.length - 1, levelMats);
+  const [skillMin, setSkillMin, skillMax, setSkillMax, skillMaterials] =
+    useMinMax(0, levelKeys.length - 1, levelMats);
+  const [burstMin, setBurstMin, burstMax, setBurstMax, burstMaterials] =
+    useMinMax(0, levelKeys.length - 1, levelMats);
+
+  useEffect(() => {
+    setTalentMaterials(
+      mergeMaterials(attackMaterials, skillMaterials, burstMaterials)
+    );
+  }, [setTalentMaterials, attackMaterials, burstMaterials, skillMaterials]);
+
+  return (
+    <div className="mt-3 grid grid-cols-3 gap-x-2 gap-y-1">
+      <span className="text-center">Attack</span>
+      <span className="text-center">Skill</span>
+      <span className="text-center">Burst</span>
+      <TalentSelectorDropdown
+        values={levelKeys}
+        value={attackMin}
+        setValue={setAttackMin}
+      />
+      <TalentSelectorDropdown
+        values={levelKeys}
+        value={skillMin}
+        setValue={setSkillMin}
+      />
+      <TalentSelectorDropdown
+        values={levelKeys}
+        value={burstMin}
+        setValue={setBurstMin}
+      />
+      <span className="col-span-3 text-center text-sm">to level</span>
+      <TalentSelectorDropdown
+        values={levelKeys}
+        value={attackMax}
+        setValue={setAttackMax}
+      />
+      <TalentSelectorDropdown
+        values={levelKeys}
+        value={skillMax}
+        setValue={setSkillMax}
+      />
+      <TalentSelectorDropdown
+        values={levelKeys}
+        value={burstMax}
+        setValue={setBurstMax}
       />
     </div>
   );
@@ -67,12 +175,12 @@ const LevelSelector: React.FC<{
   setValue: Dispatch<SetStateAction<number>>;
 }> = ({ label, levelKeys, currentValue, setValue }) => {
   return (
-    <div>
+    <div className="w-full">
       <h3 className="mb-2">{label}</h3>
       <div className="flex flex-wrap gap-2">
         {levelKeys.map((lvl, index) => (
           <button
-            className={`h-10 w-10 rounded-full border-2 ${
+            className={`h-10 w-10 rounded-2xl border-2 text-sm ${
               index === currentValue
                 ? "bg-gray-700"
                 : "border-gray-400 text-gray-400"
@@ -85,6 +193,31 @@ const LevelSelector: React.FC<{
         ))}
       </div>
     </div>
+  );
+};
+
+const TalentSelectorDropdown: React.FC<{
+  values: string[];
+  value: number;
+  setValue: Dispatch<SetStateAction<number>>;
+}> = ({ values, value, setValue }) => {
+  const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const newValue = Math.trunc(parseInt(event.target.value));
+    newValue <= 10 && newValue >= 1 ? setValue(newValue - 1) : setValue(0);
+  };
+
+  return (
+    <select
+      className="h-9 cursor-pointer appearance-none rounded-2xl border-2 border-transparent bg-zinc-200 text-center duration-100 ease-in focus-within:border-zinc-500 dark:bg-zinc-900"
+      onChange={handleChange}
+      value={values[value]}
+    >
+      {values.map((label) => (
+        <option value={label} key={label}>
+          {label}
+        </option>
+      ))}
+    </select>
   );
 };
 
