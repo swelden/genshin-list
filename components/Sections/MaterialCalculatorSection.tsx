@@ -16,6 +16,16 @@ const MaterialCalculatorSection: React.FC<{ materials: MaterialInfo }> = ({
   const [characterMaterials, setCharacterMaterials] = useState<Materials>({});
   const [talentMaterials, setTalentMaterials] = useState<Materials>({});
 
+  const daysofweek: string = useMemo(() => {
+    for (const material of Object.values(materials.materialData)) {
+      if (material.daysofweek) {
+        return material.daysofweek.join(", ");
+      }
+    }
+
+    return "";
+  }, [materials.materialData]);
+
   useEffect(() => {
     const totalMats = Object.entries(
       mergeMaterials(characterMaterials, talentMaterials)
@@ -49,10 +59,20 @@ const MaterialCalculatorSection: React.FC<{ materials: MaterialInfo }> = ({
           talentCosts={materials.talentCosts}
           setTalentMaterials={setTalentMaterials}
         />
-        <MaterialList
-          totalMaterials={totalMaterials}
-          materialData={materials.materialData}
-        />
+        <div>
+          <div className="mb-2">
+            <span>
+              Talents: {/*comment is to leave space*/}
+              <span className="text-black/80 dark:text-white/80">
+                {daysofweek}
+              </span>
+            </span>
+          </div>
+          <MaterialList
+            totalMaterials={totalMaterials}
+            materialData={materials.materialData}
+          />
+        </div>
       </div>
     </Section>
   );
