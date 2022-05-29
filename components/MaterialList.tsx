@@ -2,40 +2,36 @@ import { Items } from "genshin-db";
 import { MaterialDataMap } from "../pages/[name]";
 import { imageUrl } from "../utils/urls";
 import { ItemCard } from "./Card";
+import { MaterialList } from "./Sections/MaterialCalculatorSection";
 
 export interface Materials {
   [key: string]: number;
 }
 
 const MaterialList: React.FC<{
-  totalMaterials: Materials;
+  totalMaterials: MaterialList;
   materialData: MaterialDataMap;
 }> = ({ totalMaterials, materialData }) => {
   return (
     <div>
       <div className="flex flex-wrap gap-4">
-        {Object.entries(totalMaterials)
-          .sort(
-            (a, b) =>
-              materialData[a[0]].sortorder - materialData[b[0]].sortorder
-          )
-          .map(([material, count]) => {
-            return (
-              <div
-                className="flex w-[84px] flex-col items-center  gap-2 lg:w-[96px]"
-                key={material}
-              >
-                <ItemCard
-                  label={count.toLocaleString()}
-                  imgSrc={imageUrl(materialData[material].nameicon)}
-                  size={96} // NOTE: make equal to lg:w-[??px]
-                />
-                <span className="hidden text-center text-xs lg:block">
-                  {material}
-                </span>
-              </div>
-            );
-          })}
+        {totalMaterials.map(([material, count]) => {
+          return (
+            <div
+              className="flex w-[84px] flex-col items-center  gap-2 lg:w-[96px]"
+              key={`${material}-${count}`}
+            >
+              <ItemCard
+                label={count.toLocaleString()}
+                imgSrc={imageUrl(materialData[material].nameicon)}
+                size={96} // NOTE: make equal to lg:w-[??px]
+              />
+              <span className="hidden text-center text-xs lg:block">
+                {material}
+              </span>
+            </div>
+          );
+        })}
       </div>
     </div>
   );

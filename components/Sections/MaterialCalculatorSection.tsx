@@ -8,16 +8,35 @@ import MaterialList, {
 } from "../MaterialList";
 import Section from "./Section";
 
+export type MaterialList = [string, number][];
 const MaterialCalculatorSection: React.FC<{ materials: MaterialInfo }> = ({
   materials,
 }) => {
-  const [totalMaterials, setTotalMaterials] = useState<Materials>({});
+  const [totalMaterials, setTotalMaterials] = useState<MaterialList>([]);
   const [characterMaterials, setCharacterMaterials] = useState<Materials>({});
   const [talentMaterials, setTalentMaterials] = useState<Materials>({});
 
   useEffect(() => {
-    setTotalMaterials(mergeMaterials(characterMaterials, talentMaterials));
-  }, [characterMaterials, talentMaterials]);
+    const totalMats = Object.entries(
+      mergeMaterials(characterMaterials, talentMaterials)
+    ).sort(([aName], [bName]) => {
+      const aIsCharMat = characterMaterials[aName] !== undefined;
+      const bIsCharMat = characterMaterials[bName] !== undefined;
+
+      if (aIsCharMat === bIsCharMat) {
+        return (
+          materials.materialData[aName].sortorder -
+          materials.materialData[bName].sortorder
+        );
+      } else if (aIsCharMat) {
+        return -1; // sort a before b
+      } else {
+        return 1; // sort b before a
+      }
+    });
+
+    setTotalMaterials(totalMats);
+  }, [materials.materialData, characterMaterials, talentMaterials]);
 
   // console.log(materials);
 
