@@ -20,7 +20,7 @@ const DoubleRangeSlider: React.FC<{
     decrementEnd,
     incrementEnd,
     // reset,
-  } = useRange(0, 6, step, gap, initialMin, initialMax);
+  } = useRange(min, max, step, gap, initialMin, initialMax);
 
   const handleMin = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newVal = parseInt(e.target.value);
