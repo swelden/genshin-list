@@ -14,7 +14,7 @@ const MaterialList: React.FC<{
 }> = ({ totalMaterials, materialData }) => {
   return (
     <div>
-      <div className="flex flex-wrap gap-4">
+      <div className="flex flex-wrap justify-center gap-4 xl:justify-start">
         {totalMaterials.map(([material, count]) => {
           return (
             <div

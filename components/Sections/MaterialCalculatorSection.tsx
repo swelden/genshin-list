@@ -142,6 +142,34 @@ const LevelCalculator: React.FC<{
   );
 };
 
+const LevelSelector: React.FC<{
+  label: string;
+  levelKeys: string[];
+  currentValue: number;
+  setValue: Dispatch<SetStateAction<number>>;
+}> = ({ label, levelKeys, currentValue, setValue }) => {
+  return (
+    <div className="w-full">
+      <h3 className="mb-2">{label}</h3>
+      <div className="grid grid-cols-[repeat(auto-fit,_minmax(40px,_1fr))] gap-2 sm:grid-cols-7 md:grid-cols-14 xl:grid-cols-7">
+        {levelKeys.map((lvl, index) => (
+          <button
+            className={`h-10 rounded-2xl border-2 text-sm ${
+              index === currentValue
+                ? "bg-gray-700"
+                : "border-gray-400 text-gray-400"
+            }`}
+            onClick={() => setValue(index)}
+            key={lvl}
+          >
+            {lvl}
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+};
+
 const TalentCalculator: React.FC<{
   talentCosts: MaterialInfo["talentCosts"];
   setTalentMaterials: Dispatch<SetStateAction<Materials>>;
@@ -187,7 +215,7 @@ const TalentCalculator: React.FC<{
         value={burstMin}
         setValue={setBurstMin}
       />
-      <span className="col-span-3 text-center text-sm">to level</span>
+      <span className="col-span-3 my-1 text-center text-sm">to level</span>
       <TalentSelectorDropdown
         values={levelKeys}
         value={attackMax}
@@ -203,34 +231,6 @@ const TalentCalculator: React.FC<{
         value={burstMax}
         setValue={setBurstMax}
       />
-    </div>
-  );
-};
-
-const LevelSelector: React.FC<{
-  label: string;
-  levelKeys: string[];
-  currentValue: number;
-  setValue: Dispatch<SetStateAction<number>>;
-}> = ({ label, levelKeys, currentValue, setValue }) => {
-  return (
-    <div className="w-full">
-      <h3 className="mb-2">{label}</h3>
-      <div className="flex flex-wrap gap-2">
-        {levelKeys.map((lvl, index) => (
-          <button
-            className={`h-10 w-10 rounded-2xl border-2 text-sm ${
-              index === currentValue
-                ? "bg-gray-700"
-                : "border-gray-400 text-gray-400"
-            }`}
-            onClick={() => setValue(index)}
-            key={lvl}
-          >
-            {lvl}
-          </button>
-        ))}
-      </div>
     </div>
   );
 };
