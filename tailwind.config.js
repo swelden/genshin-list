@@ -44,6 +44,9 @@ module.exports = {
         "attr-bg-click": "#FAFBFB",
         "attr-text-click": "#454F66",
       },
+      gridTemplateColumns: {
+        14: "repeat(14, minmax(0, 1fr))",
+      },
       fontFamily: {
         sans: ["HYWenHei-85W", ...defaultTheme.fontFamily.sans],
       },
