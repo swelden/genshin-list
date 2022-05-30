@@ -20,7 +20,7 @@ interface CharacterFilterInfo {
   version: string;
 }
 
-type CharacterSortKeys = keyof Omit<CharacterFilterInfo, "rarity" | "nameicon">;
+type CharacterSortKeys = keyof Omit<CharacterFilterInfo, "nameicon">;
 
 interface Attributes {
   element: Set<Vision>;

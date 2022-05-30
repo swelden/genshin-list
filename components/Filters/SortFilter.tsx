@@ -12,6 +12,7 @@ const options: Options[] = [
   { title: "Sort by Element", value: "element" },
   { title: "Sort by Weapon", value: "weapontype" },
   { title: "Sort by Region", value: "region" },
+  { title: "Sort by Rarity", value: "rarity" }, // NOTE: might call Quality
   { title: "Sort by Name", value: "name" },
   { title: "Default", value: "version" },
 ];
