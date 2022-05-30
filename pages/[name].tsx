@@ -24,7 +24,7 @@ const CharacterPage: NextPage<Props> = ({
   console.log(character);
 
   return (
-    <main className="container relative flex flex-col gap-8">
+    <main className="relative flex flex-col gap-8 sm:container">
       <Head>
         <title>Genshin List - {character.name}</title>
         <meta
@@ -72,18 +72,19 @@ const DetailHeader: React.FC<Pick<Props, "character">> = ({ character }) => {
   // TODO: add container that spans max of 3 columns (to prevent long names from covering image)
   return (
     <div className="col-span-full col-start-2 row-span-full mb-3 flex items-center">
-      <div className="rounded-lg bg-zinc-50/90 p-3 backdrop-blur-sm dark:bg-zinc-900/90">
-        <div className="mb-1 flex h-min items-center gap-3">
-          <h1 className="text-3xl">{character.name}</h1>
-          {/* TODO: move element icon to left/middle of name (like the gacha splash format) */}
+      <div className="flex items-center gap-2 rounded-lg bg-zinc-50/90 px-5 backdrop-blur-sm dark:bg-zinc-900/90 sm:px-4 lg:mt-32 lg:-ml-5">
+        <div className="h-[4.25rem] w-[4.25rem]">
           <Image
             src={`/element-icons/${character.element}-icon.png`}
             alt={`${character.element} icon`}
-            width={24}
-            height={24}
+            width={68}
+            height={68}
           />
         </div>
-        <StarRating rarity={character.rarity} />
+        <div className="flex flex-col py-5 sm:py-4">
+          <h1 className="mb-1 text-3xl">{character.name}</h1>
+          <StarRating rarity={character.rarity} />
+        </div>
       </div>
     </div>
   );
@@ -91,7 +92,7 @@ const DetailHeader: React.FC<Pick<Props, "character">> = ({ character }) => {
 
 const StarRating: React.FC<{ rarity: number }> = ({ rarity }) => {
   return (
-    <div className="flex flex-nowrap gap-1">
+    <div className="flex flex-nowrap gap-0.5">
       {[...Array(rarity)].map((_, i) => (
         <Image
           key={`star-${i}`}
