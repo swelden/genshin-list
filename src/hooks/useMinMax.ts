@@ -1,5 +1,5 @@
 import { Items } from "genshin-db";
-import { Dispatch, SetStateAction, useEffect, useMemo, useState } from "react";
+import { Dispatch, SetStateAction, useMemo, useState } from "react";
 import { calculateMaterialsRange, Materials } from "../components/MaterialList";
 
 const useMinMax = (
@@ -15,13 +15,13 @@ const useMinMax = (
 ] => {
   const [min, setMin] = useState(initialMin);
   const [max, setMax] = useState(initialMax);
-  const [materials, setMaterials] = useState<Materials>({});
 
-  useEffect(() => {
-    min >= max
-      ? setMaterials({})
-      : setMaterials(calculateMaterialsRange(materialList, min + 1, max + 1));
-  }, [setMaterials, materialList, min, max]);
+  // NOTE: need memo
+  const materials: Materials = useMemo(
+    () =>
+      min >= max ? {} : calculateMaterialsRange(materialList, min + 1, max + 1),
+    [materialList, min, max]
+  );
 
   return [min, setMin, max, setMax, materials];
 };
