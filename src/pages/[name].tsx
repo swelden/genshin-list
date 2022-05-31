@@ -14,6 +14,7 @@ import {
   MaterialCalculatorSection,
 } from "../components/Sections";
 import { myRound } from "../utils/math";
+import MaterialProvider from "../contexts/MaterialContext";
 
 const CharacterPage: NextPage<Props> = ({
   character,
@@ -36,7 +37,12 @@ const CharacterPage: NextPage<Props> = ({
 
       <HeroSection character={character} />
       <div className="grid gap-8">
-        <MaterialCalculatorSection materials={materials} />
+        <MaterialProvider
+          levelCosts={materials.characterCosts}
+          talentCosts={materials.talentCosts}
+        >
+          <MaterialCalculatorSection materialData={materials.materialData} />
+        </MaterialProvider>
         <AscensionSection stats={character.stats} />
         <ActiveTalentSection actives={talents.actives} />
         <PassiveTalentSection passives={talents.passives} />
