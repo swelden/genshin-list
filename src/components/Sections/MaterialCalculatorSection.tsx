@@ -2,6 +2,7 @@ import { Dispatch, SetStateAction, useMemo } from "react";
 import { useMaterialContext } from "../../contexts/MaterialContext";
 import { MaterialDataMap } from "../../pages/[name]";
 import MaterialList, { mergeMaterials } from "../MaterialList";
+import { SelectMenu } from "../SelectMenu";
 import Section from "./Section";
 
 export type MaterialList = [string, number][];
@@ -91,28 +92,29 @@ const LevelCalculator: React.FC<{}> = () => {
   );
 };
 
+// TODO: use SelectMenu
 const LevelSelector: React.FC<{
   label: string;
   currentValue: number;
   setValue: Dispatch<SetStateAction<number>>;
 }> = ({ label, currentValue, setValue }) => {
-  const { levelKeys } = useMaterialContext();
+  const { levelOptions } = useMaterialContext();
 
   return (
     <div className="w-full">
       <h3 className="mb-2">{label}</h3>
       <div className="grid grid-cols-[repeat(auto-fit,_minmax(40px,_1fr))] gap-2 sm:grid-cols-7 md:grid-cols-14 xl:grid-cols-7">
-        {levelKeys.map((lvl, index) => (
+        {levelOptions.map(({ label, value }, index) => (
           <button
             className={`h-10 rounded-2xl border-2 text-sm ${
               index === currentValue
                 ? "bg-gray-700"
                 : "border-gray-400 text-gray-400"
             }`}
-            onClick={() => setValue(index)}
-            key={lvl}
+            onClick={() => setValue(value)}
+            key={label}
           >
-            {lvl}
+            {label}
           </button>
         ))}
       </div>
@@ -156,24 +158,14 @@ const TalentSelectorDropdown: React.FC<{
   value: number;
   setValue: Dispatch<SetStateAction<number>>;
 }> = ({ value, setValue }) => {
-  const { talentKeys } = useMaterialContext();
-  const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const newValue = Math.trunc(parseInt(event.target.value));
-    newValue <= 10 && newValue >= 1 ? setValue(newValue - 1) : setValue(0);
-  };
+  const { talentOptions } = useMaterialContext();
 
   return (
-    <select
-      className="h-9 cursor-pointer appearance-none rounded-2xl border-2 border-transparent bg-zinc-200 text-center duration-100 ease-in focus-within:border-zinc-500 dark:bg-zinc-900"
-      onChange={handleChange}
-      value={talentKeys[value]}
-    >
-      {talentKeys.map((label) => (
-        <option value={label} key={label}>
-          {label}
-        </option>
-      ))}
-    </select>
+    <SelectMenu
+      options={talentOptions}
+      currentValue={talentOptions[value]}
+      handleChange={setValue}
+    />
   );
 };
 

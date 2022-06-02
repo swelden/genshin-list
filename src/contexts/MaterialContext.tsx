@@ -1,11 +1,12 @@
 import React, { createContext, useContext, useMemo, useState } from "react";
 import { Materials, mergeMaterials } from "../components/MaterialList";
+import { SelectOption } from "../components/SelectMenu";
 import useMinMax from "../hooks/useMinMax";
 import { MaterialInfo } from "../pages/[name]";
 
 interface MaterialContextType {
   // levels
-  levelKeys: string[];
+  levelOptions: SelectOption<number>[];
   levelMin: number;
   setLevelMin: React.Dispatch<React.SetStateAction<number>>;
   levelMax: number;
@@ -13,7 +14,7 @@ interface MaterialContextType {
   characterMaterials: Materials;
 
   // talents
-  talentKeys: string[];
+  talentOptions: SelectOption<number>[];
   attackMin: number;
   setAttackMin: React.Dispatch<React.SetStateAction<number>>;
   attackMax: number;
@@ -40,30 +41,40 @@ const MaterialProvider: React.FC<{
   children: React.ReactNode;
 }> = ({ levelCosts, talentCosts, children }) => {
   // levels
-  const [levelKeys, levelMats] = useMemo(() => {
+  const [levelOptions, levelMats] = useMemo(() => {
     const levelKeys = Object.keys(levelCosts).sort();
+
+    const levelOptions = levelKeys.map((key, idx) => {
+      return { label: key, value: idx };
+    });
+
     const levelMats = levelKeys.map((key) => levelCosts[key]);
-    return [levelKeys, levelMats];
+    return [levelOptions, levelMats];
   }, [levelCosts]);
 
   const [levelMin, setLevelMin, levelMax, setLevelMax, characterMaterials] =
-    useMinMax(0, levelKeys.length - 1, levelMats);
+    useMinMax(0, levelOptions.length - 1, levelMats);
 
   // talents
-  const [talentKeys, talentMats] = useMemo(() => {
+  const [talentOptions, talentMats] = useMemo(() => {
     const talentKeys = Object.keys(talentCosts).sort(
       (a, b) => parseInt(a) - parseInt(b)
     );
+
+    const talentOptions = talentKeys.map((key, idx) => {
+      return { label: key, value: idx };
+    });
+
     const talentMats = talentKeys.map((key) => talentCosts[key]);
-    return [talentKeys, talentMats];
+    return [talentOptions, talentMats];
   }, [talentCosts]);
 
   const [attackMin, setAttackMin, attackMax, setAttackMax, attackMaterials] =
-    useMinMax(0, talentKeys.length - 1, talentMats);
+    useMinMax(0, talentOptions.length - 1, talentMats);
   const [skillMin, setSkillMin, skillMax, setSkillMax, skillMaterials] =
-    useMinMax(0, talentKeys.length - 1, talentMats);
+    useMinMax(0, talentOptions.length - 1, talentMats);
   const [burstMin, setBurstMin, burstMax, setBurstMax, burstMaterials] =
-    useMinMax(0, talentKeys.length - 1, talentMats);
+    useMinMax(0, talentOptions.length - 1, talentMats);
 
   const talentMaterials = useMemo(
     () => mergeMaterials(attackMaterials, skillMaterials, burstMaterials),
@@ -73,14 +84,14 @@ const MaterialProvider: React.FC<{
   return (
     <MaterialContext.Provider
       value={{
-        levelKeys,
+        levelOptions,
         levelMin,
         setLevelMin,
         levelMax,
         setLevelMax,
         characterMaterials,
 
-        talentKeys,
+        talentOptions,
         attackMin,
         setAttackMin,
         attackMax,

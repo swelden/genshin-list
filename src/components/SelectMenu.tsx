@@ -1,0 +1,55 @@
+import { Fragment } from "react";
+import { Listbox, Transition } from "@headlessui/react";
+import { DropDownIcon } from "./icons";
+
+export interface SelectOption<T> {
+  label: string;
+  value: T;
+}
+
+interface SelectMenuProps<T> {
+  options: SelectOption<T>[];
+  currentValue: SelectOption<T>;
+  handleChange: (value: T) => void;
+}
+
+export const SelectMenu = <T extends {}>({
+  options,
+  currentValue,
+  handleChange,
+}: SelectMenuProps<T>) => {
+  return (
+    <Listbox value={currentValue.value} onChange={handleChange}>
+      <div className="relative">
+        <Listbox.Button className="text-light-900 relative w-full cursor-pointer rounded-2xl border border-zinc-700 bg-zinc-600 py-2 pr-10 pl-4 text-left font-sans text-base font-normal shadow-md transition-colors hover:bg-zinc-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2">
+          <span className="block truncate">{currentValue.label}</span>
+          <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
+            <DropDownIcon />
+          </span>
+        </Listbox.Button>
+        <Transition
+          as={Fragment}
+          leave="transition ease-in duration-100"
+          leaveFrom="opacity-100"
+          leaveTo="opacity-0"
+        >
+          <Listbox.Options className="scrollbar absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+            {options.map(({ label, value }, index) => (
+              <Listbox.Option
+                key={index}
+                className={({ active }) =>
+                  `relative cursor-default select-none py-2 pl-10 pr-4 ${
+                    active ? "bg-amber-100 text-amber-900" : "text-gray-900"
+                  }`
+                }
+                value={value}
+              >
+                <span className="block truncate">{label}</span>
+              </Listbox.Option>
+            ))}
+          </Listbox.Options>
+        </Transition>
+      </div>
+    </Listbox>
+  );
+};
