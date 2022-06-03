@@ -1,8 +1,9 @@
 import { Dispatch, SetStateAction, useMemo } from "react";
 import { useMaterialContext } from "../../contexts/MaterialContext";
 import { MaterialDataMap } from "../../pages/[name]";
+import { RightArrowIcon } from "../icons";
 import MaterialList, { mergeMaterials } from "../MaterialList";
-import { SelectMenu } from "../SelectMenu";
+import { SelectMenu, SelectOption } from "../SelectMenu";
 import Section from "./Section";
 
 export type MaterialList = [string, number][];
@@ -65,9 +66,39 @@ const MaterialCalculatorSection: React.FC<{
 
 const MaterialCalculator: React.FC<{}> = ({}) => {
   return (
-    <div className="flex w-full flex-col gap-2">
+    <div className="flex w-full flex-col gap-3">
       <LevelCalculator />
       <TalentCalculator />
+    </div>
+  );
+};
+
+const RangeSelector: React.FC<{
+  title: string;
+  min: number;
+  max: number;
+  setMin: Dispatch<SetStateAction<number>>;
+  setMax: Dispatch<SetStateAction<number>>;
+  options: SelectOption<number>[];
+}> = ({ title, min, max, setMin, setMax, options }) => {
+  return (
+    <div className="w-full">
+      <h3 className="mb-1">{title}</h3>
+      <div className="grid grid-cols-[1fr_24px_1fr] items-center justify-center gap-2">
+        <SelectMenu
+          options={options}
+          currentValue={options[min]}
+          handleChange={setMin}
+        />
+        <div className="flex w-full items-center justify-center text-gray-600">
+          <RightArrowIcon />
+        </div>
+        <SelectMenu
+          options={options}
+          currentValue={options[max]}
+          handleChange={setMax}
+        />
+      </div>
     </div>
   );
 };
@@ -77,21 +108,14 @@ const LevelCalculator: React.FC<{}> = () => {
     useMaterialContext()!;
 
   return (
-    <div className="w-full">
-      <h3 className="mb-2">Level</h3>
-      <div className="grid grid-cols-2 gap-2">
-        <SelectMenu
-          options={levelOptions}
-          currentValue={levelOptions[levelMin]}
-          handleChange={setLevelMin}
-        />
-        <SelectMenu
-          options={levelOptions}
-          currentValue={levelOptions[levelMax]}
-          handleChange={setLevelMax}
-        />
-      </div>
-    </div>
+    <RangeSelector
+      title="Level"
+      min={levelMin}
+      max={levelMax}
+      setMin={setLevelMin}
+      setMax={setLevelMax}
+      options={levelOptions}
+    />
   );
 };
 
@@ -109,36 +133,36 @@ const TalentCalculator: React.FC<{}> = () => {
     setBurstMin,
     burstMax,
     setBurstMax,
+    talentOptions,
   } = useMaterialContext()!;
 
   return (
-    <div className="mt-3 grid grid-cols-3 gap-x-2 gap-y-1">
-      <span className="text-center">Attack</span>
-      <span className="text-center">Skill</span>
-      <span className="text-center">Burst</span>
-      <TalentSelectorDropdown value={attackMin} setValue={setAttackMin} />
-      <TalentSelectorDropdown value={skillMin} setValue={setSkillMin} />
-      <TalentSelectorDropdown value={burstMin} setValue={setBurstMin} />
-      <span className="col-span-3 my-1 text-center text-sm">to level</span>
-      <TalentSelectorDropdown value={attackMax} setValue={setAttackMax} />
-      <TalentSelectorDropdown value={skillMax} setValue={setSkillMax} />
-      <TalentSelectorDropdown value={burstMax} setValue={setBurstMax} />
-    </div>
-  );
-};
-
-const TalentSelectorDropdown: React.FC<{
-  value: number;
-  setValue: Dispatch<SetStateAction<number>>;
-}> = ({ value, setValue }) => {
-  const { talentOptions } = useMaterialContext();
-
-  return (
-    <SelectMenu
-      options={talentOptions}
-      currentValue={talentOptions[value]}
-      handleChange={setValue}
-    />
+    <>
+      <RangeSelector
+        title="Attack"
+        min={attackMin}
+        max={attackMax}
+        setMin={setAttackMin}
+        setMax={setAttackMax}
+        options={talentOptions}
+      />
+      <RangeSelector
+        title="Skill"
+        min={skillMin}
+        max={skillMax}
+        setMin={setSkillMin}
+        setMax={setSkillMax}
+        options={talentOptions}
+      />
+      <RangeSelector
+        title="Burst"
+        min={burstMin}
+        max={burstMax}
+        setMin={setBurstMin}
+        setMax={setBurstMax}
+        options={talentOptions}
+      />
+    </>
   );
 };
 
