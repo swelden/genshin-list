@@ -73,50 +73,23 @@ const MaterialCalculator: React.FC<{}> = ({}) => {
 };
 
 const LevelCalculator: React.FC<{}> = () => {
-  const { levelMin, setLevelMin, levelMax, setLevelMax } =
+  const { levelMin, setLevelMin, levelMax, setLevelMax, levelOptions } =
     useMaterialContext()!;
 
   return (
-    <>
-      <LevelSelector
-        label="Current Level"
-        currentValue={levelMin}
-        setValue={setLevelMin}
-      />
-      <LevelSelector
-        label="Intended Level"
-        currentValue={levelMax}
-        setValue={setLevelMax}
-      />
-    </>
-  );
-};
-
-// TODO: use SelectMenu
-const LevelSelector: React.FC<{
-  label: string;
-  currentValue: number;
-  setValue: Dispatch<SetStateAction<number>>;
-}> = ({ label, currentValue, setValue }) => {
-  const { levelOptions } = useMaterialContext();
-
-  return (
     <div className="w-full">
-      <h3 className="mb-2">{label}</h3>
-      <div className="grid grid-cols-[repeat(auto-fit,_minmax(40px,_1fr))] gap-2 sm:grid-cols-7 md:grid-cols-14 xl:grid-cols-7">
-        {levelOptions.map(({ label, value }, index) => (
-          <button
-            className={`h-10 rounded-2xl border-2 text-sm ${
-              index === currentValue
-                ? "bg-gray-700"
-                : "border-gray-400 text-gray-400"
-            }`}
-            onClick={() => setValue(value)}
-            key={label}
-          >
-            {label}
-          </button>
-        ))}
+      <h3 className="mb-2">Level</h3>
+      <div className="grid grid-cols-2 gap-2">
+        <SelectMenu
+          options={levelOptions}
+          currentValue={levelOptions[levelMin]}
+          handleChange={setLevelMin}
+        />
+        <SelectMenu
+          options={levelOptions}
+          currentValue={levelOptions[levelMax]}
+          handleChange={setLevelMax}
+        />
       </div>
     </div>
   );
