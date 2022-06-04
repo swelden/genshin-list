@@ -43,10 +43,10 @@ const MaterialCalculatorSection: React.FC<{
 
   return (
     <Section title="Material Calculator">
-      <div className="grid gap-6 xl:grid-cols-[345px,_auto]">
+      <div className="grid gap-6 xl:grid-cols-[20rem,_auto]">
         <MaterialCalculator />
         <div>
-          <div className="mb-2">
+          <div className="mb-1">
             <span>
               Talents: {/*comment is to leave space*/}
               <span className="text-black/80 dark:text-white/80">
@@ -66,9 +66,25 @@ const MaterialCalculatorSection: React.FC<{
 
 const MaterialCalculator: React.FC<{}> = ({}) => {
   return (
-    <div className="flex w-full flex-col gap-3">
+    <div className="flex w-full flex-col gap-4">
       <LevelCalculator />
       <TalentCalculator />
+      <LevelTemplateSelector />
+    </div>
+  );
+};
+
+const LevelTemplateSelector = () => {
+  const { setNoLevels, setMaxLevels } = useMaterialContext()!;
+
+  return (
+    <div className="mt-2 grid grid-cols-2 gap-2">
+      <button className="rounded-md bg-zinc-900 p-2" onClick={setNoLevels}>
+        Clear
+      </button>
+      <button className="rounded-md bg-zinc-900 p-2" onClick={setMaxLevels}>
+        Max
+      </button>
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useMemo, useState } from "react";
+import React, { createContext, useCallback, useContext, useMemo } from "react";
 import { Materials, mergeMaterials } from "../components/MaterialList";
 import { SelectOption } from "../components/SelectMenu";
 import useMinMax from "../hooks/useMinMax";
@@ -28,6 +28,11 @@ interface MaterialContextType {
   burstMax: number;
   setBurstMax: React.Dispatch<React.SetStateAction<number>>;
   talentMaterials: Materials;
+
+  // material level templates
+  setNoLevels: () => void;
+  setMaxLevels: () => void;
+  // setRecommendedLevels: () => void;
 }
 
 // NOTE: can still cause an error if context is used outside of provider
@@ -81,6 +86,54 @@ const MaterialProvider: React.FC<{
     [attackMaterials, burstMaterials, skillMaterials]
   );
 
+  const setNoLevels = useCallback(() => {
+    setLevelMin(0);
+    setLevelMax(0);
+    setAttackMin(0);
+    setAttackMax(0);
+    setSkillMin(0);
+    setSkillMax(0);
+    setBurstMin(0);
+    setBurstMax(0);
+  }, [
+    setLevelMin,
+    setLevelMax,
+    setAttackMin,
+    setAttackMax,
+    setSkillMin,
+    setSkillMax,
+    setBurstMin,
+    setBurstMax,
+  ]);
+
+  const setMaxLevels = useCallback(() => {
+    setLevelMax(levelOptions.length - 1);
+    setAttackMax(talentOptions.length - 1);
+    setSkillMax(talentOptions.length - 1);
+    setBurstMax(talentOptions.length - 1);
+  }, [
+    setLevelMax,
+    levelOptions.length,
+    setAttackMax,
+    setSkillMax,
+    setBurstMax,
+    talentOptions.length,
+  ]);
+
+  // const setRecommendedLevels = useCallback(() => {
+  //   setLevelMax(levelOptions.length - 2); // 80+
+  //   setAttackMax(talentOptions.length - 3); // 8
+  //   setSkillMax(talentOptions.length - 3); // 8
+  //   setBurstMax(talentOptions.length - 3); // 8
+  // }, [
+  //   setLevelMax,
+  //   levelOptions.length,
+  //   setAttackMax,
+  //   setSkillMax,
+  //   setBurstMax,
+  //   talentOptions.length,
+  // ]);
+
   return (
     <MaterialContext.Provider
       value={{
@@ -105,6 +158,10 @@ const MaterialProvider: React.FC<{
         burstMax,
         setBurstMax,
         talentMaterials,
+
+        setNoLevels,
+        setMaxLevels,
+        // setRecommendedLevels,
       }}
     >
       {children}
