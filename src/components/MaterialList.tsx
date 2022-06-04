@@ -18,7 +18,8 @@ const MaterialList: React.FC<{
         {totalMaterials.map(([material, count]) => {
           return (
             <div
-              className="flex w-[84px] flex-col items-center  gap-2 lg:w-[96px]"
+              className="flex w-[84px] flex-col items-center gap-2 lg:w-[96px]"
+              title={material}
               key={`${material}-${count}`}
             >
               <ItemCard
@@ -26,9 +27,6 @@ const MaterialList: React.FC<{
                 imgSrc={imageUrl(materialData[material].nameicon)}
                 size={96} // NOTE: make equal to lg:w-[??px]
               />
-              <span className="hidden text-center text-xs lg:block">
-                {material}
-              </span>
             </div>
           );
         })}
