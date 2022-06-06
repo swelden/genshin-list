@@ -27,6 +27,7 @@ const MaterialList: React.FC<{
               label={count.toLocaleString()}
               imgSrc={imageUrl(materialData[material].nameicon)}
               size={98} // NOTE: make equal to lg:w-[??px]
+              smallIcon={material === "Mora"}
             />
           </div>
         );

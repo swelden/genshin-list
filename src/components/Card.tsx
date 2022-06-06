@@ -39,11 +39,13 @@ export const CharacterCard: CharacterCardProps = ({ character }) => {
 export const ItemCard: React.FC<{
   label: string | number;
   imgSrc: string;
+  smallIcon: boolean;
   bgGradient?: string;
   size?: number;
 }> = ({
   label,
   imgSrc,
+  smallIcon,
   bgGradient = "bg-gradient-to-b from-[#323947] to-[#4a5366]",
   size = 96,
 }) => {
@@ -55,6 +57,7 @@ export const ItemCard: React.FC<{
         imgSrc={imgSrc}
         size={size}
         className={"text-xs lg:text-sm"}
+        smallIcon={smallIcon}
       />
     </div>
   );
@@ -67,14 +70,25 @@ const InnerCard: React.FC<{
   size: number;
   className?: string;
   children?: React.ReactNode;
-}> = ({ bgGradient, label, imgSrc, size, className, children }) => {
+  smallIcon?: boolean;
+}> = ({
+  bgGradient,
+  label,
+  imgSrc,
+  size,
+  className,
+  children,
+  smallIcon = false,
+}) => {
   return (
     <>
       {/* NOTE: this top div fixes slight white corner bug */}
       {/* TODO: look for a better fix */}
       <div className="absolute top-0 bottom-3/4 right-0 left-0 dark:bg-black"></div>
       <div
-        className={`relative flex overflow-hidden rounded-t-md rounded-br-[1.25rem] ${bgGradient}`}
+        className={`relative flex overflow-hidden rounded-t-md rounded-br-[1.25rem] ${bgGradient} ${
+          smallIcon ? "p-2" : ""
+        }`}
       >
         <Image src={imgSrc} alt={`${label} thumb`} width={size} height={size} />
         {children}
