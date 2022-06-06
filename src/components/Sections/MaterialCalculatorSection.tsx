@@ -45,9 +45,10 @@ const MaterialCalculatorSection: React.FC<{
     <Section title="Material Calculator">
       <div className="grid gap-6 xl:grid-cols-[20rem,_auto]">
         <MaterialCalculator />
+        {/* NOTE: might put "Required Materials" in center and move daysofweek */}
         <div>
-          <div className="mb-1">
-            <span>
+          <div className="mb-4 text-center xl:mb-1 xl:text-left">
+            <span className="">
               Talents: {/*comment is to leave space*/}
               <span className="text-black/80 dark:text-white/80">
                 {daysofweek}
@@ -66,7 +67,7 @@ const MaterialCalculatorSection: React.FC<{
 
 const MaterialCalculator: React.FC<{}> = ({}) => {
   return (
-    <div className="flex w-full flex-col gap-4">
+    <div className="flex w-full flex-col gap-4 lg:px-11 xl:px-0">
       <LevelCalculator />
       <TalentCalculator />
       <LevelTemplateSelector />

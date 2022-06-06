@@ -13,24 +13,24 @@ const MaterialList: React.FC<{
   materialData: MaterialDataMap;
 }> = ({ totalMaterials, materialData }) => {
   return (
-    <div>
-      <div className="flex flex-wrap justify-center gap-4 xl:justify-start">
-        {totalMaterials.map(([material, count]) => {
-          return (
-            <div
-              className="flex w-[84px] flex-col items-center gap-2 lg:w-[96px]"
-              title={material}
-              key={`${material}-${count}`}
-            >
-              <ItemCard
-                label={count.toLocaleString()}
-                imgSrc={imageUrl(materialData[material].nameicon)}
-                size={96} // NOTE: make equal to lg:w-[??px]
-              />
-            </div>
-          );
-        })}
-      </div>
+    // TODO: add "No Materials" box outline center if totalMaterials.length is 0
+    // NOTE: might remove mora card and replace it with "Required (mora icon) [Amount]" center below cards
+    <div className="flex flex-wrap justify-center gap-4 xl:justify-start">
+      {totalMaterials.map(([material, count]) => {
+        return (
+          <div
+            className="w-[84px] lg:w-[94px] 2xl:w-[98px]"
+            title={material}
+            key={`${material}`} // `${material}-${count}`
+          >
+            <ItemCard
+              label={count.toLocaleString()}
+              imgSrc={imageUrl(materialData[material].nameicon)}
+              size={98} // NOTE: make equal to lg:w-[??px]
+            />
+          </div>
+        );
+      })}
     </div>
   );
 };
