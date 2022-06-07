@@ -4,6 +4,7 @@ import { DropDownIcon } from "../icons";
 import StatsTable from "../StatsTable";
 import Section from "./Section";
 import SectionRow from "./SectionRow";
+// import Button from "../Button";
 
 const ActiveTalentSection: React.FC<{ actives: TalentInfo["actives"] }> = ({
   actives,
@@ -27,13 +28,28 @@ const ActiveTalentAttributes: React.FC<{
   const maxCols = talent.attributes[0].params.length;
 
   return (
-    <div>
-      <button className="mt-4 flex" onClick={() => setIsOpen(!isOpen)}>
-        {talent.category} Stats
+    <div className="mt-4">
+      {/* <Button
+        className="max-w-max pl-4 pr-2"
+        onClick={() => setIsOpen(!isOpen)}
+        isColorInversed={true}
+      >
+        <span className="pr-1.5">{talent.category} Stats</span>
+        <span className={`transition-transform ${isOpen ? "rotate-180" : ""}`}>
+          <DropDownIcon />
+        </span>
+      </Button> */}
+
+      <button
+        className="flex max-w-max rounded-full bg-zinc-200 p-2 pl-4 pr-2 transition-colors hover:bg-zinc-300 dark:bg-zinc-700 hover:dark:bg-zinc-600"
+        onClick={() => setIsOpen(!isOpen)}
+      >
+        <span className="pr-1.5">{talent.category} Stats</span>
         <span className={`transition-transform ${isOpen ? "rotate-180" : ""}`}>
           <DropDownIcon />
         </span>
       </button>
+
       {isOpen && (
         <StatsTable
           data={talent.attributes}
