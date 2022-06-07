@@ -9,7 +9,7 @@ type CharacterCardProps = React.FC<{ character: CharacterFilterInfo }>;
 export const CharacterCard: CharacterCardProps = ({ character }) => {
   return (
     <Link href={`/${character.name.toLowerCase().replace(/\s/g, "-")}`}>
-      <a className="relative overflow-hidden rounded-md bg-card-title shadow-sm outline-none ring-black/20 ring-offset-4 ring-offset-white transition duration-300 ease-in-out hover:scale-110 hover:ring-1 focus-visible:scale-110 focus-visible:ring-1 dark:shadow-zinc-600/50">
+      <a className="relative overflow-hidden rounded-md bg-gradient-to-t from-card-title shadow-sm outline-none ring-black/20 ring-offset-4 ring-offset-white transition duration-300 ease-in-out hover:scale-110 hover:ring-1 focus-visible:scale-110 focus-visible:ring-1 dark:shadow-zinc-600/50">
         <InnerCard
           bgGradient={
             character.rarity === "4"
@@ -50,7 +50,7 @@ export const ItemCard: React.FC<{
   size = 96,
 }) => {
   return (
-    <div className="relative overflow-hidden rounded-md bg-card-title shadow-sm dark:shadow-zinc-600/50">
+    <div className="relative overflow-hidden rounded-md bg-gradient-to-t from-card-title shadow-sm dark:shadow-zinc-600/50">
       <InnerCard
         bgGradient={bgGradient}
         label={label}
@@ -82,9 +82,6 @@ const InnerCard: React.FC<{
 }) => {
   return (
     <>
-      {/* NOTE: this top div fixes slight white corner bug */}
-      {/* TODO: look for a better fix */}
-      <div className="absolute top-0 bottom-3/4 right-0 left-0 dark:bg-black"></div>
       <div
         className={`relative flex overflow-hidden rounded-t-md rounded-br-[1.25rem] ${bgGradient} ${
           smallIcon ? "p-2" : ""
