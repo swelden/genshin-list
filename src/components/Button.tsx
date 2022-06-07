@@ -3,6 +3,7 @@ interface ButtonProps {
   onClick?: () => void;
   className?: string;
   isCircle?: boolean;
+  isColorInversed?: boolean;
   ariaHaspopup?: boolean;
   ariaExpanded?: boolean;
 }
@@ -14,14 +15,19 @@ const Button: React.FC<ButtonProps> = ({
   onClick,
   className = "",
   isCircle = false,
+  isColorInversed = false,
   ariaHaspopup,
   ariaExpanded,
 }) => {
   return (
     <button
       onClick={onClick}
-      className={`flex cursor-pointer items-center justify-center rounded-full border-0 border-white bg-ui font-medium text-ui-contrast shadow-sm transition duration-75 hover:border-2 hover:shadow-inner focus-visible:border-2 focus-visible:shadow-inner active:border-opacity-70 active:bg-ui-bg-click active:text-white active:shadow-lg ${
+      className={`flex cursor-pointer items-center justify-center rounded-full border-0 font-medium shadow-sm transition duration-75 hover:border-2 hover:shadow-inner focus-visible:border-2 focus-visible:shadow-inner active:border-opacity-70 active:bg-ui-bg-click active:text-white active:shadow-lg ${
         isCircle ? "h-8 w-8" : "h-9 w-full"
+      } ${
+        isColorInversed
+          ? "border-white bg-ui text-ui-contrast dark:border-gray-700 dark:bg-ui-contrast dark:text-ui"
+          : "border-gray-700 bg-ui-contrast text-ui dark:border-white dark:bg-ui dark:text-ui-contrast"
       } ${className}`}
       aria-haspopup={ariaHaspopup}
       aria-expanded={ariaExpanded}
