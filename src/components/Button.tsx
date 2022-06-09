@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 interface ButtonProps {
   children: React.ReactNode;
   onClick?: () => void;
@@ -8,8 +10,6 @@ interface ButtonProps {
   ariaExpanded?: boolean;
   as?: React.ElementType;
 }
-
-// TODO: add link button that has same styles as Button (mainly for 404 page)
 
 const Button: React.FC<ButtonProps> = ({
   children,
@@ -27,8 +27,8 @@ const Button: React.FC<ButtonProps> = ({
     <ButtonType
       onClick={onClick}
       className={`flex cursor-pointer items-center justify-center rounded-full border-0 shadow-sm transition duration-75 hover:border-2 hover:shadow-inner focus-visible:border-2 focus-visible:shadow-inner active:border-opacity-70 active:bg-ui-bg-click active:text-white active:shadow-lg ${
-        isCircle ? "h-8 w-8" : "key-focus key-focus-body h-9 w-full"
-      } ${
+        isCircle ? "h-8 w-8" : "h-9 w-full"
+      } ${as === "button" ? "key-focus key-focus-body" : ""} ${
         isColorInversed
           ? "border-white bg-ui text-ui-contrast dark:border-gray-700 dark:bg-ui-contrast dark:text-ui"
           : "border-gray-700 bg-ui-contrast text-ui dark:border-white dark:bg-ui dark:text-ui-contrast"
@@ -41,12 +41,36 @@ const Button: React.FC<ButtonProps> = ({
   );
 };
 
-type CircleButtonProps = Omit<ButtonProps, "isCircle">;
+type LinkButtonProps = Omit<
+  ButtonProps,
+  "isCircle" | "onClick" | "ariaHaspopup" | "ariaExpanded" | "as"
+> & { url: string };
+
+export const LinkButton: React.FC<LinkButtonProps> = ({
+  children,
+  url,
+  className = "",
+  isColorInversed = false,
+}) => {
+  return (
+    <Link href={url}>
+      <a className={`key-focus key-focus-body rounded-full ${className}`}>
+        <Button isColorInversed={isColorInversed} as="div">
+          {children}
+        </Button>
+      </a>
+    </Link>
+  );
+};
+
+type CircleButtonProps = Omit<ButtonProps, "isCircle" | "as">;
 
 export const CircleButton: React.FC<CircleButtonProps> = ({
   children,
   onClick,
   className = "",
+  ariaHaspopup,
+  ariaExpanded,
 }) => {
   return (
     <button
@@ -56,6 +80,8 @@ export const CircleButton: React.FC<CircleButtonProps> = ({
       <Button
         className={`peer z-[1] group-hover:h-9 group-hover:w-9 group-hover:border-2 group-hover:shadow-inner ${className}`}
         isCircle={true}
+        ariaHaspopup={ariaHaspopup}
+        ariaExpanded={ariaExpanded}
         as="div"
       >
         {children}
