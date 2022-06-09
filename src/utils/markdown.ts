@@ -66,7 +66,8 @@ export const formatMarkdown = (text: string): string => {
       const indicator: keyof typeof ElementColor = params.at(-1)["indicator"];
       return `<span class="${ElementColor[indicator]}">${match}</span>`;
     })
-    .replace(/\n/g, "<br>");
+    .replace(/\n/g, "<br>")
+    .replace(/·\s*/g, "• ");
 };
 
 export const formatTalentLabel = (
