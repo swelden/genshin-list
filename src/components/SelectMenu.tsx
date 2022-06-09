@@ -1,6 +1,6 @@
 import { Fragment } from "react";
 import { Listbox, Transition } from "@headlessui/react";
-import { DropDownIcon } from "./icons";
+import { CheckIcon, DropDownIcon } from "./icons";
 
 export interface SelectOption<T> {
   label: string;
@@ -21,7 +21,7 @@ export const SelectMenu = <T extends {}>({
   return (
     <Listbox value={currentValue.value} onChange={handleChange}>
       <div className="relative">
-        <Listbox.Button className="text-light-900 relative w-full cursor-pointer rounded-md border border-zinc-700 bg-zinc-600 py-1.5 pr-10 pl-4 text-left shadow-md transition-colors hover:bg-zinc-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2">
+        <Listbox.Button className="relative w-full cursor-pointer rounded-md border border-zinc-200 bg-zinc-100 py-1.5 pr-10 pl-4 text-left shadow-sm transition-colors hover:bg-zinc-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 dark:border-zinc-700 dark:bg-zinc-700 hover:dark:bg-zinc-600">
           <span className="block truncate">{currentValue.label}</span>
           <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2 text-gray-400">
             <DropDownIcon />
@@ -33,15 +33,15 @@ export const SelectMenu = <T extends {}>({
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          <Listbox.Options className="scrollbar absolute z-10 mt-1 max-h-60 w-full overflow-y-auto rounded-md bg-card-title py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:max-h-80 sm:text-sm">
+          <Listbox.Options className="scrollbar absolute z-10 mt-1 max-h-60 w-full overflow-y-auto rounded-md bg-zinc-50 py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:bg-zinc-600 sm:max-h-80 sm:text-sm">
             {options.map(({ label, value }, index) => (
               <Listbox.Option
                 key={index}
                 className={({ active }) =>
                   `relative cursor-default select-none py-2 pl-8 pr-4 ${
                     active
-                      ? "bg-amber-100 text-amber-900"
-                      : "text-card-contrast"
+                      ? "bg-amber-100 text-amber-900 dark:bg-zinc-700 dark:text-amber-50"
+                      : "text-zinc-900 dark:text-zinc-100"
                   }`
                 }
                 value={value}
