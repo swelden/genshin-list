@@ -46,7 +46,16 @@ export const SelectMenu = <T extends {}>({
                 }
                 value={value}
               >
-                <span className="block truncate">{label}</span>
+                {({ selected }) => (
+                  <>
+                    <span className="block truncate">{label}</span>
+                    {selected && (
+                      <span className="absolute inset-y-0 right-0 flex items-center pr-3 text-amber-600 dark:text-amber-400">
+                        <CheckIcon />
+                      </span>
+                    )}
+                  </>
+                )}
               </Listbox.Option>
             ))}
           </Listbox.Options>
