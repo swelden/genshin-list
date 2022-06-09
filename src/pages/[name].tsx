@@ -64,7 +64,7 @@ const HeroSection: React.FC<Pick<Props, "character">> = ({ character }) => {
           // priority={true}
         />
         {/* TODO: make after pseudo-element */}
-        <div className="absolute bottom-0 h-16 w-full bg-gradient-to-t from-zinc-50 dark:from-zinc-900"></div>
+        <div className="absolute bottom-0 h-16 w-full bg-gradient-to-t from-zinc-100 dark:from-zinc-900"></div>
       </div>
       <DetailHeader character={character} />
       <div className="col-span-3 col-end-[-1] row-span-full flex flex-col items-center justify-center gap-2">
@@ -78,7 +78,7 @@ const DetailHeader: React.FC<Pick<Props, "character">> = ({ character }) => {
   // TODO: add container that spans max of 3 columns (to prevent long names from covering image)
   return (
     <div className="col-span-full col-start-2 row-span-full mb-3 flex items-center">
-      <div className="flex items-center gap-2 rounded-lg bg-zinc-50/90 px-5 backdrop-blur-sm dark:bg-zinc-900/90 sm:px-4 lg:mt-32 lg:-ml-5">
+      <div className="flex items-center gap-2 rounded-lg bg-zinc-100/90 px-5 backdrop-blur-sm dark:bg-zinc-900/90 sm:px-4 lg:mt-32 lg:-ml-5">
         <div className="h-[4.25rem] w-[4.25rem]">
           <Image
             src={`/element-icons/${character.element}-icon.png`}
