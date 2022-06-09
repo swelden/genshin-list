@@ -81,13 +81,13 @@ const LevelTemplateSelector = () => {
   return (
     <div className="mt-2 grid grid-cols-2 gap-3">
       <button
-        className="rounded-md bg-zinc-200 p-2 transition-colors hover:bg-zinc-300 dark:bg-zinc-900 hover:dark:bg-black/60"
+        className="key-focus key-focus-section rounded-md bg-zinc-200 p-2 transition-colors hover:bg-zinc-300 dark:bg-zinc-900 hover:dark:bg-black/60"
         onClick={setNoLevels}
       >
         Clear
       </button>
       <button
-        className="rounded-md bg-zinc-200 p-2 transition-colors hover:bg-zinc-300 dark:bg-zinc-900 hover:dark:bg-black/60"
+        className="key-focus key-focus-section rounded-md bg-zinc-200 p-2 transition-colors hover:bg-zinc-300 dark:bg-zinc-900 hover:dark:bg-black/60"
         onClick={setMaxLevels}
       >
         Max

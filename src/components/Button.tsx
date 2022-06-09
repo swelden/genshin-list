@@ -22,8 +22,8 @@ const Button: React.FC<ButtonProps> = ({
   return (
     <button
       onClick={onClick}
-      className={`flex cursor-pointer items-center justify-center rounded-full border-0 font-medium shadow-sm outline-none ring-yellow-500 ring-offset-zinc-100 transition duration-75 hover:border-2 hover:shadow-inner focus-visible:border-2 focus-visible:shadow-inner focus-visible:ring-2 focus-visible:ring-offset-2 active:border-opacity-70 active:bg-ui-bg-click active:text-white active:shadow-lg dark:ring-yellow-600 dark:ring-offset-zinc-900 ${
-        isCircle ? "h-8 w-8" : "h-9 w-full"
+      className={`flex cursor-pointer items-center justify-center rounded-full border-0 shadow-sm transition duration-75 hover:border-2 hover:shadow-inner focus-visible:border-2 focus-visible:shadow-inner active:border-opacity-70 active:bg-ui-bg-click active:text-white active:shadow-lg ${
+        isCircle ? "h-8 w-8" : "key-focus key-focus-body h-9 w-full"
       } ${
         isColorInversed
           ? "border-white bg-ui text-ui-contrast dark:border-gray-700 dark:bg-ui-contrast dark:text-ui"
@@ -31,6 +31,7 @@ const Button: React.FC<ButtonProps> = ({
       } ${className}`}
       aria-haspopup={ariaHaspopup}
       aria-expanded={ariaExpanded}
+      tabIndex={isCircle ? -1 : 0}
     >
       {children}
     </button>
@@ -47,7 +48,8 @@ export const CircleButton: React.FC<CircleButtonProps> = ({
   return (
     <div
       onClick={onClick}
-      className="group relative flex h-10 w-10 cursor-pointer items-center justify-center rounded-full"
+      className="key-focus key-focus-body group relative flex h-10 w-10 cursor-pointer items-center justify-center rounded-full"
+      tabIndex={0}
     >
       <Button
         className={`peer z-[1] group-hover:h-9 group-hover:w-9 group-hover:border-2 group-hover:shadow-inner ${className}`}

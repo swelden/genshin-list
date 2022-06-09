@@ -8,6 +8,20 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  .key-focus {
+    @apply outline-none focus-visible:ring-2 focus-visible:ring-yellow-500 focus-visible:ring-offset-2 focus-visible:dark:ring-yellow-600;
+  }
+
+  .key-focus-section {
+    @apply ring-offset-white dark:ring-offset-zinc-800;
+  }
+
+  .key-focus-body {
+    @apply ring-offset-zinc-100 dark:ring-offset-zinc-900;
+  }
+}
+
 :root {
   /* colors */
   /* NOTE: some light mode colors need updating */
