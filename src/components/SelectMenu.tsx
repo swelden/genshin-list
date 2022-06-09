@@ -21,7 +21,7 @@ export const SelectMenu = <T extends {}>({
   return (
     <Listbox value={currentValue.value} onChange={handleChange}>
       <div className="relative">
-        <Listbox.Button className="relative w-full cursor-pointer rounded-md border border-zinc-200 bg-zinc-100 py-1.5 pr-10 pl-4 text-left shadow-sm transition-colors hover:bg-zinc-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 dark:border-zinc-700 dark:bg-zinc-700 hover:dark:bg-zinc-600">
+        <Listbox.Button className="relative w-full cursor-pointer rounded-md bg-zinc-100 py-1.5 pr-10 pl-4 text-left shadow-sm ring-1 ring-black/5 ring-offset-white transition-colors hover:bg-zinc-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-yellow-500 focus-visible:ring-offset-2 dark:bg-zinc-700 dark:ring-offset-zinc-800 hover:dark:bg-zinc-600 focus-visible:dark:ring-yellow-600">
           <span className="block truncate">{currentValue.label}</span>
           <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2 text-gray-400">
             <DropDownIcon />

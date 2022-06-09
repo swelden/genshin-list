@@ -41,7 +41,7 @@ const ActiveTalentAttributes: React.FC<{
       </Button> */}
 
       <button
-        className="flex max-w-max rounded-full bg-zinc-200 p-2 pl-4 pr-2 transition-colors hover:bg-zinc-300 dark:bg-zinc-700 hover:dark:bg-zinc-600"
+        className="flex max-w-max rounded-full bg-zinc-100 p-2 pl-4 pr-2 ring-1 ring-black/5 ring-offset-white transition-colors hover:bg-zinc-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-yellow-500 focus-visible:ring-offset-2 dark:bg-zinc-700 dark:ring-offset-zinc-800 hover:dark:bg-zinc-600 focus-visible:dark:ring-yellow-600"
         onClick={() => setIsOpen(!isOpen)}
       >
         <span className="pr-1.5">{talent.category} Stats</span>
