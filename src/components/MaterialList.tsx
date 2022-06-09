@@ -13,7 +13,6 @@ const MaterialList: React.FC<{
   materialData: MaterialDataMap;
 }> = ({ totalMaterials, materialData }) => {
   return (
-    // TODO: add "No Materials" box outline center if totalMaterials.length is 0
     // NOTE: might remove mora card and replace it with "Required (mora icon) [Amount]" center below cards
     <div className="flex flex-wrap justify-center gap-4 xl:justify-start">
       {totalMaterials.map(([material, count]) => {
@@ -21,7 +20,7 @@ const MaterialList: React.FC<{
           <div
             className="w-[84px] lg:w-[94px] 2xl:w-[98px]"
             title={material}
-            key={`${material}`} // `${material}-${count}`
+            key={`${material}`}
           >
             <ItemCard
               label={count.toLocaleString()}
@@ -32,6 +31,11 @@ const MaterialList: React.FC<{
           </div>
         );
       })}
+      {totalMaterials.length === 0 && (
+        <div className="min-w-max rounded bg-gradient-to-b from-[#323947] to-[#4a5366] p-4 text-white">
+          No Materials
+        </div>
+      )}
     </div>
   );
 };
