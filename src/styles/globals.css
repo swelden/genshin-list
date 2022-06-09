@@ -13,12 +13,12 @@
   /* NOTE: some light mode colors need updating */
   --gold: #f0a400;
   --pyro: #ff5c5c;
-  --hydro: #52a8ff;
-  --dendro: #98cc14;
-  --electro: #ff70ff;
-  --anemo: #3dffc2;
-  --cryo: #4dffff;
-  --geo: #ebb000;
+  --hydro: #3d9eff;
+  --dendro: #8cb91b;
+  --electro: #e368e3;
+  --anemo: #2fd09a;
+  --cryo: #57cbcb;
+  --geo: #edad54;
 
   /* scrollbar */
   --scrollbar-rgb: 55, 68, 88;
