@@ -1,4 +1,5 @@
 import Link from "next/link";
+import React from "react";
 
 interface ButtonProps {
   children: React.ReactNode;
@@ -11,35 +12,43 @@ interface ButtonProps {
   as?: React.ElementType;
 }
 
-const Button: React.FC<ButtonProps> = ({
-  children,
-  onClick,
-  className = "",
-  isCircle = false,
-  isColorInversed = false,
-  ariaHaspopup,
-  ariaExpanded,
-  as = "button",
-}) => {
-  const ButtonType = as;
+const Button = React.forwardRef<React.ElementType, ButtonProps>(
+  (
+    {
+      children,
+      onClick,
+      className = "",
+      isCircle = false,
+      isColorInversed = false,
+      ariaHaspopup,
+      ariaExpanded,
+      as = "button",
+    },
+    ref
+  ) => {
+    const ButtonType = as;
 
-  return (
-    <ButtonType
-      onClick={onClick}
-      className={`flex cursor-pointer items-center justify-center rounded-full border-0 shadow-sm transition duration-75 hover:border-2 hover:shadow-inner focus-visible:border-2 focus-visible:shadow-inner active:border-opacity-70 active:bg-ui-bg-click active:text-white active:shadow-lg ${
-        isCircle ? "h-8 w-8" : "h-9 w-full"
-      } ${as === "button" ? "key-focus key-focus-body" : ""} ${
-        isColorInversed
-          ? "border-white bg-ui text-ui-contrast dark:border-gray-700 dark:bg-ui-contrast dark:text-ui"
-          : "border-gray-700 bg-ui-contrast text-ui dark:border-white dark:bg-ui dark:text-ui-contrast"
-      } ${className}`}
-      aria-haspopup={ariaHaspopup}
-      aria-expanded={ariaExpanded}
-    >
-      {children}
-    </ButtonType>
-  );
-};
+    return (
+      <ButtonType
+        ref={ref}
+        onClick={onClick}
+        className={`flex cursor-pointer items-center justify-center rounded-full border-0 shadow-sm transition duration-75 hover:border-2 hover:shadow-inner focus-visible:border-2 focus-visible:shadow-inner active:border-opacity-70 active:bg-ui-bg-click active:text-white active:shadow-lg ${
+          isCircle ? "h-8 w-8" : "h-9 w-full"
+        } ${as === "button" ? "key-focus key-focus-body" : ""} ${
+          isColorInversed
+            ? "border-white bg-ui text-ui-contrast dark:border-gray-700 dark:bg-ui-contrast dark:text-ui"
+            : "border-gray-700 bg-ui-contrast text-ui dark:border-white dark:bg-ui dark:text-ui-contrast"
+        } ${className}`}
+        aria-haspopup={ariaHaspopup}
+        aria-expanded={ariaExpanded}
+      >
+        {children}
+      </ButtonType>
+    );
+  }
+);
+
+Button.displayName = "Button";
 
 type LinkButtonProps = Omit<
   ButtonProps,
@@ -65,6 +74,7 @@ export const LinkButton: React.FC<LinkButtonProps> = ({
 
 type CircleButtonProps = Omit<ButtonProps, "isCircle" | "as">;
 
+// TODO: I think only the inside circle changes size (no transition grows to fill outline circle then transitions back to original size)
 export const CircleButton: React.FC<CircleButtonProps> = ({
   children,
   onClick,
