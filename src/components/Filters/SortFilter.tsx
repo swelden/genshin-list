@@ -1,20 +1,17 @@
-import { useRef, useState } from "react";
-import useOnClickOutside from "../../hooks/useOnClickOutside";
+import { useState } from "react";
 import Button from "../Button";
-import { DropDownIcon } from "../icons";
+import { SelectOption } from "../SelectMenu";
+import { Fragment } from "react";
+import { Listbox, Transition } from "@headlessui/react";
+import { CheckIcon, DropDownIcon } from "../icons";
 
-interface Options {
-  title: string;
-  value: CharacterSortKeys;
-}
-
-const options: Options[] = [
-  { title: "Sort by Element", value: "element" },
-  { title: "Sort by Weapon", value: "weapontype" },
-  { title: "Sort by Region", value: "region" },
-  { title: "Sort by Rarity", value: "rarity" }, // NOTE: might call Quality
-  { title: "Sort by Name", value: "name" },
-  { title: "Default", value: "version" },
+const options: SelectOption<CharacterSortKeys>[] = [
+  { label: "Sort by Element", value: "element" },
+  { label: "Sort by Weapon", value: "weapontype" },
+  { label: "Sort by Region", value: "region" },
+  { label: "Sort by Rarity", value: "rarity" }, // NOTE: might call Quality
+  { label: "Sort by Name", value: "name" },
+  { label: "Default", value: "version" },
 ];
 
 type SortDropdownProps = React.FC<{
@@ -22,64 +19,73 @@ type SortDropdownProps = React.FC<{
 }>;
 
 const SortDropdown: SortDropdownProps = ({ setSortKey }) => {
-  const ref = useRef(null);
-  const [isOpen, setIsOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState(options.length - 1);
+  return <SelectMenu handleChange={setSortKey} />;
+};
 
-  const handleClickOutside = () => {
-    // Your custom logic here
-    // console.log("clicked outside");
-    setIsOpen(false);
+interface SelectMenuProps {
+  handleChange: (value: CharacterSortKeys) => void;
+}
+
+const SelectMenu = ({ handleChange }: SelectMenuProps) => {
+  const [selectedOption, setSelectedOption] = useState(
+    options[options.length - 1]
+  );
+
+  const myChange = (event: SelectOption<CharacterSortKeys>) => {
+    console.log(event);
+    setSelectedOption(event);
+    handleChange(event.value);
   };
-
-  const handleClickInside = () => {
-    // Your custom logic here
-    // console.log("clicked inside");
-    setIsOpen(!isOpen);
-  };
-
-  useOnClickOutside(ref, handleClickOutside);
 
   return (
-    <div ref={ref} className="relative col-span-2">
-      <Button
-        onClick={handleClickInside}
-        className="justify-between pl-4 pr-3"
-        ariaHaspopup={true}
-        ariaExpanded={isOpen}
-      >
-        <span className="truncate">{options[selectedOption].title}</span>
-        <DropDownIcon />
-      </Button>
-      {isOpen && (
-        <div
-          role="listbox"
-          className="absolute top-[2.15rem] z-10 w-full cursor-pointer overflow-hidden rounded-2xl bg-ui-contrast shadow-md"
+    <Listbox value={selectedOption} onChange={myChange}>
+      <div className="relative col-span-2">
+        <Listbox.Button as={Button} className="justify-between pl-4 pr-3">
+          <span className="block truncate">{selectedOption.label}</span>
+          <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
+            <DropDownIcon />
+          </span>
+        </Listbox.Button>
+        <Transition
+          as={Fragment}
+          enter="transition duration-100 ease-out"
+          enterFrom="transform scale-95 opacity-0"
+          enterTo="transform scale-100 opacity-100"
+          leave="transition duration-75 ease-out"
+          leaveFrom="transform scale-100 opacity-100"
+          leaveTo="transform scale-95 opacity-0"
         >
-          {options.map(({ title, value }, index) => (
-            <button
-              className="group w-full p-0.5 py-[0.035rem] text-left outline-none first:pt-0.5 last:pb-0.5"
-              key={title}
-              role="option"
-              aria-selected={selectedOption === index}
-              onClick={() => {
-                setIsOpen(false);
-                setSelectedOption(index);
-                setSortKey(value);
-              }}
-            >
-              <div
-                className={`rounded-full p-0.5 px-4 font-medium text-sort-text group-hover:bg-sort-hover-bg group-hover:text-sort-hover-text group-focus-visible:outline group-focus-visible:outline-1 ${
-                  selectedOption === index ? "bg-sort-hover-bg" : ""
-                }`}
+          <Listbox.Options className="absolute z-10 w-full rounded-2xl bg-ui-contrast py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+            {options.map((option) => (
+              <Listbox.Option
+                key={option.label}
+                className={({ active }) =>
+                  `relative w-full cursor-default select-none px-1 py-[0.035rem] text-left`
+                }
+                value={option}
               >
-                {title}
-              </div>
-            </button>
-          ))}
-        </div>
-      )}
-    </div>
+                {({ active, selected }) => (
+                  <div
+                    className={`rounded-full p-0.5 px-3 font-medium text-sort-text ${
+                      active
+                        ? "bg-sort-hover-bg text-sort-hover-text active:bg-ui active:text-ui-contrast"
+                        : ""
+                    }`}
+                  >
+                    <span className="block">{option.label}</span>
+                    {selected && (
+                      <span className="absolute inset-y-0 right-0 flex items-center pr-3 text-sort-hover-text">
+                        <CheckIcon />
+                      </span>
+                    )}
+                  </div>
+                )}
+              </Listbox.Option>
+            ))}
+          </Listbox.Options>
+        </Transition>
+      </div>
+    </Listbox>
   );
 };
 
