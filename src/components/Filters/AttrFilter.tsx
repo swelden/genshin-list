@@ -14,12 +14,7 @@ const weapons: readonly Weapon[] = [
   "Polearm",
   "Sword",
 ] as const;
-const nations: readonly Nation[] = [
-  "Mondstadt",
-  "Liyue",
-  "Inazuma",
-  "",
-] as const;
+const nations: readonly Nation[] = ["Mondstadt", "Liyue", "Inazuma"] as const;
 const rarities: readonly Rarity[] = ["4", "5"] as const;
 
 const AttributeFilter: React.FC<{
@@ -27,7 +22,7 @@ const AttributeFilter: React.FC<{
   setAttrFilter: React.Dispatch<React.SetStateAction<Attributes>>;
 }> = ({ attrFilter, setAttrFilter }) => {
   return (
-    <div className="flex flex-wrap items-center justify-center gap-4 p-2 sm:col-span-2">
+    <div className="flex flex-wrap items-center justify-center gap-4 p-2 lg:col-span-2">
       <FilterContainer
         attrData={visions}
         category="element"
@@ -91,11 +86,7 @@ const FilterContainer: FilterContainerProps = ({
               : "hover:bg-attr-hover-bg hover:text-white"
           }`}
         >
-          {attr === "4" || attr === "5"
-            ? `${attr} ★`
-            : attr === ""
-            ? "Unknown"
-            : attr}
+          {attr === "4" || attr === "5" ? `${attr} ★` : attr}
         </button>
       ))}
     </div>
