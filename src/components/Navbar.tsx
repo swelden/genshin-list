@@ -32,7 +32,7 @@ const Navbar = () => {
           </a>
         </Link>
         {/* NOTE: might make links for filtering different categories (characters, artifacts, weapons, etc.) */}
-        <CircleButton onClick={toggle}>
+        <CircleButton onClick={toggle} ariaLabel="Theme">
           {/* BUG: there is still a flash of the MoonIcon on initial load */}
           {isLoaded && isDarkMode ? <SunIcon /> : <MoonIcon />}
         </CircleButton>

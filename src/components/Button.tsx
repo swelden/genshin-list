@@ -10,6 +10,7 @@ interface ButtonProps {
   justifyContent?: string;
   ariaHaspopup?: boolean;
   ariaExpanded?: boolean;
+  ariaLabel?: string;
   as?: React.ElementType;
 }
 
@@ -24,6 +25,7 @@ const Button = React.forwardRef<React.ElementType, ButtonProps>(
       justifyContent = "justify-center",
       ariaHaspopup,
       ariaExpanded,
+      ariaLabel,
       as = "button",
     },
     ref
@@ -43,6 +45,7 @@ const Button = React.forwardRef<React.ElementType, ButtonProps>(
         } ${justifyContent} ${className}`}
         aria-haspopup={ariaHaspopup}
         aria-expanded={ariaExpanded}
+        aria-label={ariaLabel}
       >
         {children}
       </ButtonType>
@@ -54,7 +57,7 @@ Button.displayName = "Button";
 
 type LinkButtonProps = Omit<
   ButtonProps,
-  "isCircle" | "onClick" | "ariaHaspopup" | "ariaExpanded" | "as"
+  "isCircle" | "onClick" | "ariaHaspopup" | "ariaExpanded" | "ariaLabel" | "as"
 > & { url: string };
 
 export const LinkButton: React.FC<LinkButtonProps> = ({
@@ -82,11 +85,13 @@ export const CircleButton: React.FC<CircleButtonProps> = ({
   className = "",
   ariaHaspopup,
   ariaExpanded,
+  ariaLabel,
 }) => {
   return (
     <button
       onClick={onClick}
       className="key-focus key-focus-body group relative flex h-10 w-10 cursor-pointer items-center justify-center rounded-full"
+      aria-label={ariaLabel}
     >
       <Button
         className={`peer z-[1] transition-[height,_width] duration-300 group-hover:h-10 group-hover:w-10 group-hover:border-2 group-hover:shadow-inner group-hover:transition-none ${className}`}
