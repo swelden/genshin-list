@@ -7,6 +7,7 @@ interface ButtonProps {
   className?: string;
   isCircle?: boolean;
   isColorInversed?: boolean;
+  justifyContent?: string;
   ariaHaspopup?: boolean;
   ariaExpanded?: boolean;
   as?: React.ElementType;
@@ -20,6 +21,7 @@ const Button = React.forwardRef<React.ElementType, ButtonProps>(
       className = "",
       isCircle = false,
       isColorInversed = false,
+      justifyContent = "justify-center",
       ariaHaspopup,
       ariaExpanded,
       as = "button",
@@ -32,13 +34,13 @@ const Button = React.forwardRef<React.ElementType, ButtonProps>(
       <ButtonType
         ref={ref}
         onClick={onClick}
-        className={`flex cursor-pointer items-center justify-center rounded-full border-0 shadow-sm transition duration-75 hover:border-2 hover:shadow-inner focus-visible:border-2 focus-visible:shadow-inner active:border-opacity-70 active:bg-ui-bg-click active:text-white active:shadow-lg dark:active:bg-ui-bg-click dark:active:text-white ${
+        className={`flex cursor-pointer items-center rounded-full border-0 shadow-sm transition duration-75 hover:border-2 hover:shadow-inner focus-visible:border-2 focus-visible:shadow-inner active:border-opacity-70 active:bg-ui-bg-click active:text-white active:shadow-lg dark:active:bg-ui-bg-click dark:active:text-white ${
           isCircle ? "h-8 w-8" : "h-9 w-full"
         } ${as === "button" ? "key-focus key-focus-body" : ""} ${
           isColorInversed
             ? "border-white bg-ui text-ui-contrast dark:border-gray-700 dark:bg-ui-contrast dark:text-ui"
             : "border-gray-700 bg-ui-contrast text-ui dark:border-white dark:bg-ui dark:text-ui-contrast"
-        } ${className}`}
+        } ${justifyContent} ${className}`}
         aria-haspopup={ariaHaspopup}
         aria-expanded={ariaExpanded}
       >

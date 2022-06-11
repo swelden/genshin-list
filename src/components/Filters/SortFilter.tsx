@@ -6,12 +6,12 @@ import { Listbox, Transition } from "@headlessui/react";
 import { CheckIcon, DropDownIcon } from "../icons";
 
 const options: SelectOption<CharacterSortKeys>[] = [
-  { label: "Sort by Element", value: "element" },
-  { label: "Sort by Weapon", value: "weapontype" },
-  { label: "Sort by Region", value: "region" },
-  { label: "Sort by Rarity", value: "rarity" }, // NOTE: might call Quality
-  { label: "Sort by Name", value: "name" },
-  { label: "Default", value: "version" },
+  { label: "Version", value: "version" },
+  { label: "Element", value: "element" },
+  { label: "Weapon", value: "weapontype" },
+  { label: "Region", value: "region" },
+  { label: "Rarity", value: "rarity" }, // NOTE: might label Quality
+  { label: "Name", value: "name" },
 ];
 
 type SortDropdownProps = React.FC<{
@@ -19,29 +19,30 @@ type SortDropdownProps = React.FC<{
 }>;
 
 const SortDropdown: SortDropdownProps = ({ setSortKey }) => {
-  return <SelectMenu handleChange={setSortKey} />;
+  return <SelectMenu setState={setSortKey} />;
 };
 
 interface SelectMenuProps {
-  handleChange: (value: CharacterSortKeys) => void;
+  setState: (value: CharacterSortKeys) => void;
 }
 
-const SelectMenu = ({ handleChange }: SelectMenuProps) => {
-  const [selectedOption, setSelectedOption] = useState(
-    options[options.length - 1]
-  );
+const SelectMenu = ({ setState }: SelectMenuProps) => {
+  const [selectedOption, setSelectedOption] = useState(options[0]);
 
-  const myChange = (event: SelectOption<CharacterSortKeys>) => {
-    console.log(event);
+  const handleChange = (event: SelectOption<CharacterSortKeys>) => {
     setSelectedOption(event);
-    handleChange(event.value);
+    setState(event.value);
   };
 
   return (
-    <Listbox value={selectedOption} onChange={myChange}>
+    <Listbox value={selectedOption} onChange={handleChange}>
       <div className="relative col-span-2">
-        <Listbox.Button as={Button} className="justify-between pl-4 pr-3">
-          <span className="block truncate">{selectedOption.label}</span>
+        <Listbox.Button
+          as={Button}
+          className="pl-4 pr-3"
+          justifyContent="justify-start"
+        >
+          <span className="block truncate">Sort by {selectedOption.label}</span>
           <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
             <DropDownIcon />
           </span>
@@ -59,9 +60,7 @@ const SelectMenu = ({ handleChange }: SelectMenuProps) => {
             {options.map((option) => (
               <Listbox.Option
                 key={option.label}
-                className={({ active }) =>
-                  `relative w-full cursor-default select-none px-1 py-[0.035rem] text-left`
-                }
+                className="relative w-full cursor-default select-none px-1 py-[0.035rem] text-left"
                 value={option}
               >
                 {({ active, selected }) => (
