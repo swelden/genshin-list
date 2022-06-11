@@ -15,7 +15,8 @@ const AttributeSection: React.FC<{ character: CharacterInfo }> = ({
           <AttrRow title="Birthday" info={character.birthdaymmdd} />
           <AttrRow title="Constellation" info={character.constellation} />
           <AttrRow title="Title" info={character.title} />
-          <AttrRow title="Vision" info={character.element} />
+          <AttrRow title="Region" info={character.region} />
+          {/* <AttrRow title="Vision" info={character.element} /> */}
           <AttrRow title="Affiliation" info={character.affiliation} />
           <AttrRow title="English VA" info={character.cv.english} />
         </tbody>
