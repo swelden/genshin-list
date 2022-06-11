@@ -77,21 +77,38 @@ const HeroSection: React.FC<Pick<Props, "character">> = ({ character }) => {
 const DetailHeader: React.FC<Pick<Props, "character">> = ({ character }) => {
   // TODO: add container that spans max of 3 columns (to prevent long names from covering image)
   return (
-    <div className="col-span-full col-start-2 row-span-full mb-3 flex items-center">
-      <div className="flex items-center gap-2 rounded-lg bg-zinc-100/90 px-5 backdrop-blur-sm dark:bg-zinc-900/90 sm:px-4 lg:mt-32 lg:-ml-5">
-        <div className="h-[4.25rem] w-[4.25rem]">
-          <Image
-            src={`/element-icons/${character.element}-icon.png`}
-            alt={`${character.element} icon`}
-            width={68}
-            height={68}
-          />
+    <div className="col-span-full col-start-2 row-span-full mb-8 flex items-center">
+      <div className="flex flex-col gap-2 px-5 sm:px-4 lg:mt-32 lg:-ml-5">
+        <div className="flex w-fit items-center gap-2 rounded-lg bg-zinc-100/90 pr-3 dark:bg-zinc-900/90 lg:backdrop-blur-sm">
+          <div className="h-[4.25rem] w-[4.25rem]">
+            <Image
+              src={`/element-icons/${character.element}-icon.png`}
+              alt={`${character.element} icon`}
+              width={68}
+              height={68}
+            />
+          </div>
+          <div className="flex flex-col py-5 sm:py-4">
+            <h1 className="mb-1 text-3xl">{character.name}</h1>
+            <StarRating rarity={character.rarity} />
+          </div>
         </div>
-        <div className="flex flex-col py-5 sm:py-4">
-          <h1 className="mb-1 text-3xl">{character.name}</h1>
-          <StarRating rarity={character.rarity} />
+        <div className="flex flex-wrap gap-2">
+          <CharacterBadge text={character.element} />
+          {/* <CharacterBadge text={character.region} /> */}
+          <CharacterBadge text={character.weapontype} />
+          <CharacterBadge text={character.substat} />
+          <CharacterBadge text={`${character.rarity}-star`} />
         </div>
       </div>
+    </div>
+  );
+};
+
+const CharacterBadge: React.FC<{ text: string }> = ({ text }) => {
+  return (
+    <div className="rounded bg-zinc-300/50 py-1 px-2 text-xs dark:bg-zinc-700/70 lg:backdrop-blur-sm">
+      {text}
     </div>
   );
 };
