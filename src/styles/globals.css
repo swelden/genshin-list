@@ -18,15 +18,14 @@
 
 :root {
   /* colors */
-  /* NOTE: some light mode colors need updating */
-  --gold: #f0a400;
-  --pyro: #ff5c5c;
-  --hydro: #3d9eff;
-  --dendro: #8cb91b;
-  --electro: #e368e3;
-  --anemo: #2fd09a;
-  --cryo: #57cbcb;
-  --geo: #edad54;
+  --gold-rgb: 204 136 41;
+  --pyro-rgb: 255 92 92;
+  --hydro-rgb: 61 158 255;
+  --dendro-rgb: 140 185 27;
+  --electro-rgb: 227 104 227;
+  --anemo-rgb: 100 206 167;
+  --cryo-rgb: 87 203 203;
+  --geo-rgb: 220 153 59;
 
   /* scrollbar */
   --scrollbar-rgb: 55, 68, 88;
@@ -36,14 +35,14 @@
 
 html.dark {
   /* colors */
-  --gold: #ffd780;
-  --pyro: #ff9999;
-  --hydro: #80c0ff;
-  --dendro: #b3ea2a;
-  --electro: #ffacff;
-  --anemo: #80ffd7;
-  --cryo: #99ffff;
-  --geo: #ffe699;
+  --gold-rgb: 255 215 128;
+  --pyro-rgb: 255 153 153;
+  --hydro-rgb: 128 192 255;
+  --dendro-rgb: 179 234 42;
+  --electro-rgb: 255 172 255;
+  --anemo-rgb: 128 255 215;
+  --cryo-rgb: 153 255 255;
+  --geo-rgb: 255 230 153;
 
   /* scrollbar */
   --scrollbar-rgb: 130, 145, 170;
