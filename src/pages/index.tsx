@@ -6,9 +6,10 @@ import useCharacters from "../hooks/useCharacters";
 import * as genshindb from "genshin-db";
 import React from "react";
 
-const Home: NextPage<{ characters: CharacterFilterInfo[] }> = ({
-  characters: allCharacters,
-}) => {
+const Home: NextPage<{
+  characters: CharacterFilterInfo[];
+  regions: Nation[];
+}> = ({ characters: allCharacters, regions }) => {
   const {
     characters,
     filter,
@@ -35,6 +36,7 @@ const Home: NextPage<{ characters: CharacterFilterInfo[] }> = ({
         setIsReversed={setIsReversed}
         attrFilter={attrFilter}
         setAttrFilter={setAttrFilter}
+        regions={regions}
       />
       <Results characters={characters} />
     </main>
@@ -59,11 +61,31 @@ export const getStaticProps: GetStaticProps = async () => {
     };
   });
 
+  const allRegions: Nation[] = [
+    "Mondstadt",
+    "Liyue",
+    "Inazuma",
+    "Sumeru",
+    "Fontaine",
+    "Natlan",
+    "Snezhnaya",
+    "Khaenri'ah",
+  ];
+  const foundRegions = new Set<Nation>();
+  characterProps.forEach((character) => {
+    foundRegions.add(character.region as Nation);
+  });
+
+  const regionProps: Nation[] = allRegions.filter((region) =>
+    foundRegions.has(region)
+  );
+
   return {
     props: {
       characters: characterProps
         .sort((a, b) => b.name.localeCompare(a.name))
         .sort((a, b) => b.rarity.localeCompare(a.rarity)),
+      regions: regionProps,
     },
   };
 };

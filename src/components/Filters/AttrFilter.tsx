@@ -14,13 +14,13 @@ const weapons: readonly Weapon[] = [
   "Polearm",
   "Sword",
 ] as const;
-const nations: readonly Nation[] = ["Mondstadt", "Liyue", "Inazuma"] as const;
 const rarities: readonly Rarity[] = ["4", "5"] as const;
 
 const AttributeFilter: React.FC<{
   attrFilter: Attributes;
   setAttrFilter: React.Dispatch<React.SetStateAction<Attributes>>;
-}> = ({ attrFilter, setAttrFilter }) => {
+  regions: Nation[];
+}> = ({ attrFilter, setAttrFilter, regions }) => {
   return (
     <div className="flex flex-wrap items-center justify-center gap-4 p-2 lg:col-span-2">
       <FilterContainer
@@ -36,7 +36,7 @@ const AttributeFilter: React.FC<{
         setAttrFilter={setAttrFilter}
       />
       <FilterContainer
-        attrData={nations}
+        attrData={regions}
         category="region"
         attrFilter={attrFilter}
         setAttrFilter={setAttrFilter}
@@ -47,6 +47,7 @@ const AttributeFilter: React.FC<{
         attrFilter={attrFilter}
         setAttrFilter={setAttrFilter}
       />
+      {/* TODO: add "Clear" button */}
     </div>
   );
 };
@@ -77,6 +78,7 @@ const FilterContainer: FilterContainerProps = ({
   return (
     <div className="flex flex-wrap items-center justify-center gap-1 rounded-lg bg-attr-bg p-1.5 text-attr-text sm:gap-2">
       {attrData.map((attr) => (
+        // TODO: add focus classes
         <button
           key={attr}
           onClick={() => handleFilter(attr)}

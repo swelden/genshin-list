@@ -11,6 +11,7 @@ type FiltersProps = React.FC<{
   setIsReversed: React.Dispatch<React.SetStateAction<boolean>>;
   attrFilter: Attributes;
   setAttrFilter: React.Dispatch<React.SetStateAction<Attributes>>;
+  regions: Nation[];
 }>;
 // NOTE: might use memo for components to prevent rerender on isOpen change
 const Filters: FiltersProps = ({
@@ -19,6 +20,7 @@ const Filters: FiltersProps = ({
   setIsReversed,
   attrFilter,
   setAttrFilter,
+  regions,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -45,6 +47,7 @@ const Filters: FiltersProps = ({
         <AttributeFilter
           attrFilter={attrFilter}
           setAttrFilter={setAttrFilter}
+          regions={regions}
         />
       )}
     </div>

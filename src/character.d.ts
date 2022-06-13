@@ -7,7 +7,16 @@ type Vision =
   | "Cryo"
   | "Geo";
 type Weapon = "Bow" | "Catalyst" | "Claymore" | "Polearm" | "Sword";
-type Nation = "Mondstadt" | "Liyue" | "Inazuma" | "";
+type Nation =
+  | "Mondstadt"
+  | "Liyue"
+  | "Inazuma"
+  | "Sumeru"
+  | "Fontaine"
+  | "Natlan"
+  | "Snezhnaya"
+  | "Khaenri'ah"
+  | ""; // Unknown
 type Rarity = "4" | "5";
 
 interface CharacterFilterInfo {
