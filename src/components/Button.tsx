@@ -36,12 +36,12 @@ const Button = React.forwardRef<React.ElementType, ButtonProps>(
       <ButtonType
         ref={ref}
         onClick={onClick}
-        className={`flex cursor-pointer items-center rounded-full border-0 shadow-sm transition duration-75 hover:border-2 hover:shadow-inner focus-visible:border-2 focus-visible:shadow-inner active:border-opacity-70 active:bg-ui-bg-click active:text-white active:shadow-lg dark:active:bg-ui-bg-click dark:active:text-white ${
-          isCircle ? "h-8 w-8" : "h-9 w-full"
+        className={`flex cursor-pointer items-center rounded-full shadow-sm hover:shadow-inner focus-visible:shadow-inner active:bg-ui-bg-click active:text-white active:shadow-lg active:ring-opacity-70 active:transition-colors dark:active:bg-ui-bg-click dark:active:text-white dark:active:ring-opacity-70 ${
+          isCircle ? "h-8 w-8" : "h-9 w-full hover:ring-2"
         } ${as === "button" ? "key-focus key-focus-body" : ""} ${
           isColorInversed
-            ? "border-white bg-ui text-ui-contrast dark:border-gray-700 dark:bg-ui-contrast dark:text-ui"
-            : "border-gray-700 bg-ui-contrast text-ui dark:border-white dark:bg-ui dark:text-ui-contrast"
+            ? "bg-ui text-ui-contrast ring-white hover:ring-offset-white dark:bg-ui-contrast dark:text-ui dark:ring-gray-700 dark:hover:ring-offset-gray-700"
+            : "bg-ui-contrast text-ui ring-gray-700 hover:ring-offset-gray-700 dark:bg-ui dark:text-ui-contrast dark:ring-white dark:hover:ring-offset-white"
         } ${justifyContent} ${className}`}
         aria-haspopup={ariaHaspopup}
         aria-expanded={ariaExpanded}
@@ -94,7 +94,7 @@ export const CircleButton: React.FC<CircleButtonProps> = ({
       aria-label={ariaLabel}
     >
       <Button
-        className={`peer z-[1] transition-[height,_width] duration-300 group-hover:h-10 group-hover:w-10 group-hover:border-2 group-hover:shadow-inner group-hover:transition-none ${className}`}
+        className={`peer z-[1] transition-[height,_width] duration-200 group-hover:h-9 group-hover:w-9 group-hover:shadow-inner group-hover:ring-2 group-hover:transition-none ${className}`}
         isCircle={true}
         ariaHaspopup={ariaHaspopup}
         ariaExpanded={ariaExpanded}
