@@ -11,7 +11,6 @@ const NotFound: NextPage = () => {
           name="description"
           content="Find and filter characters from Genshin Impact"
         />
-        <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="flex flex-1 flex-col items-center justify-center">
         <h1 className="text-9xl">404</h1>

@@ -32,7 +32,6 @@ const CharacterPage: NextPage<Props> = ({
           name="description"
           content="Find and filter characters from Genshin Impact"
         />
-        <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <HeroSection character={character} />
