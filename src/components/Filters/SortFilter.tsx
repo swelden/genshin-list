@@ -65,7 +65,7 @@ const SelectMenu = ({ setState }: SelectMenuProps) => {
               >
                 {({ active, selected }) => (
                   <div
-                    className={`rounded-full p-0.5 px-3 font-medium text-sort-text ${
+                    className={`rounded-full p-0.5 px-3 font-medium text-sort-text transition-colors duration-[50ms] ${
                       active
                         ? "bg-sort-hover-bg text-sort-hover-text active:bg-ui active:text-ui-contrast"
                         : ""
@@ -73,7 +73,7 @@ const SelectMenu = ({ setState }: SelectMenuProps) => {
                   >
                     <span className="block">{option.label}</span>
                     {selected && (
-                      <span className="absolute inset-y-0 right-0 flex items-center pr-3 text-sort-hover-text">
+                      <span className="absolute inset-y-0 right-0 flex items-center pr-3">
                         <CheckIcon />
                       </span>
                     )}
