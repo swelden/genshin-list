@@ -28,9 +28,9 @@
   --geo-rgb: 220 153 59;
 
   /* scrollbar */
-  --scrollbar-rgb: 55, 68, 88;
-  --scrollbar-opacity: 0.5;
-  --scrollbar-opacity-hov: 0.7;
+  --scrollbar-thumb: rgb(161, 161, 170);
+  --scrollbar-thumb-hover: rgb(113, 113, 122);
+  --scrollbar-track: rgba(0, 0, 0, 0.15);
 }
 
 html.dark {
@@ -45,17 +45,16 @@ html.dark {
   --geo-rgb: 255 230 153;
 
   /* scrollbar */
-  --scrollbar-rgb: 130, 145, 170;
-  --scrollbar-opacity: 0.2;
-  --scrollbar-opacity-hov: 0.4;
+  --scrollbar-thumb: rgb(63, 63, 70);
+  --scrollbar-thumb-hover: rgb(39, 39, 42);
+  --scrollbar-track: rgba(255, 255, 255, 0.2);
 }
 
 /* Scrollbar Styles */
 html {
   /* both properties are for firefox support */
   scrollbar-width: thin;
-  scrollbar-color: rgba(var(--scrollbar-rgb), var(--scrollbar-opacity))
-    rgba(0, 0, 0, 0);
+  scrollbar-color: var(--scrollbar-thumb) rgba(0, 0, 0, 0);
 }
 
 body::-webkit-scrollbar,
@@ -69,19 +68,19 @@ body::-webkit-scrollbar-track {
 }
 
 .scrollbar::-webkit-scrollbar-track {
-  /* TODO: edit opacity on light mode */
-  background: rgba(0, 0, 0, 0.15);
+  background: var(--scrollbar-track);
+  border-radius: 10px;
 }
 
 body::-webkit-scrollbar-thumb,
 .scrollbar::-webkit-scrollbar-thumb {
-  background-color: rgba(var(--scrollbar-rgb), var(--scrollbar-opacity));
+  background-color: var(--scrollbar-thumb);
   border: 3px solid rgba(0, 0, 0, 0);
   border-radius: 10px;
 }
 
 body::-webkit-scrollbar-thumb:hover,
 .scrollbar::-webkit-scrollbar-thumb:hover {
-  background: rgba(var(--scrollbar-rgb), var(--scrollbar-opacity-hov));
-  border: 1px solid hsla(0, 0%, 50%, 0.3);
+  background: var(--scrollbar-thumb-hover);
+  border: 1px solid rgba(128, 128, 128, 0.3);
 }
