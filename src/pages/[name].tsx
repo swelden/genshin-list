@@ -25,7 +25,7 @@ const CharacterPage: NextPage<Props> = ({
   console.log(character);
 
   return (
-    <main className="relative flex flex-col gap-8 sm:container">
+    <main className="relative flex flex-col gap-8 sm:overflow-hidden">
       <Head>
         <title>Genshin List - {character.name}</title>
         <meta
@@ -36,7 +36,7 @@ const CharacterPage: NextPage<Props> = ({
       </Head>
 
       <HeroSection character={character} />
-      <div className="grid gap-8">
+      <div className="grid gap-8 sm:container">
         <MaterialProvider
           levelCosts={materials.characterCosts}
           talentCosts={materials.talentCosts}
@@ -54,18 +54,21 @@ const CharacterPage: NextPage<Props> = ({
 
 const HeroSection: React.FC<Pick<Props, "character">> = ({ character }) => {
   return (
-    <div className="grid-cols-10 text-sm lg:grid xl:text-base">
-      <div className="relative -z-10 col-span-full row-span-full flex items-center justify-center">
-        <Image
-          src={imageUrl(character.image)} // gacha-splash
-          alt={`${character.name} gacha splash`}
-          width={1920}
-          height={960}
-          // priority={true}
-        />
-        {/* TODO: make after pseudo-element */}
-        <div className="absolute bottom-0 h-16 w-full bg-gradient-to-t from-zinc-100 dark:from-zinc-900"></div>
+    <div className="grid-cols-10 text-sm sm:container lg:grid xl:text-base">
+      <div className="col-span-full row-span-full overflow-hidden sm:overflow-visible">
+        <div className="relative -left-1/4 -z-10 flex w-[150%] flex-col items-center justify-center lg:left-0 lg:w-full">
+          <Image
+            src={imageUrl(character.image)} // gacha-splash
+            alt={`${character.name} gacha splash`}
+            width={1920}
+            height={960}
+            // priority={true}
+          />
+          {/* TODO: make after pseudo-element */}
+          <div className="absolute bottom-0 z-0 h-24 w-full bg-gradient-to-t from-zinc-100 dark:from-zinc-900"></div>
+        </div>
       </div>
+
       <DetailHeader character={character} />
       <div className="col-span-3 col-end-[-1] row-span-full flex flex-col items-center justify-center gap-2">
         <AttributeSection character={character} />
