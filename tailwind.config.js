@@ -1,4 +1,5 @@
 const defaultTheme = require("tailwindcss/defaultTheme");
+const plugin = require("tailwindcss/plugin");
 
 const withOpacityValue = (variable) => {
   return ({ opacityValue }) => {
@@ -71,5 +72,9 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    plugin(function ({ addVariant }) {
+      addVariant("hocus", ["&:hover", "&:focus-visible"]);
+    }),
+  ],
 };
