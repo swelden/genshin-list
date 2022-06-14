@@ -27,7 +27,7 @@ const CharacterPage: NextPage<Props> = ({
   return (
     <main className="relative flex flex-col gap-8 sm:overflow-hidden">
       <Head>
-        <title>Genshin List - {character.name}</title>
+        <title>{character.name} - Genshin List</title>
         <meta
           name="description"
           content="Find and filter characters from Genshin Impact"
