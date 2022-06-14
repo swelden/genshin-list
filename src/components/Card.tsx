@@ -9,7 +9,7 @@ type CharacterCardProps = React.FC<{ character: CharacterFilterInfo }>;
 export const CharacterCard: CharacterCardProps = ({ character }) => {
   return (
     <Link href={`/${character.name.toLowerCase().replace(/\s/g, "-")}`}>
-      <a className="relative overflow-hidden rounded-md bg-gradient-to-t from-card-title to-card-title/10 shadow-sm outline-none ring-black/20 ring-offset-4 ring-offset-white transition duration-300 ease-in-out hover:scale-110 hover:ring-1 focus-visible:scale-110 focus-visible:ring-1 dark:shadow-zinc-600/50">
+      <a className="relative overflow-hidden rounded-md bg-gradient-to-t from-card-title to-card-title shadow-lg outline-none ring-1 ring-black/10 ring-offset-white transition duration-300 ease-in-out hover:scale-110 hover:ring-black/20 hover:ring-offset-4 focus-visible:scale-110 focus-visible:ring-1 dark:to-card-title/10 dark:shadow-zinc-600/50">
         <InnerCard
           bgGradient={
             character.rarity === "4"
@@ -50,7 +50,7 @@ export const ItemCard: React.FC<{
   size = 96,
 }) => {
   return (
-    <div className="relative overflow-hidden rounded-md bg-gradient-to-t from-card-title to-card-title/10 shadow-sm dark:shadow-zinc-600/50">
+    <div className="relative overflow-hidden rounded-md bg-gradient-to-t from-card-title to-card-title shadow-md ring-1 ring-black/10 dark:to-card-title/10 dark:shadow-zinc-600/50">
       <InnerCard
         bgGradient={bgGradient}
         label={label}
@@ -83,7 +83,7 @@ const InnerCard: React.FC<{
   return (
     <>
       <div
-        className={`relative flex overflow-hidden rounded-t-md rounded-br-[1.25rem] ${bgGradient} ${
+        className={`relative flex overflow-hidden rounded-t-md rounded-br-[1.25rem] border-b border-white/20 ${bgGradient} ${
           smallIcon ? "p-2" : ""
         }`}
       >
@@ -92,7 +92,7 @@ const InnerCard: React.FC<{
       </div>
       <div className="relative w-full px-2 py-0.5">
         <span
-          className={`relative block w-full truncate text-center font-medium capitalize text-card-contrast ${className}`}
+          className={`relative block w-full truncate text-center capitalize text-card-contrast ${className}`}
         >
           {label}
         </span>
