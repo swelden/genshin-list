@@ -45,13 +45,6 @@ module.exports = {
         "sort-light-brown": "#DBD3C2",
         "sort-light-navy": "#606979",
 
-        "filter-bg": "#263240",
-        "attr-bg": "#565F70",
-        "attr-hover-bg": "#606A7D",
-        "attr-text": "#ECE5D8",
-        "attr-bg-click": "#FAFBFB",
-        "attr-text-click": "#454F66",
-
         // NOTE: colors that share values
         // "btn-bg-brown": "#ECE5D8", // same as sort-text-brown
         // "btn-text-navy": "#3B4255",
