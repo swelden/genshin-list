@@ -33,17 +33,18 @@ module.exports = {
         cryo: withOpacityValue("--cryo-rgb"),
         geo: withOpacityValue("--geo-rgb"),
 
-        // TODO: consolidate colors
-        ui: "#ECE5D8",
-        "ui-outline": "#83829D", // for circle buttons
-        "ui-contrast": "#495366", // also sort-bg
-        "ui-button-text": "#3B4255",
-        "ui-bg-click": "#A89C96",
-        "card-title": "#E9E5DC",
-        "card-contrast": "#3B4255",
-        "sort-text": "#ECE5D8",
-        "sort-hover-bg": "#606979",
-        "sort-hover-text": "#EBE4D8",
+        "btn-brown": "#ECE5D8",
+        "btn-brown-click": "#A89C96",
+        "btn-outline": "#83829D", // for circle buttons
+        "btn-navy": "#3B4255",
+
+        "card-brown": "#E9E5DC",
+        "card-navy": "#495366",
+
+        // for sort hover bg
+        "sort-light-brown": "#DBD3C2",
+        "sort-light-navy": "#606979",
+
         "filter-bg": "#263240",
         "attr-bg": "#565F70",
         "attr-hover-bg": "#606A7D",
@@ -51,18 +52,18 @@ module.exports = {
         "attr-bg-click": "#FAFBFB",
         "attr-text-click": "#454F66",
 
-        // NOTE: new colors
-        // "btn-bg-brown": "",
-        // "btn-text-navy": "",
+        // NOTE: colors that share values
+        // "btn-bg-brown": "#ECE5D8", // same as sort-text-brown
+        // "btn-text-navy": "#3B4255",
 
-        // "card-bg-brown": "",
-        // "card-text-navy": "", // same as sort-bg-navy
+        // "card-bg-brown": "#E9E5DC",
+        // "card-text-navy": "#495366", // same as sort-bg-navy
 
-        // "sort-bg-navy": "",
-        // "sort-text-brown": "", // same as btn-bg-brown
-        // "sort-bg-hover-navy": "",
-        // "sort-bg-active-brown": "", // same as btn-bg-brown
-        // "sort-text-active-navy": "", // same as sort-bg-navy
+        // "sort-bg-navy": "#495366", // same as card-text-navy
+        // "sort-text-brown": "#ECE5D8", // same as btn-bg-brown
+        // "sort-bg-hover-navy": "#606979",
+        // "sort-bg-active-brown": "#ECE5D8", // same as btn-bg-brown
+        // "sort-text-active-navy": "#495366", // same as sort-bg-navy
       },
       gridTemplateColumns: {
         14: "repeat(14, minmax(0, 1fr))",

@@ -36,12 +36,12 @@ const Button = React.forwardRef<React.ElementType, ButtonProps>(
       <ButtonType
         ref={ref}
         onClick={onClick}
-        className={`flex cursor-pointer items-center rounded-full shadow-sm hover:shadow-inner focus-visible:shadow-inner active:bg-ui-bg-click active:text-white active:shadow-lg active:ring-opacity-70 active:transition-colors dark:active:bg-ui-bg-click dark:active:text-white dark:active:ring-opacity-70 ${
+        className={`flex cursor-pointer items-center rounded-full shadow-sm hover:shadow-inner focus-visible:shadow-inner active:bg-btn-brown-click active:text-white active:shadow-lg active:ring-opacity-70 active:transition-colors dark:active:bg-btn-brown-click dark:active:text-white dark:active:ring-opacity-70 ${
           isCircle ? "h-8 w-8" : "h-9 w-full hover:ring-2"
         } ${as === "button" ? "key-focus key-focus-body" : ""} ${
           isColorInversed
-            ? "bg-ui text-ui-contrast ring-white hover:ring-offset-white dark:bg-ui-contrast dark:text-ui dark:ring-gray-700 dark:hover:ring-offset-gray-700"
-            : "bg-ui-contrast text-ui ring-gray-700 hover:ring-offset-gray-700 dark:bg-ui dark:text-ui-contrast dark:ring-white dark:hover:ring-offset-white"
+            ? "bg-btn-brown text-btn-navy ring-white hover:ring-offset-white dark:bg-card-navy dark:text-btn-brown dark:ring-gray-700 dark:hover:ring-offset-gray-700"
+            : "bg-card-navy text-btn-brown ring-gray-700 hover:ring-offset-gray-700 dark:bg-btn-brown dark:text-btn-navy dark:ring-white dark:hover:ring-offset-white"
         } ${justifyContent} ${className}`}
         aria-haspopup={ariaHaspopup}
         aria-expanded={ariaExpanded}
@@ -102,7 +102,7 @@ export const CircleButton: React.FC<CircleButtonProps> = ({
       >
         {children}
       </Button>
-      <div className="absolute top-1/2 left-1/2 z-0 flex h-10 w-10 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-ui-outline"></div>
+      <div className="absolute top-1/2 left-1/2 z-0 flex h-10 w-10 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-btn-outline"></div>
     </button>
   );
 };

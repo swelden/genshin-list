@@ -56,7 +56,7 @@ const SelectMenu = ({ setState }: SelectMenuProps) => {
           leaveFrom="transform scale-100 opacity-100"
           leaveTo="transform scale-95 opacity-0"
         >
-          <Listbox.Options className="absolute z-10 w-full rounded-2xl bg-ui-contrast py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+          <Listbox.Options className="absolute z-10 w-full rounded-2xl bg-card-brown py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:bg-card-navy">
             {options.map((option) => (
               <Listbox.Option
                 key={option.label}
@@ -65,9 +65,9 @@ const SelectMenu = ({ setState }: SelectMenuProps) => {
               >
                 {({ active, selected }) => (
                   <div
-                    className={`rounded-full p-0.5 px-3 font-medium text-sort-text transition-colors duration-[50ms] ${
+                    className={`rounded-full p-0.5 px-3 font-medium text-btn-navy transition-colors duration-[50ms] dark:text-btn-brown ${
                       active
-                        ? "bg-sort-hover-bg text-sort-hover-text active:bg-ui active:text-ui-contrast"
+                        ? "bg-sort-light-brown active:bg-card-navy active:text-card-brown dark:bg-sort-light-navy dark:active:bg-btn-brown dark:active:text-card-navy"
                         : ""
                     }`}
                   >

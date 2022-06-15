@@ -9,7 +9,7 @@ type CharacterCardProps = React.FC<{ character: CharacterFilterInfo }>;
 export const CharacterCard: CharacterCardProps = ({ character }) => {
   return (
     <Link href={`/${character.name.toLowerCase().replace(/\s/g, "-")}`}>
-      <a className="relative overflow-hidden rounded-md bg-gradient-to-t from-card-title to-card-title shadow-lg outline-none ring-1 ring-black/10 ring-offset-white transition duration-300 ease-in-out hocus:scale-110 hocus:ring-black/20 hocus:ring-offset-4 dark:to-card-title/10 dark:shadow-zinc-600/50">
+      <a className="relative overflow-hidden rounded-md bg-gradient-to-t from-card-brown to-card-brown shadow-lg outline-none ring-1 ring-black/10 ring-offset-white transition duration-300 ease-in-out hocus:scale-110 hocus:ring-black/20 hocus:ring-offset-4 dark:to-card-brown/10 dark:shadow-zinc-600/50">
         <InnerCard
           bgGradient={
             character.rarity === "4"
@@ -50,7 +50,7 @@ export const ItemCard: React.FC<{
   size = 96,
 }) => {
   return (
-    <div className="relative overflow-hidden rounded-md bg-gradient-to-t from-card-title to-card-title shadow-md ring-1 ring-black/10 dark:to-card-title/10 dark:shadow-zinc-600/50">
+    <div className="relative overflow-hidden rounded-md bg-gradient-to-t from-card-brown to-card-brown shadow-md ring-1 ring-black/10 dark:to-card-brown/10 dark:shadow-zinc-600/50">
       <InnerCard
         bgGradient={bgGradient}
         label={label}
@@ -92,7 +92,7 @@ const InnerCard: React.FC<{
       </div>
       <div className="relative w-full px-2 py-0.5">
         <span
-          className={`relative block w-full truncate text-center capitalize text-card-contrast ${className}`}
+          className={`relative block w-full truncate text-center capitalize text-card-navy ${className}`}
         >
           {label}
         </span>
