@@ -20,7 +20,7 @@ export const CharacterCard: CharacterCardProps = ({ character }) => {
           }
           imgSrc={imageUrl(character.nameicon)}
           label={character.name}
-          size={128}
+          size={192}
         >
           <div className="absolute top-0.5 left-0.5">
             <Image
@@ -83,7 +83,7 @@ const InnerCard: React.FC<{
   return (
     <>
       <div
-        className={`relative flex overflow-hidden rounded-t-md rounded-br-[1.25rem] border-b border-white/20 ${bgGradient} ${
+        className={`relative flex items-center justify-center overflow-hidden rounded-t-md rounded-br-[1.25rem] border-b border-white/20 ${bgGradient} ${
           smallIcon ? "p-2" : ""
         }`}
       >

@@ -18,14 +18,14 @@ const MaterialList: React.FC<{
       {totalMaterials.map(([material, count]) => {
         return (
           <div
-            className="w-[84px] lg:w-[94px] 2xl:w-[98px]"
+            className="w-[5.25rem] lg:w-[5.875rem] 2xl:w-[6.125rem]"
             title={material}
             key={`${material}`}
           >
             <ItemCard
               label={count.toLocaleString()}
               imgSrc={imageUrl(materialData[material].nameicon)}
-              size={98} // NOTE: make equal to lg:w-[??px]
+              size={147} // NOTE: make equal to lg:w-[??px] on max system font size
               smallIcon={material === "Mora"}
             />
           </div>
