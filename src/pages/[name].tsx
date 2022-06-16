@@ -15,6 +15,7 @@ import {
 } from "../components/Sections";
 import { myRound } from "../utils/math";
 import MaterialProvider from "../contexts/MaterialContext";
+import ElementIcon from "../components/ElementIcon";
 
 const CharacterPage: NextPage<Props> = ({
   character,
@@ -82,14 +83,11 @@ const DetailHeader: React.FC<Pick<Props, "character">> = ({ character }) => {
     <div className="col-span-5 col-start-2 row-span-full mb-8 flex items-center">
       <div className="flex flex-col gap-2 px-5 sm:px-4 lg:mt-32 lg:-ml-5">
         <div className="flex w-fit items-center gap-2 rounded-lg bg-zinc-100/90 pr-3 dark:bg-zinc-900/90 lg:backdrop-blur-sm">
-          <div className="h-[4.25rem] w-[4.25rem]">
-            <Image
-              src={`/element-icons/${character.element}-icon.png`}
-              alt={`${character.element} icon`}
-              width={68}
-              height={68}
-            />
-          </div>
+          <ElementIcon
+            element={character.element}
+            twH="h-[4.25rem]"
+            twW="w-[4.25rem]"
+          />
           <div className="flex flex-col py-5 sm:py-4">
             <h1 className="mb-1 text-3xl">{character.name}</h1>
             <StarRating rarity={character.rarity} />

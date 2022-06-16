@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { imageUrl } from "../utils/urls";
+import ElementIcon from "./ElementIcon";
 
 type CharacterCardProps = React.FC<{ character: CharacterFilterInfo }>;
 
@@ -23,11 +24,10 @@ export const CharacterCard: CharacterCardProps = ({ character }) => {
           size={192}
         >
           <div className="absolute top-0.5 left-0.5">
-            <Image
-              src={`/element-icons/${character.element}-icon.png`}
-              alt={`${character.element} icon`}
-              width={30}
-              height={30}
+            <ElementIcon
+              element={character.element}
+              twH="h-[1.875rem]"
+              twW="w-[1.875rem]"
             />
           </div>
         </InnerCard>
