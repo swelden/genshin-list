@@ -42,12 +42,14 @@ export const ItemCard: React.FC<{
   smallIcon: boolean;
   bgGradient?: string;
   size?: number;
+  isUnoptimized?: boolean;
 }> = ({
   label,
   imgSrc,
   smallIcon,
   bgGradient = "bg-gradient-to-b from-[#323947] to-[#4a5366]",
   size = 96,
+  isUnoptimized = false,
 }) => {
   return (
     <div className="relative overflow-hidden rounded-md bg-gradient-to-t from-card-brown to-card-brown shadow-md ring-1 ring-black/10 dark:to-card-brown/10 dark:shadow-zinc-600/50">
@@ -58,6 +60,7 @@ export const ItemCard: React.FC<{
         size={size}
         className={"text-xs lg:text-sm"}
         smallIcon={smallIcon}
+        isUnoptimized={isUnoptimized}
       />
     </div>
   );
@@ -71,6 +74,7 @@ const InnerCard: React.FC<{
   className?: string;
   children?: React.ReactNode;
   smallIcon?: boolean;
+  isUnoptimized?: boolean;
 }> = ({
   bgGradient,
   label,
@@ -79,6 +83,7 @@ const InnerCard: React.FC<{
   className,
   children,
   smallIcon = false,
+  isUnoptimized = false,
 }) => {
   return (
     <>
@@ -87,7 +92,13 @@ const InnerCard: React.FC<{
           smallIcon ? "p-2" : ""
         }`}
       >
-        <Image src={imgSrc} alt={`${label} thumb`} width={size} height={size} />
+        <Image
+          src={imgSrc}
+          alt={`${label} thumb`}
+          width={size}
+          height={size}
+          unoptimized={isUnoptimized}
+        />
         {children}
       </div>
       <div className="relative w-full px-2 py-0.5">

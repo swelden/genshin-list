@@ -27,6 +27,7 @@ const MaterialList: React.FC<{
               imgSrc={imageUrl(materialData[material].nameicon)}
               size={147} // NOTE: make equal to lg:w-[??px] on max system font size
               smallIcon={material === "Mora"}
+              isUnoptimized={true}
             />
           </div>
         );

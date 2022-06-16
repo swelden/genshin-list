@@ -29,6 +29,10 @@ const SectionRow: React.FC<SectionRowProps> = ({
           alt={`${ability.name} icon`}
           width={48}
           height={48}
+          // BUG: unoptimized causes page error - "Indicate whether to send a cookie in a cross-site request by specifying its SameSite attribute"
+          // NOTE: don't think I can fix this error locally (needs to be fixed from where I am retrieving the images [.mihoyo.com/])
+          // TODO: change where I get constellation images
+          unoptimized={true}
           className="invert dark:filter-none"
         />
         <h3 className="text-lg">{ability.name}</h3>
