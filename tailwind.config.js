@@ -33,30 +33,17 @@ module.exports = {
         cryo: withOpacityValue("--cryo-rgb"),
         geo: withOpacityValue("--geo-rgb"),
 
-        "btn-brown": "#ECE5D8",
+        "btn-brown": "#ECE5D8", // same as sort-text-brown, sort-bg-active-brown
         "btn-brown-click": "#A89C96",
         "btn-outline": "#83829D", // for circle buttons
         "btn-navy": "#3B4255",
 
         "card-brown": "#E9E5DC",
-        "card-navy": "#495366",
+        "card-navy": "#495366", // same as sort-bg-navy, sort-text-active-navy
 
         // for sort hover bg
         "sort-light-brown": "#DBD3C2",
         "sort-light-navy": "#606979",
-
-        // NOTE: colors that share values
-        // "btn-bg-brown": "#ECE5D8", // same as sort-text-brown
-        // "btn-text-navy": "#3B4255",
-
-        // "card-bg-brown": "#E9E5DC",
-        // "card-text-navy": "#495366", // same as sort-bg-navy
-
-        // "sort-bg-navy": "#495366", // same as card-text-navy
-        // "sort-text-brown": "#ECE5D8", // same as btn-bg-brown
-        // "sort-bg-hover-navy": "#606979",
-        // "sort-bg-active-brown": "#ECE5D8", // same as btn-bg-brown
-        // "sort-text-active-navy": "#495366", // same as sort-bg-navy
       },
       gridTemplateColumns: {
         14: "repeat(14, minmax(0, 1fr))",

@@ -2,6 +2,49 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  :root {
+    /* colors */
+    --gold-rgb: 204 136 41;
+    --pyro-rgb: 255 92 92;
+    --hydro-rgb: 61 158 255;
+    --dendro-rgb: 140 185 27;
+    --electro-rgb: 227 104 227;
+    --anemo-rgb: 100 206 167;
+    --cryo-rgb: 87 203 203;
+    --geo-rgb: 220 153 59;
+
+    /* scrollbar */
+    --scrollbar-thumb: rgb(161, 161, 170);
+    --scrollbar-thumb-hover: rgb(113, 113, 122);
+    --scrollbar-track: rgba(0, 0, 0, 0.15);
+  }
+
+  html.dark {
+    /* colors */
+    --gold-rgb: 255 215 128;
+    --pyro-rgb: 255 153 153;
+    --hydro-rgb: 128 192 255;
+    --dendro-rgb: 179 234 42;
+    --electro-rgb: 255 172 255;
+    --anemo-rgb: 128 255 215;
+    --cryo-rgb: 153 255 255;
+    --geo-rgb: 255 230 153;
+
+    /* scrollbar */
+    --scrollbar-thumb: rgb(113 113 122);
+    --scrollbar-thumb-hover: rgb(63 63 70);
+    --scrollbar-track: rgba(240, 240, 240, 0.025);
+  }
+
+  /* Scrollbar Styles */
+  html {
+    /* both properties are for firefox support */
+    scrollbar-width: thin;
+    scrollbar-color: var(--scrollbar-thumb) rgba(0, 0, 0, 0);
+  }
+}
+
 @layer utilities {
   .key-focus {
     @apply outline-none focus-visible:ring-2 focus-visible:ring-yellow-500 focus-visible:ring-offset-2 focus-visible:dark:ring-yellow-600;
@@ -16,47 +59,7 @@
   }
 }
 
-:root {
-  /* colors */
-  --gold-rgb: 204 136 41;
-  --pyro-rgb: 255 92 92;
-  --hydro-rgb: 61 158 255;
-  --dendro-rgb: 140 185 27;
-  --electro-rgb: 227 104 227;
-  --anemo-rgb: 100 206 167;
-  --cryo-rgb: 87 203 203;
-  --geo-rgb: 220 153 59;
-
-  /* scrollbar */
-  --scrollbar-thumb: rgb(161, 161, 170);
-  --scrollbar-thumb-hover: rgb(113, 113, 122);
-  --scrollbar-track: rgba(0, 0, 0, 0.15);
-}
-
-html.dark {
-  /* colors */
-  --gold-rgb: 255 215 128;
-  --pyro-rgb: 255 153 153;
-  --hydro-rgb: 128 192 255;
-  --dendro-rgb: 179 234 42;
-  --electro-rgb: 255 172 255;
-  --anemo-rgb: 128 255 215;
-  --cryo-rgb: 153 255 255;
-  --geo-rgb: 255 230 153;
-
-  /* scrollbar */
-  --scrollbar-thumb: rgb(63, 63, 70);
-  --scrollbar-thumb-hover: rgb(39, 39, 42);
-  --scrollbar-track: rgba(255, 255, 255, 0.2);
-}
-
-/* Scrollbar Styles */
-html {
-  /* both properties are for firefox support */
-  scrollbar-width: thin;
-  scrollbar-color: var(--scrollbar-thumb) rgba(0, 0, 0, 0);
-}
-
+/* NOTE: might move .scrollbar to utilities */
 body::-webkit-scrollbar,
 .scrollbar::-webkit-scrollbar {
   width: 8px;
@@ -82,5 +85,5 @@ body::-webkit-scrollbar-thumb,
 body::-webkit-scrollbar-thumb:hover,
 .scrollbar::-webkit-scrollbar-thumb:hover {
   background: var(--scrollbar-thumb-hover);
-  border: 1px solid rgba(128, 128, 128, 0.3);
+  border: 1px solid rgba(90, 90, 90, 0.3);
 }
