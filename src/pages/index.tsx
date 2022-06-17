@@ -5,6 +5,7 @@ import Filters from "../components/Filters/Filters";
 import useCharacters from "../hooks/useCharacters";
 import * as genshindb from "genshin-db";
 import React from "react";
+import { getCharacterNames } from "../backend/shared";
 
 const Home: NextPage<{
   characters: CharacterFilterInfo[];
@@ -43,9 +44,7 @@ const Home: NextPage<{
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  const characters: string[] = genshindb
-    .characters("names", { matchCategories: true })
-    .filter((character) => character !== "Aether" && character !== "Lumine");
+  const characters = getCharacterNames();
 
   const characterProps: CharacterFilterInfo[] = characters.map((character) => {
     const characterInfo = genshindb.characters(character)!;

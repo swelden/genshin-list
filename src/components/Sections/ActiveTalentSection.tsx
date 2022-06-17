@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { TalentInfo } from "../../pages/[name]";
+import { TalentInfo } from "../../backend/name_page";
 import { DropDownIcon } from "../icons";
 import StatsTable from "../StatsTable";
 import Section from "./Section";

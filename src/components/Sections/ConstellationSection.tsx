@@ -1,4 +1,4 @@
-import { ConstellationInfo } from "../../pages/[name]";
+import { ConstellationInfo } from "../../backend/name_page";
 import Section from "./Section";
 import SectionRow from "./SectionRow";
 

@@ -1,4 +1,4 @@
-import { TalentInfo } from "../../pages/[name]";
+import { TalentInfo } from "../../backend/name_page";
 import Section from "./Section";
 import SectionRow from "./SectionRow";
 

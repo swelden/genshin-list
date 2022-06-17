@@ -1,4 +1,4 @@
-import { CharacterStats } from "../../pages/[name]";
+import { CharacterStats } from "../../backend/name_page";
 import StatsTable from "../StatsTable";
 import Section from "./Section";
 

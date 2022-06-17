@@ -1,5 +1,5 @@
 import { Items } from "genshin-db";
-import { MaterialDataMap } from "../pages/[name]";
+import { MaterialDataMap } from "../backend/name_page";
 import { imageUrl } from "../utils/urls";
 import { ItemCard } from "./Card";
 import { MaterialList } from "./Sections/MaterialCalculatorSection";

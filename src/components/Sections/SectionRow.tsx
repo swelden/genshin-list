@@ -1,4 +1,4 @@
-import { TalentInfo } from "../../pages/[name]";
+import { TalentInfo } from "../../backend/name_page";
 import { imageUrl } from "../../utils/urls";
 import IconImage from "../IconImage";
 

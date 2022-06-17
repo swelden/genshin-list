@@ -1,6 +1,7 @@
 import { Dispatch, SetStateAction, useMemo } from "react";
+import { MaterialDataMap } from "../../backend/name_page";
 import { useMaterialContext } from "../../contexts/MaterialContext";
-import { MaterialDataMap } from "../../pages/[name]";
+
 import { RightArrowIcon } from "../icons";
 import MaterialList, { mergeMaterials } from "../MaterialList";
 import { SelectMenu, SelectOption } from "../SelectMenu";

@@ -1,8 +1,8 @@
 import React, { createContext, useCallback, useContext, useMemo } from "react";
+import { MaterialInfo } from "../backend/name_page";
 import { Materials, mergeMaterials } from "../components/MaterialList";
 import { SelectOption } from "../components/SelectMenu";
 import useMinMax from "../hooks/useMinMax";
-import { MaterialInfo } from "../pages/[name]";
 
 interface MaterialContextType {
   // levels
