@@ -1,10 +1,10 @@
 import type { GetStaticProps, NextPage } from "next";
-import Head from "next/head";
-import Results from "../components/Results";
-import Filters from "../components/Filters/Filters";
-import useCharacters from "../hooks/useCharacters";
-import * as genshindb from "genshin-db";
 import React from "react";
+import * as genshindb from "genshin-db";
+import Head from "next/head";
+import Filters from "../components/Filters/Filters";
+import CharacterList from "../components/CharacterList";
+import useCharacters from "../hooks/useCharacters";
 import { getCharacterNames } from "../backend/shared";
 
 const Home: NextPage<{
@@ -38,7 +38,7 @@ const Home: NextPage<{
         setAttrFilter={setAttrFilter}
         regions={regions}
       />
-      <Results characters={characters} />
+      <CharacterList characters={characters} />
     </main>
   );
 };
