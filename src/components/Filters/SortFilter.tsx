@@ -16,17 +16,22 @@ const options: SelectOption<CharacterSortKeys>[] = [
 
 type SortDropdownProps = React.FC<{
   setSortKey: React.Dispatch<React.SetStateAction<CharacterSortKeys>>;
+  className?: string;
 }>;
 
-const SortDropdown: SortDropdownProps = ({ setSortKey }) => {
-  return <SelectMenu setState={setSortKey} />;
+const SortDropdown: SortDropdownProps = ({ setSortKey, className = "" }) => {
+  return <SelectMenu setState={setSortKey} className={className} />;
 };
 
 interface SelectMenuProps {
   setState: (value: CharacterSortKeys) => void;
+  className?: string;
 }
 
-const SelectMenu = ({ setState }: SelectMenuProps) => {
+const SelectMenu: React.FC<SelectMenuProps> = ({
+  setState,
+  className = "",
+}) => {
   const [selectedOption, setSelectedOption] = useState(options[0]);
 
   const handleChange = (event: SelectOption<CharacterSortKeys>) => {
@@ -36,7 +41,7 @@ const SelectMenu = ({ setState }: SelectMenuProps) => {
 
   return (
     <Listbox value={selectedOption} onChange={handleChange}>
-      <div className="relative col-span-2">
+      <div className={`relative ${className}`}>
         <Listbox.Button
           as={Button}
           className="pl-4 pr-3"
