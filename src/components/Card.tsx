@@ -15,9 +15,8 @@ export const CharacterCard: CharacterCardProps = ({ character }) => {
           bgGradient={
             character.rarity === "4"
               ? "bg-gradient-to-b from-[#5e5789] to-[#9c75b7]" // 4 star - purple
-              : character.region === ""
-              ? "bg-gradient-to-b from-[#9b3c56] to-[#b4455a]" // colab  - red
               : "bg-gradient-to-b from-[#945c2c] to-[#b27330]" // 5 star - gold
+            // "_bg-gradient-to-b _from-[#9b3c56] _to-[#b4455a]" // colab  - red
           }
           imgSrc={imageUrl(character.nameicon)}
           alt={`${character.name} thumb`}
