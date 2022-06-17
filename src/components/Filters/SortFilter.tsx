@@ -42,7 +42,9 @@ const SelectMenu = ({ setState }: SelectMenuProps) => {
           className="pl-4 pr-3"
           justifyContent="justify-start"
         >
-          <span className="block truncate">Sort by {selectedOption.label}</span>
+          <span className="block truncate pr-4">
+            Sort by {selectedOption.label}
+          </span>
           <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
             <DropDownIcon />
           </span>
@@ -56,7 +58,7 @@ const SelectMenu = ({ setState }: SelectMenuProps) => {
           leaveFrom="transform scale-100 opacity-100"
           leaveTo="transform scale-95 opacity-0"
         >
-          <Listbox.Options className="absolute z-10 w-full rounded-2xl bg-card-brown py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:bg-card-navy">
+          <Listbox.Options className="absolute z-10 w-full rounded-2xl bg-card-brown py-1 shadow-xl ring-1 ring-black/20 focus:outline-none dark:bg-card-navy">
             {options.map((option) => (
               <Listbox.Option
                 key={option.label}
