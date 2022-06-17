@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { imageUrl } from "../utils/urls";
-import ElementIcon from "./ElementIcon";
+import IconImage from "./IconImage";
 
 type CharacterCardProps = React.FC<{ character: CharacterFilterInfo }>;
 
@@ -20,12 +20,14 @@ export const CharacterCard: CharacterCardProps = ({ character }) => {
               : "bg-gradient-to-b from-[#945c2c] to-[#b27330]" // 5 star - gold
           }
           imgSrc={imageUrl(character.nameicon)}
+          alt={`${character.name} thumb`}
           label={character.name}
           size={192}
         >
           <div className="absolute top-0.5 left-0.5">
-            <ElementIcon
-              element={character.element}
+            <IconImage
+              src={`/element-icons/${character.element}-icon.png`}
+              alt={`${character.element} icon`}
               twH="h-[1.875rem]"
               twW="w-[1.875rem]"
             />
@@ -39,6 +41,7 @@ export const CharacterCard: CharacterCardProps = ({ character }) => {
 export const ItemCard: React.FC<{
   label: string | number;
   imgSrc: string;
+  alt: string;
   smallIcon: boolean;
   bgGradient?: string;
   size?: number;
@@ -46,6 +49,7 @@ export const ItemCard: React.FC<{
 }> = ({
   label,
   imgSrc,
+  alt,
   smallIcon,
   bgGradient = "bg-gradient-to-b from-[#323947] to-[#4a5366]",
   size = 96,
@@ -57,6 +61,7 @@ export const ItemCard: React.FC<{
         bgGradient={bgGradient}
         label={label}
         imgSrc={imgSrc}
+        alt={alt}
         size={size}
         className={"text-xs lg:text-sm"}
         smallIcon={smallIcon}
@@ -70,6 +75,7 @@ const InnerCard: React.FC<{
   bgGradient: string;
   label: string | number;
   imgSrc: string;
+  alt: string;
   size: number;
   className?: string;
   children?: React.ReactNode;
@@ -79,6 +85,7 @@ const InnerCard: React.FC<{
   bgGradient,
   label,
   imgSrc,
+  alt,
   size,
   className,
   children,
@@ -94,7 +101,7 @@ const InnerCard: React.FC<{
       >
         <Image
           src={imgSrc}
-          alt={`${label} thumb`}
+          alt={alt}
           width={size}
           height={size}
           unoptimized={isUnoptimized}

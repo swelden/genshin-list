@@ -25,6 +25,7 @@ const MaterialList: React.FC<{
             <ItemCard
               label={count.toLocaleString()}
               imgSrc={imageUrl(materialData[material].nameicon)}
+              alt={`${material} icon`}
               size={147} // NOTE: make equal to lg:w-[??px] on max system font size
               smallIcon={material === "Mora"}
               isUnoptimized={true}

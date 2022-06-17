@@ -1,6 +1,6 @@
-import Image from "next/image";
 import { TalentInfo } from "../../pages/[name]";
 import { imageUrl } from "../../utils/urls";
+import IconImage from "../IconImage";
 
 type Passives = TalentInfo["passives"][number];
 interface Ability extends Passives {
@@ -24,14 +24,13 @@ const SectionRow: React.FC<SectionRowProps> = ({
       key={ability.name}
     >
       <div className="flex items-center gap-2">
-        <Image
+        <IconImage
+          // NOTE: do not retrieve images from .mihoyo.com (it sends cookies)
           src={isAbsoluteIconPath ? ability.icon : imageUrl(ability.icon)}
           alt={`${ability.name} icon`}
-          width={48}
-          height={48}
-          // NOTE: do not retrieve images from .mihoyo.com (it sends cookies)
-          unoptimized={true}
-          className="invert dark:filter-none"
+          twH="h-12"
+          twW="w-12"
+          invert={true}
         />
         <h3 className="text-lg">{ability.name}</h3>
       </div>
