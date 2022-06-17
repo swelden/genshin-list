@@ -402,6 +402,12 @@ const getMaterialProps = (
   };
 };
 
+const formatAmbrUrl = (url: string) => {
+  const ambrUrl = "https://api.ambr.top/assets/UI/";
+  const path = url.substring(url.lastIndexOf("/") + 1);
+  return `${ambrUrl}${path}`;
+};
+
 export interface CharacterInfo
   extends Omit<
     genshindb.Character,
@@ -510,32 +516,32 @@ export const getStaticProps: GetStaticProps<Props, Params> = async (
     {
       name: characterConstellations.c1.name,
       info: formatMarkdown(characterConstellations.c1.effect),
-      icon: characterConstellations.images.c1,
+      icon: formatAmbrUrl(characterConstellations.images.c1),
     },
     {
       name: characterConstellations.c2.name,
       info: formatMarkdown(characterConstellations.c2.effect),
-      icon: characterConstellations.images.c2,
+      icon: formatAmbrUrl(characterConstellations.images.c2),
     },
     {
       name: characterConstellations.c3.name,
       info: formatMarkdown(characterConstellations.c3.effect),
-      icon: characterConstellations.images.c3,
+      icon: formatAmbrUrl(characterConstellations.images.c3),
     },
     {
       name: characterConstellations.c4.name,
       info: formatMarkdown(characterConstellations.c4.effect),
-      icon: characterConstellations.images.c4,
+      icon: formatAmbrUrl(characterConstellations.images.c4),
     },
     {
       name: characterConstellations.c5.name,
       info: formatMarkdown(characterConstellations.c5.effect),
-      icon: characterConstellations.images.c5,
+      icon: formatAmbrUrl(characterConstellations.images.c5),
     },
     {
       name: characterConstellations.c6.name,
       info: formatMarkdown(characterConstellations.c6.effect),
-      icon: characterConstellations.images.c6,
+      icon: formatAmbrUrl(characterConstellations.images.c6),
     },
   ];
 
