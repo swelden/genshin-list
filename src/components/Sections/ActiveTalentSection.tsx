@@ -9,7 +9,8 @@ import SectionRow from "./SectionRow";
 const ActiveTalentSection: React.FC<{ actives: TalentInfo["actives"] }> = ({
   actives,
 }) => {
-  console.log(actives);
+  // console.log(actives);
+
   return (
     <Section title="Active Talents" className="overflow-hidden">
       {actives.map((activeTalent) => (

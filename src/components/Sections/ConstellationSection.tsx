@@ -5,7 +5,8 @@ import SectionRow from "./SectionRow";
 const ConstellationSection: React.FC<{
   constellations: ConstellationInfo[];
 }> = ({ constellations }) => {
-  console.log(constellations);
+  // console.log(constellations);
+
   return (
     <Section title="Constellations">
       {constellations.map((constellation, index) => (

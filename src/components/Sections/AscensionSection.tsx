@@ -3,7 +3,8 @@ import StatsTable from "../StatsTable";
 import Section from "./Section";
 
 const AscensionSection: React.FC<{ stats: CharacterStats }> = ({ stats }) => {
-  console.log(stats);
+  // console.log(stats);
+
   return (
     <Section title="Ascensions" className="overflow-hidden">
       <StatsTable

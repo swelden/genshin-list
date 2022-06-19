@@ -5,7 +5,8 @@ import SectionRow from "./SectionRow";
 const PassiveTalentSection: React.FC<{
   passives: TalentInfo["passives"];
 }> = ({ passives }) => {
-  console.log(passives);
+  // console.log(passives);
+
   return (
     <Section title="Passive Talents">
       {passives.map((passiveTalent) => (

@@ -22,7 +22,7 @@ const CharacterPage: NextPage<NamePageProps> = ({
   talents,
   constellations,
 }) => {
-  console.log(character);
+  // console.log(character);
 
   return (
     <main className="relative flex flex-col gap-8 sm:overflow-hidden">
