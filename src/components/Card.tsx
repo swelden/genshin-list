@@ -21,6 +21,7 @@ export const CharacterCard: CharacterCardProps = ({ character }) => {
           imgSrc={imageUrl(character.nameicon)}
           alt={`${character.name} thumb`}
           label={character.name}
+          isLabelHoverable={true}
           size={192}
         >
           <div className="absolute top-0.5 left-0.5">
@@ -80,6 +81,7 @@ const InnerCard: React.FC<{
   children?: React.ReactNode;
   smallIcon?: boolean;
   isUnoptimized?: boolean;
+  isLabelHoverable?: boolean;
 }> = ({
   bgGradient,
   label,
@@ -90,6 +92,7 @@ const InnerCard: React.FC<{
   children,
   smallIcon = false,
   isUnoptimized = false,
+  isLabelHoverable = false,
 }) => {
   return (
     <>
@@ -107,7 +110,10 @@ const InnerCard: React.FC<{
         />
         {children}
       </div>
-      <div className="relative w-full px-2 py-0.5">
+      <div
+        className="relative w-full px-2 py-0.5"
+        title={isLabelHoverable ? `${label}` : undefined}
+      >
         <span
           className={`relative block w-full truncate text-center capitalize text-card-navy ${className}`}
         >
