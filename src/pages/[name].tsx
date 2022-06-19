@@ -81,7 +81,7 @@ const HeroSection: React.FC<Pick<NamePageProps, "character">> = ({
 const DetailHeader: React.FC<Pick<NamePageProps, "character">> = ({
   character,
 }) => {
-  // TODO: add container that spans max of 3 columns (to prevent long names from covering image)
+  // TODO: find better way of preventing long names from covering gacha image
   return (
     <div className="col-span-5 col-start-2 row-span-full mb-8 flex items-center">
       <div className="flex flex-col gap-2 px-5 sm:px-4 lg:mt-32 lg:-ml-5">
@@ -89,8 +89,8 @@ const DetailHeader: React.FC<Pick<NamePageProps, "character">> = ({
           <IconImage
             src={`/element-icons/${character.element}-icon.png`}
             alt={`${character.element} icon`}
-            twH="h-[4.25rem]"
-            twW="w-[4.25rem]"
+            twH="h-[4.25rem]" // 68px
+            twW="w-[4.25rem]" // 68px
           />
           <div className="flex flex-col py-5 sm:py-4">
             <h1 className="mb-1 text-3xl">{character.name}</h1>
@@ -121,13 +121,12 @@ const StarRating: React.FC<{ rarity: number }> = ({ rarity }) => {
   return (
     <div className="flex flex-nowrap gap-0.5">
       {[...Array(rarity)].map((_, i) => (
-        <Image
+        <IconImage
           key={`star-${i}`}
           src="/star-rating.png"
           alt="Star Icon"
-          width={18}
-          height={18}
-          quality={100}
+          twH="h-[1.125rem]" // 18px
+          twW="w-[1.125rem]" // 18px
         />
       ))}
     </div>
