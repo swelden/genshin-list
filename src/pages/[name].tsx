@@ -30,7 +30,7 @@ const CharacterPage: NextPage<NamePageProps> = ({
         <title>{character.name} - Genshin List</title>
         <meta
           name="description"
-          content="Find and filter characters from Genshin Impact"
+          content={`${character.name} is a playable ${character.rarity}-star ${character.element} ${character.weapontype} character. ${character.description}`}
         />
       </Head>
 

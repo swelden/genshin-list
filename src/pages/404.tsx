@@ -9,7 +9,7 @@ const NotFound: NextPage = () => {
         <title>Genshin List - 404</title>
         <meta
           name="description"
-          content="Find and filter characters from Genshin Impact"
+          content="Find and filter characters from Genshin Impact. Calculate required materials to level up any character."
         />
       </Head>
       <div className="flex flex-1 flex-col items-center justify-center">

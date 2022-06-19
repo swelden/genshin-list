@@ -27,7 +27,7 @@ const Home: NextPage<{
         <title>Genshin List</title>
         <meta
           name="description"
-          content="Find and filter characters from Genshin Impact"
+          content="Find and filter characters from Genshin Impact. Calculate required materials to level up any character."
         />
       </Head>
       <Filters
