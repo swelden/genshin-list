@@ -12,7 +12,7 @@ const Footer = () => {
           href="https://github.com/swelden/genshin-list"
           rel="noopener noreferrer"
           target="_blank"
-          className="text-blue-600 dark:text-blue-400"
+          className="key-focus key-focus-body rounded text-blue-600 dark:text-blue-400"
         >
           GitHub
         </a>
