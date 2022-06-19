@@ -63,7 +63,7 @@ const HeroSection: React.FC<Pick<NamePageProps, "character">> = ({
             alt={`${character.name} gacha splash`}
             width={1920}
             height={960}
-            // priority={true}
+            priority={true}
           />
           {/* TODO: make after pseudo-element */}
           <div className="absolute bottom-0 z-0 h-24 w-full bg-gradient-to-t from-zinc-100 dark:from-zinc-900"></div>
