@@ -47,7 +47,7 @@
 
 @layer utilities {
   .key-focus {
-    @apply outline-none focus-visible:ring-2 focus-visible:ring-yellow-500 focus-visible:ring-offset-2 focus-visible:dark:ring-yellow-600;
+    @apply outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 focus-visible:dark:ring-yellow-600;
   }
 
   .key-focus-section {
