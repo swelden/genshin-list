@@ -76,12 +76,13 @@ export interface NamePageProps {
 const getActives = (talents: genshindb.Talent): ActiveTalent[] => {
   const images = talents.images!;
 
+  // possible for any talent to be missing description, but mostly combat1
   return [
     {
       category: "Normal Attack",
       name: talents.combat1.name,
       info: formatMarkdown(talents.combat1.info),
-      description: talents.combat1.description ?? "", // only combat1 may not have description
+      description: talents.combat1.description ?? "",
       attributes: formatAttributes(talents.combat1.attributes, "Normal Attack"),
       icon: images.combat1,
     },
@@ -89,7 +90,7 @@ const getActives = (talents: genshindb.Talent): ActiveTalent[] => {
       category: "Elemental Skill",
       name: talents.combat2.name,
       info: formatMarkdown(talents.combat2.info),
-      description: talents.combat2.description,
+      description: talents.combat2.description ?? "",
       attributes: formatAttributes(
         talents.combat2.attributes,
         "Elemental Skill"
@@ -100,7 +101,7 @@ const getActives = (talents: genshindb.Talent): ActiveTalent[] => {
       category: "Elemental Burst",
       name: talents.combat3.name,
       info: formatMarkdown(talents.combat3.info),
-      description: talents.combat3.description,
+      description: talents.combat3.description ?? "",
       attributes: formatAttributes(
         talents.combat3.attributes,
         "Elemental Burst"
@@ -114,7 +115,7 @@ const getActives = (talents: genshindb.Talent): ActiveTalent[] => {
             category: "Alternate Sprint",
             name: talents.combatsp.name,
             info: formatMarkdown(talents.combatsp.info),
-            description: talents.combatsp.description,
+            description: talents.combatsp.description ?? "",
             attributes: formatAttributes(
               talents.combatsp.attributes,
               "Alternate Sprint"
