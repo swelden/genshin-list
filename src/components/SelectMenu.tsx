@@ -38,7 +38,7 @@ export const SelectMenu = <T extends {}>({
               <Listbox.Option
                 key={index}
                 className={({ active }) =>
-                  `relative cursor-default select-none py-2 pl-8 pr-4 ${
+                  `relative cursor-default select-none py-2 pl-8 pr-4 outline-none ${
                     active
                       ? "bg-amber-100 text-amber-900 dark:bg-zinc-700 dark:text-amber-50"
                       : "text-zinc-900 dark:text-zinc-100"

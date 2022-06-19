@@ -67,7 +67,7 @@ const SelectMenu: React.FC<SelectMenuProps> = ({
             {options.map((option) => (
               <Listbox.Option
                 key={option.label}
-                className="relative w-full cursor-default select-none px-1 py-[0.035rem] text-left"
+                className="relative w-full cursor-default select-none px-1 py-[0.035rem] text-left outline-none"
                 value={option}
               >
                 {({ active, selected }) => (
