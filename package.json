@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@headlessui/react": "^1.6.4",
-    "genshin-db": "^4.2.0",
+    "genshin-db": "^4.2.3",
     "next": "12.1.5",
     "react": "18.0.0",
     "react-dom": "18.0.0"
