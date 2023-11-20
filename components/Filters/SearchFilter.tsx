@@ -1,5 +1,5 @@
+import { CloseIcon, SearchIcon } from "@/components/icons";
 import { useState } from "react";
-import { CloseIcon, SearchIcon } from "../icons";
 
 type SearchProps = React.FC<{
   setFilter: React.Dispatch<React.SetStateAction<string>>;

@@ -1,8 +1,6 @@
-import { Metadata, ResolvingMetadata } from "next";
-import Image from "next/image";
-import { NamePageProps, getNamePageProps } from "../../src/backend/name_page";
-import { getCharacterNames } from "../../src/backend/shared";
-import IconImage from "../../src/components/IconImage";
+import { NamePageProps, getNamePageProps } from "@/backend/name_page";
+import { getCharacterNames } from "@/backend/shared";
+import IconImage from "@/components/IconImage";
 import {
   ActiveTalentSection,
   AscensionSection,
@@ -10,8 +8,10 @@ import {
   ConstellationSection,
   MaterialCalculatorSection,
   PassiveTalentSection,
-} from "../../src/components/Sections";
-import { formatUrl, imageUrl } from "../../src/utils/urls";
+} from "@/components/Sections";
+import { formatUrl, imageUrl } from "@/utils/urls";
+import { Metadata, ResolvingMetadata } from "next";
+import Image from "next/image";
 
 type PageProps = { params: { name: string } };
 

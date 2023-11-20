@@ -1,8 +1,7 @@
+import IconImage from "@/components/IconImage";
+import { imageUrl } from "@/utils/urls";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
-import { imageUrl } from "../utils/urls";
-import IconImage from "./IconImage";
 
 type CharacterCardProps = React.FC<{ character: CharacterFilterInfo }>;
 

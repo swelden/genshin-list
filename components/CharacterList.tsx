@@ -1,4 +1,4 @@
-import { CharacterCard } from "./Card";
+import { CharacterCard } from "@/components/Card";
 
 type ResultsProps = React.FC<{ characters: CharacterFilterInfo[] }>;
 // NOTE: might iterate through allCharacters and set display none to characters that were filtered out

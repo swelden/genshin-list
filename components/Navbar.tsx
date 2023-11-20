@@ -1,10 +1,10 @@
 "use client";
 
+import { CircleButton } from "@/components/Button";
+import { MoonIcon, SunIcon } from "@/components/icons";
+import useDarkMode from "@/hooks/useDarkMode";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import useDarkMode from "../hooks/useDarkMode";
-import { CircleButton } from "./Button";
-import { MoonIcon, SunIcon } from "./icons";
 
 const Navbar = () => {
   const { isDarkMode, toggle } = useDarkMode();

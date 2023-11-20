@@ -1,5 +1,5 @@
+import Layout from "@/components/Layout";
 import type { Metadata, Viewport } from "next";
-import Layout from "../src/components/Layout";
 import "./fonts.css";
 import "./globals.css";
 

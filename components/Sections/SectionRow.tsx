@@ -1,6 +1,6 @@
-import { TalentInfo } from "../../backend/name_page";
-import { imageUrl } from "../../utils/urls";
-import IconImage from "../IconImage";
+import { TalentInfo } from "@/backend/name_page";
+import IconImage from "@/components/IconImage";
+import { imageUrl } from "@/utils/urls";
 
 type Passives = TalentInfo["passives"][number];
 interface Ability extends Passives {

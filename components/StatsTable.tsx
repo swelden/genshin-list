@@ -1,5 +1,3 @@
-import React from "react";
-
 const StatsTable: React.FC<{
   data: { label: string; params: string[] }[];
   topHeadings: string[];

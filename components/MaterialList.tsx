@@ -1,8 +1,8 @@
+import { MaterialDataMap } from "@/backend/name_page";
+import { ItemCard } from "@/components/Card";
+import { useMaterialContext } from "@/contexts/MaterialContext";
+import { imageUrl } from "@/utils/urls";
 import { Items } from "genshin-db";
-import { MaterialDataMap } from "../backend/name_page";
-import { useMaterialContext } from "../contexts/MaterialContext";
-import { imageUrl } from "../utils/urls";
-import { ItemCard } from "./Card";
 
 export interface Materials {
   [key: string]: number;

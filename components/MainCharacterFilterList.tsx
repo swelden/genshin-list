@@ -1,8 +1,8 @@
 "use client";
 
-import useCharacters from "../hooks/useCharacters";
-import CharacterList from "./CharacterList";
-import Filters from "./Filters/Filters";
+import CharacterList from "@/components/CharacterList";
+import Filters from "@/components/Filters/Filters";
+import useCharacters from "@/hooks/useCharacters";
 
 export const MainCharacterFilterList = ({
   allCharacters,

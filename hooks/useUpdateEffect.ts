@@ -2,7 +2,7 @@
 
 import { DependencyList, EffectCallback, useEffect } from "react";
 
-import useIsFirstRender from "./useIsFirstRender";
+import useIsFirstRender from "@/hooks/useIsFirstRender";
 
 function useUpdateEffect(effect: EffectCallback, deps?: DependencyList) {
   const isFirst = useIsFirstRender();

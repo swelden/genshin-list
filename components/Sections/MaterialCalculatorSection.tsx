@@ -1,15 +1,15 @@
 "use client";
 
-import { Dispatch, SetStateAction, useMemo } from "react";
-import { MaterialInfo } from "../../backend/name_page";
+import { MaterialInfo } from "@/backend/name_page";
 import MaterialProvider, {
   useMaterialContext,
-} from "../../contexts/MaterialContext";
+} from "@/contexts/MaterialContext";
+import { Dispatch, SetStateAction, useMemo } from "react";
 
-import { RightArrowIcon } from "../icons";
-import MaterialList from "../MaterialList";
-import { SelectMenu, SelectOption } from "../SelectMenu";
-import Section from "./Section";
+import MaterialList from "@/components/MaterialList";
+import Section from "@/components/Sections/Section";
+import { SelectMenu, SelectOption } from "@/components/SelectMenu";
+import { RightArrowIcon } from "@/components/icons";
 
 const MaterialCalculatorSection: React.FC<{
   materials: MaterialInfo;

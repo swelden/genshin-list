@@ -1,6 +1,6 @@
-import { TalentInfo } from "../../backend/name_page";
-import Section from "./Section";
-import SectionRow from "./SectionRow";
+import { TalentInfo } from "@/backend/name_page";
+import Section from "@/components/Sections/Section";
+import SectionRow from "@/components/Sections/SectionRow";
 
 const PassiveTalentSection: React.FC<{
   passives: TalentInfo["passives"];

@@ -1,6 +1,6 @@
+import { getCharacterNames } from "@/backend/shared";
+import { MainCharacterFilterList } from "@/components/MainCharacterFilterList";
 import * as genshindb from "genshin-db";
-import { getCharacterNames } from "../src/backend/shared";
-import { MainCharacterFilterList } from "../src/components/MainCharacterFilterList";
 
 export default async function Home() {
   const { allCharacters, regions } = await getAllCharacters();

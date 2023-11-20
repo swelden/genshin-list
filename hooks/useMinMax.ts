@@ -1,6 +1,6 @@
+import { Materials, calculateMaterialsRange } from "@/components/MaterialList";
 import { Items } from "genshin-db";
 import { Dispatch, SetStateAction, useMemo, useState } from "react";
-import { calculateMaterialsRange, Materials } from "../components/MaterialList";
 
 const useMinMax = (
   initialMin: number,

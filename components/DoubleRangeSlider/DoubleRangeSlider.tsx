@@ -1,5 +1,5 @@
+import useRange from "@/hooks/useRange";
 import { useEffect, useRef } from "react";
-import useRange from "../../hooks/useRange";
 import styles from "./DoubleRangeSlider.module.css";
 
 const DoubleRangeSlider: React.FC<{

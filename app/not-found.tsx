@@ -1,5 +1,5 @@
+import { LinkButton } from "@/components/Button";
 import { Metadata } from "next";
-import { LinkButton } from "../src/components/Button";
 
 export const metadata: Metadata = {
   title: "Genshin List - 404",

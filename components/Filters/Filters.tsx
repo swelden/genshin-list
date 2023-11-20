@@ -1,11 +1,11 @@
 "use client";
 
-import React, { useState } from "react";
-import Button from "../Button";
-import { FilterIcon, ReverseIcon } from "../icons";
-import AttributeFilter from "./AttrFilter";
-import Search from "./SearchFilter";
-import SortDropdown from "./SortFilter";
+import Button from "@/components/Button";
+import AttributeFilter from "@/components/Filters/AttrFilter";
+import Search from "@/components/Filters/SearchFilter";
+import SortDropdown from "@/components/Filters/SortFilter";
+import { FilterIcon, ReverseIcon } from "@/components/icons";
+import { useState } from "react";
 
 type FiltersProps = React.FC<{
   setFilter: React.Dispatch<React.SetStateAction<string>>;

@@ -1,5 +1,6 @@
 // https://usehooks-ts.com/react-hook/use-local-storage
 
+import useEventListener from "@/hooks/useEventListener";
 import {
   Dispatch,
   SetStateAction,
@@ -8,7 +9,6 @@ import {
   useRef,
   useState,
 } from "react";
-import useEventListener from "./useEventListener";
 
 declare global {
   interface WindowEventMap {

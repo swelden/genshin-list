@@ -1,6 +1,6 @@
+import { formatAttributes, formatMarkdown } from "@/utils/markdown";
+import { myRound } from "@/utils/math";
 import * as genshindb from "genshin-db";
-import { formatAttributes, formatMarkdown } from "../utils/markdown";
-import { myRound } from "../utils/math";
 
 interface ActiveTalent
   extends Omit<genshindb.CombatTalentDetail, "attributes"> {

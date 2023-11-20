@@ -1,5 +1,5 @@
 import Link from "next/link";
-import React from "react";
+import { forwardRef } from "react";
 
 interface ButtonProps {
   children: React.ReactNode;
@@ -14,7 +14,7 @@ interface ButtonProps {
   as?: React.ElementType;
 }
 
-const Button = React.forwardRef<React.ElementType, ButtonProps>(
+const Button = forwardRef<React.ElementType, ButtonProps>(
   (
     {
       children,

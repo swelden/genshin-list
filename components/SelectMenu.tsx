@@ -1,6 +1,6 @@
-import { Fragment } from "react";
+import { CheckIcon, DropDownIcon } from "@/components/icons";
 import { Listbox, Transition } from "@headlessui/react";
-import { CheckIcon, DropDownIcon } from "./icons";
+import { Fragment } from "react";
 
 export interface SelectOption<T> {
   label: string;

@@ -1,9 +1,8 @@
-import { useState } from "react";
-import Button from "../Button";
-import { SelectOption } from "../SelectMenu";
-import { Fragment } from "react";
+import Button from "@/components/Button";
+import { SelectOption } from "@/components/SelectMenu";
+import { CheckIcon, DropDownIcon } from "@/components/icons";
 import { Listbox, Transition } from "@headlessui/react";
-import { CheckIcon, DropDownIcon } from "../icons";
+import { Fragment, useState } from "react";
 
 const options: SelectOption<CharacterSortKeys>[] = [
   { label: "Version", value: "version" },

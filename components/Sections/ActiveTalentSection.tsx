@@ -1,12 +1,12 @@
 "use client";
 
-import React, { useState } from "react";
-import { TalentInfo } from "../../backend/name_page";
-import StatsTable from "../StatsTable";
-import { DropDownIcon } from "../icons";
-import Section from "./Section";
-import SectionRow from "./SectionRow";
-// import Button from "../Button";
+import { TalentInfo } from "@/backend/name_page";
+import Section from "@/components/Sections/Section";
+import SectionRow from "@/components/Sections/SectionRow";
+import StatsTable from "@/components/StatsTable";
+import { DropDownIcon } from "@/components/icons";
+import { useState } from "react";
+// import Button from "@/components/Button";
 
 const ActiveTalentSection: React.FC<{ actives: TalentInfo["actives"] }> = ({
   actives,
