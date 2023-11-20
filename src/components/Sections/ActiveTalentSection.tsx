@@ -62,7 +62,7 @@ const ActiveTalentAttributes: React.FC<{
             data={talent.attributes}
             numCols={maxCols}
             topHeadings={Array.from(Array(maxCols).keys()).map(
-              (lvl) => `Lv.${lvl + 1}`
+              (lvl) => `Lv.${lvl + 1}`,
             )}
           />
         </div>

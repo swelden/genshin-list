@@ -28,7 +28,7 @@ const Button = React.forwardRef<React.ElementType, ButtonProps>(
       ariaLabel,
       as = "button",
     },
-    ref
+    ref,
   ) => {
     const ButtonType = as;
 
@@ -50,7 +50,7 @@ const Button = React.forwardRef<React.ElementType, ButtonProps>(
         {children}
       </ButtonType>
     );
-  }
+  },
 );
 
 Button.displayName = "Button";

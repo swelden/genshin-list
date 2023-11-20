@@ -17,7 +17,7 @@ export default function MaterialList({
 
   // NOTE: shouldn't need to use useMemo
   const totalMaterials = Object.entries(
-    mergeMaterials(characterMaterials, talentMaterials)
+    mergeMaterials(characterMaterials, talentMaterials),
   ).sort(([aName], [bName]) => {
     const aIsCharMat = characterMaterials[aName] !== undefined;
     const bIsCharMat = characterMaterials[bName] !== undefined;
@@ -64,7 +64,7 @@ export default function MaterialList({
 export const calculateMaterialsRange = (
   costs: Items[][],
   start: number, // min is 0
-  end: number // max is len of array (not max index)
+  end: number, // max is len of array (not max index)
 ): Materials => {
   const materials: Materials = {};
 

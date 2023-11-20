@@ -5,13 +5,13 @@ import { calculateMaterialsRange, Materials } from "../components/MaterialList";
 const useMinMax = (
   initialMin: number,
   initialMax: number,
-  materialList: Items[][]
+  materialList: Items[][],
 ): [
   number,
   Dispatch<SetStateAction<number>>,
   number,
   Dispatch<SetStateAction<number>>,
-  Materials
+  Materials,
 ] => {
   const [min, setMin] = useState(initialMin);
   const [max, setMax] = useState(initialMax);
@@ -20,7 +20,7 @@ const useMinMax = (
   const materials: Materials = useMemo(
     () =>
       min >= max ? {} : calculateMaterialsRange(materialList, min + 1, max + 1),
-    [materialList, min, max]
+    [materialList, min, max],
   );
 
   return [min, setMin, max, setMax, materials];

@@ -23,13 +23,13 @@ const useCharacters = (allCharacters: CharacterFilterInfo[]) => {
           Object.entries(attrFilter).every(([key, value]) =>
             value.size === 0
               ? true
-              : value.has(character[key as keyof CharacterFilterInfo])
-          )
+              : value.has(character[key as keyof CharacterFilterInfo]),
+          ),
       )
       .sort(
         isReversed
           ? (b, a) => a[sortKey].localeCompare(b[sortKey])
-          : (a, b) => a[sortKey].localeCompare(b[sortKey])
+          : (a, b) => a[sortKey].localeCompare(b[sortKey]),
       );
   }, [filter, sortKey, isReversed, attrFilter, allCharacters]);
 

@@ -17,7 +17,7 @@ type PageProps = { params: { name: string } };
 
 export async function generateMetadata(
   { params: { name } }: PageProps,
-  parent: ResolvingMetadata
+  parent: ResolvingMetadata,
 ): Promise<Metadata> {
   const { character } = getNamePageProps(name.replace(/-/g, " "));
   // optionally access and extend (rather than replace) parent metadata
@@ -34,7 +34,7 @@ export async function generateMetadata(
 
 export default function CharacterPage({ params: { name } }: PageProps) {
   const { character, materials, talents, constellations } = getNamePageProps(
-    name.replace(/-/g, " ")
+    name.replace(/-/g, " "),
   );
 
   return (

@@ -39,7 +39,7 @@ interface MaterialContextType {
 
 // NOTE: can still cause an error if context is used outside of provider
 export const MaterialContext = createContext<MaterialContextType>(
-  {} as MaterialContextType
+  {} as MaterialContextType,
 );
 
 const MaterialProvider: React.FC<{
@@ -65,7 +65,7 @@ const MaterialProvider: React.FC<{
   // talents
   const [talentOptions, talentMats] = useMemo(() => {
     const talentKeys = Object.keys(talentCosts).sort(
-      (a, b) => parseInt(a) - parseInt(b)
+      (a, b) => parseInt(a) - parseInt(b),
     );
 
     const talentOptions = talentKeys.map((key, idx) => {
@@ -85,7 +85,7 @@ const MaterialProvider: React.FC<{
 
   const talentMaterials = useMemo(
     () => mergeMaterials(attackMaterials, skillMaterials, burstMaterials),
-    [attackMaterials, burstMaterials, skillMaterials]
+    [attackMaterials, burstMaterials, skillMaterials],
   );
 
   const setNoLevels = useCallback(() => {

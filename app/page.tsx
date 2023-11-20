@@ -47,7 +47,7 @@ export const getAllCharacters = async () => {
   });
 
   const regionProps: Nation[] = allRegions.filter((region) =>
-    foundRegions.has(region)
+    foundRegions.has(region),
   );
 
   return {

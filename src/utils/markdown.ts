@@ -25,7 +25,7 @@ const createElementSpanRegExp = (): RegExp => {
     "Freikugel", // Fischl
     "Anemo",
     "Cryo",
-    "Geo"
+    "Geo",
   ).join("|");
   const validAheadWords = [
     "DMG",
@@ -47,7 +47,7 @@ const createElementSpanRegExp = (): RegExp => {
 
   return new RegExp(
     `${invalidBehindRegExp}(${validBehindRegExp}${indicatorRegExp}${validAheadRegExp})${invalidEndRegExp}`,
-    "g"
+    "g",
   );
 };
 
@@ -59,7 +59,7 @@ export const formatMarkdown = (text: string): string => {
   return text
     .replace(
       /\*\*([^*]+)\*\*/g, // **text** -> <span>text</span>
-      '<span class="text-gold">$1</span>'
+      '<span class="text-gold">$1</span>',
     )
     .replace(createElementSpanRegExp(), (match, ...params) => {
       // groups is the last argument
@@ -73,7 +73,7 @@ export const formatMarkdown = (text: string): string => {
 export const formatTalentLabel = (
   label: string,
   parameters: CombatTalentDetail["attributes"]["parameters"],
-  talentlevel: number
+  talentlevel: number,
 ): string => {
   return label.replace(/{(.*?)}/g, (_match, p1: string) => {
     // console.log(match, p1);
@@ -105,19 +105,19 @@ const MAX_LVL_MAP: { [key: string]: number } = {
 
 export const formatAttributes = (
   attributes: CombatTalentDetail["attributes"],
-  category: string
+  category: string,
 ): { label: string; params: string[] }[] => {
   return attributes.labels.map((label) => {
     const [heading, params] = label.split("|");
     const maxLvl = Math.min(
       attributes.parameters.param1.length,
-      MAX_LVL_MAP[category]
+      MAX_LVL_MAP[category],
     );
 
     return {
       label: heading,
       params: Array.from(Array(maxLvl).keys()).map((i) =>
-        formatTalentLabel(params, attributes.parameters, i + 1)
+        formatTalentLabel(params, attributes.parameters, i + 1),
       ),
     };
   });

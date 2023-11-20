@@ -93,7 +93,7 @@ const getActives = (talents: genshindb.Talent): ActiveTalent[] => {
       description: talents.combat2.description ?? "",
       attributes: formatAttributes(
         talents.combat2.attributes,
-        "Elemental Skill"
+        "Elemental Skill",
       ),
       icon: images.combat2,
     },
@@ -104,7 +104,7 @@ const getActives = (talents: genshindb.Talent): ActiveTalent[] => {
       description: talents.combat3.description ?? "",
       attributes: formatAttributes(
         talents.combat3.attributes,
-        "Elemental Burst"
+        "Elemental Burst",
       ),
       icon: images.combat3,
     },
@@ -118,7 +118,7 @@ const getActives = (talents: genshindb.Talent): ActiveTalent[] => {
             description: talents.combatsp.description ?? "",
             attributes: formatAttributes(
               talents.combatsp.attributes,
-              "Alternate Sprint"
+              "Alternate Sprint",
             ),
             icon: images.combatsp!,
           },
@@ -186,12 +186,12 @@ const getMaterialDataFromNames = (names: string[]): MaterialDataMap => {
 const getCharStats = (
   stats: genshindb.StatFunction,
   substat: string,
-  levels: [number, "-" | "+"][]
+  levels: [number, "-" | "+"][],
 ): CharacterStats => {
   // ascension levels at 20, 40, 50, 60, 70, 80
 
   const headings = levels.map(
-    ([level, isAscended]) => `Lv.${level}${isAscended === "+" ? "+" : ""}`
+    ([level, isAscended]) => `Lv.${level}${isAscended === "+" ? "+" : ""}`,
   );
 
   const statResults = levels.map((level) => stats(...level));
@@ -215,7 +215,7 @@ const getCharStats = (
         params: statResults.map((result) =>
           isPossiblePercent && Number.isInteger(result[key]) === false
             ? `${myRound((result[key] ?? 0) * 100, 1)}%`
-            : `${Math.round(result[key] ?? 0)}`
+            : `${Math.round(result[key] ?? 0)}`,
         ),
       };
     }),
@@ -232,7 +232,7 @@ const getLevelUpMaterials = (): [LevelupCosts, MaterialDataMap] => {
 
   const xpBookMap = getMaterialDataFromNames(xpBookNames);
   const rarityToName = Object.fromEntries(
-    Object.entries(xpBookMap).map(([name, info]) => [info.rarity, name])
+    Object.entries(xpBookMap).map(([name, info]) => [info.rarity, name]),
   );
 
   // https://genshin-impact.fandom.com/wiki/Character_EXP
@@ -254,7 +254,7 @@ const getLevelUpMaterials = (): [LevelupCosts, MaterialDataMap] => {
       Object.entries(info).map(([name, amt]) => {
         return { name: rarityToName[name] ?? name, count: amt };
       }),
-    ])
+    ]),
   );
 
   return [levelCosts, xpBookMap];
@@ -263,7 +263,7 @@ const getLevelUpMaterials = (): [LevelupCosts, MaterialDataMap] => {
 const getMaterialProps = (
   characterInfo: genshindb.Character,
   characterTalents: genshindb.Talent,
-  levels: [number, "-" | "+"][]
+  levels: [number, "-" | "+"][],
 ): MaterialInfo => {
   const lvltoAscensionMap: {
     [key: number]: keyof genshindb.Character["costs"];
@@ -286,13 +286,13 @@ const getMaterialProps = (
         } else {
           return [`${lvl}`, levelCosts[lvl]];
         }
-      })
+      }),
     );
 
   const talentCosts: { [key: string]: genshindb.Items[] } = Object.fromEntries(
     Object.entries(characterTalents.costs).map(([key, items]) => {
       return [key.replace("lvl", ""), items];
-    })
+    }),
   );
 
   // lvl 1 talents aren't included in characterTalents.costs so include it here
@@ -363,7 +363,7 @@ export const getNamePageProps = (name: string): NamePageProps => {
   const materialProps = getMaterialProps(
     characterInfo,
     characterTalents,
-    levels
+    levels,
   );
 
   const constellationProps: ConstellationInfo[] = [
