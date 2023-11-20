@@ -1,6 +1,6 @@
-export { default as AttributeSection } from "./AttributeSection";
-export { default as MaterialCalculatorSection } from "./MaterialCalculatorSection";
-export { default as AscensionSection } from "./AscensionSection";
-export { default as ActiveTalentSection } from "./ActiveTalentSection";
-export { default as PassiveTalentSection } from "./PassiveTalentSection";
-export { default as ConstellationSection } from "./ConstellationSection";
+export { default as ActiveTalentSection } from "./active-talent-section";
+export { default as AscensionSection } from "./ascension-section";
+export { default as AttributeSection } from "./attribute-section";
+export { default as ConstellationSection } from "./constellation-section";
+export { default as MaterialCalculatorSection } from "./material-calculator-section";
+export { default as PassiveTalentSection } from "./passive-talent-section";

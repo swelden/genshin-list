@@ -1,10 +1,10 @@
 "use client";
 
 import { TalentInfo } from "@/backend/name_page";
-import Section from "@/components/Sections/Section";
-import SectionRow from "@/components/Sections/SectionRow";
-import StatsTable from "@/components/StatsTable";
 import { DropDownIcon } from "@/components/icons";
+import Section from "@/components/sections/section";
+import SectionRow from "@/components/sections/section-row";
+import StatsTable from "@/components/stats-table";
 import { useState } from "react";
 // import Button from "@/components/Button";
 

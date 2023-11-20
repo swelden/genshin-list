@@ -1,4 +1,4 @@
-import { Materials, calculateMaterialsRange } from "@/components/MaterialList";
+import { Materials, calculateMaterialsRange } from "@/components/material-list";
 import { Items } from "genshin-db";
 import { Dispatch, SetStateAction, useMemo, useState } from "react";
 

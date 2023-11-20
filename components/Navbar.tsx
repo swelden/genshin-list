@@ -1,8 +1,8 @@
 "use client";
 
-import { CircleButton } from "@/components/Button";
+import { CircleButton } from "@/components/button";
 import { MoonIcon, SunIcon } from "@/components/icons";
-import useDarkMode from "@/hooks/useDarkMode";
+import useDarkMode from "@/hooks/use-dark-mode";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 

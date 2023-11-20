@@ -1,6 +1,6 @@
-import useRange from "@/hooks/useRange";
+import useRange from "@/hooks/use-range";
 import { useEffect, useRef } from "react";
-import styles from "./DoubleRangeSlider.module.css";
+import styles from "./double-range-slider.module.css";
 
 const DoubleRangeSlider: React.FC<{
   initialMin: number;

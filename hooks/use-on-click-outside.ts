@@ -1,6 +1,6 @@
 // https://usehooks-ts.com/react-hook/use-on-click-outside
 
-import useEventListener from "@/hooks/useEventListener";
+import useEventListener from "@/hooks/use-event-listener";
 import { RefObject } from "react";
 
 type Handler = (event: MouseEvent) => void;

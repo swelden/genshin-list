@@ -1,6 +1,6 @@
-import Button from "@/components/Button";
-import { SelectOption } from "@/components/SelectMenu";
+import Button from "@/components/button";
 import { CheckIcon, DropDownIcon } from "@/components/icons";
+import { SelectOption } from "@/components/select-menu";
 import { Listbox, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
 

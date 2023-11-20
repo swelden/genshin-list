@@ -3,13 +3,13 @@
 import { MaterialInfo } from "@/backend/name_page";
 import MaterialProvider, {
   useMaterialContext,
-} from "@/contexts/MaterialContext";
+} from "@/contexts/material-context";
 import { Dispatch, SetStateAction, useMemo } from "react";
 
-import MaterialList from "@/components/MaterialList";
-import Section from "@/components/Sections/Section";
-import { SelectMenu, SelectOption } from "@/components/SelectMenu";
 import { RightArrowIcon } from "@/components/icons";
+import MaterialList from "@/components/material-list";
+import Section from "@/components/sections/section";
+import { SelectMenu, SelectOption } from "@/components/select-menu";
 
 const MaterialCalculatorSection: React.FC<{
   materials: MaterialInfo;

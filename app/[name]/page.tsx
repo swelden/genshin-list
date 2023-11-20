@@ -1,6 +1,6 @@
 import { NamePageProps, getNamePageProps } from "@/backend/name_page";
 import { getCharacterNames } from "@/backend/shared";
-import IconImage from "@/components/IconImage";
+import IconImage from "@/components/icon-image";
 import {
   ActiveTalentSection,
   AscensionSection,
@@ -8,7 +8,7 @@ import {
   ConstellationSection,
   MaterialCalculatorSection,
   PassiveTalentSection,
-} from "@/components/Sections";
+} from "@/components/sections";
 import { formatUrl, imageUrl } from "@/utils/urls";
 import { Metadata, ResolvingMetadata } from "next";
 import Image from "next/image";

@@ -1,4 +1,4 @@
-import IconImage from "@/components/IconImage";
+import IconImage from "@/components/icon-image";
 import { imageUrl } from "@/utils/urls";
 import Image from "next/image";
 import Link from "next/link";

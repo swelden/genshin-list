@@ -1,5 +1,5 @@
 import { CharacterInfo } from "@/backend/name_page";
-import Section from "@/components/Sections/Section";
+import Section from "@/components/sections/section";
 
 const AttributeSection: React.FC<{ character: CharacterInfo }> = ({
   character,

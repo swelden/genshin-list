@@ -1,29 +1,30 @@
 "use client";
 
-import Button from "@/components/Button";
-import AttributeFilter from "@/components/Filters/AttrFilter";
-import Search from "@/components/Filters/SearchFilter";
-import SortDropdown from "@/components/Filters/SortFilter";
+import Button from "@/components/button";
+import AttributeFilter from "@/components/filters/attr-filter";
+import Search from "@/components/filters/search-filter";
+import SortDropdown from "@/components/filters/sort-filter";
 import { FilterIcon, ReverseIcon } from "@/components/icons";
 import { useState } from "react";
 
-type FiltersProps = React.FC<{
+type FiltersProps = {
   setFilter: React.Dispatch<React.SetStateAction<string>>;
   setSortKey: React.Dispatch<React.SetStateAction<CharacterSortKeys>>;
   setIsReversed: React.Dispatch<React.SetStateAction<boolean>>;
   attrFilter: Attributes;
   setAttrFilter: React.Dispatch<React.SetStateAction<Attributes>>;
   regions: Nation[];
-}>;
+};
+
 // NOTE: might use memo for components to prevent rerender on isOpen change
-const Filters: FiltersProps = ({
+export default function FilterHub({
   setFilter,
   setSortKey,
   setIsReversed,
   attrFilter,
   setAttrFilter,
   regions,
-}) => {
+}: FiltersProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -53,7 +54,7 @@ const Filters: FiltersProps = ({
       )}
     </div>
   );
-};
+}
 
 const ReverseBtn: React.FC<{
   setIsReversed: React.Dispatch<React.SetStateAction<boolean>>;
@@ -86,5 +87,3 @@ const FilterBtn: React.FC<{
     </Button>
   );
 };
-
-export default Filters;

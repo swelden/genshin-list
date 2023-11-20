@@ -1,8 +1,8 @@
 "use client";
 
-import CharacterList from "@/components/CharacterList";
-import Filters from "@/components/Filters/Filters";
-import useCharacters from "@/hooks/useCharacters";
+import CharacterList from "@/components/character-list";
+import FilterHub from "@/components/filters/filter-hub";
+import useCharacters from "@/hooks/use-characters";
 
 export const MainCharacterFilterList = ({
   allCharacters,
@@ -23,7 +23,7 @@ export const MainCharacterFilterList = ({
 
   return (
     <>
-      <Filters
+      <FilterHub
         setFilter={setFilter}
         setSortKey={setSortKey}
         setIsReversed={setIsReversed}

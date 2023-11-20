@@ -1,8 +1,8 @@
 // https://usehooks-ts.com/react-hook/use-dark-mode
 
-import useLocalStorage from "@/hooks/useLocalStorage";
-import useMediaQuery from "@/hooks/useMediaQuery";
-import useUpdateEffect from "@/hooks/useUpdateEffect";
+import useLocalStorage from "@/hooks/use-local-storage";
+import useMediaQuery from "@/hooks/use-media-query";
+import useUpdateEffect from "@/hooks/use-update-effect";
 
 const COLOR_SCHEME_QUERY = "(prefers-color-scheme: dark)";
 

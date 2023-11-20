@@ -1,6 +1,6 @@
 // https://usehooks-ts.com/react-hook/use-local-storage
 
-import useEventListener from "@/hooks/useEventListener";
+import useEventListener from "@/hooks/use-event-listener";
 import {
   Dispatch,
   SetStateAction,

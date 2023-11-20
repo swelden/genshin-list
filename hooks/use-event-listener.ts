@@ -1,6 +1,6 @@
 // https://usehooks-ts.com/react-hook/use-event-listener
 
-import useIsomorphicLayoutEffect from "@/hooks/useIsomorphicLayoutEffect";
+import useIsomorphicLayoutEffect from "@/hooks/use-isomorphic-layout-effect";
 import { RefObject, useEffect, useRef } from "react";
 
 function useEventListener<K extends keyof WindowEventMap>(
