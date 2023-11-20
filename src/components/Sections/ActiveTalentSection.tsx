@@ -1,7 +1,9 @@
+"use client";
+
 import React, { useState } from "react";
 import { TalentInfo } from "../../backend/name_page";
-import { DropDownIcon } from "../icons";
 import StatsTable from "../StatsTable";
+import { DropDownIcon } from "../icons";
 import Section from "./Section";
 import SectionRow from "./SectionRow";
 // import Button from "../Button";

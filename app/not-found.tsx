@@ -1,17 +1,13 @@
-import type { NextPage } from "next";
-import Head from "next/head";
-import { LinkButton } from "../components/Button";
+import { Metadata } from "next";
+import { LinkButton } from "../src/components/Button";
 
-const NotFound: NextPage = () => {
+export const metadata: Metadata = {
+  title: "Genshin List - 404",
+};
+
+const NotFound = () => {
   return (
     <main className="container flex flex-1 flex-col gap-6">
-      <Head>
-        <title>Genshin List - 404</title>
-        <meta
-          name="description"
-          content="Find and filter characters from Genshin Impact. Calculate required materials to level up any character."
-        />
-      </Head>
       <div className="flex flex-1 flex-col items-center justify-center">
         <h1 className="text-9xl">404</h1>
         <h2 className="text-center text-4xl">Page Not Found</h2>

@@ -67,12 +67,13 @@ export const LinkButton: React.FC<LinkButtonProps> = ({
   isColorInversed = false,
 }) => {
   return (
-    <Link href={url}>
-      <a className={`key-focus key-focus-body rounded-full ${className}`}>
-        <Button isColorInversed={isColorInversed} as="div">
-          {children}
-        </Button>
-      </a>
+    <Link
+      href={url}
+      className={`key-focus key-focus-body rounded-full ${className}`}
+    >
+      <Button isColorInversed={isColorInversed} as="div">
+        {children}
+      </Button>
     </Link>
   );
 };

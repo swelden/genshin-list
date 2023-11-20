@@ -24,8 +24,7 @@ const IconImage: React.FC<{
       <Image
         src={src}
         alt={alt}
-        layout="fill"
-        objectFit="contain"
+        fill
         unoptimized={unoptimized}
         className={invert ? "invert dark:filter-none" : undefined}
       />

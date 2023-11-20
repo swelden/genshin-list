@@ -9,31 +9,32 @@ type CharacterCardProps = React.FC<{ character: CharacterFilterInfo }>;
 // TODO: add motion-safe or motion-reduce where needed
 export const CharacterCard: CharacterCardProps = ({ character }) => {
   return (
-    <Link href={`/${character.name.toLowerCase().replace(/\s/g, "-")}`}>
-      <a className="relative overflow-hidden rounded-md bg-gradient-to-t from-card-brown to-card-brown shadow-lg outline-none ring-1 ring-black/10 ring-offset-white transition duration-300 ease-in-out hocus:scale-110 hocus:ring-black/20 hocus:ring-offset-4 dark:to-card-brown/10 dark:shadow-zinc-600/50">
-        <InnerCard
-          bgGradient={
-            character.rarity === "4"
-              ? "bg-gradient-to-b from-[#5e5789] to-[#9c75b7]" // 4 star - purple
-              : "bg-gradient-to-b from-[#945c2c] to-[#b27330]" // 5 star - gold
-            // "_bg-gradient-to-b _from-[#9b3c56] _to-[#b4455a]" // colab  - red
-          }
-          imgSrc={imageUrl(character.nameicon)}
-          alt={`${character.name} thumb`}
-          label={character.name}
-          isLabelHoverable={true}
-          size={192}
-        >
-          <div className="absolute top-0.5 left-0.5">
-            <IconImage
-              src={`/element-icons/${character.element}-icon.png`}
-              alt={`${character.element} icon`}
-              twH="h-[1.875rem]"
-              twW="w-[1.875rem]"
-            />
-          </div>
-        </InnerCard>
-      </a>
+    <Link
+      href={`/${character.name.toLowerCase().replace(/\s/g, "-")}`}
+      className="relative overflow-hidden rounded-md bg-gradient-to-t from-card-brown to-card-brown shadow-lg outline-none ring-1 ring-black/10 ring-offset-white transition duration-300 ease-in-out hocus:scale-110 hocus:ring-black/20 hocus:ring-offset-4 dark:to-card-brown/10 dark:shadow-zinc-600/50"
+    >
+      <InnerCard
+        bgGradient={
+          character.rarity === "4"
+            ? "bg-gradient-to-b from-[#5e5789] to-[#9c75b7]" // 4 star - purple
+            : "bg-gradient-to-b from-[#945c2c] to-[#b27330]" // 5 star - gold
+          // "_bg-gradient-to-b _from-[#9b3c56] _to-[#b4455a]" // colab  - red
+        }
+        imgSrc={imageUrl(character.nameicon)}
+        alt={`${character.name} thumb`}
+        label={character.name}
+        isLabelHoverable={true}
+        size={192}
+      >
+        <div className="absolute top-0.5 left-0.5">
+          <IconImage
+            src={`/element-icons/${character.element}-icon.png`}
+            alt={`${character.element} icon`}
+            twH="h-[1.875rem]"
+            twW="w-[1.875rem]"
+          />
+        </div>
+      </InnerCard>
     </Link>
   );
 };

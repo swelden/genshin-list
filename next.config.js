@@ -2,7 +2,20 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ["res.cloudinary.com", "api.ambr.top"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "res.cloudinary.com",
+        port: "",
+        pathname: "/genshin/image/upload/**",
+      },
+      {
+        protocol: "https",
+        hostname: "api.ambr.top",
+        port: "",
+        pathname: "/assets/**",
+      },
+    ],
   },
 };
 

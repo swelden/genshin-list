@@ -1,47 +1,47 @@
-import { GetStaticPaths, GetStaticProps, NextPage } from "next";
-import { ParsedUrlQuery } from "querystring";
-import Head from "next/head";
+import { Metadata, ResolvingMetadata } from "next";
 import Image from "next/image";
-import { formatUrl, imageUrl } from "../utils/urls";
+import { NamePageProps, getNamePageProps } from "../../src/backend/name_page";
+import { getCharacterNames } from "../../src/backend/shared";
+import IconImage from "../../src/components/IconImage";
 import {
-  AttributeSection,
-  AscensionSection,
   ActiveTalentSection,
-  PassiveTalentSection,
+  AscensionSection,
+  AttributeSection,
   ConstellationSection,
   MaterialCalculatorSection,
-} from "../components/Sections";
-import MaterialProvider from "../contexts/MaterialContext";
-import IconImage from "../components/IconImage";
-import { getCharacterNames } from "../backend/shared";
-import { getNamePageProps, NamePageProps } from "../backend/name_page";
+  PassiveTalentSection,
+} from "../../src/components/Sections";
+import { formatUrl, imageUrl } from "../../src/utils/urls";
 
-const CharacterPage: NextPage<NamePageProps> = ({
-  character,
-  materials,
-  talents,
-  constellations,
-}) => {
-  // console.log(character);
+type PageProps = { params: { name: string } };
+
+export async function generateMetadata(
+  { params: { name } }: PageProps,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const { character } = getNamePageProps(name.replace(/-/g, " "));
+  // optionally access and extend (rather than replace) parent metadata
+  const previousImages = (await parent).openGraph?.images || [];
+
+  return {
+    title: `${character.name} - Genshin List`,
+    description: `${character.name} is a playable ${character.rarity}-star ${character.element} ${character.weapontype} character. ${character.description}`,
+    openGraph: {
+      images: [...previousImages],
+    },
+  };
+}
+
+export default function CharacterPage({ params: { name } }: PageProps) {
+  const { character, materials, talents, constellations } = getNamePageProps(
+    name.replace(/-/g, " ")
+  );
 
   return (
     <main className="relative flex flex-col gap-8 sm:overflow-hidden">
-      <Head>
-        <title>{character.name} - Genshin List</title>
-        <meta
-          name="description"
-          content={`${character.name} is a playable ${character.rarity}-star ${character.element} ${character.weapontype} character. ${character.description}`}
-        />
-      </Head>
-
       <HeroSection character={character} />
       <div className="grid gap-8 sm:container">
-        <MaterialProvider
-          levelCosts={materials.characterCosts}
-          talentCosts={materials.talentCosts}
-        >
-          <MaterialCalculatorSection materialData={materials.materialData} />
-        </MaterialProvider>
+        <MaterialCalculatorSection materials={materials} />
         <AscensionSection stats={character.stats} />
         <ActiveTalentSection actives={talents.actives} />
         <PassiveTalentSection passives={talents.passives} />
@@ -49,7 +49,7 @@ const CharacterPage: NextPage<NamePageProps> = ({
       </div>
     </main>
   );
-};
+}
 
 const HeroSection: React.FC<Pick<NamePageProps, "character">> = ({
   character,
@@ -133,30 +133,14 @@ const StarRating: React.FC<{ rarity: number }> = ({ rarity }) => {
   );
 };
 
-export const getStaticPaths: GetStaticPaths = async () => {
+export const dynamicParams = false;
+
+export async function generateStaticParams() {
   const characters = getCharacterNames();
 
-  return {
-    paths: characters.map((character) => ({
-      params: { name: formatUrl(character) },
-    })),
-    fallback: false,
-  };
-};
+  const paths = characters.map((character) => ({
+    name: formatUrl(character),
+  }));
 
-interface Params extends ParsedUrlQuery {
-  name: string;
+  return paths;
 }
-
-export const getStaticProps: GetStaticProps<NamePageProps, Params> = async (
-  context
-) => {
-  const name = context.params!.name.replace(/-/g, " ");
-  const pageProps = getNamePageProps(name);
-
-  return {
-    props: pageProps,
-  };
-};
-
-export default CharacterPage;

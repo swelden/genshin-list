@@ -1,5 +1,6 @@
 import { Items } from "genshin-db";
 import { MaterialDataMap } from "../backend/name_page";
+import { useMaterialContext } from "../contexts/MaterialContext";
 import { imageUrl } from "../utils/urls";
 import { ItemCard } from "./Card";
 import { MaterialList } from "./Sections/MaterialCalculatorSection";
@@ -9,9 +10,26 @@ export interface Materials {
 }
 
 const MaterialList: React.FC<{
-  totalMaterials: MaterialList;
   materialData: MaterialDataMap;
-}> = ({ totalMaterials, materialData }) => {
+}> = ({ materialData }) => {
+  const { characterMaterials, talentMaterials } = useMaterialContext()!;
+
+  // NOTE: shouldn't need to use useMemo
+  const totalMaterials: MaterialList = Object.entries(
+    mergeMaterials(characterMaterials, talentMaterials)
+  ).sort(([aName], [bName]) => {
+    const aIsCharMat = characterMaterials[aName] !== undefined;
+    const bIsCharMat = characterMaterials[bName] !== undefined;
+
+    if (aIsCharMat === bIsCharMat) {
+      return materialData[aName].sortorder - materialData[bName].sortorder;
+    } else if (aIsCharMat) {
+      return -1; // sort a before b
+    } else {
+      return 1; // sort b before a
+    }
+  });
+
   return (
     // NOTE: might remove mora card and replace it with "Required (mora icon) [Amount]" center below cards
     <div className="flex flex-wrap justify-center gap-4 xl:justify-start">

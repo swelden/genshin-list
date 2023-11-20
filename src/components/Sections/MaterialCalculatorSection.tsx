@@ -1,19 +1,22 @@
+"use client";
+
 import { Dispatch, SetStateAction, useMemo } from "react";
-import { MaterialDataMap } from "../../backend/name_page";
-import { useMaterialContext } from "../../contexts/MaterialContext";
+import { MaterialInfo } from "../../backend/name_page";
+import MaterialProvider, {
+  useMaterialContext,
+} from "../../contexts/MaterialContext";
 
 import { RightArrowIcon } from "../icons";
-import MaterialList, { mergeMaterials } from "../MaterialList";
+import MaterialList from "../MaterialList";
 import { SelectMenu, SelectOption } from "../SelectMenu";
 import Section from "./Section";
 
+// TODO: change MaterialList name [conflicts with imported name]
 export type MaterialList = [string, number][];
 
 const MaterialCalculatorSection: React.FC<{
-  materialData: MaterialDataMap;
-}> = ({ materialData }) => {
-  const { characterMaterials, talentMaterials } = useMaterialContext()!;
-
+  materials: MaterialInfo;
+}> = ({ materials: { characterCosts, talentCosts, materialData } }) => {
   const daysofweek: string = useMemo(() => {
     for (const material of Object.values(materialData)) {
       if (material.daysofweek) {
@@ -24,45 +27,28 @@ const MaterialCalculatorSection: React.FC<{
     return "";
   }, [materialData]);
 
-  // NOTE: shouldn't need to use useMemo
-  const totalMaterials: MaterialList = Object.entries(
-    mergeMaterials(characterMaterials, talentMaterials)
-  ).sort(([aName], [bName]) => {
-    const aIsCharMat = characterMaterials[aName] !== undefined;
-    const bIsCharMat = characterMaterials[bName] !== undefined;
-
-    if (aIsCharMat === bIsCharMat) {
-      return materialData[aName].sortorder - materialData[bName].sortorder;
-    } else if (aIsCharMat) {
-      return -1; // sort a before b
-    } else {
-      return 1; // sort b before a
-    }
-  });
-
   // console.log("CALC RENDER");
 
   return (
-    <Section title="Material Calculator">
-      <div className="grid gap-6 xl:grid-cols-[20rem,_auto]">
-        <MaterialCalculator />
-        {/* NOTE: might put "Required Materials" in center and move daysofweek */}
-        <div>
-          <div className="mb-4 text-center xl:mb-1 xl:text-left">
-            <span className="">
-              Talents: {/*comment is to leave space*/}
-              <span className="text-black/80 dark:text-white/80">
-                {daysofweek}
+    <MaterialProvider levelCosts={characterCosts} talentCosts={talentCosts}>
+      <Section title="Material Calculator">
+        <div className="grid gap-6 xl:grid-cols-[20rem,_auto]">
+          <MaterialCalculator />
+          {/* NOTE: might put "Required Materials" in center and move daysofweek */}
+          <div>
+            <div className="mb-4 text-center xl:mb-1 xl:text-left">
+              <span className="">
+                Talents: {/*comment is to leave space*/}
+                <span className="text-black/80 dark:text-white/80">
+                  {daysofweek}
+                </span>
               </span>
-            </span>
+            </div>
+            <MaterialList materialData={materialData} />
           </div>
-          <MaterialList
-            totalMaterials={totalMaterials}
-            materialData={materialData}
-          />
         </div>
-      </div>
-    </Section>
+      </Section>
+    </MaterialProvider>
   );
 };
 
