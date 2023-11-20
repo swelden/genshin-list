@@ -11,9 +11,6 @@ import MaterialList from "../MaterialList";
 import { SelectMenu, SelectOption } from "../SelectMenu";
 import Section from "./Section";
 
-// TODO: change MaterialList name [conflicts with imported name]
-export type MaterialList = [string, number][];
-
 const MaterialCalculatorSection: React.FC<{
   materials: MaterialInfo;
 }> = ({ materials: { characterCosts, talentCosts, materialData } }) => {
@@ -26,8 +23,6 @@ const MaterialCalculatorSection: React.FC<{
 
     return "";
   }, [materialData]);
-
-  // console.log("CALC RENDER");
 
   return (
     <MaterialProvider levelCosts={characterCosts} talentCosts={talentCosts}>

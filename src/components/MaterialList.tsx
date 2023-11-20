@@ -3,19 +3,20 @@ import { MaterialDataMap } from "../backend/name_page";
 import { useMaterialContext } from "../contexts/MaterialContext";
 import { imageUrl } from "../utils/urls";
 import { ItemCard } from "./Card";
-import { MaterialList } from "./Sections/MaterialCalculatorSection";
 
 export interface Materials {
   [key: string]: number;
 }
 
-const MaterialList: React.FC<{
+export default function MaterialList({
+  materialData,
+}: {
   materialData: MaterialDataMap;
-}> = ({ materialData }) => {
+}) {
   const { characterMaterials, talentMaterials } = useMaterialContext()!;
 
   // NOTE: shouldn't need to use useMemo
-  const totalMaterials: MaterialList = Object.entries(
+  const totalMaterials = Object.entries(
     mergeMaterials(characterMaterials, talentMaterials)
   ).sort(([aName], [bName]) => {
     const aIsCharMat = characterMaterials[aName] !== undefined;
@@ -58,7 +59,7 @@ const MaterialList: React.FC<{
       )}
     </div>
   );
-};
+}
 
 export const calculateMaterialsRange = (
   costs: Items[][],
@@ -95,5 +96,3 @@ export const mergeMaterials = (...materials: Materials[]): Materials => {
 
   return merged;
 };
-
-export default MaterialList;
