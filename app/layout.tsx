@@ -1,5 +1,6 @@
 import Footer from "@/components/footer";
 import Navbar from "@/components/navbar";
+import { ThemeProvider } from "@/components/theme-provider";
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
@@ -18,22 +19,29 @@ const genshinFont = localFont({
   variable: "--font-genshin",
 });
 
-// TODO: add next-themes for dark mode
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={genshinFont.className}>
+    // suppressHydrationWarning: next-themes adds extra attributes: class, style for light and dark mode
+    <html lang="en" className={genshinFont.className} suppressHydrationWarning>
       <body className="bg-zinc-100 dark:bg-zinc-900 dark:text-white">
-        <div className="relative flex flex-col gap-6">
-          <div className="flex min-h-screen flex-col">
-            <Navbar />
-            {children}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <div className="relative flex flex-col gap-6">
+            <div className="flex min-h-screen flex-col">
+              <Navbar />
+              {children}
+            </div>
+            <Footer />
           </div>
-          <Footer />
-        </div>
+        </ThemeProvider>
       </body>
     </html>
   );
