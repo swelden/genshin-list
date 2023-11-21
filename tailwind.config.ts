@@ -1,23 +1,14 @@
-const defaultTheme = require("tailwindcss/defaultTheme");
-const plugin = require("tailwindcss/plugin");
-
-const withOpacityValue = (variable) => {
-  return ({ opacityValue }) => {
-    if (opacityValue === undefined) {
-      return `rgb(var(${variable}))`;
-    }
-    return `rgb(var(${variable}) / ${opacityValue})`;
-  };
-};
+/** @type {import('tailwindcss').Config} */
+import plugin from "tailwindcss/plugin";
 
 module.exports = {
+  darkMode: ["class"],
   content: [
     "./pages/**/*.{ts,tsx}",
     "./components/**/*.{ts,tsx}",
     "./app/**/*.{ts,tsx}",
     "./src/**/*.{ts,tsx}",
   ],
-  darkMode: "class",
   theme: {
     container: {
       center: true,
@@ -29,14 +20,14 @@ module.exports = {
     },
     extend: {
       colors: {
-        gold: withOpacityValue("--gold-rgb"),
-        pyro: withOpacityValue("--pyro-rgb"),
-        hydro: withOpacityValue("--hydro-rgb"),
-        dendro: withOpacityValue("--dendro-rgb"),
-        electro: withOpacityValue("--electro-rgb"),
-        anemo: withOpacityValue("--anemo-rgb"),
-        cryo: withOpacityValue("--cryo-rgb"),
-        geo: withOpacityValue("--geo-rgb"),
+        gold: "hsl(var(--gold-rgb))",
+        pyro: "hsl(var(--pyro-rgb))",
+        hydro: "hsl(var(--hydro-rgb))",
+        dendro: "hsl(var(--dendro-rgb))",
+        electro: "hsl(var(--electro-rgb))",
+        anemo: "hsl(var(--anemo-rgb))",
+        cryo: "hsl(var(--cryo-rgb))",
+        geo: "hsl(var(--geo-rgb))",
 
         "btn-brown": "#ECE5D8", // same as sort-text-brown, sort-bg-active-brown
         "btn-brown-click": "#A89C96",
@@ -54,7 +45,7 @@ module.exports = {
         14: "repeat(14, minmax(0, 1fr))",
       },
       fontFamily: {
-        sans: ["HYWenHei-85W", ...defaultTheme.fontFamily.sans],
+        genshin: ["var(--font-genshin)"],
       },
     },
   },

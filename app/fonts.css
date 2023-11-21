@@ -1,7 +1,0 @@
-@font-face {
-  font-family: "HYWenHei-85W";
-  src:
-    url("/fonts/ja-jp.woff2") format("woff2"),
-    url("/fonts/ja-jp.woff") format("woff");
-  font-display: swap;
-}

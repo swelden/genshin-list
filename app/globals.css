@@ -5,14 +5,14 @@
 @layer base {
   :root {
     /* colors */
-    --gold-rgb: 204 136 41;
-    --pyro-rgb: 255 92 92;
-    --hydro-rgb: 61 158 255;
-    --dendro-rgb: 140 185 27;
-    --electro-rgb: 227 104 227;
-    --anemo-rgb: 100 206 167;
-    --cryo-rgb: 87 203 203;
-    --geo-rgb: 220 153 59;
+    --gold-rgb: 35 66.5% 48%;
+    --pyro-rgb: 0 100% 68%;
+    --hydro-rgb: 210 100% 62%;
+    --dendro-rgb: 77 74.5% 41.6%;
+    --electro-rgb: 300 68.7% 64.9%;
+    --anemo-rgb: 158 52% 60%;
+    --cryo-rgb: 180 52.7% 56.9%;
+    --geo-rgb: 35 69.7% 54.7%;
 
     /* scrollbar */
     --scrollbar-thumb: rgb(161, 161, 170);
@@ -22,14 +22,14 @@
 
   html.dark {
     /* colors */
-    --gold-rgb: 255 215 128;
-    --pyro-rgb: 255 153 153;
-    --hydro-rgb: 128 192 255;
-    --dendro-rgb: 179 234 42;
-    --electro-rgb: 255 172 255;
-    --anemo-rgb: 128 255 215;
-    --cryo-rgb: 153 255 255;
-    --geo-rgb: 255 230 153;
+    --gold-rgb: 41 100% 75.1%;
+    --pyro-rgb: 0 100% 80%;
+    --hydro-rgb: 210 100% 75.1%;
+    --dendro-rgb: 77 82.1% 54.1%;
+    --electro-rgb: 300 100% 83.7%;
+    --anemo-rgb: 161 100% 75.1%;
+    --cryo-rgb: 180 100% 80%;
+    --geo-rgb: 45 100% 80%;
 
     /* scrollbar */
     --scrollbar-thumb: rgb(113 113 122);
