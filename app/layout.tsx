@@ -1,4 +1,5 @@
-import Layout from "@/components/layout";
+import Footer from "@/components/footer";
+import Navbar from "@/components/navbar";
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
@@ -26,7 +27,13 @@ export default function RootLayout({
   return (
     <html lang="en" className={genshinFont.className}>
       <body className="bg-zinc-100 dark:bg-zinc-900 dark:text-white">
-        <Layout>{children}</Layout>
+        <div className="relative flex flex-col gap-6">
+          <div className="flex min-h-screen flex-col">
+            <Navbar />
+            {children}
+          </div>
+          <Footer />
+        </div>
       </body>
     </html>
   );
