@@ -1,3 +1,10 @@
+import { clsx, type ClassValue } from "clsx";
+import { twMerge } from "tailwind-merge";
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}
+
 export const myRound = (num: number, precision: number) => {
   const multiplier = 10 ** precision;
   return Math.round((num + Number.EPSILON) * multiplier) / multiplier;

@@ -16,10 +16,14 @@
   },
   "dependencies": {
     "@headlessui/react": "^1.7.17",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.0.0",
     "genshin-db": "^4.3.5",
     "next": "14.0.3",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "tailwind-merge": "^2.0.0",
+    "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
     "@types/node": "^20",
