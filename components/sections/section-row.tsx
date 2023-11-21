@@ -1,6 +1,6 @@
 import { TalentInfo } from "@/backend/name_page";
 import IconImage from "@/components/icon-image";
-import { imageUrl } from "@/utils/urls";
+import { formatImageUrl } from "@/lib/utils";
 
 type Passives = TalentInfo["passives"][number];
 interface Ability extends Passives {
@@ -26,7 +26,7 @@ const SectionRow: React.FC<SectionRowProps> = ({
       <div className="flex items-center gap-2">
         <IconImage
           // NOTE: do not retrieve images from .mihoyo.com (it sends cookies)
-          src={isAbsoluteIconPath ? ability.icon : imageUrl(ability.icon)}
+          src={isAbsoluteIconPath ? ability.icon : formatImageUrl(ability.icon)}
           alt={`${ability.name} icon`}
           twH="h-12"
           twW="w-12"

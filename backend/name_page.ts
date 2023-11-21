@@ -1,5 +1,5 @@
-import { formatAttributes, formatMarkdown } from "@/utils/markdown";
-import { myRound } from "@/utils/math";
+import { formatAttributes, formatMarkdown } from "@/lib/markdown";
+import { myRound } from "@/lib/utils";
 import * as genshindb from "genshin-db";
 
 interface ActiveTalent

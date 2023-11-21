@@ -1,7 +1,7 @@
 import { MaterialDataMap } from "@/backend/name_page";
 import { ItemCard } from "@/components/card";
 import { useMaterialContext } from "@/contexts/material-context";
-import { imageUrl } from "@/utils/urls";
+import { formatImageUrl } from "@/lib/utils";
 import { Items } from "genshin-db";
 
 export interface Materials {
@@ -43,7 +43,7 @@ export default function MaterialList({
           >
             <ItemCard
               label={count.toLocaleString()}
-              imgSrc={imageUrl(materialData[material].nameicon)}
+              imgSrc={formatImageUrl(materialData[material].nameicon)}
               alt={`${material} icon`}
               size={147} // NOTE: make equal to lg:w-[??px] on max system font size
               smallIcon={material === "Mora"}

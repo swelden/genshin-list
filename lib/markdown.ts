@@ -1,4 +1,4 @@
-import { myRound } from "@/utils/math";
+import { myRound } from "@/lib/utils";
 import { CombatTalentDetail } from "genshin-db";
 
 const ElementColor = {

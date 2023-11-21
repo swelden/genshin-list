@@ -9,7 +9,7 @@ import {
   MaterialCalculatorSection,
   PassiveTalentSection,
 } from "@/components/sections";
-import { formatUrl, imageUrl } from "@/utils/urls";
+import { formatImageUrl, formatNameUrl } from "@/lib/utils";
 import { Metadata, ResolvingMetadata } from "next";
 import Image from "next/image";
 
@@ -59,7 +59,7 @@ const HeroSection: React.FC<Pick<NamePageProps, "character">> = ({
       <div className="col-span-full row-span-full overflow-hidden sm:overflow-visible lg:flex lg:items-center lg:justify-center">
         <div className="relative -left-1/4 -z-10 flex w-[150%] flex-col items-center justify-center lg:left-0 lg:w-full">
           <Image
-            src={imageUrl(character.image)} // gacha-splash
+            src={formatImageUrl(character.image)} // gacha-splash
             alt={`${character.name} gacha splash`}
             width={1920}
             height={960}
@@ -139,7 +139,7 @@ export async function generateStaticParams() {
   const characters = getCharacterNames();
 
   const paths = characters.map((character) => ({
-    name: formatUrl(character),
+    name: formatNameUrl(character),
   }));
 
   return paths;

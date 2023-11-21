@@ -1,5 +1,5 @@
 import IconImage from "@/components/icon-image";
-import { imageUrl } from "@/utils/urls";
+import { formatImageUrl } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -19,7 +19,7 @@ export const CharacterCard: CharacterCardProps = ({ character }) => {
             : "bg-gradient-to-b from-[#945c2c] to-[#b27330]" // 5 star - gold
           // "_bg-gradient-to-b _from-[#9b3c56] _to-[#b4455a]" // colab  - red
         }
-        imgSrc={imageUrl(character.nameicon)}
+        imgSrc={formatImageUrl(character.nameicon)}
         alt={`${character.name} thumb`}
         label={character.name}
         isLabelHoverable={true}
