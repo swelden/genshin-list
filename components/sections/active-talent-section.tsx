@@ -1,12 +1,12 @@
 "use client";
 
 import { TalentInfo } from "@/backend/name_page";
-import { DropDownIcon } from "@/components/icons";
+import { Icons } from "@/components/icons";
 import Section from "@/components/sections/section";
 import SectionRow from "@/components/sections/section-row";
 import StatsTable from "@/components/stats-table";
 import { useState } from "react";
-// import Button from "@/components/Button";
+// import Button from "@/components/button";
 
 const ActiveTalentSection: React.FC<{ actives: TalentInfo["actives"] }> = ({
   actives,
@@ -52,7 +52,7 @@ const ActiveTalentAttributes: React.FC<{
       >
         <span className="pr-1.5">{talent.category} Stats</span>
         <span className={`transition-transform ${isOpen ? "rotate-180" : ""}`}>
-          <DropDownIcon />
+          <Icons.dropdown className="h-6 w-6 min-w-[1.5rem]" />
         </span>
       </button>
 

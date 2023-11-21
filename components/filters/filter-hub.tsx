@@ -4,7 +4,7 @@ import Button from "@/components/button";
 import AttributeFilter from "@/components/filters/attr-filter";
 import Search from "@/components/filters/search-filter";
 import SortDropdown from "@/components/filters/sort-filter";
-import { FilterIcon, ReverseIcon } from "@/components/icons";
+import { Icons } from "@/components/icons";
 import { useState } from "react";
 
 type FiltersProps = {
@@ -66,7 +66,7 @@ const ReverseBtn: React.FC<{
       ariaLabel="Reverse"
       className={className}
     >
-      <ReverseIcon />
+      <Icons.reverse className="h-5 w-5" />
     </Button>
   );
 };
@@ -83,7 +83,7 @@ const FilterBtn: React.FC<{
       ariaExpanded={isOpen}
       className={className}
     >
-      <FilterIcon />
+      <Icons.filter className="h-4 w-4" />
     </Button>
   );
 };

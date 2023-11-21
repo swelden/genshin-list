@@ -1,4 +1,4 @@
-import { CheckIcon, DropDownIcon } from "@/components/icons";
+import { Icons } from "@/components/icons";
 import { Listbox, Transition } from "@headlessui/react";
 import { Fragment } from "react";
 
@@ -21,10 +21,10 @@ export const SelectMenu = <T extends {}>({
   return (
     <Listbox value={currentValue.value} onChange={handleChange}>
       <div className="relative">
-        <Listbox.Button className="key-focus key-focus-section relative w-full cursor-pointer rounded-md bg-zinc-100 py-1.5 pr-10 pl-4 text-left shadow-sm ring-1 ring-black/5 transition-colors hover:bg-zinc-200 dark:bg-zinc-700 hover:dark:bg-zinc-600">
+        <Listbox.Button className="key-focus key-focus-section relative w-full cursor-pointer rounded-md bg-zinc-100 py-1.5 pl-4 pr-10 text-left shadow-sm ring-1 ring-black/5 transition-colors hover:bg-zinc-200 dark:bg-zinc-700 hover:dark:bg-zinc-600">
           <span className="block truncate">{currentValue.label}</span>
           <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2 text-gray-400">
-            <DropDownIcon />
+            <Icons.dropdown className="h-6 w-6 min-w-[1.5rem]" />
           </span>
         </Listbox.Button>
         <Transition
@@ -51,7 +51,7 @@ export const SelectMenu = <T extends {}>({
                     <span className="block truncate">{label}</span>
                     {selected && (
                       <span className="absolute inset-y-0 right-0 flex items-center pr-3 text-amber-600 dark:text-amber-400">
-                        <CheckIcon />
+                        <Icons.checkmark className="h-4 w-4" />
                       </span>
                     )}
                   </>

@@ -6,7 +6,7 @@ import MaterialProvider, {
 } from "@/contexts/material-context";
 import { Dispatch, SetStateAction, useMemo } from "react";
 
-import { RightArrowIcon } from "@/components/icons";
+import { Icons } from "@/components/icons";
 import MaterialList from "@/components/material-list";
 import Section from "@/components/sections/section";
 import { SelectMenu, SelectOption } from "@/components/select-menu";
@@ -96,7 +96,7 @@ const RangeSelector: React.FC<{
           handleChange={setMin}
         />
         <div className="flex w-full items-center justify-center text-gray-600">
-          <RightArrowIcon />
+          <Icons.rightarrow className="h-6 w-6 min-w-[1.5rem]" />
         </div>
         <SelectMenu
           options={options}

@@ -1,4 +1,4 @@
-import { CloseIcon, SearchIcon } from "@/components/icons";
+import { Icons } from "@/components/icons";
 import { useState } from "react";
 
 type SearchProps = React.FC<{
@@ -23,7 +23,7 @@ const Search: SearchProps = ({ setFilter }) => {
   return (
     <div className="flex items-center rounded-full border-2 border-zinc-300 transition-colors ease-in-out focus-within:border-blue-600 dark:border-btn-navy dark:focus-within:border-yellow-600">
       <div className="flex w-10 justify-center text-btn-navy dark:text-zinc-300">
-        <SearchIcon />
+        <Icons.search className="h-4 w-4" />
       </div>
       <input
         className="w-full bg-transparent py-1.5 pr-2 leading-tight outline-none"
@@ -38,7 +38,7 @@ const Search: SearchProps = ({ setFilter }) => {
         className="flex w-10 cursor-pointer justify-center text-btn-navy dark:text-zinc-300"
         onClick={resetInputField}
       >
-        <CloseIcon />
+        <Icons.close className="h-4 w-4" />
       </div>
     </div>
   );

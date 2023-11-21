@@ -1,5 +1,5 @@
 import Button from "@/components/button";
-import { CheckIcon, DropDownIcon } from "@/components/icons";
+import { Icons } from "@/components/icons";
 import { SelectOption } from "@/components/select-menu";
 import { Listbox, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
@@ -50,7 +50,7 @@ const SelectMenu: React.FC<SelectMenuProps> = ({
             Sort by {selectedOption.label}
           </span>
           <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
-            <DropDownIcon />
+            <Icons.dropdown className="h-6 w-6 min-w-[1.5rem]" />
           </span>
         </Listbox.Button>
         <Transition
@@ -80,7 +80,7 @@ const SelectMenu: React.FC<SelectMenuProps> = ({
                     <span className="block">{option.label}</span>
                     {selected && (
                       <span className="absolute inset-y-0 right-0 flex items-center pr-3">
-                        <CheckIcon />
+                        <Icons.checkmark className="h-4 w-4" />
                       </span>
                     )}
                   </div>
