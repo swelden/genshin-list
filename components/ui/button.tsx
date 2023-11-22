@@ -103,7 +103,7 @@ export const CircleButton: React.FC<CircleButtonProps> = ({
       >
         {children}
       </Button>
-      <div className="absolute top-1/2 left-1/2 z-0 flex h-10 w-10 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-btn-outline"></div>
+      <div className="absolute left-1/2 top-1/2 z-0 flex h-10 w-10 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-btn-outline"></div>
     </button>
   );
 };
