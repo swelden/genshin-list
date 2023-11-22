@@ -73,6 +73,13 @@ export interface NamePageProps {
   constellations: ConstellationInfo[];
 }
 
+export const getCharacterNames = () => {
+  const charactersNotIncluded = new Set(["Aether", "Lumine"]);
+  return genshindb
+    .characters("names", { matchCategories: true })
+    .filter((character) => !charactersNotIncluded.has(character));
+};
+
 const getActives = (talents: genshindb.Talent): ActiveTalent[] => {
   const images = talents.images!;
 

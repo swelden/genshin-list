@@ -1,5 +1,5 @@
 import { MainCharacterFilterList } from "@/components/main-character-filter-list";
-import { getCharacterNames } from "@/lib/shared";
+import { getCharacterNames } from "@/lib/get-character-details";
 import * as genshindb from "genshin-db";
 
 export default async function Home() {

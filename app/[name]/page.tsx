@@ -7,8 +7,11 @@ import {
   MaterialCalculatorSection,
   PassiveTalentSection,
 } from "@/components/sections";
-import { NamePageProps, getNamePageProps } from "@/lib/name_page";
-import { getCharacterNames } from "@/lib/shared";
+import {
+  NamePageProps,
+  getCharacterNames,
+  getNamePageProps,
+} from "@/lib/get-character-details";
 import { formatImageUrl, formatNameUrl } from "@/lib/utils";
 import { Metadata, ResolvingMetadata } from "next";
 import Image from "next/image";

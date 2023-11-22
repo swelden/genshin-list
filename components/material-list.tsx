@@ -1,6 +1,6 @@
 import { ItemCard } from "@/components/card";
 import { useMaterialContext } from "@/contexts/material-context";
-import { MaterialDataMap } from "@/lib/name_page";
+import { MaterialDataMap } from "@/lib/get-character-details";
 import { formatImageUrl } from "@/lib/utils";
 import { Items } from "genshin-db";
 

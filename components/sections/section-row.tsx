@@ -1,5 +1,5 @@
 import IconImage from "@/components/icon-image";
-import { TalentInfo } from "@/lib/name_page";
+import { TalentInfo } from "@/lib/get-character-details";
 import { formatImageUrl } from "@/lib/utils";
 
 type Passives = TalentInfo["passives"][number];

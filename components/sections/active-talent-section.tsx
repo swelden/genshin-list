@@ -4,7 +4,7 @@ import { Icons } from "@/components/icons";
 import Section from "@/components/sections/section";
 import SectionRow from "@/components/sections/section-row";
 import StatsTable from "@/components/stats-table";
-import { TalentInfo } from "@/lib/name_page";
+import { TalentInfo } from "@/lib/get-character-details";
 import { useState } from "react";
 // import Button from "@/components/button";
 

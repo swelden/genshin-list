@@ -3,7 +3,7 @@
 import MaterialProvider, {
   useMaterialContext,
 } from "@/contexts/material-context";
-import { MaterialInfo } from "@/lib/name_page";
+import { MaterialInfo } from "@/lib/get-character-details";
 import { Dispatch, SetStateAction, useMemo } from "react";
 
 import { Icons } from "@/components/icons";

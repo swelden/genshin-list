@@ -3,7 +3,7 @@
 import { Materials, mergeMaterials } from "@/components/material-list";
 import { SelectOption } from "@/components/select-menu";
 import useMinMax from "@/hooks/use-min-max";
-import { MaterialInfo } from "@/lib/name_page";
+import { MaterialInfo } from "@/lib/get-character-details";
 import { createContext, useCallback, useContext, useMemo } from "react";
 
 interface MaterialContextType {
