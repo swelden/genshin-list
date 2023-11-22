@@ -8,16 +8,11 @@
     --gold-rgb: 35 66.5% 48%;
     --pyro-rgb: 0 100% 68%;
     --hydro-rgb: 210 100% 62%;
-    --dendro-rgb: 77 74.5% 41.6%;
+    --dendro-rgb: 111 52% 57%;
     --electro-rgb: 300 68.7% 64.9%;
     --anemo-rgb: 158 52% 60%;
     --cryo-rgb: 180 52.7% 56.9%;
     --geo-rgb: 35 69.7% 54.7%;
-
-    /* scrollbar */
-    --scrollbar-thumb: rgb(161, 161, 170);
-    --scrollbar-thumb-hover: rgb(113, 113, 122);
-    --scrollbar-track: rgba(0, 0, 0, 0.15);
   }
 
   html.dark {
@@ -25,23 +20,11 @@
     --gold-rgb: 41 100% 75.1%;
     --pyro-rgb: 0 100% 80%;
     --hydro-rgb: 210 100% 75.1%;
-    --dendro-rgb: 77 82.1% 54.1%;
+    --dendro-rgb: 111 100% 76.7%;
     --electro-rgb: 300 100% 83.7%;
     --anemo-rgb: 161 100% 75.1%;
     --cryo-rgb: 180 100% 80%;
     --geo-rgb: 45 100% 80%;
-
-    /* scrollbar */
-    --scrollbar-thumb: rgb(113 113 122);
-    --scrollbar-thumb-hover: rgb(63 63 70);
-    --scrollbar-track: rgba(240, 240, 240, 0.025);
-  }
-
-  /* Scrollbar Styles */
-  html {
-    /* both properties are for firefox support */
-    scrollbar-width: thin;
-    scrollbar-color: var(--scrollbar-thumb) rgba(0, 0, 0, 0);
   }
 }
 
@@ -57,33 +40,4 @@
   .key-focus-body {
     @apply ring-offset-zinc-100 dark:ring-offset-zinc-900;
   }
-}
-
-/* NOTE: might move .scrollbar to utilities */
-body::-webkit-scrollbar,
-.scrollbar::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-
-body::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0);
-}
-
-.scrollbar::-webkit-scrollbar-track {
-  background: var(--scrollbar-track);
-  border-radius: 10px;
-}
-
-body::-webkit-scrollbar-thumb,
-.scrollbar::-webkit-scrollbar-thumb {
-  background-color: var(--scrollbar-thumb);
-  border: 3px solid rgba(0, 0, 0, 0);
-  border-radius: 10px;
-}
-
-body::-webkit-scrollbar-thumb:hover,
-.scrollbar::-webkit-scrollbar-thumb:hover {
-  background: var(--scrollbar-thumb-hover);
-  border: 1px solid rgba(90, 90, 90, 0.3);
 }

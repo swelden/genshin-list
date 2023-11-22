@@ -5,7 +5,7 @@ const StatsTable: React.FC<{
 }> = ({ data, topHeadings, numCols }) => {
   return (
     <div
-      className={`scrollbar mt-4 w-full overflow-x-auto rounded-lg border ${sharedBorderClasses}`}
+      className={`mt-4 w-full overflow-x-auto rounded-lg border ${sharedBorderClasses}`}
     >
       <div className={`overflow-hidden ${numCols === 1 ? "w-auto" : "w-max"}`}>
         <table className="w-full text-left text-sm">
