@@ -28,8 +28,7 @@ const SectionRow: React.FC<SectionRowProps> = ({
           // NOTE: do not retrieve images from .mihoyo.com (it sends cookies)
           src={isAbsoluteIconPath ? ability.icon : formatImageUrl(ability.icon)}
           alt={`${ability.name} icon`}
-          twH="h-12"
-          twW="w-12"
+          className="h-12 w-12"
           invert={true}
         />
         <h3 className="text-lg">{ability.name}</h3>

@@ -25,12 +25,11 @@ export const CharacterCard: CharacterCardProps = ({ character }) => {
         isLabelHoverable={true}
         size={192}
       >
-        <div className="absolute top-0.5 left-0.5">
+        <div className="absolute left-0.5 top-0.5">
           <IconImage
             src={`/element-icons/${character.element}-icon.png`}
             alt={`${character.element} icon`}
-            twH="h-[1.875rem]"
-            twW="w-[1.875rem]"
+            className="h-[1.875rem] w-[1.875rem]"
           />
         </div>
       </InnerCard>

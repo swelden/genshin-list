@@ -92,8 +92,7 @@ const DetailHeader: React.FC<Pick<NamePageProps, "character">> = ({
           <IconImage
             src={`/element-icons/${character.element}-icon.png`}
             alt={`${character.element} icon`}
-            twH="h-[4.25rem]" // 68px
-            twW="w-[4.25rem]" // 68px
+            className="h-[4.25rem] w-[4.25rem]"
           />
           <div className="flex flex-col py-5 sm:py-4">
             <h1 className="mb-1 text-3xl">{character.name}</h1>
@@ -128,8 +127,7 @@ const StarRating: React.FC<{ rarity: number }> = ({ rarity }) => {
           key={`star-${i}`}
           src="/star-rating.png"
           alt="Star Icon"
-          twH="h-[1.125rem]" // 18px
-          twW="w-[1.125rem]" // 18px
+          className="h-[1.125rem] w-[1.125rem]"
         />
       ))}
     </div>

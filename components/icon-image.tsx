@@ -1,32 +1,26 @@
+import { cn } from "@/lib/utils";
 import Image from "next/image";
 
 const IconImage: React.FC<{
   src: string;
-  twH: string;
-  twW: string;
   alt: string;
   className?: string;
   unoptimized?: boolean;
   invert?: boolean;
-}> = ({
-  src,
-  twH,
-  twW,
-  alt,
-  className = "",
-  unoptimized = true,
-  invert = false,
-}) => {
+}> = ({ src, alt, className, unoptimized = true, invert = false }) => {
   return (
     <div
-      className={`relative flex aspect-square items-center justify-center ${twH} ${twW} ${className}`}
+      className={cn(
+        "relative flex aspect-square items-center justify-center",
+        className,
+      )}
     >
       <Image
         src={src}
         alt={alt}
         fill
         unoptimized={unoptimized}
-        className={invert ? "invert dark:filter-none" : undefined}
+        className={cn(invert && "invert dark:filter-none")}
       />
     </div>
   );
