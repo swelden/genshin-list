@@ -1,6 +1,6 @@
-import { ConstellationInfo } from "@/backend/name_page";
 import Section from "@/components/sections/section";
 import SectionRow from "@/components/sections/section-row";
+import { ConstellationInfo } from "@/lib/name_page";
 
 const ConstellationSection: React.FC<{
   constellations: ConstellationInfo[];

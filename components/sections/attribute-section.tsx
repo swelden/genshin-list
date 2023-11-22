@@ -1,5 +1,5 @@
-import { CharacterInfo } from "@/backend/name_page";
 import Section from "@/components/sections/section";
+import { CharacterInfo } from "@/lib/name_page";
 
 const AttributeSection: React.FC<{ character: CharacterInfo }> = ({
   character,
@@ -35,7 +35,7 @@ const AttrRow: React.FC<{ title: string; info: string }> = ({
   return (
     <tr className="border-b border-neutral-500/20 odd:bg-zinc-300/20 dark:odd:bg-zinc-600/10">
       <th
-        className="py-3 px-2 text-left font-normal text-black/60 dark:text-white/60"
+        className="px-2 py-3 text-left font-normal text-black/60 dark:text-white/60"
         scope="row"
       >
         {title}

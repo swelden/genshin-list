@@ -1,6 +1,6 @@
-import { CharacterStats } from "@/backend/name_page";
 import Section from "@/components/sections/section";
 import StatsTable from "@/components/stats-table";
+import { CharacterStats } from "@/lib/name_page";
 
 const AscensionSection: React.FC<{ stats: CharacterStats }> = ({ stats }) => {
   return (

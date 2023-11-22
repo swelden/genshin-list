@@ -1,5 +1,3 @@
-import { NamePageProps, getNamePageProps } from "@/backend/name_page";
-import { getCharacterNames } from "@/backend/shared";
 import IconImage from "@/components/icon-image";
 import {
   ActiveTalentSection,
@@ -9,6 +7,8 @@ import {
   MaterialCalculatorSection,
   PassiveTalentSection,
 } from "@/components/sections";
+import { NamePageProps, getNamePageProps } from "@/lib/name_page";
+import { getCharacterNames } from "@/lib/shared";
 import { formatImageUrl, formatNameUrl } from "@/lib/utils";
 import { Metadata, ResolvingMetadata } from "next";
 import Image from "next/image";
@@ -84,7 +84,7 @@ const DetailHeader: React.FC<Pick<NamePageProps, "character">> = ({
   // TODO: find better way of preventing long names from covering gacha image
   return (
     <div className="col-span-5 col-start-2 row-span-full mb-8 flex items-center">
-      <div className="flex flex-col gap-2 px-5 sm:px-4 lg:mt-32 lg:-ml-5">
+      <div className="flex flex-col gap-2 px-5 sm:px-4 lg:-ml-5 lg:mt-32">
         <div className="flex w-fit items-center gap-2 rounded-lg bg-zinc-100/90 pr-3 dark:bg-zinc-900/90 lg:backdrop-blur-sm">
           <IconImage
             src={`/element-icons/${character.element}-icon.png`}
@@ -111,7 +111,7 @@ const DetailHeader: React.FC<Pick<NamePageProps, "character">> = ({
 
 const CharacterBadge: React.FC<{ text: string }> = ({ text }) => {
   return (
-    <div className="rounded bg-zinc-300/50 py-1 px-2 text-xs dark:bg-zinc-700/70 lg:backdrop-blur-sm">
+    <div className="rounded bg-zinc-300/50 px-2 py-1 text-xs dark:bg-zinc-700/70 lg:backdrop-blur-sm">
       {text}
     </div>
   );

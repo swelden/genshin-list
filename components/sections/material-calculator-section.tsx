@@ -1,9 +1,9 @@
 "use client";
 
-import { MaterialInfo } from "@/backend/name_page";
 import MaterialProvider, {
   useMaterialContext,
 } from "@/contexts/material-context";
+import { MaterialInfo } from "@/lib/name_page";
 import { Dispatch, SetStateAction, useMemo } from "react";
 
 import { Icons } from "@/components/icons";

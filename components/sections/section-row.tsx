@@ -1,5 +1,5 @@
-import { TalentInfo } from "@/backend/name_page";
 import IconImage from "@/components/icon-image";
+import { TalentInfo } from "@/lib/name_page";
 import { formatImageUrl } from "@/lib/utils";
 
 type Passives = TalentInfo["passives"][number];

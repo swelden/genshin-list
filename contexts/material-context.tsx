@@ -1,9 +1,9 @@
 "use client";
 
-import { MaterialInfo } from "@/backend/name_page";
 import { Materials, mergeMaterials } from "@/components/material-list";
 import { SelectOption } from "@/components/select-menu";
 import useMinMax from "@/hooks/use-min-max";
+import { MaterialInfo } from "@/lib/name_page";
 import { createContext, useCallback, useContext, useMemo } from "react";
 
 interface MaterialContextType {
