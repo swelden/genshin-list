@@ -4,29 +4,22 @@ import { CombatTalentDetail } from "genshin-db";
 const ElementColor = {
   Pyro: "text-pyro",
   Hydro: "text-hydro",
-  Wet: "text-hydro", // Mona
+  Wet: "text-hydro",
   Dendro: "text-dendro",
   Electro: "text-electro",
-  Freikugel: "text-electro", // Fischl
+  Freikugel: "text-electro",
   Anemo: "text-anemo",
   Cryo: "text-cryo",
   Geo: "text-geo",
 } as const;
 
-const createElementSpanRegExp = (): RegExp => {
+const createElementSpanRegExp = () => {
   const invalidBehindWords = ["\\d"].join("|");
   const validBehindWords = ["AoE"].join("|");
-  const elements: string = new Array<keyof typeof ElementColor>(
-    "Pyro",
-    "Hydro",
-    "Wet", // Mona
-    "Dendro",
-    "Electro",
-    "Freikugel", // Fischl
-    "Anemo",
-    "Cryo",
-    "Geo",
-  ).join("|");
+  const elements: string = Object.keys(ElementColor).join("|");
+  // validAheadWords => words that are also highlighted the element color
+  // ex: [Shenhe] Cryo CRIT DMG => Cryo should still be highlighted but not CRIT DMG
+  // ex: Cryo DMG => Cryo and DMG would both be highlighted
   const validAheadWords = [
     "DMG",
     "RES",
@@ -35,9 +28,10 @@ const createElementSpanRegExp = (): RegExp => {
     "Construct",
     "related Elemental Reactions?",
   ].join("|");
+  // invalidEndChars & invalidEndWords => if these follow element then no color is added, including element
+  // ex: [Dori] Electro Swirl => neither Electro or Swirl are highlighted
   const invalidEndChars = "[a-zA-Z0-9_-]";
-  const invalidEndWords = ["Swirl", "Explosion", "Pearl"].join("|"); // NOTE: only checking for uppercase won't work
-  // NOTE: ex: Cryo CRIT DMG -> Cryo should still be highlighted but not CRIT DMG
+  const invalidEndWords = ["Swirl", "Explosion", "Pearl"].join("|");
 
   const invalidBehindRegExp = `(?<!(${invalidBehindWords})(\\s|-))`;
   const validBehindRegExp = `((${validBehindWords})(\\s|-))*`;
@@ -51,11 +45,8 @@ const createElementSpanRegExp = (): RegExp => {
   );
 };
 
-// const elementSpanRegExp = createElementSpanRegExp();
-// console.log(elementSpanRegExp);
-
 // NOTE: might sanitize because I don't have control over text
-export const formatMarkdown = (text: string): string => {
+export const formatMarkdown = (text: string) => {
   return text
     .replace(
       /\*\*([^*]+)\*\*/g, // **text** -> <span>text</span>
@@ -74,9 +65,8 @@ export const formatTalentLabel = (
   label: string,
   parameters: CombatTalentDetail["attributes"]["parameters"],
   talentlevel: number,
-): string => {
+) => {
   return label.replace(/{(.*?)}/g, (_match, p1: string) => {
-    // console.log(match, p1);
     const [paramnum, format] = p1.split(":");
     const value = parameters[paramnum][talentlevel - 1];
     const precision = format.includes("F") ? parseInt(format[1]) : 1;
@@ -106,7 +96,7 @@ const MAX_LVL_MAP: { [key: string]: number } = {
 export const formatAttributes = (
   attributes: CombatTalentDetail["attributes"],
   category: string,
-): { label: string; params: string[] }[] => {
+) => {
   return attributes.labels.map((label) => {
     const [heading, params] = label.split("|");
     const maxLvl = Math.min(
