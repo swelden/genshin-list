@@ -1,6 +1,6 @@
 import { Icons } from "@/components/icons";
 import { SelectOption } from "@/components/select-menu";
-import Button from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 import { Listbox, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
 
@@ -41,12 +41,8 @@ const SelectMenu: React.FC<SelectMenuProps> = ({
   return (
     <Listbox value={selectedOption} onChange={handleChange}>
       <div className={`relative ${className}`}>
-        <Listbox.Button
-          as={Button}
-          className="pl-4 pr-3"
-          justifyContent="justify-start"
-        >
-          <span className="block truncate pr-4">
+        <Listbox.Button as={Button} className="pl-4 pr-3">
+          <span className="block w-full truncate pr-4 text-left">
             Sort by {selectedOption.label}
           </span>
           <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
