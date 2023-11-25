@@ -58,7 +58,7 @@ const SelectMenu: React.FC<SelectMenuProps> = ({
           leaveFrom="transform scale-100 opacity-100"
           leaveTo="transform scale-95 opacity-0"
         >
-          <Listbox.Options className="absolute z-10 w-full rounded-2xl bg-card-brown py-1 shadow-xl ring-1 ring-black/20 focus:outline-none dark:bg-card-navy">
+          <Listbox.Options className="absolute z-10 w-full rounded-2xl bg-select py-1 text-select-foreground shadow-xl ring-1 ring-black/20 focus:outline-none">
             {options.map((option) => (
               <Listbox.Option
                 key={option.label}
@@ -67,9 +67,9 @@ const SelectMenu: React.FC<SelectMenuProps> = ({
               >
                 {({ active, selected }) => (
                   <div
-                    className={`rounded-full p-0.5 px-3 font-medium text-btn-navy transition-colors duration-[50ms] dark:text-btn-brown ${
+                    className={`rounded-full p-0.5 px-3 font-medium transition-colors duration-[50ms] ${
                       active
-                        ? "bg-sort-light-brown active:bg-card-navy active:text-card-brown dark:bg-sort-light-navy dark:active:bg-btn-brown dark:active:text-card-navy"
+                        ? "bg-select-hover active:bg-select-active active:text-select-active-foreground"
                         : ""
                     }`}
                   >

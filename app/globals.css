@@ -4,27 +4,112 @@
 
 @layer base {
   :root {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+
+    --item: 42 23% 89%;
+    --item-foreground: 221 16% 35%;
+
+    --select: 42 23% 89%;
+    --select-foreground: 224 18% 28%;
+    --select-hover: 41 26% 81%;
+    --select-active: 221 16% 35%;
+    --select-active-foreground: 42 23% 89%;
+
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+
+    --primary: 221 16% 35%;
+    --primary-foreground: 39 34% 89%;
+    --primary-active: 20 9% 62%;
+    --primary-outline: 242 12% 56%;
+
+    --secondary: 39 34% 89%;
+    --secondary-foreground: 224 18% 28%;
+
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+
+    --ring: 240 5.9% 10%;
+
+    --radius: 0.5rem;
+
     /* colors */
-    --gold-rgb: 35 66.5% 48%;
-    --pyro-rgb: 0 100% 68%;
-    --hydro-rgb: 210 100% 62%;
-    --dendro-rgb: 111 52% 57%;
-    --electro-rgb: 300 68.7% 64.9%;
-    --anemo-rgb: 158 52% 60%;
-    --cryo-rgb: 180 52.7% 56.9%;
-    --geo-rgb: 35 69.7% 54.7%;
+    --gold: 35 66.5% 48%;
+    --pyro: 0 100% 68%;
+    --hydro: 210 100% 62%;
+    --dendro: 111 52% 57%;
+    --electro: 300 68.7% 64.9%;
+    --anemo: 158 52% 60%;
+    --cryo: 180 52.7% 56.9%;
+    --geo: 35 69.7% 54.7%;
   }
 
   html.dark {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+
+    --item: 42 23% 89%;
+    --item-foreground: 221 16% 35%;
+
+    --select: 221 16% 35%;
+    --select-foreground: 39 34% 89%;
+    --select-hover: 218 12% 43%;
+    --select-active: 39 34% 89%;
+    --select-active-foreground: 221 16% 35%;
+
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+
+    --primary: 39 34% 89%;
+    --primary-foreground: 224 18% 28%;
+    --primary-active: 20 9% 62%;
+    --primary-outline: 242 12% 56%;
+
+    --secondary: 224 18% 28%;
+    --secondary-foreground: 39 34% 89%;
+
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
+
+    --ring: 240 4.9% 83.9%;
+
     /* colors */
-    --gold-rgb: 41 100% 75.1%;
-    --pyro-rgb: 0 100% 80%;
-    --hydro-rgb: 210 100% 75.1%;
-    --dendro-rgb: 111 100% 76.7%;
-    --electro-rgb: 300 100% 83.7%;
-    --anemo-rgb: 161 100% 75.1%;
-    --cryo-rgb: 180 100% 80%;
-    --geo-rgb: 45 100% 80%;
+    --gold: 41 100% 75.1%;
+    --pyro: 0 100% 80%;
+    --hydro: 210 100% 75.1%;
+    --dendro: 111 100% 76.7%;
+    --electro: 300 100% 83.7%;
+    --anemo: 161 100% 75.1%;
+    --cryo: 180 100% 80%;
+    --geo: 45 100% 80%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
   }
 }
 

@@ -6,11 +6,12 @@ import Link from "next/link";
 type CharacterCardProps = React.FC<{ character: CharacterFilterInfo }>;
 
 // TODO: add motion-safe or motion-reduce where needed
+// TODO: fix top corners having bg-item without gradient
 export const CharacterCard: CharacterCardProps = ({ character }) => {
   return (
     <Link
       href={`/${character.name.toLowerCase().replace(/\s/g, "-")}`}
-      className="relative overflow-hidden rounded-md bg-gradient-to-t from-card-brown to-card-brown shadow-lg outline-none ring-1 ring-black/10 ring-offset-white transition duration-300 ease-in-out hocus:scale-110 hocus:ring-black/20 hocus:ring-offset-4 dark:to-card-brown/10 dark:shadow-zinc-600/50"
+      className="relative overflow-hidden rounded-md bg-item shadow-lg outline-none ring-1 ring-black/10 ring-offset-white transition duration-300 ease-in-out hocus:scale-110 hocus:ring-black/20 hocus:ring-offset-4 dark:shadow-zinc-600/50"
     >
       <InnerCard
         bgGradient={
@@ -55,7 +56,7 @@ export const ItemCard: React.FC<{
   isUnoptimized = false,
 }) => {
   return (
-    <div className="relative overflow-hidden rounded-md bg-gradient-to-t from-card-brown to-card-brown shadow-md ring-1 ring-black/10 dark:to-card-brown/10 dark:shadow-zinc-600/50">
+    <div className="relative overflow-hidden rounded-md bg-item shadow-md ring-1 ring-black/10 dark:shadow-zinc-600/50">
       <InnerCard
         bgGradient={bgGradient}
         label={label}
@@ -96,7 +97,7 @@ const InnerCard: React.FC<{
   return (
     <>
       <div
-        className={`relative flex items-center justify-center overflow-hidden rounded-t-md rounded-br-[1.25rem] border-b border-white/20 ${bgGradient} ${
+        className={`relative flex items-center justify-center overflow-hidden rounded-br-[1.25rem] border-b border-white/20 ${bgGradient} ${
           smallIcon ? "p-2" : ""
         }`}
       >
@@ -114,7 +115,7 @@ const InnerCard: React.FC<{
         title={isLabelHoverable ? `${label}` : undefined}
       >
         <span
-          className={`relative block w-full truncate text-center capitalize text-card-navy ${className}`}
+          className={`relative block w-full truncate text-center capitalize text-item-foreground ${className}`}
         >
           {label}
         </span>

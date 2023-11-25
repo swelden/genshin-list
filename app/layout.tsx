@@ -27,7 +27,7 @@ export default function RootLayout({
   return (
     // suppressHydrationWarning: next-themes adds extra attributes: class, style for light and dark mode
     <html lang="en" className={genshinFont.className} suppressHydrationWarning>
-      <body className="bg-zinc-100 dark:bg-zinc-900 dark:text-white">
+      <body className="">
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

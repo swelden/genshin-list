@@ -21,32 +21,78 @@ module.exports = {
     },
     extend: {
       colors: {
-        gold: "hsl(var(--gold-rgb))",
-        pyro: "hsl(var(--pyro-rgb))",
-        hydro: "hsl(var(--hydro-rgb))",
-        dendro: "hsl(var(--dendro-rgb))",
-        electro: "hsl(var(--electro-rgb))",
-        anemo: "hsl(var(--anemo-rgb))",
-        cryo: "hsl(var(--cryo-rgb))",
-        geo: "hsl(var(--geo-rgb))",
+        gold: "hsl(var(--gold))",
+        pyro: "hsl(var(--pyro))",
+        hydro: "hsl(var(--hydro))",
+        dendro: "hsl(var(--dendro))",
+        electro: "hsl(var(--electro))",
+        anemo: "hsl(var(--anemo))",
+        cryo: "hsl(var(--cryo))",
+        geo: "hsl(var(--geo))",
 
-        "btn-brown": "#ECE5D8", // same as sort-text-brown, sort-bg-active-brown
-        "btn-brown-click": "#A89C96",
-        "btn-outline": "#83829D", // for circle buttons
-        "btn-navy": "#3B4255",
+        background: "hsl(var(--background))",
+        foreground: "hsl(var(--foreground))",
 
-        "card-brown": "#E9E5DC",
-        "card-navy": "#495366", // same as sort-bg-navy, sort-text-active-navy
+        muted: {
+          DEFAULT: "hsl(var(--muted))",
+          foreground: "hsl(var(--muted-foreground))",
+        },
 
-        // for sort hover bg
-        "sort-light-brown": "#DBD3C2",
-        "sort-light-navy": "#606979",
+        popover: {
+          DEFAULT: "hsl(var(--popover))",
+          foreground: "hsl(var(--popover-foreground))",
+        },
+
+        card: {
+          DEFAULT: "hsl(var(--card))",
+          foreground: "hsl(var(--card-foreground))",
+        },
+
+        item: {
+          DEFAULT: "hsl(var(--item))",
+          foreground: "hsl(var(--item-foreground))",
+        },
+
+        select: {
+          DEFAULT: "hsl(var(--select))",
+          foreground: "hsl(var(--select-foreground))",
+          hover: "hsl(var(--select-hover))",
+          active: "hsl(var(--select-active))",
+          "active-foreground": "hsl(var(--select-active-foreground))",
+        },
+
+        border: "hsl(var(--border))",
+        input: "hsl(var(--input))",
+
+        primary: {
+          DEFAULT: "hsl(var(--primary))",
+          foreground: "hsl(var(--primary-foreground))",
+          active: "hsl(var(--primary-active))",
+          outline: "hsl(var(--primary-outline))",
+        },
+
+        secondary: {
+          DEFAULT: "hsl(var(--secondary))",
+          foreground: "hsl(var(--secondary-foreground))",
+        },
+
+        accent: {
+          DEFAULT: "hsl(var(--accent))",
+          foreground: "hsl(var(--accent-foreground))",
+        },
+
+        ring: "hsl(var(--ring))",
       },
       gridTemplateColumns: {
         14: "repeat(14, minmax(0, 1fr))",
       },
       fontFamily: {
         genshin: ["var(--font-genshin)"],
+      },
+      borderRadius: {
+        lg: "var(--radius)",
+        md: "calc(var(--radius) - 2px)",
+        sm: "calc(var(--radius) - 4px)",
       },
     },
   },

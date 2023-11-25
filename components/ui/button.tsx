@@ -9,8 +9,9 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
+        // TODO: remove w-full
         default:
-          "key-focus key-focus-body w-full bg-card-navy text-btn-brown shadow-sm ring-gray-700 hover:shadow-inner hover:ring-2 hover:ring-offset-gray-700 focus-visible:shadow-inner active:bg-btn-brown-click active:text-white active:shadow-lg active:ring-opacity-70 dark:bg-btn-brown dark:text-btn-navy dark:ring-white dark:hover:ring-offset-white dark:active:bg-btn-brown-click dark:active:text-white dark:active:ring-opacity-70",
+          "key-focus key-focus-body w-full bg-primary text-primary-foreground shadow-sm ring-gray-700 hover:shadow-inner hover:ring-2 hover:ring-offset-gray-700 focus-visible:shadow-inner active:bg-primary-active active:text-white active:shadow-lg active:ring-opacity-70 dark:ring-white dark:hover:ring-offset-white",
         secondary: "",
       },
       size: {
@@ -61,7 +62,7 @@ const CircleButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
         >
           <div>{children}</div>
         </Button>
-        <div className="absolute left-1/2 top-1/2 z-0 flex h-10 w-10 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-btn-outline"></div>
+        <div className="absolute left-1/2 top-1/2 z-0 flex h-10 w-10 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-primary-outline"></div>
       </button>
     );
   },
