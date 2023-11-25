@@ -1,6 +1,7 @@
 import { Icons } from "@/components/icons";
 import { SelectOption } from "@/components/select-menu";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import { Listbox, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
 
@@ -40,7 +41,7 @@ const SelectMenu: React.FC<SelectMenuProps> = ({
 
   return (
     <Listbox value={selectedOption} onChange={handleChange}>
-      <div className={`relative ${className}`}>
+      <div className={cn("relative", className)}>
         <Listbox.Button as={Button} className="pl-4 pr-3">
           <span className="block w-full truncate pr-4 text-left">
             Sort by {selectedOption.label}
@@ -67,11 +68,11 @@ const SelectMenu: React.FC<SelectMenuProps> = ({
               >
                 {({ active, selected }) => (
                   <div
-                    className={`rounded-full p-0.5 px-3 font-medium transition-colors duration-[50ms] ${
-                      active
-                        ? "bg-select-hover active:bg-select-active active:text-select-active-foreground"
-                        : ""
-                    }`}
+                    className={cn(
+                      "rounded-full p-0.5 px-3 font-medium transition-colors duration-[50ms]",
+                      active &&
+                        "bg-select-hover active:bg-select-active active:text-select-active-foreground",
+                    )}
                   >
                     <span className="block">{option.label}</span>
                     {selected && (

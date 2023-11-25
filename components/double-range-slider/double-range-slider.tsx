@@ -1,4 +1,5 @@
 import useRange from "@/hooks/use-range";
+import { cn } from "@/lib/utils";
 import { useEffect, useRef } from "react";
 import styles from "./double-range-slider.module.css";
 
@@ -65,7 +66,10 @@ const DoubleRangeSlider: React.FC<{
             step={step}
             max={max}
             value={start}
-            className={`${styles.thumb} pointer-events-none absolute -top-1 h-1 w-full appearance-none bg-transparent`}
+            className={cn(
+              styles.thumb,
+              "pointer-events-none absolute -top-1 h-1 w-full appearance-none bg-transparent",
+            )}
           />
 
           <input
@@ -75,7 +79,10 @@ const DoubleRangeSlider: React.FC<{
             step={step}
             max={max}
             value={end}
-            className={`${styles.thumb} pointer-events-none absolute -top-1 h-1 w-full appearance-none bg-transparent`}
+            className={cn(
+              styles.thumb,
+              "pointer-events-none absolute -top-1 h-1 w-full appearance-none bg-transparent",
+            )}
           />
         </div>
       </div>

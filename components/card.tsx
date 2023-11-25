@@ -1,5 +1,5 @@
 import IconImage from "@/components/icon-image";
-import { formatImageUrl } from "@/lib/utils";
+import { cn, formatImageUrl } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -97,9 +97,11 @@ const InnerCard: React.FC<{
   return (
     <>
       <div
-        className={`relative flex items-center justify-center overflow-hidden rounded-br-[1.25rem] border-b border-white/20 ${bgGradient} ${
-          smallIcon ? "p-2" : ""
-        }`}
+        className={cn(
+          "relative flex items-center justify-center overflow-hidden rounded-br-[1.25rem] border-b border-white/20",
+          bgGradient,
+          smallIcon && "p-2",
+        )}
       >
         <Image
           src={imgSrc}
@@ -115,7 +117,10 @@ const InnerCard: React.FC<{
         title={isLabelHoverable ? `${label}` : undefined}
       >
         <span
-          className={`relative block w-full truncate text-center capitalize text-item-foreground ${className}`}
+          className={cn(
+            "relative block w-full truncate text-center capitalize text-item-foreground",
+            className,
+          )}
         >
           {label}
         </span>

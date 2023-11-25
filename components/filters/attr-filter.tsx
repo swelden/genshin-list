@@ -1,3 +1,5 @@
+import { cn } from "@/lib/utils";
+
 const visions: readonly Vision[] = [
   "Pyro",
   "Hydro",
@@ -76,17 +78,18 @@ const FilterContainer: FilterContainerProps = ({
   };
 
   return (
-    <div className="bg-select text-select-foreground flex flex-wrap items-center justify-center gap-2 rounded-lg p-1.5 ring-1 ring-black/10">
+    <div className="flex flex-wrap items-center justify-center gap-2 rounded-lg bg-select p-1.5 text-select-foreground ring-1 ring-black/10">
       {attrData.map((attr) => (
         // TODO: add focus classes
         <button
           key={attr}
           onClick={() => handleFilter(attr)}
-          className={`key-focus ring-offset-select cursor-pointer rounded-md px-2 py-1 transition ${
+          className={cn(
+            "key-focus cursor-pointer rounded-md px-2 py-1 ring-offset-select transition",
             (attrFilter[category] as Set<Attribute>).has(attr)
               ? "bg-select-active text-select-active-foreground"
-              : "hover:bg-select-hover"
-          }`}
+              : "hover:bg-select-hover",
+          )}
         >
           {attr === "4" || attr === "5" ? `${attr} ★` : attr}
         </button>

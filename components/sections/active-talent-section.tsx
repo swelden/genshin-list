@@ -5,6 +5,7 @@ import Section from "@/components/sections/section";
 import SectionRow from "@/components/sections/section-row";
 import StatsTable from "@/components/stats-table";
 import { TalentInfo } from "@/lib/get-character-details";
+import { cn } from "@/lib/utils";
 import { useState } from "react";
 // import Button from "@/components/button";
 
@@ -39,7 +40,7 @@ const ActiveTalentAttributes: React.FC<{
         isColorInversed={true}
       >
         <span className="pr-1.5">{talent.category} Stats</span>
-        <span className={`transition-transform ${isOpen ? "rotate-180" : ""}`}>
+        <span className={cn("transition-transform", isOpen && "rotate-180")}>
           <DropDownIcon />
         </span>
       </Button> */}
@@ -51,7 +52,7 @@ const ActiveTalentAttributes: React.FC<{
         aria-controls={isOpen ? panelId : undefined}
       >
         <span className="pr-1.5">{talent.category} Stats</span>
-        <span className={`transition-transform ${isOpen ? "rotate-180" : ""}`}>
+        <span className={cn("transition-transform", isOpen && "rotate-180")}>
           <Icons.dropdown className="h-6 w-6 min-w-[1.5rem]" />
         </span>
       </button>
