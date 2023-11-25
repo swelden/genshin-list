@@ -1,3 +1,5 @@
+import { cn } from "@/lib/utils";
+
 type IconProps = React.HTMLAttributes<SVGElement>;
 
 export const Icons = {
@@ -24,8 +26,13 @@ export const Icons = {
       <path d="M7 10l5 5 5-5z" stroke="currentColor" fill="currentColor"></path>
     </svg>
   ),
-  filter: (props: IconProps) => (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" {...props}>
+  filter: ({ className, ...props }: IconProps) => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 512 512"
+      className={cn("-scale-x-100", className)}
+      {...props}
+    >
       <path
         d="M487.976 0H24.028C2.71 0-8.047 25.866 7.058 40.971L192 225.941V432c0 7.831 3.821 15.17 10.237 19.662l80 55.98C298.02 518.69 320 507.493 320 487.98V225.941l184.947-184.97C520.021 25.896 509.338 0 487.976 0z"
         stroke="currentColor"
@@ -33,8 +40,13 @@ export const Icons = {
       ></path>
     </svg>
   ),
-  reverse: (props: IconProps) => (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" {...props}>
+  reverse: ({ className, ...props }: IconProps) => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      className={cn("-scale-x-100", className)}
+      {...props}
+    >
       <path
         d="M8 16H4l6 6V2H8zm6-11v17h2V8h4l-6-6z"
         stroke="currentColor"
