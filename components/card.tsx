@@ -11,7 +11,7 @@ export const CharacterCard: CharacterCardProps = ({ character }) => {
   return (
     <Link
       href={`/${character.name.toLowerCase().replace(/\s/g, "-")}`}
-      className="relative overflow-hidden rounded-md bg-item shadow-lg outline-none ring-1 ring-black/10 ring-offset-white transition duration-300 ease-in-out hocus:scale-110 hocus:ring-black/20 hocus:ring-offset-4 dark:shadow-zinc-600/50"
+      className="relative overflow-hidden rounded-md bg-item shadow-lg outline-none ring-1 ring-black/10 ring-offset-white transition duration-300 ease-in-out hocus:scale-105 hocus:ring-black/20 hocus:ring-offset-[3px] dark:shadow-zinc-600/50"
     >
       <InnerCard
         bgGradient={
@@ -21,15 +21,15 @@ export const CharacterCard: CharacterCardProps = ({ character }) => {
           // "_bg-gradient-to-b _from-[#9b3c56] _to-[#b4455a]" // colab  - red
         }
         imgSrc={formatImageUrl(character.nameicon)}
-        alt={`${character.name} thumb`}
+        alt={`${character.name}`}
         label={character.name}
         isLabelHoverable={true}
-        size={192}
+        size={132}
       >
         <div className="absolute left-0.5 top-0.5">
           <IconImage
             src={`/element-icons/${character.element}-icon.png`}
-            alt={`${character.element} icon`}
+            alt={`${character.element}`}
             className="h-[1.875rem] w-[1.875rem]"
           />
         </div>
