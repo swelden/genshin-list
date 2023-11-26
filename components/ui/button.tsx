@@ -9,13 +9,13 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        // TODO: remove w-full
         default:
-          "key-focus key-focus-body w-full bg-primary text-primary-foreground shadow-sm ring-gray-700 hover:shadow-inner hover:ring-2 hover:ring-offset-gray-700 focus-visible:shadow-inner active:bg-primary-active active:text-white active:shadow-lg active:ring-opacity-70 dark:ring-white dark:hover:ring-offset-white",
+          "key-focus key-focus-body bg-primary text-xl text-primary-foreground shadow-sm ring-gray-700 hover:shadow-inner hover:ring-2 hover:ring-offset-gray-700 focus-visible:shadow-inner active:bg-primary-active active:text-white active:shadow-lg active:ring-opacity-70 dark:ring-white dark:hover:ring-offset-white",
         secondary: "",
       },
       size: {
-        default: "h-9 px-4 py-2",
+        default: "h-11 px-5 py-2",
+        icon: "h-11 w-24 px-5 py-2",
       },
     },
     defaultVariants: {

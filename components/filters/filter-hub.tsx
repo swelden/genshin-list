@@ -30,20 +30,10 @@ export default function FilterHub({
   return (
     <div className="grid grid-cols-1 items-center justify-between gap-4 lg:grid-cols-2">
       <Search setFilter={setFilter} />
-      <div className="grid grid-cols-4 gap-1.5 sm:gap-2 md:gap-3 xl:gap-4">
-        <SortDropdown
-          setSortKey={setSortKey}
-          className="col-span-full sm:col-span-2"
-        />
-        <ReverseBtn
-          setIsReversed={setIsReversed}
-          className="col-span-2 sm:col-span-1"
-        />
-        <FilterBtn
-          isOpen={isOpen}
-          setIsOpen={setIsOpen}
-          className="col-span-2 sm:col-span-1"
-        />
+      <div className="flex gap-4">
+        <FilterBtn isOpen={isOpen} setIsOpen={setIsOpen} className="" />
+        <SortDropdown setSortKey={setSortKey} className="w-full" />
+        <ReverseBtn setIsReversed={setIsReversed} className="" />
       </div>
       {isOpen && (
         <AttributeFilter
@@ -65,8 +55,9 @@ const ReverseBtn: React.FC<{
       onClick={() => setIsReversed((prev) => !prev)}
       aria-label="Reverse"
       className={className}
+      size={"icon"}
     >
-      <Icons.reverse className="h-5 w-5" />
+      <Icons.reverse className="h-7 w-7" />
     </Button>
   );
 };
@@ -82,8 +73,9 @@ const FilterBtn: React.FC<{
       aria-label="Filter"
       aria-expanded={isOpen}
       className={className}
+      size={"icon"}
     >
-      <Icons.filter className="h-4 w-4" />
+      <Icons.filter className="h-6 w-6" />
     </Button>
   );
 };

@@ -3,6 +3,7 @@ import { SelectOption } from "@/components/select-menu";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Listbox, Transition } from "@headlessui/react";
+import { Check } from "lucide-react";
 import { Fragment, useState } from "react";
 
 const options: SelectOption<CharacterSortKeys>[] = [
@@ -42,13 +43,11 @@ const SelectMenu: React.FC<SelectMenuProps> = ({
   return (
     <Listbox value={selectedOption} onChange={handleChange}>
       <div className={cn("relative", className)}>
-        <Listbox.Button as={Button} className="pl-4 pr-3">
-          <span className="block w-full truncate pr-4 text-left">
+        <Listbox.Button as={Button} className="w-full justify-between truncate">
+          <span className="w-full truncate text-left">
             Sort by {selectedOption.label}
           </span>
-          <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
-            <Icons.dropdown className="h-6 w-6 min-w-[1.5rem]" />
-          </span>
+          <Icons.dropdown className="h-7 w-7" />
         </Listbox.Button>
         <Transition
           as={Fragment}
@@ -59,17 +58,17 @@ const SelectMenu: React.FC<SelectMenuProps> = ({
           leaveFrom="transform scale-100 opacity-100"
           leaveTo="transform scale-95 opacity-0"
         >
-          <Listbox.Options className="absolute z-10 w-full rounded-2xl bg-select py-1 text-select-foreground shadow-xl ring-1 ring-black/20 focus:outline-none">
+          <Listbox.Options className="absolute z-10 flex w-full flex-col gap-[0.125rem] rounded-3xl bg-select p-[0.3125rem] text-select-foreground shadow-xl ring-1 ring-black/20 focus:outline-none">
             {options.map((option) => (
               <Listbox.Option
                 key={option.label}
-                className="relative w-full cursor-default select-none px-1 py-[0.035rem] text-left outline-none"
+                className="flex h-11 text-xl outline-none"
                 value={option}
               >
                 {({ active, selected }) => (
                   <div
                     className={cn(
-                      "rounded-full p-0.5 px-3 font-medium transition-colors duration-[50ms]",
+                      "relative flex h-full w-full items-center rounded-full p-0.5 px-3 font-medium transition-colors duration-[50ms]",
                       active &&
                         "bg-select-hover active:bg-select-active active:text-select-active-foreground",
                     )}
@@ -77,7 +76,7 @@ const SelectMenu: React.FC<SelectMenuProps> = ({
                     <span className="block">{option.label}</span>
                     {selected && (
                       <span className="absolute inset-y-0 right-0 flex items-center pr-3">
-                        <Icons.checkmark className="h-4 w-4" />
+                        <Check className="h-6 w-6" strokeWidth={4} />
                       </span>
                     )}
                   </div>

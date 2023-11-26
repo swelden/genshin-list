@@ -3,15 +3,6 @@ import { cn } from "@/lib/utils";
 type IconProps = React.HTMLAttributes<SVGElement>;
 
 export const Icons = {
-  checkmark: (props: IconProps) => (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" {...props}>
-      <path
-        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-        stroke="currentColor"
-        fill="currentColor"
-      ></path>
-    </svg>
-  ),
   close: (props: IconProps) => (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" {...props}>
       <path
@@ -23,7 +14,7 @@ export const Icons = {
   ),
   dropdown: (props: IconProps) => (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" {...props}>
-      <path d="M7 10l5 5 5-5z" stroke="currentColor" fill="currentColor"></path>
+      <path d="M20 8H4L12 16L20 8Z" fill="currentColor" />
     </svg>
   ),
   filter: ({ className, ...props }: IconProps) => (
@@ -49,6 +40,7 @@ export const Icons = {
     >
       <path
         d="M8 16H4l6 6V2H8zm6-11v17h2V8h4l-6-6z"
+        strokeWidth={1.5}
         stroke="currentColor"
         fill="currentColor"
       ></path>
