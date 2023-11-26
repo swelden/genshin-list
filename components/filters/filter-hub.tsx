@@ -2,7 +2,7 @@
 
 import AttributeFilter from "@/components/filters/attr-filter";
 import Search from "@/components/filters/search-filter";
-import SortDropdown from "@/components/filters/sort-filter";
+import { SortDropdown } from "@/components/filters/sort-filter";
 import { Icons } from "@/components/icons";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
@@ -30,6 +30,7 @@ export default function FilterHub({
   return (
     <div className="grid grid-cols-1 items-center justify-between gap-4 lg:grid-cols-2">
       <Search setFilter={setFilter} />
+      {/* TODO: update mobile styles */}
       <div className="flex gap-4">
         <FilterBtn isOpen={isOpen} setIsOpen={setIsOpen} className="" />
         <SortDropdown setSortKey={setSortKey} className="w-full" />
