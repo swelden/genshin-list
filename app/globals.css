@@ -126,3 +126,9 @@
     @apply ring-offset-zinc-100 dark:ring-offset-zinc-900;
   }
 }
+
+@media (max-width: calc(theme("screens.sm") - 1px)) {
+  .container {
+    @apply px-4;
+  }
+}
