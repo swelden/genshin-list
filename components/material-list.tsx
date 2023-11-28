@@ -1,4 +1,4 @@
-import { ItemCard } from "@/components/card";
+import { ItemCard } from "@/components/card-templates";
 import { useMaterialContext } from "@/contexts/material-context";
 import { MaterialDataMap } from "@/lib/get-character-details";
 import { formatImageUrl } from "@/lib/utils";
@@ -43,11 +43,10 @@ export default function MaterialList({
           >
             <ItemCard
               label={count.toLocaleString()}
-              imgSrc={formatImageUrl(materialData[material].nameicon)}
-              alt={`${material} icon`}
+              src={formatImageUrl(materialData[material].nameicon)}
+              alt={material}
               size={147} // NOTE: make equal to lg:w-[??px] on max system font size
-              smallIcon={material === "Mora"}
-              isUnoptimized={true}
+              unoptimized={true}
             />
           </div>
         );
