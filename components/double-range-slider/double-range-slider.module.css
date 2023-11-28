@@ -1,9 +1,0 @@
-.thumb::-webkit-slider-thumb {
-  @apply pointer-events-auto aspect-square w-5 rotate-45 cursor-pointer appearance-none rounded bg-btn-navy;
-  border: 2px solid white;
-}
-
-.thumb::-moz-range-thumb {
-  @apply pointer-events-auto aspect-square w-5 rotate-45 cursor-pointer appearance-none rounded bg-btn-navy;
-  border: 2px solid white;
-}
