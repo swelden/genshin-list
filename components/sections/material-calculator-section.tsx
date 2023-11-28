@@ -11,9 +11,11 @@ import MaterialList from "@/components/material-list";
 import { SelectMenu, SelectOption } from "@/components/select-menu";
 import { Section, SectionHeader } from "@/components/ui/section";
 
-const MaterialCalculatorSection: React.FC<{
+export const MaterialCalculatorSection = ({
+  materials: { characterCosts, talentCosts, materialData },
+}: {
   materials: MaterialInfo;
-}> = ({ materials: { characterCosts, talentCosts, materialData } }) => {
+}) => {
   const daysofweek: string = useMemo(() => {
     for (const material of Object.values(materialData)) {
       if (material.daysofweek) {
@@ -49,8 +51,9 @@ const MaterialCalculatorSection: React.FC<{
     </MaterialProvider>
   );
 };
+MaterialCalculatorSection.displayName = "MaterialCalculatorSection";
 
-const MaterialCalculator: React.FC<{}> = ({}) => {
+const MaterialCalculator = () => {
   return (
     <div className="flex w-full flex-col gap-4 lg:px-11 xl:px-0">
       <LevelCalculator />
@@ -59,6 +62,7 @@ const MaterialCalculator: React.FC<{}> = ({}) => {
     </div>
   );
 };
+MaterialCalculator.displayName = "MaterialCalculator";
 
 const LevelTemplateSelector = () => {
   const { setNoLevels, setMaxLevels } = useMaterialContext()!;
@@ -80,6 +84,7 @@ const LevelTemplateSelector = () => {
     </div>
   );
 };
+LevelTemplateSelector.displayName = "LevelTemplateSelector";
 
 const RangeSelector: React.FC<{
   title: string;
@@ -110,6 +115,7 @@ const RangeSelector: React.FC<{
     </div>
   );
 };
+RangeSelector.displayName = "RangeSelector";
 
 const LevelCalculator: React.FC<{}> = () => {
   const { levelMin, setLevelMin, levelMax, setLevelMax, levelOptions } =
@@ -126,6 +132,7 @@ const LevelCalculator: React.FC<{}> = () => {
     />
   );
 };
+LevelCalculator.displayName = "LevelCalculator";
 
 const TalentCalculator: React.FC<{}> = () => {
   const {
@@ -173,5 +180,4 @@ const TalentCalculator: React.FC<{}> = () => {
     </>
   );
 };
-
-export default MaterialCalculatorSection;
+TalentCalculator.displayName = "TalentCalculator";

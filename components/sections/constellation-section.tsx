@@ -1,10 +1,12 @@
-import SectionRow from "@/components/sections/section-row";
+import { SectionRow } from "@/components/sections/section-row";
 import { Section, SectionHeader } from "@/components/ui/section";
 import { ConstellationInfo } from "@/lib/get-character-details";
 
-const ConstellationSection: React.FC<{
+export const ConstellationSection = ({
+  constellations,
+}: {
   constellations: ConstellationInfo[];
-}> = ({ constellations }) => {
+}) => {
   return (
     <Section>
       <SectionHeader>Constellations</SectionHeader>
@@ -18,5 +20,4 @@ const ConstellationSection: React.FC<{
     </Section>
   );
 };
-
-export default ConstellationSection;
+ConstellationSection.displayName = "ConstellationSection";

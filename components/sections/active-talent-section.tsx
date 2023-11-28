@@ -1,15 +1,17 @@
 "use client";
 
 import { Icons } from "@/components/icons";
-import SectionRow from "@/components/sections/section-row";
+import { SectionRow } from "@/components/sections/section-row";
 import StatsTable from "@/components/stats-table";
 import { Section, SectionHeader } from "@/components/ui/section";
 import { TalentInfo } from "@/lib/get-character-details";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
 
-const ActiveTalentSection: React.FC<{ actives: TalentInfo["actives"] }> = ({
+export const ActiveTalentSection = ({
   actives,
+}: {
+  actives: TalentInfo["actives"];
 }) => {
   return (
     <Section className="overflow-hidden">
@@ -22,11 +24,14 @@ const ActiveTalentSection: React.FC<{ actives: TalentInfo["actives"] }> = ({
     </Section>
   );
 };
+ActiveTalentSection.displayName = "ActiveTalentSection";
 
 // TODO: replace with @radix-ui/react-collapsible
-const ActiveTalentAttributes: React.FC<{
+const ActiveTalentAttributes = ({
+  talent,
+}: {
   talent: TalentInfo["actives"][number];
-}> = ({ talent }) => {
+}) => {
   const [isOpen, setIsOpen] = useState(false);
   const maxCols = talent.attributes[0].params.length;
   const panelId = `${talent.category.toLowerCase().replace(/\s/g, "-")}-panel`;
@@ -59,5 +64,4 @@ const ActiveTalentAttributes: React.FC<{
     </div>
   );
 };
-
-export default ActiveTalentSection;
+ActiveTalentAttributes.displayName = "ActiveTalentAttributes";

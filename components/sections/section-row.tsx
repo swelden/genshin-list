@@ -13,13 +13,13 @@ interface SectionRowProps {
   isAbsoluteIconPath?: boolean;
 }
 
-const SectionRow: React.FC<SectionRowProps> = ({
+export const SectionRow = ({
   ability,
   children,
   isAbsoluteIconPath = false,
-}) => {
+}: SectionRowProps) => {
   return (
-    <div className="border-b pb-4 last:border-0 last:pb-0 " key={ability.name}>
+    <div className="border-b pb-4 last:border-0 last:pb-0" key={ability.name}>
       <div className="flex items-center gap-2">
         <IconImage
           // NOTE: do not retrieve images from "mihoyo.com" (it sends cookies)
@@ -46,5 +46,4 @@ const SectionRow: React.FC<SectionRowProps> = ({
     </div>
   );
 };
-
-export default SectionRow;
+SectionRow.displayName = "SectionRow";

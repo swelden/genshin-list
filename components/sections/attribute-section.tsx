@@ -1,8 +1,10 @@
 import { Section, SectionHeader } from "@/components/ui/section";
 import { CharacterInfo } from "@/lib/get-character-details";
 
-const AttributeSection: React.FC<{ character: CharacterInfo }> = ({
+export const AttributeSection = ({
   character,
+}: {
+  character: CharacterInfo;
 }) => {
   return (
     <Section className="lg:bg-opacity-90 lg:p-3 lg:backdrop-blur-sm lg:dark:bg-opacity-95">
@@ -24,11 +26,9 @@ const AttributeSection: React.FC<{ character: CharacterInfo }> = ({
     </Section>
   );
 };
+AttributeSection.displayName = "AttributeSection";
 
-const AttrRow: React.FC<{ title: string; info: string }> = ({
-  title,
-  info,
-}) => {
+const AttrRow = ({ title, info }: { title: string; info: string }) => {
   return (
     <tr className="border-b border-neutral-500/20 odd:bg-zinc-300/20 dark:odd:bg-zinc-600/10">
       <th
@@ -43,5 +43,4 @@ const AttrRow: React.FC<{ title: string; info: string }> = ({
     </tr>
   );
 };
-
-export default AttributeSection;
+AttrRow.displayName = "AttrRow";

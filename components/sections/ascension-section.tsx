@@ -2,7 +2,7 @@ import StatsTable from "@/components/stats-table";
 import { Section, SectionHeader } from "@/components/ui/section";
 import { CharacterStats } from "@/lib/get-character-details";
 
-const AscensionSection: React.FC<{ stats: CharacterStats }> = ({ stats }) => {
+export const AscensionSection = ({ stats }: { stats: CharacterStats }) => {
   return (
     <Section className="overflow-hidden">
       <SectionHeader>Ascensions</SectionHeader>
@@ -14,5 +14,4 @@ const AscensionSection: React.FC<{ stats: CharacterStats }> = ({ stats }) => {
     </Section>
   );
 };
-
-export default AscensionSection;
+AscensionSection.displayName = "AscensionSection";

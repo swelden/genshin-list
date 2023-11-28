@@ -1,10 +1,12 @@
-import SectionRow from "@/components/sections/section-row";
+import { SectionRow } from "@/components/sections/section-row";
 import { Section, SectionHeader } from "@/components/ui/section";
 import { TalentInfo } from "@/lib/get-character-details";
 
-const PassiveTalentSection: React.FC<{
+export const PassiveTalentSection = ({
+  passives,
+}: {
   passives: TalentInfo["passives"];
-}> = ({ passives }) => {
+}) => {
   return (
     <Section>
       <SectionHeader>Passive Talents</SectionHeader>
@@ -14,5 +16,4 @@ const PassiveTalentSection: React.FC<{
     </Section>
   );
 };
-
-export default PassiveTalentSection;
+PassiveTalentSection.displayName = "PassiveTalentSection";
