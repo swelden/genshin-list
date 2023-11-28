@@ -1,5 +1,5 @@
-import IconImage from "@/components/icon-image";
 import { Card, CardImage, CardLabel } from "@/components/ui/card";
+import { IconImage } from "@/components/ui/icon-image";
 import {
   formatImageUrl,
   formatLocalImageUrl,

@@ -1,4 +1,4 @@
-import IconImage from "@/components/icon-image";
+import { IconImage } from "@/components/ui/icon-image";
 import { TalentInfo } from "@/lib/get-character-details";
 import { formatImageUrl } from "@/lib/utils";
 

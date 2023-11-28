@@ -1,4 +1,3 @@
-import IconImage from "@/components/icon-image";
 import {
   ActiveTalentSection,
   AscensionSection,
@@ -7,6 +6,7 @@ import {
   MaterialCalculatorSection,
   PassiveTalentSection,
 } from "@/components/sections";
+import { IconImage } from "@/components/ui/icon-image";
 import {
   NamePageProps,
   getCharacterNames,
