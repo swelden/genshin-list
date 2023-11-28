@@ -1,15 +1,12 @@
-import Section from "@/components/sections/section";
+import { Section, SectionHeader } from "@/components/ui/section";
 import { CharacterInfo } from "@/lib/get-character-details";
 
 const AttributeSection: React.FC<{ character: CharacterInfo }> = ({
   character,
 }) => {
   return (
-    <Section
-      title="Attributes"
-      lgPadding="lg:p-3"
-      className="lg:bg-opacity-90 lg:backdrop-blur-sm lg:dark:bg-opacity-95"
-    >
+    <Section className="lg:bg-opacity-90 lg:p-3 lg:backdrop-blur-sm lg:dark:bg-opacity-95">
+      <SectionHeader>Attributes</SectionHeader>
       <table className="w-full">
         <tbody className="">
           <AttrRow title="Birthday" info={character.birthdaymmdd} />

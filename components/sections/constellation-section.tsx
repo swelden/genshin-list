@@ -1,14 +1,13 @@
-import Section from "@/components/sections/section";
 import SectionRow from "@/components/sections/section-row";
+import { Section, SectionHeader } from "@/components/ui/section";
 import { ConstellationInfo } from "@/lib/get-character-details";
 
 const ConstellationSection: React.FC<{
   constellations: ConstellationInfo[];
 }> = ({ constellations }) => {
-  // console.log(constellations);
-
   return (
-    <Section title="Constellations">
+    <Section>
+      <SectionHeader>Constellations</SectionHeader>
       {constellations.map((constellation, index) => (
         <SectionRow
           ability={constellation}

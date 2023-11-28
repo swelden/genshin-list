@@ -8,8 +8,8 @@ import { Dispatch, SetStateAction, useMemo } from "react";
 
 import { Icons } from "@/components/icons";
 import MaterialList from "@/components/material-list";
-import Section from "@/components/sections/section";
 import { SelectMenu, SelectOption } from "@/components/select-menu";
+import { Section, SectionHeader } from "@/components/ui/section";
 
 const MaterialCalculatorSection: React.FC<{
   materials: MaterialInfo;
@@ -26,11 +26,14 @@ const MaterialCalculatorSection: React.FC<{
 
   return (
     <MaterialProvider levelCosts={characterCosts} talentCosts={talentCosts}>
-      <Section title="Material Calculator">
+      <Section>
+        <SectionHeader>Material Calculator</SectionHeader>
         <div className="grid gap-6 xl:grid-cols-[20rem,_auto]">
           <MaterialCalculator />
           {/* NOTE: might put "Required Materials" in center and move daysofweek */}
           <div>
+            {/* TODO: change Talents: weekday, weekday to => (S) M (T) W T [(F)] S*/}
+            {/* () => means talent avaiable that day - [] => means current day indicator */}
             <div className="mb-4 text-center xl:mb-1 xl:text-left">
               <span className="">
                 Talents: {/*comment is to leave space*/}
