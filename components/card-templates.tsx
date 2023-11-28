@@ -1,22 +1,24 @@
 import IconImage from "@/components/icon-image";
 import { Card, CardImage, CardLabel } from "@/components/ui/card";
-import { formatImageUrl } from "@/lib/utils";
+import { formatImageUrl, formatNameUrl } from "@/lib/utils";
 import Link from "next/link";
 
 export const CharacterCard = ({
   character,
+  size,
 }: {
   character: CharacterFilterInfo;
+  size: number;
 }) => {
   return (
     <Card hover="default" asChild>
-      <Link href={`/${character.name.toLowerCase().replace(/\s/g, "-")}`}>
+      <Link href={formatNameUrl(character.name)}>
         <CardImage
           src={formatImageUrl(character.nameicon)}
           alt={character.name}
           gradient={character.rarity === "5" ? "gold" : "purple"}
-          width={132}
-          height={132}
+          width={size}
+          height={size}
         >
           <div className="absolute left-0.5 top-0.5">
             <IconImage
