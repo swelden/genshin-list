@@ -39,26 +39,24 @@ export const SortDropdown: SortDropdownProps = ({ setSortKey, className }) => {
       onChange={handleChange}
       className={className}
     >
-      <DropdownMenuTrigger>Sort by {selectedOption.label}</DropdownMenuTrigger>
+      <DropdownMenuTrigger className="ui-open:ring-[3px] ui-open:shadow-inner">
+        Sort by {selectedOption.label}
+      </DropdownMenuTrigger>
       <DropdownMenuContent>
         {options.map((option) => (
           <DropdownMenuItem key={option.value} value={option}>
-            {({ active, selected }) => (
-              <div
-                className={cn(
-                  "relative flex h-full w-full items-center rounded-full p-0.5 px-3 font-medium transition-colors duration-[50ms]",
-                  active &&
-                    "bg-select-hover active:bg-select-active active:text-select-active-foreground",
-                )}
-              >
-                <span className="block">{option.label}</span>
-                {selected && (
-                  <span className="absolute inset-y-0 right-0 flex items-center pr-3">
-                    <Check className="h-6 w-6" strokeWidth={4} />
-                  </span>
-                )}
-              </div>
-            )}
+            <div
+              className={cn(
+                "relative flex h-full w-full items-center justify-between rounded-full p-0.5 px-3 transition-colors duration-[50ms]",
+                "ui-active:bg-select-hover ui-active:active:bg-select-active ui-active:active:text-select-active-foreground",
+              )}
+            >
+              {option.label}
+              <Check
+                className="ui-selected:flex hidden h-6 w-6"
+                strokeWidth={4}
+              />
+            </div>
           </DropdownMenuItem>
         ))}
       </DropdownMenuContent>
