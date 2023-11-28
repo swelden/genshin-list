@@ -12,7 +12,11 @@ import {
   getCharacterNames,
   getNamePageProps,
 } from "@/lib/get-character-details";
-import { formatImageUrl, formatNameUrl } from "@/lib/utils";
+import {
+  formatImageUrl,
+  formatLocalImageUrl,
+  formatNameUrl,
+} from "@/lib/utils";
 import { Metadata, ResolvingMetadata } from "next";
 import Image from "next/image";
 
@@ -90,8 +94,8 @@ const DetailHeader: React.FC<Pick<NamePageProps, "character">> = ({
       <div className="flex flex-col gap-2 px-5 sm:px-4 lg:-ml-5 lg:mt-32">
         <div className="flex w-fit items-center gap-2 rounded-lg bg-background/90 pr-3 lg:backdrop-blur-sm">
           <IconImage
-            src={`/element-icons/${character.element}-icon.png`}
-            alt={`${character.element} icon`}
+            src={formatLocalImageUrl("/elements", character.element)}
+            alt={character.element}
             className="h-[4.25rem] w-[4.25rem]"
           />
           <div className="flex flex-col py-5 sm:py-4">
@@ -125,8 +129,8 @@ const StarRating: React.FC<{ rarity: number }> = ({ rarity }) => {
       {[...Array(rarity)].map((_, i) => (
         <IconImage
           key={`star-${i}`}
-          src="/star-rating.png"
-          alt="Star Icon"
+          src={formatLocalImageUrl("/", "star-rating")}
+          alt="Star rating"
           className="h-[1.125rem] w-[1.125rem]"
         />
       ))}

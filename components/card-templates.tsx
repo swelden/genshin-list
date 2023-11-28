@@ -1,6 +1,10 @@
 import IconImage from "@/components/icon-image";
 import { Card, CardImage, CardLabel } from "@/components/ui/card";
-import { formatImageUrl, formatNameUrl } from "@/lib/utils";
+import {
+  formatImageUrl,
+  formatLocalImageUrl,
+  formatNameUrl,
+} from "@/lib/utils";
 import Link from "next/link";
 
 export const CharacterCard = ({
@@ -22,7 +26,7 @@ export const CharacterCard = ({
         >
           <div className="absolute left-0.5 top-0.5">
             <IconImage
-              src={`/element-icons/${character.element}-icon.png`}
+              src={formatLocalImageUrl("/elements", character.element)}
               alt={character.element}
               className="h-[1.875rem] w-[1.875rem]"
             />

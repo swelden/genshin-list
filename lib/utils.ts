@@ -15,3 +15,10 @@ export const formatImageUrl = (url: string) =>
 
 export const formatNameUrl = (name: string) =>
   name.toLowerCase().replace(/\s/g, "-");
+
+export const formatLocalImageUrl = (
+  dir: "/" | "/elements" | "/weapons",
+  imageFile: string,
+) => {
+  return `/images${dir}/${imageFile.toLowerCase()}.png`;
+};
