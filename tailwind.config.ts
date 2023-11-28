@@ -88,6 +88,9 @@ module.exports = {
       fontFamily: {
         genshin: ["var(--font-genshin)"],
       },
+      cursor: {
+        genshin: "url(/images/genshin-cursor.png), auto",
+      },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
