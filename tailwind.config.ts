@@ -42,14 +42,14 @@ module.exports = {
           foreground: "hsl(var(--popover-foreground))",
         },
 
+        section: {
+          DEFAULT: "hsl(var(--section))",
+          foreground: "hsl(var(--section-foreground))",
+        },
+
         card: {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
-        },
-
-        item: {
-          DEFAULT: "hsl(var(--item))",
-          foreground: "hsl(var(--item-foreground))",
         },
 
         select: {

@@ -5,12 +5,12 @@ import Image, { ImageProps } from "next/image";
 import * as React from "react";
 
 const cardVariants = cva(
-  "relative overflow-hidden rounded-md bg-gradient-to-t from-item via-item shadow-md ring-1 ring-black/10 dark:shadow-zinc-600/50",
+  "relative overflow-hidden rounded-md bg-gradient-to-t from-card via-card shadow-md ring-1 ring-border",
   {
     variants: {
       hover: {
         default:
-          "outline-none ring-offset-white transition duration-300 ease-in-out hocus:ring-black/20 hocus:ring-offset-[3px] motion-safe:hocus:scale-105",
+          "outline-none ring-offset-white transition duration-200 ease-in-out hocus:ring-offset-[3px] motion-safe:hocus:scale-105",
       },
     },
   },
@@ -74,7 +74,7 @@ const CardLabel = ({
   <div className="relative w-full px-2 py-0.5" {...props}>
     <span
       className={cn(
-        "relative block w-full truncate text-center capitalize text-item-foreground",
+        "relative block w-full truncate text-center capitalize text-card-foreground",
         className,
       )}
     >

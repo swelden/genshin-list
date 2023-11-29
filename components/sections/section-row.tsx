@@ -31,7 +31,7 @@ export const SectionRow = ({
         <h3 className="text-lg">{ability.name}</h3>
       </div>
       <div
-        className="mt-2 text-card-foreground/75"
+        className="text-section-foreground/75 mt-2"
         dangerouslySetInnerHTML={{
           __html: ability.info,
         }}
@@ -39,7 +39,7 @@ export const SectionRow = ({
       {ability?.description && (
         <>
           <br />
-          <i className="text-card-foreground/60">{ability.description}</i>
+          <i className="text-section-foreground/60">{ability.description}</i>
         </>
       )}
       {children}

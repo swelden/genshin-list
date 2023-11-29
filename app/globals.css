@@ -13,11 +13,11 @@
     --popover: 0 0% 100%;
     --popover-foreground: 240 10% 3.9%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
+    --section: 0 0% 100%;
+    --section-foreground: 240 10% 3.9%;
 
-    --item: 42 23% 89%;
-    --item-foreground: 221 16% 35%;
+    --card: 42 23% 89%;
+    --card-foreground: 221 16% 35%;
 
     --select: 42 23% 89%;
     --select-foreground: 224 18% 28%;
@@ -64,11 +64,11 @@
     --popover: 240 10% 3.9%;
     --popover-foreground: 0 0% 98%;
 
-    --card: 24 9.8% 10%;
-    --card-foreground: 0 0% 95%;
+    --section: 24 9.8% 10%;
+    --section-foreground: 0 0% 95%;
 
-    --item: 42 23% 89%;
-    --item-foreground: 221 16% 35%;
+    --card: 42 23% 89%;
+    --card-foreground: 221 16% 35%;
 
     --select: 221 16% 35%;
     --select-foreground: 39 34% 89%;
