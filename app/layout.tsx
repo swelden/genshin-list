@@ -1,8 +1,8 @@
 import "@/app/globals.css";
 
 import type { Metadata, Viewport } from "next";
-import localFont from "next/font/local";
 
+import { genshinFont } from "@/lib/fonts";
 import { Footer } from "@/components/footer";
 import { Navbar } from "@/components/navbar";
 import { ThemeProvider } from "@/components/theme-provider";
@@ -15,12 +15,6 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {};
 
-const genshinFont = localFont({
-  src: "../public/fonts/ja-jp.woff2",
-  display: "swap",
-  variable: "--font-genshin",
-});
-
 export default function RootLayout({
   children,
 }: {
@@ -29,7 +23,7 @@ export default function RootLayout({
   return (
     // suppressHydrationWarning: next-themes adds extra attributes: class, style for light and dark mode
     <html lang="en" className={genshinFont.className} suppressHydrationWarning>
-      <body className="">
+      <body>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
