@@ -90,7 +90,7 @@ const DetailHeader: React.FC<Pick<NamePageProps, "character">> = ({
 }) => {
   // TODO: find better way of preventing long names from covering gacha image
   return (
-    <div className="col-span-5 col-start-2 row-span-full mb-8 flex items-center">
+    <div className="col-span-5 col-start-1 row-span-full mb-8 flex items-center">
       <div className="flex flex-col gap-2 px-5 sm:px-4 lg:-ml-5 lg:mt-32">
         <div className="flex w-fit items-center gap-2 rounded-lg bg-background/90 pr-3 lg:backdrop-blur-sm">
           <IconImage
