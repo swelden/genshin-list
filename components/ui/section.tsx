@@ -7,7 +7,7 @@ const Section = ({
 }: React.HTMLAttributes<HTMLElement>) => (
   <section
     className={cn(
-      "flex flex-col gap-4 bg-card p-5 text-card-foreground sm:rounded-lg sm:border sm:p-4 sm:shadow lg:p-5",
+      "bg-section text-section-foreground flex flex-col gap-4 p-5 sm:rounded-lg sm:border sm:p-4 sm:shadow lg:p-5",
       className,
     )}
     {...props}
