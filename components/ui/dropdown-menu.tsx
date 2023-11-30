@@ -1,10 +1,11 @@
 "use client";
 
-import { Icons } from "@/components/icons";
-import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
-import { Listbox, Transition } from "@headlessui/react";
 import * as React from "react";
+import { Listbox, Transition } from "@headlessui/react";
+
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { Icons } from "@/components/icons";
 
 const DropdownMenu = React.forwardRef<
   React.ElementRef<typeof Listbox>,

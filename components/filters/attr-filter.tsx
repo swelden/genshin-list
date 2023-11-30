@@ -18,7 +18,7 @@ const weapons: readonly Weapon[] = [
 ] as const;
 const rarities: readonly Rarity[] = ["4", "5"] as const;
 
-const AttributeFilter: React.FC<{
+export const AttributeFilter: React.FC<{
   attrFilter: Attributes;
   setAttrFilter: React.Dispatch<React.SetStateAction<Attributes>>;
   regions: Nation[];
@@ -97,5 +97,3 @@ const FilterContainer: FilterContainerProps = ({
     </div>
   );
 };
-
-export default AttributeFilter;

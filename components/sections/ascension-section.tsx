@@ -1,6 +1,6 @@
-import StatsTable from "@/components/stats-table";
-import { Section, SectionHeader } from "@/components/ui/section";
 import { CharacterStats } from "@/lib/get-character-details";
+import { Section, SectionHeader } from "@/components/ui/section";
+import { StatsTable } from "@/components/stats-table";
 
 export const AscensionSection = ({ stats }: { stats: CharacterStats }) => {
   return (

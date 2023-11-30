@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 
-const StatsTable: React.FC<{
+export const StatsTable: React.FC<{
   data: { label: string; params: string[] }[];
   topHeadings: string[];
   numCols: number;
@@ -77,5 +77,3 @@ const TableCell: React.FC<{ children: React.ReactNode }> = ({ children }) => (
     {children}
   </td>
 );
-
-export default StatsTable;

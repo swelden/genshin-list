@@ -1,11 +1,12 @@
-import { Card, CardImage, CardLabel } from "@/components/ui/card";
-import { IconImage } from "@/components/ui/icon-image";
+import Link from "next/link";
+
 import {
   formatImageUrl,
   formatLocalImageUrl,
   formatNameUrl,
 } from "@/lib/utils";
-import Link from "next/link";
+import { Card, CardImage, CardLabel } from "@/components/ui/card";
+import { IconImage } from "@/components/ui/icon-image";
 
 export const CharacterCard = ({
   character,

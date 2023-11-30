@@ -1,3 +1,17 @@
+import { Metadata, ResolvingMetadata } from "next";
+import Image from "next/image";
+
+import {
+  getCharacterNames,
+  getNamePageProps,
+  NamePageProps,
+} from "@/lib/get-character-details";
+import {
+  formatImageUrl,
+  formatLocalImageUrl,
+  formatNameUrl,
+} from "@/lib/utils";
+import { IconImage } from "@/components/ui/icon-image";
 import {
   ActiveTalentSection,
   AscensionSection,
@@ -6,19 +20,6 @@ import {
   MaterialCalculatorSection,
   PassiveTalentSection,
 } from "@/components/sections";
-import { IconImage } from "@/components/ui/icon-image";
-import {
-  NamePageProps,
-  getCharacterNames,
-  getNamePageProps,
-} from "@/lib/get-character-details";
-import {
-  formatImageUrl,
-  formatLocalImageUrl,
-  formatNameUrl,
-} from "@/lib/utils";
-import { Metadata, ResolvingMetadata } from "next";
-import Image from "next/image";
 
 type PageProps = { params: { name: string } };
 

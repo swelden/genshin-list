@@ -1,21 +1,23 @@
 "use client";
 
-import { Icons } from "@/components/icons";
-import MaterialList from "@/components/material-list";
-import { SelectMenu, SelectOption } from "@/components/select-menu";
-import { Section, SectionHeader } from "@/components/ui/section";
-import MaterialProvider, {
+import * as React from "react";
+import {
+  MaterialProvider,
   useMaterialContext,
 } from "@/contexts/material-context";
+
 import { MaterialInfo } from "@/lib/get-character-details";
-import { Dispatch, SetStateAction, useMemo } from "react";
+import { Section, SectionHeader } from "@/components/ui/section";
+import { Icons } from "@/components/icons";
+import { MaterialList } from "@/components/material-list";
+import { SelectMenu, SelectOption } from "@/components/select-menu";
 
 export const MaterialCalculatorSection = ({
   materials: { characterCosts, talentCosts, materialData },
 }: {
   materials: MaterialInfo;
 }) => {
-  const daysofweek: string = useMemo(() => {
+  const daysofweek: string = React.useMemo(() => {
     for (const material of Object.values(materialData)) {
       if (material.daysofweek) {
         return material.daysofweek.join(", ");
@@ -89,8 +91,8 @@ const RangeSelector: React.FC<{
   title: string;
   min: number;
   max: number;
-  setMin: Dispatch<SetStateAction<number>>;
-  setMax: Dispatch<SetStateAction<number>>;
+  setMin: React.Dispatch<React.SetStateAction<number>>;
+  setMax: React.Dispatch<React.SetStateAction<number>>;
   options: SelectOption<number>[];
 }> = ({ title, min, max, setMin, setMax, options }) => {
   return (

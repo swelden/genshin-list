@@ -1,6 +1,6 @@
-import { IconImage } from "@/components/ui/icon-image";
 import { TalentInfo } from "@/lib/get-character-details";
 import { formatImageUrl } from "@/lib/utils";
+import { IconImage } from "@/components/ui/icon-image";
 
 type Passives = TalentInfo["passives"][number];
 interface Ability extends Passives {

@@ -1,12 +1,13 @@
 "use client";
 
-import { Icons } from "@/components/icons";
-import { SectionRow } from "@/components/sections/section-row";
-import StatsTable from "@/components/stats-table";
-import { Section, SectionHeader } from "@/components/ui/section";
+import * as React from "react";
+
 import { TalentInfo } from "@/lib/get-character-details";
 import { cn } from "@/lib/utils";
-import { useState } from "react";
+import { Section, SectionHeader } from "@/components/ui/section";
+import { Icons } from "@/components/icons";
+import { SectionRow } from "@/components/sections/section-row";
+import { StatsTable } from "@/components/stats-table";
 
 export const ActiveTalentSection = ({
   actives,
@@ -32,7 +33,7 @@ const ActiveTalentAttributes = ({
 }: {
   talent: TalentInfo["actives"][number];
 }) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = React.useState(false);
   const maxCols = talent.attributes[0].params.length;
   const panelId = `${talent.category.toLowerCase().replace(/\s/g, "-")}-panel`;
 

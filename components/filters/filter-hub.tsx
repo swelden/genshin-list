@@ -1,11 +1,12 @@
 "use client";
 
-import AttributeFilter from "@/components/filters/attr-filter";
+import * as React from "react";
+
+import { Button } from "@/components/ui/button";
+import { AttributeFilter } from "@/components/filters/attr-filter";
 import { Search } from "@/components/filters/search-filter";
 import { SortDropdown } from "@/components/filters/sort-filter";
 import { Icons } from "@/components/icons";
-import { Button } from "@/components/ui/button";
-import { useState } from "react";
 
 type FiltersProps = {
   setFilter: React.Dispatch<React.SetStateAction<string>>;
@@ -17,7 +18,7 @@ type FiltersProps = {
 };
 
 // NOTE: might use memo for components to prevent rerender on isOpen change
-export default function FilterHub({
+export function FilterHub({
   setFilter,
   setSortKey,
   setIsReversed,
@@ -25,7 +26,7 @@ export default function FilterHub({
   setAttrFilter,
   regions,
 }: FiltersProps) {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = React.useState(false);
 
   return (
     <div className="grid grid-cols-1 items-center justify-between gap-4 lg:grid-cols-2">

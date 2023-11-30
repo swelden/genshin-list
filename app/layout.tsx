@@ -1,9 +1,11 @@
-import Footer from "@/components/footer";
-import Navbar from "@/components/navbar";
-import { ThemeProvider } from "@/components/theme-provider";
+import "@/app/globals.css";
+
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
-import "./globals.css";
+
+import { Footer } from "@/components/footer";
+import { Navbar } from "@/components/navbar";
+import { ThemeProvider } from "@/components/theme-provider";
 
 export const metadata: Metadata = {
   title: "Genshin List",

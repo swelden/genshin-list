@@ -1,7 +1,8 @@
-import { ThemeToggle } from "@/components/theme-toggle";
 import Link from "next/link";
 
-const Navbar = () => {
+import { ThemeToggle } from "@/components/theme-toggle";
+
+export const Navbar = () => {
   return (
     <nav className="z-50 mb-4 w-full py-5">
       <div className="container flex items-center justify-between">
@@ -18,5 +19,3 @@ const Navbar = () => {
     </nav>
   );
 };
-
-export default Navbar;

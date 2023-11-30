@@ -1,5 +1,6 @@
-import { myRound } from "@/lib/utils";
 import { CombatTalentDetail } from "genshin-db";
+
+import { myRound } from "@/lib/utils";
 
 const ElementColor = {
   Pyro: "text-pyro",

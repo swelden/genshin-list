@@ -1,14 +1,15 @@
-import { ItemCard } from "@/components/card-templates";
 import { useMaterialContext } from "@/contexts/material-context";
+import { Items } from "genshin-db";
+
 import { MaterialDataMap } from "@/lib/get-character-details";
 import { formatImageUrl } from "@/lib/utils";
-import { Items } from "genshin-db";
+import { ItemCard } from "@/components/card-templates";
 
 export interface Materials {
   [key: string]: number;
 }
 
-export default function MaterialList({
+export function MaterialList({
   materialData,
 }: {
   materialData: MaterialDataMap;

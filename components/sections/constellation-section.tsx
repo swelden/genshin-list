@@ -1,6 +1,6 @@
-import { SectionRow } from "@/components/sections/section-row";
-import { Section, SectionHeader } from "@/components/ui/section";
 import { ConstellationInfo } from "@/lib/get-character-details";
+import { Section, SectionHeader } from "@/components/ui/section";
+import { SectionRow } from "@/components/sections/section-row";
 
 export const ConstellationSection = ({
   constellations,

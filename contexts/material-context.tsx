@@ -1,10 +1,11 @@
 "use client";
 
+import * as React from "react";
+
+import { MaterialInfo } from "@/lib/get-character-details";
+import { useMinMax } from "@/hooks/use-min-max";
 import { Materials, mergeMaterials } from "@/components/material-list";
 import { SelectOption } from "@/components/select-menu";
-import useMinMax from "@/hooks/use-min-max";
-import { MaterialInfo } from "@/lib/get-character-details";
-import { createContext, useCallback, useContext, useMemo } from "react";
 
 interface MaterialContextType {
   // levels
@@ -38,17 +39,17 @@ interface MaterialContextType {
 }
 
 // NOTE: can still cause an error if context is used outside of provider
-export const MaterialContext = createContext<MaterialContextType>(
+export const MaterialContext = React.createContext<MaterialContextType>(
   {} as MaterialContextType,
 );
 
-const MaterialProvider: React.FC<{
+export const MaterialProvider: React.FC<{
   levelCosts: MaterialInfo["characterCosts"];
   talentCosts: MaterialInfo["talentCosts"];
   children: React.ReactNode;
 }> = ({ levelCosts, talentCosts, children }) => {
   // levels
-  const [levelOptions, levelMats] = useMemo(() => {
+  const [levelOptions, levelMats] = React.useMemo(() => {
     const levelKeys = Object.keys(levelCosts).sort();
 
     const levelOptions = levelKeys.map((key, idx) => {
@@ -63,7 +64,7 @@ const MaterialProvider: React.FC<{
     useMinMax(0, levelOptions.length - 1, levelMats);
 
   // talents
-  const [talentOptions, talentMats] = useMemo(() => {
+  const [talentOptions, talentMats] = React.useMemo(() => {
     const talentKeys = Object.keys(talentCosts).sort(
       (a, b) => parseInt(a) - parseInt(b),
     );
@@ -83,12 +84,12 @@ const MaterialProvider: React.FC<{
   const [burstMin, setBurstMin, burstMax, setBurstMax, burstMaterials] =
     useMinMax(0, talentOptions.length - 1, talentMats);
 
-  const talentMaterials = useMemo(
+  const talentMaterials = React.useMemo(
     () => mergeMaterials(attackMaterials, skillMaterials, burstMaterials),
     [attackMaterials, burstMaterials, skillMaterials],
   );
 
-  const setNoLevels = useCallback(() => {
+  const setNoLevels = React.useCallback(() => {
     setLevelMin(0);
     setLevelMax(0);
     setAttackMin(0);
@@ -108,7 +109,7 @@ const MaterialProvider: React.FC<{
     setBurstMax,
   ]);
 
-  const setMaxLevels = useCallback(() => {
+  const setMaxLevels = React.useCallback(() => {
     setLevelMax(levelOptions.length - 1);
     setAttackMax(talentOptions.length - 1);
     setSkillMax(talentOptions.length - 1);
@@ -171,6 +172,4 @@ const MaterialProvider: React.FC<{
   );
 };
 
-export const useMaterialContext = () => useContext(MaterialContext);
-
-export default MaterialProvider;
+export const useMaterialContext = () => React.useContext(MaterialContext);

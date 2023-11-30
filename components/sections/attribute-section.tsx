@@ -1,5 +1,5 @@
-import { Section, SectionHeader } from "@/components/ui/section";
 import { CharacterInfo } from "@/lib/get-character-details";
+import { Section, SectionHeader } from "@/components/ui/section";
 
 export const AttributeSection = ({
   character,

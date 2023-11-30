@@ -1,6 +1,6 @@
-import { SectionRow } from "@/components/sections/section-row";
-import { Section, SectionHeader } from "@/components/ui/section";
 import { TalentInfo } from "@/lib/get-character-details";
+import { Section, SectionHeader } from "@/components/ui/section";
+import { SectionRow } from "@/components/sections/section-row";
 
 export const PassiveTalentSection = ({
   passives,

@@ -1,23 +1,24 @@
-import { Materials, calculateMaterialsRange } from "@/components/material-list";
+import * as React from "react";
 import { Items } from "genshin-db";
-import { Dispatch, SetStateAction, useMemo, useState } from "react";
 
-const useMinMax = (
+import { calculateMaterialsRange, Materials } from "@/components/material-list";
+
+export const useMinMax = (
   initialMin: number,
   initialMax: number,
   materialList: Items[][],
 ): [
   number,
-  Dispatch<SetStateAction<number>>,
+  React.Dispatch<React.SetStateAction<number>>,
   number,
-  Dispatch<SetStateAction<number>>,
+  React.Dispatch<React.SetStateAction<number>>,
   Materials,
 ] => {
-  const [min, setMin] = useState(initialMin);
-  const [max, setMax] = useState(initialMax);
+  const [min, setMin] = React.useState(initialMin);
+  const [max, setMax] = React.useState(initialMax);
 
   // NOTE: need memo
-  const materials: Materials = useMemo(
+  const materials: Materials = React.useMemo(
     () =>
       min >= max ? {} : calculateMaterialsRange(materialList, min + 1, max + 1),
     [materialList, min, max],
@@ -25,5 +26,3 @@ const useMinMax = (
 
   return [min, setMin, max, setMax, materials];
 };
-
-export default useMinMax;

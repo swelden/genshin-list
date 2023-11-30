@@ -1,12 +1,12 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import * as React from "react";
 
-const useCharacters = (allCharacters: CharacterFilterInfo[]) => {
-  const [filter, setFilter] = useState("");
-  const [sortKey, setSortKey] = useState<CharacterSortKeys>("version");
-  const [isReversed, setIsReversed] = useState(true);
-  const [attrFilter, setAttrFilter] = useState<Attributes>({
+export const useCharacters = (allCharacters: CharacterFilterInfo[]) => {
+  const [filter, setFilter] = React.useState("");
+  const [sortKey, setSortKey] = React.useState<CharacterSortKeys>("version");
+  const [isReversed, setIsReversed] = React.useState(true);
+  const [attrFilter, setAttrFilter] = React.useState<Attributes>({
     element: new Set<Vision>(),
     weapontype: new Set<Weapon>(),
     region: new Set<Nation>(),
@@ -14,7 +14,7 @@ const useCharacters = (allCharacters: CharacterFilterInfo[]) => {
   });
 
   // NOTE: might make separate memo for storing sorted array
-  const characters = useMemo(() => {
+  const characters = React.useMemo(() => {
     const lcFilter = filter.toLowerCase(); // case insensitive
     return allCharacters
       .filter(
@@ -45,5 +45,3 @@ const useCharacters = (allCharacters: CharacterFilterInfo[]) => {
     setAttrFilter,
   };
 };
-
-export default useCharacters;

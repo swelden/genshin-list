@@ -1,7 +1,8 @@
-import { Icons } from "@/components/icons";
+import * as React from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import { Check } from "lucide-react";
-import { Fragment } from "react";
+
+import { Icons } from "@/components/icons";
 
 export interface SelectOption<T> {
   label: string;
@@ -29,7 +30,7 @@ export const SelectMenu = <T extends {}>({
           </span>
         </Listbox.Button>
         <Transition
-          as={Fragment}
+          as={React.Fragment}
           leave="transition ease-in duration-100"
           leaveFrom="opacity-100"
           leaveTo="opacity-0"

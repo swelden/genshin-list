@@ -1,8 +1,9 @@
-import { cn } from "@/lib/utils";
-import { Slot } from "@radix-ui/react-slot";
-import { VariantProps, cva } from "class-variance-authority";
-import Image, { ImageProps } from "next/image";
 import * as React from "react";
+import Image, { ImageProps } from "next/image";
+import { Slot } from "@radix-ui/react-slot";
+import { cva, VariantProps } from "class-variance-authority";
+
+import { cn } from "@/lib/utils";
 
 const cardVariants = cva(
   "relative overflow-hidden rounded-md bg-gradient-to-t from-card via-card shadow-md ring-1 ring-border",

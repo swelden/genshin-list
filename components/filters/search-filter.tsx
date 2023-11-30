@@ -1,8 +1,8 @@
-import { SearchIcon, X } from "lucide-react";
 import * as React from "react";
+import { SearchIcon, X } from "lucide-react";
 
-import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
+import { Input } from "@/components/ui/input";
 
 interface SearchProps {
   setFilter: React.Dispatch<React.SetStateAction<string>>;

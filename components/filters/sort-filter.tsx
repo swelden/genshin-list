@@ -1,15 +1,16 @@
 "use client";
 
-import { SelectOption } from "@/components/select-menu";
+import * as React from "react";
+import { Check } from "lucide-react";
+
+import { cn } from "@/lib/utils";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { cn } from "@/lib/utils";
-import { Check } from "lucide-react";
-import * as React from "react";
+import { SelectOption } from "@/components/select-menu";
 
 const options: SelectOption<CharacterSortKeys>[] = [
   { label: "Version", value: "version" },
