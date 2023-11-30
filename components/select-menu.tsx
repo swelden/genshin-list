@@ -22,7 +22,7 @@ export const SelectMenu = <T extends {}>({
   return (
     <Listbox value={currentValue.value} onChange={handleChange}>
       <div className="relative">
-        <Listbox.Button className="key-focus key-focus-section relative w-full cursor-pointer rounded-md bg-zinc-100 py-1.5 pl-4 pr-10 text-left shadow-sm ring-1 ring-black/5 transition-colors hover:bg-zinc-200 dark:bg-zinc-700 hover:dark:bg-zinc-600">
+        <Listbox.Button className="relative w-full cursor-pointer rounded-md bg-zinc-100 py-1.5 pl-4 pr-10 text-left shadow-sm ring-1 ring-black/5 transition-colors hover:bg-zinc-200 dark:bg-zinc-700 hover:dark:bg-zinc-600">
           <span className="block truncate">{currentValue.label}</span>
           <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2 text-gray-400">
             <Icons.dropdown className="h-6 w-6 min-w-[1.5rem]" />

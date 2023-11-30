@@ -7,7 +7,7 @@ const Navbar = () => {
       <div className="container flex items-center justify-between">
         <Link
           href="/"
-          className="key-focus key-focus-body rounded p-2 text-2xl font-semibold"
+          className="rounded p-2 text-2xl font-semibold"
           aria-label="Genshin List Home"
         >
           Genshin List

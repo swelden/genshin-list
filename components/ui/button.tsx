@@ -5,17 +5,18 @@ import Link from "next/link";
 import * as React from "react";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center whitespace-nowrap rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+  "hocus:ring-3 inline-flex items-center justify-center whitespace-nowrap rounded-full text-xl outline-none ring-0 ring-inset transition disabled:pointer-events-none disabled:opacity-50 hocus:shadow-inner",
   {
     variants: {
       variant: {
         default:
-          "key-focus key-focus-body bg-primary text-xl text-primary-foreground shadow-sm ring-gray-700 hover:shadow-inner hover:ring-2 hover:ring-offset-gray-700 focus-visible:shadow-inner active:bg-primary-active active:text-white active:shadow-lg active:ring-opacity-70 dark:ring-white dark:hover:ring-offset-white",
+          "ring-primary-ring active:ring-primary-ring/70 bg-primary text-primary-foreground active:bg-primary-active active:text-white",
         secondary: "",
       },
       size: {
         default: "h-11 px-5 py-2",
         icon: "h-11 w-24 px-5 py-2",
+        full: "h-11 w-full py-2",
       },
     },
     defaultVariants: {
@@ -45,19 +46,20 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 );
 Button.displayName = "Button";
 
+// TODO: fix CircleButton Styles
 const CircleButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, children, ...props }, ref) => {
     return (
       <button
         className={cn(
-          "key-focus key-focus-body group relative flex h-10 w-10 cursor-pointer items-center justify-center rounded-full",
+          "group relative flex h-10 w-10 cursor-pointer items-center justify-center rounded-full",
           className,
         )}
         ref={ref}
         {...props}
       >
         <Button
-          className="peer z-[1] h-8 w-8 p-0 transition-all duration-200 group-hover:h-9 group-hover:w-9 group-hover:shadow-inner group-hover:ring-2 group-hover:transition-none"
+          className="group-hover:ring-3 peer z-[1] h-8 w-8 p-0 transition-all duration-200 group-hover:h-9 group-hover:w-9 group-hover:shadow-inner group-hover:transition-none"
           asChild
         >
           <div>{children}</div>

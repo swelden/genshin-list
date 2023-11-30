@@ -4,6 +4,13 @@
 
 @layer base {
   :root {
+    --genshin-brown: 39 34% 89%;
+    --genshin-blue: 221 16% 35%;
+
+    --ring: 240 5.9% 10%;
+    --ring-white: 0 0% 100%;
+    --ring-yellow: 41 100% 85%;
+
     --background: 0 0% 100%;
     --foreground: 240 10% 3.9%;
 
@@ -16,30 +23,27 @@
     --section: 0 0% 100%;
     --section-foreground: 240 10% 3.9%;
 
-    --card: 42 23% 89%;
-    --card-foreground: 221 16% 35%;
-
-    --select: 42 23% 89%;
-    --select-foreground: 224 18% 28%;
-    --select-hover: 41 26% 81%;
-    --select-active: 221 16% 35%;
-    --select-active-foreground: 42 23% 89%;
+    --card: var(--genshin-brown);
+    --card-foreground: var(--genshin-blue);
 
     --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
 
-    --primary: 221 16% 35%;
-    --primary-foreground: 39 34% 89%;
+    --primary: var(--genshin-blue);
+    --primary-foreground: var(--genshin-brown);
     --primary-active: 20 9% 62%;
     --primary-outline: 242 12% 56%;
+    --primary-hover: 218 12% 43%;
+    --primary-ring: var(--ring-yellow);
 
-    --secondary: 39 34% 89%;
-    --secondary-foreground: 224 18% 28%;
+    --secondary: var(--genshin-brown);
+    --secondary-foreground: var(--genshin-blue);
+    --secondary-active: 20 9% 62%;
+    --secondary-outline: 242 12% 56%;
+    --secondary-hover: 41 26% 81%;
+    --secondary-ring: var(--ring-white);
 
     --accent: 240 4.8% 95.9%;
     --accent-foreground: 240 5.9% 10%;
-
-    --ring: 240 5.9% 10%;
 
     --radius: 0.5rem;
 
@@ -55,6 +59,8 @@
   }
 
   html.dark {
+    --ring: 240 4.9% 83.9%;
+
     --background: 240 10% 3.9%;
     --foreground: 0 0% 98%;
 
@@ -67,30 +73,27 @@
     --section: 24 9.8% 10%;
     --section-foreground: 0 0% 95%;
 
-    --card: 42 23% 89%;
-    --card-foreground: 221 16% 35%;
-
-    --select: 221 16% 35%;
-    --select-foreground: 39 34% 89%;
-    --select-hover: 218 12% 43%;
-    --select-active: 39 34% 89%;
-    --select-active-foreground: 221 16% 35%;
+    --card: var(--genshin-brown);
+    --card-foreground: var(--genshin-blue);
 
     --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
 
-    --primary: 39 34% 89%;
-    --primary-foreground: 224 18% 28%;
+    --primary: var(--genshin-brown);
+    --primary-foreground: var(--genshin-blue);
     --primary-active: 20 9% 62%;
     --primary-outline: 242 12% 56%;
+    --primary-hover: 41 26% 81%;
+    --primary-ring: var(--ring-white);
 
-    --secondary: 224 18% 28%;
-    --secondary-foreground: 39 34% 89%;
+    --secondary: var(--genshin-blue);
+    --secondary-foreground: var(--genshin-brown);
+    --secondary-active: 20 9% 62%;
+    --secondary-outline: 242 12% 56%;
+    --secondary-hover: 218 12% 43%;
+    --secondary-ring: var(--ring-yellow);
 
     --accent: 240 3.7% 15.9%;
     --accent-foreground: 0 0% 98%;
-
-    --ring: 240 4.9% 83.9%;
 
     /* colors */
     --gold: 41 100% 75.1%;
@@ -110,20 +113,6 @@
   }
   body {
     @apply cursor-genshin bg-background text-foreground;
-  }
-}
-
-@layer utilities {
-  .key-focus {
-    @apply outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 focus-visible:dark:ring-yellow-600;
-  }
-
-  .key-focus-section {
-    @apply ring-offset-white dark:ring-offset-zinc-800;
-  }
-
-  .key-focus-body {
-    @apply ring-offset-zinc-100 dark:ring-offset-zinc-900;
   }
 }
 

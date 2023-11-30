@@ -50,7 +50,7 @@ const DropdownMenuContent = React.forwardRef<
     <Listbox.Options
       ref={ref}
       className={cn(
-        "absolute z-50 flex w-full flex-col gap-[0.125rem] overflow-hidden rounded-3xl bg-select p-[0.3125rem] text-select-foreground shadow-xl ring-1 ring-black/20 focus:outline-none",
+        "absolute z-50 flex w-full flex-col gap-[0.125rem] overflow-hidden rounded-3xl bg-secondary p-[0.3125rem] text-secondary-foreground shadow-xl ring-1 ring-black/20 focus:outline-none",
         className,
       )}
       {...props}
@@ -66,10 +66,7 @@ const DropdownMenuItem = React.forwardRef<
   <Listbox.Option
     ref={ref}
     value={value}
-    className={cn(
-      "flex h-11 cursor-default select-none text-xl outline-none",
-      className,
-    )}
+    className={cn("flex h-11 select-none text-xl outline-none", className)}
     {...props}
   />
 ));

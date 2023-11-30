@@ -78,17 +78,17 @@ const FilterContainer: FilterContainerProps = ({
   };
 
   return (
-    <div className="flex flex-wrap items-center justify-center gap-2 rounded-lg bg-select p-1.5 text-select-foreground ring-1 ring-black/10">
+    <div className="flex flex-wrap items-center justify-center gap-2 rounded-lg bg-secondary p-1.5 text-secondary-foreground ring-1 ring-black/10">
       {attrData.map((attr) => (
         // TODO: add focus classes
         <button
           key={attr}
           onClick={() => handleFilter(attr)}
           className={cn(
-            "key-focus cursor-pointer rounded-md px-2 py-1 ring-offset-select transition",
+            "cursor-pointer rounded-md px-2 py-1 ring-offset-secondary transition",
             (attrFilter[category] as Set<Attribute>).has(attr)
-              ? "bg-select-active text-select-active-foreground"
-              : "hover:bg-select-hover",
+              ? "bg-primary text-primary-foreground"
+              : "hover:bg-secondary-hover",
           )}
         >
           {attr === "4" || attr === "5" ? `${attr} ★` : attr}

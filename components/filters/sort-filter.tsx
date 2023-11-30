@@ -39,7 +39,7 @@ export const SortDropdown: SortDropdownProps = ({ setSortKey, className }) => {
       onChange={handleChange}
       className={className}
     >
-      <DropdownMenuTrigger className="ui-open:ring-[3px] ui-open:shadow-inner">
+      <DropdownMenuTrigger className="ui-open:ring-3 ui-open:shadow-inner">
         Sort by {selectedOption.label}
       </DropdownMenuTrigger>
       <DropdownMenuContent>
@@ -47,8 +47,8 @@ export const SortDropdown: SortDropdownProps = ({ setSortKey, className }) => {
           <DropdownMenuItem key={option.value} value={option}>
             <div
               className={cn(
-                "relative flex h-full w-full items-center justify-between rounded-full p-0.5 px-3 transition-colors duration-[50ms]",
-                "ui-active:bg-select-hover ui-active:active:bg-select-active ui-active:active:text-select-active-foreground",
+                "relative flex h-full w-full items-center justify-between rounded-full p-0.5 px-3 transition-colors duration-75",
+                "ui-active:bg-secondary-hover ui-active:active:bg-primary ui-active:active:text-primary-foreground",
               )}
             >
               {option.label}

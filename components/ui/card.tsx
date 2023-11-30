@@ -10,7 +10,7 @@ const cardVariants = cva(
     variants: {
       hover: {
         default:
-          "outline-none ring-offset-white transition duration-200 ease-in-out hocus:ring-offset-[3px] motion-safe:hocus:scale-105",
+          "hocus:ring-offset-3 ring-offset-ring-white outline-none transition motion-safe:hocus:scale-105",
       },
     },
   },
@@ -29,7 +29,7 @@ const Card = ({ className, hover, asChild = false, ...props }: CardProps) => {
 Card.displayName = "Card";
 
 const cardImageVariants = cva(
-  "relative flex items-center justify-center overflow-hidden rounded-br-[1.25rem] border-b border-white/20",
+  "relative flex items-center justify-center overflow-hidden rounded-br-[1.25rem] border-b border-transparent",
   {
     variants: {
       gradient: {

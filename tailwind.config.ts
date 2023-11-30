@@ -29,6 +29,11 @@ module.exports = {
         cryo: "hsl(var(--cryo))",
         geo: "hsl(var(--geo))",
 
+        genshin: {
+          brown: "hsl(var(--genshin-brown))",
+          blue: "hsl(var(--genshin-blue))",
+        },
+
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
 
@@ -52,27 +57,24 @@ module.exports = {
           foreground: "hsl(var(--card-foreground))",
         },
 
-        select: {
-          DEFAULT: "hsl(var(--select))",
-          foreground: "hsl(var(--select-foreground))",
-          hover: "hsl(var(--select-hover))",
-          active: "hsl(var(--select-active))",
-          "active-foreground": "hsl(var(--select-active-foreground))",
-        },
-
         border: "hsl(var(--border))",
-        input: "hsl(var(--input))",
 
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
           active: "hsl(var(--primary-active))",
           outline: "hsl(var(--primary-outline))",
+          hover: "hsl(var(--primary-hover))",
+          ring: "hsl(var(--primary-ring))",
         },
 
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
           foreground: "hsl(var(--secondary-foreground))",
+          active: "hsl(var(--secondary-active))",
+          outline: "hsl(var(--secondary-outline))",
+          hover: "hsl(var(--secondary-hover))",
+          ring: "hsl(var(--secondary-ring))",
         },
 
         accent: {
@@ -80,7 +82,17 @@ module.exports = {
           foreground: "hsl(var(--accent-foreground))",
         },
 
-        ring: "hsl(var(--ring))",
+        ring: {
+          DEFAULT: "hsl(var(--ring))",
+          white: "hsl(var(--ring-white))",
+          yellow: "hsl(var(--ring-yellow))",
+        },
+      },
+      ringWidth: {
+        3: "3px",
+      },
+      ringOffsetWidth: {
+        3: "3px",
       },
       gridTemplateColumns: {
         14: "repeat(14, minmax(0, 1fr))",

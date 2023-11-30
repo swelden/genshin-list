@@ -1,15 +1,14 @@
 "use client";
 
+import { Icons } from "@/components/icons";
+import MaterialList from "@/components/material-list";
+import { SelectMenu, SelectOption } from "@/components/select-menu";
+import { Section, SectionHeader } from "@/components/ui/section";
 import MaterialProvider, {
   useMaterialContext,
 } from "@/contexts/material-context";
 import { MaterialInfo } from "@/lib/get-character-details";
 import { Dispatch, SetStateAction, useMemo } from "react";
-
-import { Icons } from "@/components/icons";
-import MaterialList from "@/components/material-list";
-import { SelectMenu, SelectOption } from "@/components/select-menu";
-import { Section, SectionHeader } from "@/components/ui/section";
 
 export const MaterialCalculatorSection = ({
   materials: { characterCosts, talentCosts, materialData },
@@ -36,7 +35,7 @@ export const MaterialCalculatorSection = ({
           <div>
             {/* TODO: change Talents: weekday, weekday to => (S) M (T) W T [(F)] S*/}
             {/* () => means talent avaiable that day - [] => means current day indicator */}
-            <div className="mb-4 text-center xl:mb-1 xl:text-left">
+            <div className="mb-4 text-center xl:mb-1 xl:text-right">
               <span className="">
                 Talents: {/*comment is to leave space*/}
                 <span className="text-black/80 dark:text-white/80">
@@ -70,13 +69,13 @@ const LevelTemplateSelector = () => {
   return (
     <div className="mt-2 grid grid-cols-2 gap-3">
       <button
-        className="key-focus key-focus-section rounded-md bg-zinc-200 p-2 transition-colors hover:bg-zinc-300 dark:bg-zinc-900 hover:dark:bg-black/60"
+        className="rounded-md bg-zinc-200 p-2 transition-colors hover:bg-zinc-300 dark:bg-zinc-900 hover:dark:bg-black/60"
         onClick={setNoLevels}
       >
         Clear
       </button>
       <button
-        className="key-focus key-focus-section rounded-md bg-zinc-200 p-2 transition-colors hover:bg-zinc-300 dark:bg-zinc-900 hover:dark:bg-black/60"
+        className="rounded-md bg-zinc-200 p-2 transition-colors hover:bg-zinc-300 dark:bg-zinc-900 hover:dark:bg-black/60"
         onClick={setMaxLevels}
       >
         Max

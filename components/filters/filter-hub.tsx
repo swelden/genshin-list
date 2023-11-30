@@ -1,7 +1,7 @@
 "use client";
 
 import AttributeFilter from "@/components/filters/attr-filter";
-import Search from "@/components/filters/search-filter";
+import { Search } from "@/components/filters/search-filter";
 import { SortDropdown } from "@/components/filters/sort-filter";
 import { Icons } from "@/components/icons";
 import { Button } from "@/components/ui/button";
