@@ -33,11 +33,11 @@ export default function MaterialList({
 
   return (
     // NOTE: might remove mora card and replace it with "Required (mora icon) [Amount]" center below cards
-    <div className="flex flex-wrap justify-center gap-4 xl:justify-start">
+    <div className="flex flex-wrap justify-center gap-4 xl:justify-end">
       {totalMaterials.map(([material, count]) => {
         return (
           <div
-            className="w-[5.25rem] lg:w-[5.875rem] 2xl:w-[6.125rem]"
+            className="w-[5.25rem] lg:w-[5.875rem] 2xl:w-[6.5rem]"
             title={material}
             key={`${material}`}
           >
@@ -45,7 +45,7 @@ export default function MaterialList({
               label={count.toLocaleString()}
               src={formatImageUrl(materialData[material].nameicon)}
               alt={material}
-              size={147} // NOTE: make equal to lg:w-[??px] on max system font size
+              size={104} // NOTE: make equal to lg:w-[??px] on max system font size
               unoptimized={true}
             />
           </div>
