@@ -3,7 +3,7 @@ import { Items } from "genshin-db";
 
 import { calculateMaterialsRange, Materials } from "@/components/material-list";
 
-export const useMinMax = (
+export function useMinMax(
   initialMin: number,
   initialMax: number,
   materialList: Items[][],
@@ -13,7 +13,7 @@ export const useMinMax = (
   number,
   React.Dispatch<React.SetStateAction<number>>,
   Materials,
-] => {
+] {
   const [min, setMin] = React.useState(initialMin);
   const [max, setMax] = React.useState(initialMax);
 
@@ -25,4 +25,4 @@ export const useMinMax = (
   );
 
   return [min, setMin, max, setMax, materials];
-};
+}

@@ -8,13 +8,12 @@ import {
 import { Card, CardImage, CardLabel } from "@/components/ui/card";
 import { IconImage } from "@/components/ui/icon-image";
 
-export const CharacterCard = ({
-  character,
-  size,
-}: {
+interface CharacterCardProps {
   character: CharacterFilterInfo;
   size: number;
-}) => {
+}
+
+export function CharacterCard({ character, size }: CharacterCardProps) {
   return (
     <Card hover="default" asChild>
       <Link href={formatNameUrl(character.name)}>
@@ -37,8 +36,7 @@ export const CharacterCard = ({
       </Link>
     </Card>
   );
-};
-CharacterCard.displayName = "CharacterCard";
+}
 
 interface ItemCardProps {
   label: string | number;
@@ -48,13 +46,13 @@ interface ItemCardProps {
   unoptimized?: boolean;
 }
 
-export const ItemCard = ({
+export function ItemCard({
   label,
   src,
   alt,
   size,
   unoptimized = true,
-}: ItemCardProps) => {
+}: ItemCardProps) {
   return (
     <Card>
       <CardImage
@@ -68,5 +66,4 @@ export const ItemCard = ({
       <CardLabel>{label}</CardLabel>
     </Card>
   );
-};
-ItemCard.displayName = "ItemCard";
+}

@@ -48,10 +48,12 @@ export function FilterHub({
   );
 }
 
-const ReverseBtn: React.FC<{
+interface ReverseBtnProps {
   setIsReversed: React.Dispatch<React.SetStateAction<boolean>>;
-  className: string;
-}> = ({ setIsReversed, className }) => {
+  className?: string;
+}
+
+function ReverseBtn({ setIsReversed, className }: ReverseBtnProps) {
   return (
     <Button
       onClick={() => setIsReversed((prev) => !prev)}
@@ -62,13 +64,15 @@ const ReverseBtn: React.FC<{
       <Icons.reverse className="h-7 w-7" />
     </Button>
   );
-};
+}
 
-const FilterBtn: React.FC<{
+interface FilterBtnProps {
   isOpen: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  className: string;
-}> = ({ isOpen, setIsOpen, className }) => {
+  className?: string;
+}
+
+function FilterBtn({ isOpen, setIsOpen, className }: FilterBtnProps) {
   return (
     <Button
       onClick={() => setIsOpen(!isOpen)}
@@ -80,4 +84,4 @@ const FilterBtn: React.FC<{
       <Icons.filter className="h-6 w-6" />
     </Button>
   );
-};
+}

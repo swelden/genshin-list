@@ -1,10 +1,12 @@
 import { cn } from "@/lib/utils";
 
-export const StatsTable: React.FC<{
+interface StatsTableProps {
   data: { label: string; params: string[] }[];
   topHeadings: string[];
   numCols: number;
-}> = ({ data, topHeadings, numCols }) => {
+}
+
+export function StatsTable({ data, topHeadings, numCols }: StatsTableProps) {
   return (
     <div
       className={cn(
@@ -37,43 +39,57 @@ export const StatsTable: React.FC<{
       </div>
     </div>
   );
-};
+}
 
 const sharedBorderClasses = "border-black/10 dark:border-white/10";
 const sharedCellClasses = "border-r p-3 last:border-r-0";
 
-const TableRow: React.FC<{ heading: string; children: React.ReactNode }> = ({
-  heading,
-  children,
-}) => (
-  <tr className={cn("border-b last:border-0", sharedBorderClasses)}>
-    <TableHeading>{heading}</TableHeading>
-    {children}
-  </tr>
-);
+interface TableRowProps {
+  heading: string;
+  children: React.ReactNode;
+}
 
-const TableHeading: React.FC<{ children: React.ReactNode }> = ({
-  children,
-}) => (
-  <th
-    className={cn(
-      "w-36 bg-zinc-100 font-normal text-black/50 dark:bg-zinc-900/50 dark:text-white/30",
-      sharedBorderClasses,
-      sharedCellClasses,
-    )}
-  >
-    {children}
-  </th>
-);
+function TableRow({ heading, children }: TableRowProps) {
+  return (
+    <tr className={cn("border-b last:border-0", sharedBorderClasses)}>
+      <TableHeading>{heading}</TableHeading>
+      {children}
+    </tr>
+  );
+}
 
-const TableCell: React.FC<{ children: React.ReactNode }> = ({ children }) => (
-  <td
-    className={cn(
-      "min-w-[7rem] text-black/90 last:border-r-0 dark:text-white/90",
-      sharedBorderClasses,
-      sharedCellClasses,
-    )}
-  >
-    {children}
-  </td>
-);
+interface TableHeadingProps {
+  children: React.ReactNode;
+}
+
+function TableHeading({ children }: TableHeadingProps) {
+  return (
+    <th
+      className={cn(
+        "w-36 bg-zinc-100 font-normal text-black/50 dark:bg-zinc-900/50 dark:text-white/30",
+        sharedBorderClasses,
+        sharedCellClasses,
+      )}
+    >
+      {children}
+    </th>
+  );
+}
+
+interface TableCellProps {
+  children: React.ReactNode;
+}
+
+function TableCell({ children }: TableCellProps) {
+  return (
+    <td
+      className={cn(
+        "min-w-[7rem] text-black/90 last:border-r-0 dark:text-white/90",
+        sharedBorderClasses,
+        sharedCellClasses,
+      )}
+    >
+      {children}
+    </td>
+  );
+}

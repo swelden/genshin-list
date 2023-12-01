@@ -13,11 +13,11 @@ interface SectionRowProps {
   isAbsoluteIconPath?: boolean;
 }
 
-export const SectionRow = ({
+export function SectionRow({
   ability,
   children,
   isAbsoluteIconPath = false,
-}: SectionRowProps) => {
+}: SectionRowProps) {
   return (
     <div className="border-b pb-4 last:border-0 last:pb-0" key={ability.name}>
       <div className="flex items-center gap-2">
@@ -45,5 +45,4 @@ export const SectionRow = ({
       {children}
     </div>
   );
-};
-SectionRow.displayName = "SectionRow";
+}

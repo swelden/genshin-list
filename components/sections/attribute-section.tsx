@@ -1,11 +1,11 @@
 import { CharacterInfo } from "@/lib/get-character-details";
 import { Section, SectionHeader } from "@/components/ui/section";
 
-export const AttributeSection = ({
-  character,
-}: {
+interface AttributeSectionProps {
   character: CharacterInfo;
-}) => {
+}
+
+export function AttributeSection({ character }: AttributeSectionProps) {
   return (
     <Section className="lg:bg-opacity-90 lg:p-3 lg:backdrop-blur-sm lg:dark:bg-opacity-95">
       <SectionHeader>Attributes</SectionHeader>
@@ -25,10 +25,14 @@ export const AttributeSection = ({
       </div>
     </Section>
   );
-};
-AttributeSection.displayName = "AttributeSection";
+}
 
-const AttrRow = ({ title, info }: { title: string; info: string }) => {
+interface AttrRowProps {
+  title: string;
+  info: string;
+}
+
+function AttrRow({ title, info }: AttrRowProps) {
   return (
     <tr className="border-b border-neutral-500/20 odd:bg-zinc-300/20 dark:odd:bg-zinc-600/10">
       <th
@@ -42,5 +46,4 @@ const AttrRow = ({ title, info }: { title: string; info: string }) => {
       </td>
     </tr>
   );
-};
-AttrRow.displayName = "AttrRow";
+}

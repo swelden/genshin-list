@@ -9,11 +9,11 @@ export interface Materials {
   [key: string]: number;
 }
 
-export function MaterialList({
-  materialData,
-}: {
+interface MaterialListProps {
   materialData: MaterialDataMap;
-}) {
+}
+
+export function MaterialList({ materialData }: MaterialListProps) {
   const { characterMaterials, talentMaterials } = useMaterialContext()!;
 
   // NOTE: shouldn't need to use useMemo
@@ -61,11 +61,11 @@ export function MaterialList({
   );
 }
 
-export const calculateMaterialsRange = (
+export function calculateMaterialsRange(
   costs: Items[][],
   start: number, // min is 0
   end: number, // max is len of array (not max index)
-): Materials => {
+): Materials {
   const materials: Materials = {};
 
   for (const value of costs.slice(start, end)) {
@@ -79,9 +79,9 @@ export const calculateMaterialsRange = (
   }
 
   return materials;
-};
+}
 
-export const mergeMaterials = (...materials: Materials[]): Materials => {
+export function mergeMaterials(...materials: Materials[]): Materials {
   const merged: Materials = {};
 
   materials.forEach((material) => {
@@ -95,4 +95,4 @@ export const mergeMaterials = (...materials: Materials[]): Materials => {
   });
 
   return merged;
-};
+}

@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: "Genshin List - 404",
 };
 
-const NotFound = () => {
+export default function NotFound() {
   return (
     <main className="container flex flex-1 flex-col gap-6">
       <div className="flex flex-1 flex-col items-center justify-center">
@@ -18,6 +18,4 @@ const NotFound = () => {
       </div>
     </main>
   );
-};
-
-export default NotFound;
+}

@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils";
 
+// TODO: move visions and weapons to data folder and import them here
 const visions: readonly Vision[] = [
   "Pyro",
   "Hydro",
@@ -18,11 +19,17 @@ const weapons: readonly Weapon[] = [
 ] as const;
 const rarities: readonly Rarity[] = ["4", "5"] as const;
 
-export const AttributeFilter: React.FC<{
+interface AttributeFilterProps {
   attrFilter: Attributes;
   setAttrFilter: React.Dispatch<React.SetStateAction<Attributes>>;
   regions: Nation[];
-}> = ({ attrFilter, setAttrFilter, regions }) => {
+}
+
+export function AttributeFilter({
+  attrFilter,
+  setAttrFilter,
+  regions,
+}: AttributeFilterProps) {
   return (
     <div className="flex flex-wrap items-center justify-center gap-4 p-2 lg:col-span-2">
       <FilterContainer
@@ -52,23 +59,23 @@ export const AttributeFilter: React.FC<{
       {/* TODO: add "Clear" button */}
     </div>
   );
-};
+}
 
 type Attribute = Vision | Weapon | Nation | Rarity;
 
-type FilterContainerProps = React.FC<{
+interface FilterContainerProps {
   attrData: Readonly<Attribute[]>;
   category: keyof Attributes;
   attrFilter: Attributes;
   setAttrFilter: React.Dispatch<React.SetStateAction<Attributes>>;
-}>;
+}
 
-const FilterContainer: FilterContainerProps = ({
+function FilterContainer({
   attrData,
   category,
   attrFilter,
   setAttrFilter,
-}) => {
+}: FilterContainerProps) {
   const handleFilter = (attr: Attribute) => {
     const newSet = new Set<Attribute>(attrFilter[category]);
 
@@ -96,4 +103,4 @@ const FilterContainer: FilterContainerProps = ({
       ))}
     </div>
   );
-};
+}

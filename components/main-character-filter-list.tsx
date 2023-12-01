@@ -4,13 +4,15 @@ import { useCharacters } from "@/hooks/use-characters";
 import { CharacterList } from "@/components/character-list";
 import { FilterHub } from "@/components/filters/filter-hub";
 
-export const MainCharacterFilterList = ({
-  allCharacters,
-  regions,
-}: {
+interface MainCharacterFilterListProps {
   allCharacters: CharacterFilterInfo[];
   regions: Nation[];
-}) => {
+}
+
+export function MainCharacterFilterList({
+  allCharacters,
+  regions,
+}: MainCharacterFilterListProps) {
   const {
     characters,
     filter,
@@ -34,4 +36,4 @@ export const MainCharacterFilterList = ({
       <CharacterList characters={characters} />
     </>
   );
-};
+}

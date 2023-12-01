@@ -18,7 +18,7 @@ interface ActiveTalentSectionProps {
   actives: TalentInfo["actives"];
 }
 
-export const ActiveTalentSection = ({ actives }: ActiveTalentSectionProps) => {
+export function ActiveTalentSection({ actives }: ActiveTalentSectionProps) {
   return (
     <Section className="overflow-hidden">
       <SectionHeader>Active Talents</SectionHeader>
@@ -29,15 +29,14 @@ export const ActiveTalentSection = ({ actives }: ActiveTalentSectionProps) => {
       ))}
     </Section>
   );
-};
-ActiveTalentSection.displayName = "ActiveTalentSection";
+}
 
 interface ActiveTalentAttributesProps {
   talent: TalentInfo["actives"][number];
 }
 
 // TODO: extract this to separate file due to "use-client"
-const ActiveTalentAttributes = ({ talent }: ActiveTalentAttributesProps) => {
+function ActiveTalentAttributes({ talent }: ActiveTalentAttributesProps) {
   const [isOpen, setIsOpen] = React.useState(false);
   const maxCols = talent.attributes[0].params.length;
 
@@ -62,5 +61,4 @@ const ActiveTalentAttributes = ({ talent }: ActiveTalentAttributesProps) => {
       </CollapsibleContent>
     </Collapsible>
   );
-};
-ActiveTalentAttributes.displayName = "ActiveTalentAttributes";
+}

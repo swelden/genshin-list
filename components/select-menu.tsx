@@ -15,11 +15,11 @@ interface SelectMenuProps<T> {
   handleChange: (value: T) => void;
 }
 
-export const SelectMenu = <T extends {}>({
+export function SelectMenu<T extends {}>({
   options,
   currentValue,
   handleChange,
-}: SelectMenuProps<T>) => {
+}: SelectMenuProps<T>) {
   return (
     <Listbox value={currentValue.value} onChange={handleChange}>
       <div className="relative">
@@ -65,4 +65,4 @@ export const SelectMenu = <T extends {}>({
       </div>
     </Listbox>
   );
-};
+}

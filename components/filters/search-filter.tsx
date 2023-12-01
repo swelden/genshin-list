@@ -8,7 +8,7 @@ interface SearchProps {
   setFilter: React.Dispatch<React.SetStateAction<string>>;
 }
 
-export const Search = ({ setFilter }: SearchProps) => {
+export function Search({ setFilter }: SearchProps) {
   const [value, setValue] = React.useState("");
 
   const hasValue = value !== "";
@@ -26,7 +26,7 @@ export const Search = ({ setFilter }: SearchProps) => {
   };
 
   return (
-    <div className="ring-primary-ring/80 rounded-full shadow-sm ring-0 transition focus-within:shadow-md focus-within:ring-1">
+    <div className="ring-primary-ring/80 rounded-full shadow-sm ring-0 transition focus-within:shadow focus-within:ring-1">
       <div className="focus-within:ring-primary-ring flex h-11 items-center rounded-full text-foreground ring-2 ring-inset ring-border transition">
         <SearchIcon className="ml-3 h-5 w-5" />
         <Input
@@ -49,5 +49,4 @@ export const Search = ({ setFilter }: SearchProps) => {
       </div>
     </div>
   );
-};
-Search.displayName = "Search";
+}

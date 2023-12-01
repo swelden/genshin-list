@@ -2,11 +2,13 @@ import { ConstellationInfo } from "@/lib/get-character-details";
 import { Section, SectionHeader } from "@/components/ui/section";
 import { SectionRow } from "@/components/sections/section-row";
 
-export const ConstellationSection = ({
-  constellations,
-}: {
+interface ConstellationSectionProps {
   constellations: ConstellationInfo[];
-}) => {
+}
+
+export function ConstellationSection({
+  constellations,
+}: ConstellationSectionProps) {
   return (
     <Section>
       <SectionHeader>Constellations</SectionHeader>
@@ -19,5 +21,4 @@ export const ConstellationSection = ({
       ))}
     </Section>
   );
-};
-ConstellationSection.displayName = "ConstellationSection";
+}

@@ -2,9 +2,9 @@ import { Metadata, ResolvingMetadata } from "next";
 import Image from "next/image";
 
 import {
+  CharacterInfo,
   getCharacterNames,
   getNamePageProps,
-  NamePageProps,
 } from "@/lib/get-character-details";
 import {
   formatImageUrl,
@@ -59,9 +59,11 @@ export default function CharacterPage({ params: { name } }: PageProps) {
   );
 }
 
-const HeroSection: React.FC<Pick<NamePageProps, "character">> = ({
-  character,
-}) => {
+interface HeroSectionProps {
+  character: CharacterInfo;
+}
+
+function HeroSection({ character }: HeroSectionProps) {
   return (
     <div className="grid-cols-10 text-sm sm:container lg:grid xl:text-base">
       <div className="col-span-full row-span-full overflow-hidden sm:overflow-visible lg:flex lg:items-center lg:justify-center">
@@ -84,11 +86,13 @@ const HeroSection: React.FC<Pick<NamePageProps, "character">> = ({
       </div>
     </div>
   );
-};
+}
 
-const DetailHeader: React.FC<Pick<NamePageProps, "character">> = ({
-  character,
-}) => {
+interface DetailHeaderProps {
+  character: CharacterInfo;
+}
+
+function DetailHeader({ character }: DetailHeaderProps) {
   // TODO: find better way of preventing long names from covering gacha image
   return (
     <div className="col-span-5 col-start-1 row-span-full mb-8 flex items-center">
@@ -114,17 +118,25 @@ const DetailHeader: React.FC<Pick<NamePageProps, "character">> = ({
       </div>
     </div>
   );
-};
+}
 
-const CharacterBadge: React.FC<{ text: string }> = ({ text }) => {
+interface CharacterBadgeProps {
+  text: string;
+}
+
+function CharacterBadge({ text }: CharacterBadgeProps) {
   return (
     <div className="rounded bg-zinc-300/50 px-2 py-1 text-xs dark:bg-zinc-700/70 lg:backdrop-blur-sm">
       {text}
     </div>
   );
-};
+}
 
-const StarRating: React.FC<{ rarity: number }> = ({ rarity }) => {
+interface StarRatingProps {
+  rarity: number;
+}
+
+function StarRating({ rarity }: StarRatingProps) {
   return (
     <div className="flex flex-nowrap gap-0.5">
       {[...Array(rarity)].map((_, i) => (
@@ -137,7 +149,7 @@ const StarRating: React.FC<{ rarity: number }> = ({ rarity }) => {
       ))}
     </div>
   );
-};
+}
 
 export const dynamicParams = false;
 

@@ -14,7 +14,7 @@ const ElementColor = {
   Geo: "text-geo",
 } as const;
 
-const createElementSpanRegExp = () => {
+function createElementSpanRegExp() {
   const invalidBehindWords = ["\\d"].join("|");
   const validBehindWords = ["AoE"].join("|");
   const elements: string = Object.keys(ElementColor).join("|");
@@ -44,10 +44,10 @@ const createElementSpanRegExp = () => {
     `${invalidBehindRegExp}(${validBehindRegExp}${indicatorRegExp}${validAheadRegExp})${invalidEndRegExp}`,
     "g",
   );
-};
+}
 
 // NOTE: might sanitize because I don't have control over text
-export const formatMarkdown = (text: string) => {
+export function formatMarkdown(text: string) {
   return text
     .replace(
       /\*\*([^*]+)\*\*/g, // **text** -> <span>text</span>
@@ -60,13 +60,13 @@ export const formatMarkdown = (text: string) => {
     })
     .replace(/\n/g, "<br>")
     .replace(/·\s*/g, "• ");
-};
+}
 
-export const formatTalentLabel = (
+export function formatTalentLabel(
   label: string,
   parameters: CombatTalentDetail["attributes"]["parameters"],
   talentlevel: number,
-) => {
+) {
   return label.replace(/{(.*?)}/g, (_match, p1: string) => {
     const [paramnum, format] = p1.split(":");
     const value = parameters[paramnum][talentlevel - 1];
@@ -85,7 +85,7 @@ export const formatTalentLabel = (
       return `${value}`;
     }
   });
-};
+}
 
 const MAX_LVL_MAP: { [key: string]: number } = {
   "Normal Attack": 11,
@@ -94,10 +94,10 @@ const MAX_LVL_MAP: { [key: string]: number } = {
   "Alternate Sprint": 1,
 } as const;
 
-export const formatAttributes = (
+export function formatAttributes(
   attributes: CombatTalentDetail["attributes"],
   category: string,
-) => {
+) {
   return attributes.labels.map((label) => {
     const [heading, params] = label.split("|");
     const maxLvl = Math.min(
@@ -112,4 +112,4 @@ export const formatAttributes = (
       ),
     };
   });
-};
+}

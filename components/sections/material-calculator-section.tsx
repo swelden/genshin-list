@@ -12,11 +12,13 @@ import { Icons } from "@/components/icons";
 import { MaterialList } from "@/components/material-list";
 import { SelectMenu, SelectOption } from "@/components/select-menu";
 
-export const MaterialCalculatorSection = ({
-  materials: { characterCosts, talentCosts, materialData },
-}: {
+interface MaterialCalculatorSectionProps {
   materials: MaterialInfo;
-}) => {
+}
+
+export function MaterialCalculatorSection({
+  materials: { characterCosts, talentCosts, materialData },
+}: MaterialCalculatorSectionProps) {
   const daysofweek: string = React.useMemo(() => {
     for (const material of Object.values(materialData)) {
       if (material.daysofweek) {
@@ -51,10 +53,9 @@ export const MaterialCalculatorSection = ({
       </Section>
     </MaterialProvider>
   );
-};
-MaterialCalculatorSection.displayName = "MaterialCalculatorSection";
+}
 
-const MaterialCalculator = () => {
+function MaterialCalculator() {
   return (
     <div className="flex w-full flex-col gap-4 lg:px-11 xl:px-0">
       <LevelCalculator />
@@ -62,10 +63,9 @@ const MaterialCalculator = () => {
       <LevelTemplateSelector />
     </div>
   );
-};
-MaterialCalculator.displayName = "MaterialCalculator";
+}
 
-const LevelTemplateSelector = () => {
+function LevelTemplateSelector() {
   const { setNoLevels, setMaxLevels } = useMaterialContext()!;
 
   return (
@@ -84,17 +84,25 @@ const LevelTemplateSelector = () => {
       </button>
     </div>
   );
-};
-LevelTemplateSelector.displayName = "LevelTemplateSelector";
+}
 
-const RangeSelector: React.FC<{
+interface RangeSelectorProps {
   title: string;
   min: number;
   max: number;
   setMin: React.Dispatch<React.SetStateAction<number>>;
   setMax: React.Dispatch<React.SetStateAction<number>>;
   options: SelectOption<number>[];
-}> = ({ title, min, max, setMin, setMax, options }) => {
+}
+
+function RangeSelector({
+  title,
+  min,
+  max,
+  setMin,
+  setMax,
+  options,
+}: RangeSelectorProps) {
   return (
     <div className="w-full">
       <h3 className="mb-1">{title}</h3>
@@ -115,10 +123,9 @@ const RangeSelector: React.FC<{
       </div>
     </div>
   );
-};
-RangeSelector.displayName = "RangeSelector";
+}
 
-const LevelCalculator: React.FC<{}> = () => {
+function LevelCalculator() {
   const { levelMin, setLevelMin, levelMax, setLevelMax, levelOptions } =
     useMaterialContext()!;
 
@@ -132,10 +139,9 @@ const LevelCalculator: React.FC<{}> = () => {
       options={levelOptions}
     />
   );
-};
-LevelCalculator.displayName = "LevelCalculator";
+}
 
-const TalentCalculator: React.FC<{}> = () => {
+function TalentCalculator() {
   const {
     attackMin,
     setAttackMin,
@@ -180,5 +186,4 @@ const TalentCalculator: React.FC<{}> = () => {
       />
     </>
   );
-};
-TalentCalculator.displayName = "TalentCalculator";
+}

@@ -43,11 +43,17 @@ export const MaterialContext = React.createContext<MaterialContextType>(
   {} as MaterialContextType,
 );
 
-export const MaterialProvider: React.FC<{
+interface MaterialProviderProps {
   levelCosts: MaterialInfo["characterCosts"];
   talentCosts: MaterialInfo["talentCosts"];
   children: React.ReactNode;
-}> = ({ levelCosts, talentCosts, children }) => {
+}
+
+export function MaterialProvider({
+  levelCosts,
+  talentCosts,
+  children,
+}: MaterialProviderProps) {
   // levels
   const [levelOptions, levelMats] = React.useMemo(() => {
     const levelKeys = Object.keys(levelCosts).sort();
@@ -170,6 +176,8 @@ export const MaterialProvider: React.FC<{
       {children}
     </MaterialContext.Provider>
   );
-};
+}
 
-export const useMaterialContext = () => React.useContext(MaterialContext);
+export function useMaterialContext() {
+  return React.useContext(MaterialContext);
+}

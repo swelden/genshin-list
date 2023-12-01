@@ -2,7 +2,7 @@
 
 import * as React from "react";
 
-export const useCharacters = (allCharacters: CharacterFilterInfo[]) => {
+export function useCharacters(allCharacters: CharacterFilterInfo[]) {
   const [filter, setFilter] = React.useState("");
   const [sortKey, setSortKey] = React.useState<CharacterSortKeys>("version");
   const [isReversed, setIsReversed] = React.useState(true);
@@ -44,4 +44,4 @@ export const useCharacters = (allCharacters: CharacterFilterInfo[]) => {
     attrFilter,
     setAttrFilter,
   };
-};
+}

@@ -74,14 +74,14 @@ export interface NamePageProps {
   constellations: ConstellationInfo[];
 }
 
-export const getCharacterNames = () => {
+export function getCharacterNames() {
   const charactersNotIncluded = new Set(["Aether", "Lumine"]);
   return genshindb
     .characters("names", { matchCategories: true })
     .filter((character) => !charactersNotIncluded.has(character));
-};
+}
 
-const getActives = (talents: genshindb.Talent): ActiveTalent[] => {
+function getActives(talents: genshindb.Talent): ActiveTalent[] {
   const images = talents.images!;
 
   // possible for any talent to be missing description, but mostly combat1
@@ -133,9 +133,9 @@ const getActives = (talents: genshindb.Talent): ActiveTalent[] => {
         ]
       : []),
   ];
-};
+}
 
-const getPassives = (talents: genshindb.Talent): PassiveTalent[] => {
+function getPassives(talents: genshindb.Talent): PassiveTalent[] {
   let passiveNum = 1; // 4 is the current max passives | held by Kokomi
   let passiveStr = `passive${passiveNum}`;
   const images = talents.images!;
@@ -154,11 +154,11 @@ const getPassives = (talents: genshindb.Talent): PassiveTalent[] => {
     passiveStr = `passive${passiveNum}`;
   }
   return passives;
-};
+}
 
-const getMaterialData = (costItem: {
+function getMaterialData(costItem: {
   [key: string]: genshindb.Items[];
-}): MaterialDataMap => {
+}): MaterialDataMap {
   const names: string[] = [];
   for (const items of Object.values(costItem)) {
     for (const { name } of items) {
@@ -167,9 +167,9 @@ const getMaterialData = (costItem: {
   }
 
   return getMaterialDataFromNames(names);
-};
+}
 
-const getMaterialDataFromNames = (names: string[]): MaterialDataMap => {
+function getMaterialDataFromNames(names: string[]): MaterialDataMap {
   const materialDataMap: MaterialDataMap = {};
   for (const name of names) {
     const {
@@ -188,14 +188,14 @@ const getMaterialDataFromNames = (names: string[]): MaterialDataMap => {
   }
 
   return materialDataMap;
-};
+}
 
 // Get array of stats at all ascension levels and include lvl 1 and 90
-const getCharStats = (
+function getCharStats(
   stats: genshindb.StatFunction,
   substat: string,
   levels: [number, "-" | "+"][],
-): CharacterStats => {
+): CharacterStats {
   // ascension levels at 20, 40, 50, 60, 70, 80
 
   const headings = levels.map(
@@ -228,12 +228,12 @@ const getCharStats = (
       };
     }),
   };
-};
+}
 
 interface LevelupCosts {
   [key: number]: genshindb.Items[];
 }
-const getLevelUpMaterials = (): [LevelupCosts, MaterialDataMap] => {
+function getLevelUpMaterials(): [LevelupCosts, MaterialDataMap] {
   const xpBookNames = genshindb.materials("EXP_FRUIT", {
     matchCategories: true,
   }) as string[];
@@ -266,13 +266,13 @@ const getLevelUpMaterials = (): [LevelupCosts, MaterialDataMap] => {
   );
 
   return [levelCosts, xpBookMap];
-};
+}
 
-const getMaterialProps = (
+function getMaterialProps(
   characterInfo: genshindb.Character,
   characterTalents: genshindb.Talent,
   levels: [number, "-" | "+"][],
-): MaterialInfo => {
+): MaterialInfo {
   const lvltoAscensionMap: {
     [key: number]: keyof genshindb.Character["costs"];
   } = {
@@ -315,15 +315,15 @@ const getMaterialProps = (
       ...xpBookMap,
     },
   };
-};
+}
 
-const formatAmbrUrl = (url: string) => {
+function formatAmbrUrl(url: string) {
   const ambrUrl = "https://api.ambr.top/assets/UI/";
   const path = url.substring(url.lastIndexOf("/") + 1);
   return `${ambrUrl}${path}`;
-};
+}
 
-export const getNamePageProps = (name: string): NamePageProps => {
+export function getNamePageProps(name: string): NamePageProps {
   const characterInfo = genshindb.characters(name)!;
   const characterTalents = genshindb.talents(name)!;
   const characterConstellations = genshindb.constellations(name)!;
@@ -413,4 +413,4 @@ export const getNamePageProps = (name: string): NamePageProps => {
     materials: materialProps,
     constellations: constellationProps,
   };
-};
+}

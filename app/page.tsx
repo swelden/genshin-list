@@ -16,7 +16,7 @@ export default async function Home() {
   );
 }
 
-export const getAllCharacters = async () => {
+export async function getAllCharacters() {
   const characters = getCharacterNames();
 
   const characterProps: CharacterFilterInfo[] = characters.map((character) => {
@@ -32,6 +32,7 @@ export const getAllCharacters = async () => {
     };
   });
 
+  // TODO: move this to data folder and import it here
   const allRegions: Nation[] = [
     "Mondstadt",
     "Liyue",
@@ -57,4 +58,4 @@ export const getAllCharacters = async () => {
       .sort((a, b) => b.rarity.localeCompare(a.rarity)),
     regions: regionProps,
   };
-};
+}

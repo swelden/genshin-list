@@ -21,12 +21,12 @@ const options: SelectOption<CharacterSortKeys>[] = [
   { label: "Name", value: "name" },
 ];
 
-type SortDropdownProps = React.FC<{
+interface SortDropdownProps {
   setSortKey: React.Dispatch<React.SetStateAction<CharacterSortKeys>>;
   className?: string;
-}>;
+}
 
-export const SortDropdown: SortDropdownProps = ({ setSortKey, className }) => {
+export function SortDropdown({ setSortKey, className }: SortDropdownProps) {
   const [selectedOption, setSelectedOption] = React.useState(options[0]);
 
   const handleChange = (event: SelectOption<CharacterSortKeys>) => {
@@ -63,4 +63,4 @@ export const SortDropdown: SortDropdownProps = ({ setSortKey, className }) => {
       </DropdownMenuContent>
     </DropdownMenu>
   );
-};
+}

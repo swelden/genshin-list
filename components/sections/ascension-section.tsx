@@ -2,7 +2,11 @@ import { CharacterStats } from "@/lib/get-character-details";
 import { Section, SectionHeader } from "@/components/ui/section";
 import { StatsTable } from "@/components/stats-table";
 
-export const AscensionSection = ({ stats }: { stats: CharacterStats }) => {
+interface AscensionSectionProps {
+  stats: CharacterStats;
+}
+
+export function AscensionSection({ stats }: AscensionSectionProps) {
   return (
     <Section className="overflow-hidden">
       <SectionHeader>Ascensions</SectionHeader>
@@ -13,5 +17,4 @@ export const AscensionSection = ({ stats }: { stats: CharacterStats }) => {
       />
     </Section>
   );
-};
-AscensionSection.displayName = "AscensionSection";
+}
