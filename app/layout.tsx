@@ -1,4 +1,4 @@
-import "@/app/globals.css";
+import "@/styles/globals.css";
 
 import type { Metadata, Viewport } from "next";
 
@@ -15,11 +15,11 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {};
 
-export default function RootLayout({
-  children,
-}: {
+interface RootLayoutProps {
   children: React.ReactNode;
-}) {
+}
+
+export default function RootLayout({ children }: RootLayoutProps) {
   return (
     // suppressHydrationWarning: next-themes adds extra attributes: class, style for light and dark mode
     <html lang="en" className={genshinFont.className} suppressHydrationWarning>
