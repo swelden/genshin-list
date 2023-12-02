@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 
+import { siteConfig } from "@/data/site";
 import { genshinFont } from "@/lib/fonts";
 import { Footer } from "@/components/footer";
 import { Navbar } from "@/components/navbar";
@@ -8,10 +9,33 @@ import { ThemeProvider } from "@/components/theme-provider";
 import "@/styles/globals.css";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://genshin-list.vercel.app"),
-  title: { default: "Genshin List", template: "%s - Genshin List" },
-  description:
-    "Find and filter characters from Genshin Impact. Calculate required materials to level up any character.",
+  metadataBase: new URL(siteConfig.url),
+  title: { default: siteConfig.name, template: `%s - ${siteConfig.name}` },
+  description: siteConfig.description,
+  keywords: ["Next.js", "React", "Tailwind CSS", "Genshin Impact"],
+  authors: [{ name: "Steven Welden" }],
+  creator: "Steven Welden",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: siteConfig.url,
+    title: siteConfig.name,
+    description: siteConfig.description,
+    siteName: siteConfig.name,
+    images: [
+      {
+        url: siteConfig.ogImage,
+        width: 1200,
+        height: 630,
+        alt: siteConfig.name,
+      },
+    ],
+  },
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon-16x16.png",
+    apple: "/apple-touch-icon.png",
+  },
 };
 
 export const viewport: Viewport = {
