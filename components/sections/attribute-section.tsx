@@ -7,7 +7,7 @@ interface AttributeSectionProps {
 
 export function AttributeSection({ character }: AttributeSectionProps) {
   return (
-    <Section className="lg:bg-opacity-90 lg:p-3 lg:backdrop-blur-sm lg:dark:bg-opacity-95">
+    <Section className="lg:bg-section/90 lg:p-3 lg:backdrop-blur-sm lg:dark:bg-section/95">
       <SectionHeader>Attributes</SectionHeader>
       <table className="w-full">
         <tbody className="">

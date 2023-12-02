@@ -40,7 +40,7 @@ export function SortDropdown({ setSortKey, className }: SortDropdownProps) {
       onChange={handleChange}
       className={className}
     >
-      <DropdownMenuTrigger className="ui-open:ring-3 ui-open:shadow-inner">
+      <DropdownMenuTrigger className="ui-open:shadow-inner ui-open:ring-3">
         Sort by {selectedOption.label}
       </DropdownMenuTrigger>
       <DropdownMenuContent>
@@ -54,7 +54,7 @@ export function SortDropdown({ setSortKey, className }: SortDropdownProps) {
             >
               {option.label}
               <Check
-                className="ui-selected:flex hidden h-6 w-6"
+                className="hidden h-6 w-6 ui-selected:flex"
                 strokeWidth={4}
               />
             </div>

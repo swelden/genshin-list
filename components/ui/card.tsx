@@ -11,7 +11,7 @@ const cardVariants = cva(
     variants: {
       hover: {
         default:
-          "hocus:ring-offset-3 ring-offset-ring-white outline-none transition motion-safe:hocus:scale-105",
+          "outline-none ring-offset-ring-white transition hocus:ring-offset-3 motion-safe:hocus:scale-105",
       },
     },
   },
@@ -46,8 +46,8 @@ const cardImageVariants = cva(
 type CardImageVariantProps = VariantProps<typeof cardImageVariants>;
 
 interface CardImageProps
-  extends Omit<ImageProps, "width" | "height">,
-    Required<Pick<ImageProps, "width" | "height">>,
+  extends Omit<ImageProps, "width" | "height" | "alt">,
+    Required<Pick<ImageProps, "width" | "height" | "alt">>,
     Omit<CardImageVariantProps, "gradient">,
     Required<Pick<CardImageVariantProps, "gradient">> {
   imageClassName?: string;
@@ -56,12 +56,13 @@ interface CardImageProps
 const CardImage = ({
   className,
   imageClassName,
+  alt,
   gradient,
   children,
   ...props
 }: CardImageProps) => (
   <div className={cn(cardImageVariants({ gradient, className }))}>
-    <Image className={cn(imageClassName)} {...props} />
+    <Image className={cn(imageClassName)} alt={alt} {...props} />
     {children}
   </div>
 );

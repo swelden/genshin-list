@@ -31,7 +31,7 @@ export function SectionRow({
         <h3 className="text-lg">{ability.name}</h3>
       </div>
       <div
-        className="text-section-foreground/75 mt-2"
+        className="mt-2 text-section-foreground/75"
         dangerouslySetInnerHTML={{
           __html: ability.info,
         }}

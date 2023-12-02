@@ -6,7 +6,7 @@ function Section({ className, ...props }: React.HTMLAttributes<HTMLElement>) {
   return (
     <section
       className={cn(
-        "bg-section text-section-foreground flex flex-col gap-4 p-5 sm:rounded-lg sm:border sm:p-4 sm:shadow lg:p-5",
+        "flex flex-col gap-4 bg-section p-5 text-section-foreground sm:rounded-lg sm:border sm:p-4 sm:shadow lg:p-5",
         className,
       )}
       {...props}

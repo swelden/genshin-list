@@ -26,8 +26,8 @@ export function Search({ setFilter }: SearchProps) {
   };
 
   return (
-    <div className="ring-primary-ring/80 rounded-full shadow-sm ring-0 transition focus-within:shadow focus-within:ring-1">
-      <div className="focus-within:ring-primary-ring flex h-11 items-center rounded-full text-foreground ring-2 ring-inset ring-border transition">
+    <div className="rounded-full shadow-sm ring-0 ring-primary-ring/80 transition focus-within:shadow focus-within:ring-1">
+      <div className="flex h-11 items-center rounded-full text-foreground ring-2 ring-inset ring-border transition focus-within:ring-primary-ring">
         <SearchIcon className="ml-3 h-5 w-5" />
         <Input
           className={cn(

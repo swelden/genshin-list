@@ -35,7 +35,7 @@ export function SelectMenu<T extends {}>({
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          <Listbox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-y-auto rounded-md bg-zinc-50 py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:bg-zinc-600 sm:max-h-80 sm:text-sm">
+          <Listbox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-y-auto rounded-md bg-zinc-50 py-1 shadow-lg ring-1 ring-black/5 focus:outline-none dark:bg-zinc-600 sm:max-h-80 sm:text-sm">
             {options.map(({ label, value }, index) => (
               <Listbox.Option
                 key={index}
