@@ -32,7 +32,7 @@ export async function generateMetadata(
   const previousImages = (await parent).openGraph?.images || [];
 
   return {
-    title: `${character.name} - Genshin List`,
+    title: character.name,
     description: `${character.name} is a playable ${character.rarity}-star ${character.element} ${character.weapontype} character. ${character.description}`,
     openGraph: {
       images: [...previousImages],

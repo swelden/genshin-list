@@ -3,7 +3,7 @@ import { Metadata } from "next";
 import { LinkButton } from "@/components/ui/button";
 
 export const metadata: Metadata = {
-  title: "Genshin List - 404",
+  title: "Page Not Found",
 };
 
 export default function NotFound() {

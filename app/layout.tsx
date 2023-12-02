@@ -1,5 +1,3 @@
-import "@/styles/globals.css";
-
 import type { Metadata, Viewport } from "next";
 
 import { genshinFont } from "@/lib/fonts";
@@ -7,13 +5,21 @@ import { Footer } from "@/components/footer";
 import { Navbar } from "@/components/navbar";
 import { ThemeProvider } from "@/components/theme-provider";
 
+import "@/styles/globals.css";
+
 export const metadata: Metadata = {
-  title: "Genshin List",
+  metadataBase: new URL("https://genshin-list.vercel.app"),
+  title: { default: "Genshin List", template: "%s - Genshin List" },
   description:
     "Find and filter characters from Genshin Impact. Calculate required materials to level up any character.",
 };
 
-export const viewport: Viewport = {};
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "white" },
+    { media: "(prefers-color-scheme: dark)", color: "black" },
+  ],
+};
 
 interface RootLayoutProps {
   children: React.ReactNode;
