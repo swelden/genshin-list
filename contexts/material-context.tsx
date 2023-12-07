@@ -2,19 +2,19 @@
 
 import * as React from "react";
 
-import { MaterialInfo } from "@/lib/get-character-details";
+import type { AllMaterialInfo } from "@/data/types";
 import { useMinMax } from "@/hooks/use-min-max";
-import { Materials, mergeMaterials } from "@/components/material-list";
-import { SelectOption } from "@/components/select-menu";
+import { mergeMaterials } from "@/components/material-list";
+import type { SelectOption } from "@/components/select-menu";
 
-interface MaterialContextType {
+interface MaterialContextData {
   // levels
   levelOptions: SelectOption<number>[];
   levelMin: number;
   setLevelMin: React.Dispatch<React.SetStateAction<number>>;
   levelMax: number;
   setLevelMax: React.Dispatch<React.SetStateAction<number>>;
-  characterMaterials: Materials;
+  characterMaterials: Record<string, number>;
 
   // talents
   talentOptions: SelectOption<number>[];
@@ -30,7 +30,7 @@ interface MaterialContextType {
   setBurstMin: React.Dispatch<React.SetStateAction<number>>;
   burstMax: number;
   setBurstMax: React.Dispatch<React.SetStateAction<number>>;
-  talentMaterials: Materials;
+  talentMaterials: Record<string, number>;
 
   // material level templates
   setNoLevels: () => void;
@@ -38,14 +38,11 @@ interface MaterialContextType {
   // setRecommendedLevels: () => void;
 }
 
-// NOTE: can still cause an error if context is used outside of provider
-export const MaterialContext = React.createContext<MaterialContextType>(
-  {} as MaterialContextType,
-);
+const MaterialContext = React.createContext<MaterialContextData | null>(null);
 
 interface MaterialProviderProps {
-  levelCosts: MaterialInfo["characterCosts"];
-  talentCosts: MaterialInfo["talentCosts"];
+  levelCosts: AllMaterialInfo["costs"]["levels"];
+  talentCosts: AllMaterialInfo["costs"]["talents"];
   children: React.ReactNode;
 }
 
@@ -62,7 +59,7 @@ export function MaterialProvider({
       return { label: key, value: idx };
     });
 
-    const levelMats = levelKeys.map((key) => levelCosts[key]);
+    const levelMats = levelKeys.map((key) => levelCosts[key]!);
     return [levelOptions, levelMats];
   }, [levelCosts]);
 
@@ -76,11 +73,11 @@ export function MaterialProvider({
     );
 
     const talentOptions = talentKeys.map((key, idx) => {
-      return { label: key, value: idx };
+      return { label: key, value: idx } as const;
     });
 
-    const talentMats = talentKeys.map((key) => talentCosts[key]);
-    return [talentOptions, talentMats];
+    const talentMats = talentKeys.map((key) => talentCosts[key]!);
+    return [talentOptions, talentMats] as const;
   }, [talentCosts]);
 
   const [attackMin, setAttackMin, attackMax, setAttackMax, attackMaterials] =
@@ -179,5 +176,13 @@ export function MaterialProvider({
 }
 
 export function useMaterialContext() {
-  return React.useContext(MaterialContext);
+  const context = React.useContext(MaterialContext);
+
+  if (!context) {
+    throw new Error(
+      "useMaterialContext must be used within a MaterialProvider",
+    );
+  }
+
+  return context;
 }

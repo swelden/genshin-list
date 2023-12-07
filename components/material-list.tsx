@@ -1,21 +1,14 @@
-import { useMaterialContext } from "@/contexts/material-context";
-import { Items } from "genshin-db";
-
-import { MaterialDataMap } from "@/lib/get-character-details";
+import type { AllMaterialInfo } from "@/data/types";
 import { formatImageUrl } from "@/lib/utils";
+import { useMaterialContext } from "@/contexts/material-context";
 import { ItemCard } from "@/components/card-templates";
 
-export interface Materials {
-  [key: string]: number;
-}
-
 interface MaterialListProps {
-  materialData: MaterialDataMap;
+  materialNameToInfo: AllMaterialInfo["nameToInfo"];
 }
 
-export function MaterialList({ materialData }: MaterialListProps) {
+export function MaterialList({ materialNameToInfo }: MaterialListProps) {
   const { characterMaterials, talentMaterials } = useMaterialContext()!;
-
   // NOTE: shouldn't need to use useMemo
   const totalMaterials = Object.entries(
     mergeMaterials(characterMaterials, talentMaterials),
@@ -24,7 +17,10 @@ export function MaterialList({ materialData }: MaterialListProps) {
     const bIsCharMat = characterMaterials[bName] !== undefined;
 
     if (aIsCharMat === bIsCharMat) {
-      return materialData[aName].sortorder - materialData[bName].sortorder;
+      return (
+        materialNameToInfo[aName]!.sortorder -
+        materialNameToInfo[bName]!.sortorder
+      );
     } else if (aIsCharMat) {
       return -1; // sort a before b
     } else {
@@ -43,8 +39,8 @@ export function MaterialList({ materialData }: MaterialListProps) {
             key={`${material}`}
           >
             <ItemCard
-              label={count.toLocaleString()}
-              src={formatImageUrl(materialData[material].nameicon)}
+              label={count}
+              src={formatImageUrl(materialNameToInfo[material]!.icon)}
               alt={material}
               size={104} // NOTE: make equal to lg:w-[??px] on max system font size
               unoptimized={true}
@@ -61,28 +57,8 @@ export function MaterialList({ materialData }: MaterialListProps) {
   );
 }
 
-export function calculateMaterialsRange(
-  costs: Items[][],
-  start: number, // min is 0
-  end: number, // max is len of array (not max index)
-): Materials {
-  const materials: Materials = {};
-
-  for (const value of costs.slice(start, end)) {
-    for (const { name, count } of value) {
-      if (materials.hasOwnProperty(name)) {
-        materials[name] += count;
-      } else {
-        materials[name] = count;
-      }
-    }
-  }
-
-  return materials;
-}
-
-export function mergeMaterials(...materials: Materials[]): Materials {
-  const merged: Materials = {};
+export function mergeMaterials(...materials: Record<string, number>[]) {
+  const merged: Record<string, number> = {};
 
   materials.forEach((material) => {
     for (const [name, count] of Object.entries(material)) {

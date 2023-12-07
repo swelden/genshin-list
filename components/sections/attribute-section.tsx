@@ -1,8 +1,8 @@
-import { CharacterInfo } from "@/lib/get-character-details";
+import type { Character } from "@/data/types";
 import { Section, SectionHeader } from "@/components/ui/section";
 
 interface AttributeSectionProps {
-  character: CharacterInfo;
+  character: Character;
 }
 
 export function AttributeSection({ character }: AttributeSectionProps) {
@@ -11,13 +11,13 @@ export function AttributeSection({ character }: AttributeSectionProps) {
       <SectionHeader>Attributes</SectionHeader>
       <table className="w-full">
         <tbody className="">
-          <AttrRow title="Birthday" info={character.birthdaymmdd} />
+          <AttrRow title="Birthday" info={character.birthday} />
           <AttrRow title="Constellation" info={character.constellation} />
           <AttrRow title="Title" info={character.title} />
           <AttrRow title="Region" info={character.region} />
           {/* <AttrRow title="Vision" info={character.element} /> */}
           <AttrRow title="Affiliation" info={character.affiliation} />
-          <AttrRow title="English VA" info={character.cv.english} />
+          <AttrRow title="English VA" info={character.va.english} />
         </tbody>
       </table>
       <div className="px-2 text-black/90 dark:text-white/90">

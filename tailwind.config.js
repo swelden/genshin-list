@@ -4,11 +4,13 @@ const plugin = require("tailwindcss/plugin");
 module.exports = {
   darkMode: ["class"],
   content: [
-    "./pages/**/*.{ts,tsx}",
-    "./components/**/*.{ts,tsx}",
     "./app/**/*.{ts,tsx}",
-    "./src/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./backend/**/*.{ts,tsx}",
+    "./data/**/*.{ts,tsx}",
     "./lib/**/*.{ts,tsx}",
+    "./pages/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
   ],
   theme: {
     container: {

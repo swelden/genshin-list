@@ -2,6 +2,7 @@
 
 import * as React from "react";
 
+import type { Attributes, CharacterSortKeys } from "@/data/types";
 import { Button } from "@/components/ui/button";
 import { AttributeFilter } from "@/components/filters/attr-filter";
 import { Search } from "@/components/filters/search-filter";
@@ -14,7 +15,6 @@ type FiltersProps = {
   setIsReversed: React.Dispatch<React.SetStateAction<boolean>>;
   attrFilter: Attributes;
   setAttrFilter: React.Dispatch<React.SetStateAction<Attributes>>;
-  regions: Nation[];
 };
 
 // NOTE: might use memo for components to prevent rerender on isOpen change
@@ -24,7 +24,6 @@ export function FilterHub({
   setIsReversed,
   attrFilter,
   setAttrFilter,
-  regions,
 }: FiltersProps) {
   const [isOpen, setIsOpen] = React.useState(false);
 
@@ -41,7 +40,6 @@ export function FilterHub({
         <AttributeFilter
           attrFilter={attrFilter}
           setAttrFilter={setAttrFilter}
-          regions={regions}
         />
       )}
     </div>

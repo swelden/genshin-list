@@ -2,15 +2,25 @@
 
 import * as React from "react";
 
-export function useCharacters(allCharacters: CharacterFilterInfo[]) {
+import type {
+  Attributes,
+  CharacterFilter,
+  CharacterRarity,
+  CharacterSortKeys,
+  Element,
+  Region,
+  Weapon,
+} from "@/data/types";
+
+export function useCharacters(allCharacters: CharacterFilter[]) {
   const [filter, setFilter] = React.useState("");
   const [sortKey, setSortKey] = React.useState<CharacterSortKeys>("version");
   const [isReversed, setIsReversed] = React.useState(true);
   const [attrFilter, setAttrFilter] = React.useState<Attributes>({
-    element: new Set<Vision>(),
+    element: new Set<Element>(),
     weapontype: new Set<Weapon>(),
-    region: new Set<Nation>(),
-    rarity: new Set<Rarity>(),
+    region: new Set<Region>(),
+    rarity: new Set<CharacterRarity>(),
   });
 
   // NOTE: might make separate memo for storing sorted array
@@ -23,7 +33,7 @@ export function useCharacters(allCharacters: CharacterFilterInfo[]) {
           Object.entries(attrFilter).every(([key, value]) =>
             value.size === 0
               ? true
-              : value.has(character[key as keyof CharacterFilterInfo]),
+              : value.has(character[key as keyof CharacterFilter]),
           ),
       )
       .sort(

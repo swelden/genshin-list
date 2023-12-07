@@ -1,11 +1,9 @@
-import { Metadata, ResolvingMetadata } from "next";
+import type { Metadata, ResolvingMetadata } from "next";
 import Image from "next/image";
 
-import {
-  CharacterInfo,
-  getCharacterNames,
-  getNamePageProps,
-} from "@/lib/get-character-details";
+import { getCharacterNames } from "@/backend/requests";
+import { getNamePageProps } from "@/data/retrieve";
+import type { Character, CharacterRarity } from "@/data/types";
 import {
   formatImageUrl,
   formatLocalImageUrl,
@@ -60,7 +58,7 @@ export default function CharacterPage({ params: { name } }: PageProps) {
 }
 
 interface HeroSectionProps {
-  character: CharacterInfo;
+  character: Character;
 }
 
 function HeroSection({ character }: HeroSectionProps) {
@@ -69,8 +67,8 @@ function HeroSection({ character }: HeroSectionProps) {
       <div className="col-span-full row-span-full overflow-hidden sm:overflow-visible lg:flex lg:items-center lg:justify-center">
         <div className="relative -left-1/4 -z-10 flex w-[150%] flex-col items-center justify-center lg:left-0 lg:w-full">
           <Image
-            src={formatImageUrl(character.image)} // gacha-splash
-            alt={`${character.name} gacha splash`}
+            src={formatImageUrl(character.gachaSplash)}
+            alt={character.name}
             width={1920}
             height={960}
             priority={true}
@@ -89,14 +87,14 @@ function HeroSection({ character }: HeroSectionProps) {
 }
 
 interface DetailHeaderProps {
-  character: CharacterInfo;
+  character: Character;
 }
 
 function DetailHeader({ character }: DetailHeaderProps) {
   // TODO: find better way of preventing long names from covering gacha image
   return (
     <div className="col-span-5 col-start-1 row-span-full mb-8 flex items-center">
-      <div className="flex flex-col gap-2 px-5 sm:px-4 lg:-ml-5 lg:mt-32">
+      <div className="flex flex-col gap-2 px-5 sm:px-4">
         <div className="flex w-fit items-center gap-2 rounded-lg bg-background/90 pr-3 lg:backdrop-blur-sm">
           <IconImage
             src={formatLocalImageUrl("/elements", character.element)}
@@ -133,13 +131,13 @@ function CharacterBadge({ text }: CharacterBadgeProps) {
 }
 
 interface StarRatingProps {
-  rarity: number;
+  rarity: CharacterRarity;
 }
 
 function StarRating({ rarity }: StarRatingProps) {
   return (
     <div className="flex flex-nowrap gap-0.5">
-      {[...Array(rarity)].map((_, i) => (
+      {[...Array(Number(rarity))].map((_, i) => (
         <IconImage
           key={`star-${i}`}
           src={formatLocalImageUrl("/", "star-rating")}

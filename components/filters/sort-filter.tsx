@@ -3,6 +3,7 @@
 import * as React from "react";
 import { Check } from "lucide-react";
 
+import type { CharacterSortKeys } from "@/data/types";
 import { cn } from "@/lib/utils";
 import {
   DropdownMenu,
@@ -10,7 +11,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { SelectOption } from "@/components/select-menu";
+import type { SelectOption } from "@/components/select-menu";
 
 const options: SelectOption<CharacterSortKeys>[] = [
   { label: "Version", value: "version" },
@@ -27,7 +28,7 @@ interface SortDropdownProps {
 }
 
 export function SortDropdown({ setSortKey, className }: SortDropdownProps) {
-  const [selectedOption, setSelectedOption] = React.useState(options[0]);
+  const [selectedOption, setSelectedOption] = React.useState(options[0]!);
 
   const handleChange = (event: SelectOption<CharacterSortKeys>) => {
     setSelectedOption(event);

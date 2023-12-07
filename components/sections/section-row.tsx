@@ -1,47 +1,36 @@
-import { TalentInfo } from "@/lib/get-character-details";
+import type { Active, Constellation, Passive } from "@/data/types";
 import { formatImageUrl } from "@/lib/utils";
 import { IconImage } from "@/components/ui/icon-image";
 
-type Passives = TalentInfo["passives"][number];
-interface Ability extends Passives {
-  description?: string;
-}
-
 interface SectionRowProps {
-  ability: Ability;
+  talent: Active | Passive | Constellation;
   children?: React.ReactNode;
   isAbsoluteIconPath?: boolean;
 }
 
 export function SectionRow({
-  ability,
+  talent,
   children,
   isAbsoluteIconPath = false,
 }: SectionRowProps) {
   return (
-    <div className="border-b pb-4 last:border-0 last:pb-0" key={ability.name}>
+    <div className="border-b pb-4 last:border-0 last:pb-0" key={talent.name}>
       <div className="flex items-center gap-2">
         <IconImage
           // NOTE: do not retrieve images from "mihoyo.com" (it sends cookies)
-          src={isAbsoluteIconPath ? ability.icon : formatImageUrl(ability.icon)}
-          alt={ability.name}
+          src={isAbsoluteIconPath ? talent.icon : formatImageUrl(talent.icon)}
+          alt={talent.name}
           className="h-12 w-12"
           invert={true}
         />
-        <h3 className="text-lg">{ability.name}</h3>
+        <h3 className="text-lg">{talent.name}</h3>
       </div>
       <div
         className="mt-2 text-section-foreground/75"
         dangerouslySetInnerHTML={{
-          __html: ability.info,
+          __html: talent.description,
         }}
       />
-      {ability?.description && (
-        <>
-          <br />
-          <i className="text-section-foreground/60">{ability.description}</i>
-        </>
-      )}
       {children}
     </div>
   );

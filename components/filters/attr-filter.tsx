@@ -1,57 +1,43 @@
+import {
+  CHARACTER_RARITIES,
+  ELEMENTS,
+  REGIONS,
+  WEAPONS,
+} from "@/data/constants";
+import type { Attribute, Attributes } from "@/data/types";
 import { cn } from "@/lib/utils";
-
-// TODO: move visions and weapons to data folder and import them here
-const visions: readonly Vision[] = [
-  "Pyro",
-  "Hydro",
-  "Dendro",
-  "Electro",
-  "Anemo",
-  "Cryo",
-  "Geo",
-] as const;
-const weapons: readonly Weapon[] = [
-  "Bow",
-  "Catalyst",
-  "Claymore",
-  "Polearm",
-  "Sword",
-] as const;
-const rarities: readonly Rarity[] = ["4", "5"] as const;
 
 interface AttributeFilterProps {
   attrFilter: Attributes;
   setAttrFilter: React.Dispatch<React.SetStateAction<Attributes>>;
-  regions: Nation[];
 }
 
 export function AttributeFilter({
   attrFilter,
   setAttrFilter,
-  regions,
 }: AttributeFilterProps) {
   return (
     <div className="flex flex-wrap items-center justify-center gap-4 p-2 lg:col-span-2">
       <FilterContainer
-        attrData={visions}
+        attrData={ELEMENTS}
         category="element"
         attrFilter={attrFilter}
         setAttrFilter={setAttrFilter}
       />
       <FilterContainer
-        attrData={weapons}
+        attrData={WEAPONS}
         category="weapontype"
         attrFilter={attrFilter}
         setAttrFilter={setAttrFilter}
       />
       <FilterContainer
-        attrData={regions}
+        attrData={REGIONS}
         category="region"
         attrFilter={attrFilter}
         setAttrFilter={setAttrFilter}
       />
       <FilterContainer
-        attrData={rarities}
+        attrData={CHARACTER_RARITIES}
         category="rarity"
         attrFilter={attrFilter}
         setAttrFilter={setAttrFilter}
@@ -60,8 +46,6 @@ export function AttributeFilter({
     </div>
   );
 }
-
-type Attribute = Vision | Weapon | Nation | Rarity;
 
 interface FilterContainerProps {
   attrData: Readonly<Attribute[]>;

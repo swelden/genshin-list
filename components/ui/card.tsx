@@ -1,7 +1,7 @@
 import * as React from "react";
-import Image, { ImageProps } from "next/image";
+import Image, { type ImageProps } from "next/image";
 import { Slot } from "@radix-ui/react-slot";
-import { cva, VariantProps } from "class-variance-authority";
+import { cva, type VariantProps } from "class-variance-authority";
 
 import { cn } from "@/lib/utils";
 

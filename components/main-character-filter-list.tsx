@@ -1,17 +1,16 @@
 "use client";
 
+import type { CharacterFilter } from "@/data/types";
 import { useCharacters } from "@/hooks/use-characters";
 import { CharacterList } from "@/components/character-list";
 import { FilterHub } from "@/components/filters/filter-hub";
 
 interface MainCharacterFilterListProps {
-  allCharacters: CharacterFilterInfo[];
-  regions: Nation[];
+  allCharacters: CharacterFilter[];
 }
 
 export function MainCharacterFilterList({
   allCharacters,
-  regions,
 }: MainCharacterFilterListProps) {
   const {
     characters,
@@ -31,7 +30,6 @@ export function MainCharacterFilterList({
         setIsReversed={setIsReversed}
         attrFilter={attrFilter}
         setAttrFilter={setAttrFilter}
-        regions={regions}
       />
       <CharacterList characters={characters} />
     </>

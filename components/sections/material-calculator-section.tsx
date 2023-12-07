@@ -1,36 +1,39 @@
 "use client";
 
 import * as React from "react";
+
+import type { AllMaterialInfo } from "@/data/types";
 import {
   MaterialProvider,
   useMaterialContext,
 } from "@/contexts/material-context";
-
-import { MaterialInfo } from "@/lib/get-character-details";
 import { Section, SectionHeader } from "@/components/ui/section";
 import { Icons } from "@/components/icons";
 import { MaterialList } from "@/components/material-list";
-import { SelectMenu, SelectOption } from "@/components/select-menu";
+import { SelectMenu, type SelectOption } from "@/components/select-menu";
 
 interface MaterialCalculatorSectionProps {
-  materials: MaterialInfo;
+  materials: AllMaterialInfo;
 }
 
 export function MaterialCalculatorSection({
-  materials: { characterCosts, talentCosts, materialData },
+  materials,
 }: MaterialCalculatorSectionProps) {
   const daysofweek: string = React.useMemo(() => {
-    for (const material of Object.values(materialData)) {
+    for (const material of Object.values(materials.nameToInfo)) {
       if (material.daysofweek) {
         return material.daysofweek.join(", ");
       }
     }
 
     return "";
-  }, [materialData]);
+  }, [materials.nameToInfo]);
 
   return (
-    <MaterialProvider levelCosts={characterCosts} talentCosts={talentCosts}>
+    <MaterialProvider
+      levelCosts={materials.costs.levels}
+      talentCosts={materials.costs.talents}
+    >
       <Section>
         <SectionHeader>Material Calculator</SectionHeader>
         <div className="grid gap-6 xl:grid-cols-[20rem,_auto]">
@@ -47,7 +50,7 @@ export function MaterialCalculatorSection({
                 </span>
               </span>
             </div>
-            <MaterialList materialData={materialData} />
+            <MaterialList materialNameToInfo={materials.nameToInfo} />
           </div>
         </div>
       </Section>
@@ -109,7 +112,7 @@ function RangeSelector({
       <div className="grid grid-cols-[1fr_24px_1fr] items-center justify-center gap-2">
         <SelectMenu
           options={options}
-          currentValue={options[min]}
+          currentValue={options[min]!}
           handleChange={setMin}
         />
         <div className="flex w-full items-center justify-center text-gray-600">
@@ -117,7 +120,7 @@ function RangeSelector({
         </div>
         <SelectMenu
           options={options}
-          currentValue={options[max]}
+          currentValue={options[max]!}
           handleChange={setMax}
         />
       </div>

@@ -2,7 +2,7 @@
 
 import * as React from "react";
 
-import { TalentInfo } from "@/lib/get-character-details";
+import type { Active } from "@/data/types";
 import { cn } from "@/lib/utils";
 import {
   Collapsible,
@@ -15,7 +15,7 @@ import { SectionRow } from "@/components/sections/section-row";
 import { StatsTable } from "@/components/stats-table";
 
 interface ActiveTalentSectionProps {
-  actives: TalentInfo["actives"];
+  actives: Active[];
 }
 
 export function ActiveTalentSection({ actives }: ActiveTalentSectionProps) {
@@ -23,7 +23,7 @@ export function ActiveTalentSection({ actives }: ActiveTalentSectionProps) {
     <Section className="overflow-hidden">
       <SectionHeader>Active Talents</SectionHeader>
       {actives.map((activeTalent) => (
-        <SectionRow ability={activeTalent} key={activeTalent.name}>
+        <SectionRow talent={activeTalent} key={activeTalent.name}>
           <ActiveTalentAttributes talent={activeTalent} />
         </SectionRow>
       ))}
@@ -32,13 +32,13 @@ export function ActiveTalentSection({ actives }: ActiveTalentSectionProps) {
 }
 
 interface ActiveTalentAttributesProps {
-  talent: TalentInfo["actives"][number];
+  talent: Active;
 }
 
 // TODO: extract this to separate file due to "use-client"
 function ActiveTalentAttributes({ talent }: ActiveTalentAttributesProps) {
   const [isOpen, setIsOpen] = React.useState(false);
-  const maxCols = talent.attributes[0].params.length;
+  const maxCols = talent.attributes[0]?.params.length ?? 1;
 
   return (
     <Collapsible open={isOpen} onOpenChange={setIsOpen} className="mt-4">

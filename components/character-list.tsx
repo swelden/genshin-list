@@ -1,7 +1,8 @@
+import type { CharacterFilter } from "@/data/types";
 import { CharacterCard } from "@/components/card-templates";
 
 interface CharacterListProps {
-  characters: CharacterFilterInfo[];
+  characters: CharacterFilter[];
 }
 
 // NOTE: might iterate through allCharacters and set display none to characters that were filtered out

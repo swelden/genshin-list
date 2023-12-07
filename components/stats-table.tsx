@@ -1,7 +1,8 @@
+import type { Active } from "@/data/types";
 import { cn } from "@/lib/utils";
 
 interface StatsTableProps {
-  data: { label: string; params: string[] }[];
+  data: Active["attributes"];
   topHeadings: string[];
   numCols: number;
 }

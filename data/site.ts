@@ -1,9 +1,11 @@
 export type SiteConfig = typeof siteConfig;
 
+const BASE_URL = "https://genshin-list.vercel.app";
+
 export const siteConfig = {
   name: "Genshin List",
-  url: "https://genshin-list.vercel.app",
-  ogImage: "https://genshin-list.vercel.app/og.jpg",
+  url: BASE_URL,
+  ogImage: `${BASE_URL}/og.jpg`,
   description:
     "Find and filter characters from Genshin Impact. Calculate required materials to level up any character.",
   links: {

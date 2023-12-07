@@ -1,9 +1,9 @@
-import { ConstellationInfo } from "@/lib/get-character-details";
+import type { Constellation } from "@/data/types";
 import { Section, SectionHeader } from "@/components/ui/section";
 import { SectionRow } from "@/components/sections/section-row";
 
 interface ConstellationSectionProps {
-  constellations: ConstellationInfo[];
+  constellations: Constellation[];
 }
 
 export function ConstellationSection({
@@ -14,7 +14,7 @@ export function ConstellationSection({
       <SectionHeader>Constellations</SectionHeader>
       {constellations.map((constellation, index) => (
         <SectionRow
-          ability={constellation}
+          talent={constellation}
           isAbsoluteIconPath={true}
           key={`${index}-${constellation.name}`} // NOTE: Aloy has same constellation name for each constellation
         />

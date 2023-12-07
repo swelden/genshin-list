@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import type { CharacterFilter } from "@/data/types";
 import {
   formatImageUrl,
   formatLocalImageUrl,
@@ -9,7 +10,7 @@ import { Card, CardImage, CardLabel } from "@/components/ui/card";
 import { IconImage } from "@/components/ui/icon-image";
 
 interface CharacterCardProps {
-  character: CharacterFilterInfo;
+  character: CharacterFilter;
   size: number;
 }
 
@@ -18,7 +19,7 @@ export function CharacterCard({ character, size }: CharacterCardProps) {
     <Card hover="default" asChild>
       <Link href={formatNameUrl(character.name)}>
         <CardImage
-          src={formatImageUrl(character.nameicon)}
+          src={formatImageUrl(character.icon)}
           alt={character.name}
           gradient={character.rarity === "5" ? "gold" : "purple"}
           width={size}

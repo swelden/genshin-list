@@ -1,9 +1,9 @@
-import { TalentInfo } from "@/lib/get-character-details";
+import type { Passive } from "@/data/types";
 import { Section, SectionHeader } from "@/components/ui/section";
 import { SectionRow } from "@/components/sections/section-row";
 
 interface PassiveTalentSectionProps {
-  passives: TalentInfo["passives"];
+  passives: Passive[];
 }
 
 export function PassiveTalentSection({ passives }: PassiveTalentSectionProps) {
@@ -11,7 +11,7 @@ export function PassiveTalentSection({ passives }: PassiveTalentSectionProps) {
     <Section>
       <SectionHeader>Passive Talents</SectionHeader>
       {passives.map((passiveTalent) => (
-        <SectionRow ability={passiveTalent} key={passiveTalent.name} />
+        <SectionRow talent={passiveTalent} key={passiveTalent.name} />
       ))}
     </Section>
   );
