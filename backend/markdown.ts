@@ -1,3 +1,5 @@
+import { sanitize } from "isomorphic-dompurify";
+
 const hexColorToTailwind: Record<string, string> = {
   "#FFD780FF": "text-gold",
   "#FF9999FF": "text-pyro",
@@ -9,10 +11,8 @@ const hexColorToTailwind: Record<string, string> = {
   "#FFE699FF": "text-geo",
 };
 
-// NOTE: might sanitize because I don't have control over text
-// NOTE: might use (.*?) non-greedy algorithm instead of negated character classes [^]
 export function formatMarkdown(text: string) {
-  return (
+  return sanitize(
     text
       .replace(
         // <color=#FFD780FF>content</color> => <span class="text-gold">content</span>
@@ -48,6 +48,6 @@ export function formatMarkdown(text: string) {
       )
       .replace(/#/g, "")
       .replace(/\n/g, "<br>")
-      .replace(/·\s*/g, "• ")
+      .replace(/·\s*/g, "• "),
   );
 }

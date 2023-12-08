@@ -28,6 +28,7 @@ export function SectionRow({
       <div
         className="mt-2 text-section-foreground/75"
         dangerouslySetInnerHTML={{
+          // talent description is sanitized in backend/markdown
           __html: talent.description,
         }}
       />
