@@ -50,10 +50,9 @@ function ActiveTalentAttributes({ talent }: ActiveTalentAttributesProps) {
           </span>
         </button>
       </CollapsibleTrigger>
-      <CollapsibleContent>
+      <CollapsibleContent className="mt-4">
         <StatsTable
           data={talent.attributes}
-          numCols={maxCols}
           topHeadings={Array.from(Array(maxCols).keys()).map(
             (lvl) => `Lv.${lvl + 1}`,
           )}

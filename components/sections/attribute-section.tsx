@@ -1,5 +1,12 @@
 import type { Character } from "@/data/types";
 import { Section, SectionHeader } from "@/components/ui/section";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableRow,
+} from "@/components/ui/table";
 
 interface AttributeSectionProps {
   character: Character;
@@ -7,22 +14,20 @@ interface AttributeSectionProps {
 
 export function AttributeSection({ character }: AttributeSectionProps) {
   return (
-    <Section className="lg:bg-section/90 lg:p-3 lg:backdrop-blur-sm lg:dark:bg-section/95">
+    <Section className="w-full lg:bg-section/80 lg:p-3 lg:backdrop-blur-lg">
       <SectionHeader>Attributes</SectionHeader>
-      <table className="w-full">
-        <tbody className="">
+      <Table className="text-base">
+        <TableBody>
           <AttrRow title="Birthday" info={character.birthday} />
           <AttrRow title="Constellation" info={character.constellation} />
           <AttrRow title="Title" info={character.title} />
           <AttrRow title="Region" info={character.region} />
-          {/* <AttrRow title="Vision" info={character.element} /> */}
+          {/* <AttrRow title="Element" info={character.element} /> */}
           <AttrRow title="Affiliation" info={character.affiliation} />
           <AttrRow title="English VA" info={character.va.english} />
-        </tbody>
-      </table>
-      <div className="px-2 text-black/90 dark:text-white/90">
-        {character.description}
-      </div>
+          <AttrRow title="Version" info={character.version} />
+        </TableBody>
+      </Table>
     </Section>
   );
 }
@@ -34,16 +39,9 @@ interface AttrRowProps {
 
 function AttrRow({ title, info }: AttrRowProps) {
   return (
-    <tr className="border-b border-neutral-500/20 odd:bg-zinc-300/20 dark:odd:bg-zinc-600/10">
-      <th
-        className="px-2 py-3 text-left font-normal text-black/60 dark:text-white/60"
-        scope="row"
-      >
-        {title}
-      </th>
-      <td className="px-2 text-right text-black/90 dark:text-white/90">
-        {info}
-      </td>
-    </tr>
+    <TableRow>
+      <TableHead scope="row">{title}</TableHead>
+      <TableCell className="text-right">{info}</TableCell>
+    </TableRow>
   );
 }

@@ -1,96 +1,70 @@
 import type { Active } from "@/data/types";
 import { cn } from "@/lib/utils";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableRow,
+} from "@/components/ui/table";
 
 interface StatsTableProps {
   data: Active["attributes"];
   topHeadings: string[];
-  numCols: number;
 }
 
-export function StatsTable({ data, topHeadings, numCols }: StatsTableProps) {
+export function StatsTable({ data, topHeadings }: StatsTableProps) {
   return (
-    <div
-      className={cn(
-        "mt-4 w-full overflow-x-auto rounded-lg border",
-        sharedBorderClasses,
-      )}
-    >
-      <div
-        className={cn("overflow-hidden", numCols === 1 ? "w-auto" : "w-max")}
-      >
-        <table className="w-full text-left text-sm">
-          <tbody>
-            <TableRow heading="Level">
-              {topHeadings.map((heading, i) => (
-                // TODO: add class to change width of top row heading
-                <TableHeading key={i}>{heading}</TableHeading>
+    <Table containerClassName="border rounded-lg">
+      <TableBody>
+        <TableRow>
+          <FirstColumnHead paddingClassName="px-4">Level</FirstColumnHead>
+          {topHeadings.map((heading, i) => (
+            <TableHead key={i} className={cn("border-l", headColorClassName)}>
+              {heading}
+            </TableHead>
+          ))}
+        </TableRow>
+
+        {data.map(({ label, params }) => {
+          return (
+            <TableRow key={label}>
+              <FirstColumnHead paddingClassName="p-4">{label}</FirstColumnHead>
+              {params.map((param, i) => (
+                <TableCell key={i} className="min-w-[7rem] border-l">
+                  {param}
+                </TableCell>
               ))}
             </TableRow>
-            {data.map(({ label, params }) => {
-              return (
-                <TableRow heading={label} key={label}>
-                  {params.map((param, i) => (
-                    <TableCell key={i}>{param}</TableCell>
-                  ))}
-                </TableRow>
-              );
-            })}
-          </tbody>
-        </table>
-      </div>
-    </div>
+          );
+        })}
+      </TableBody>
+    </Table>
   );
 }
 
-const sharedBorderClasses = "border-black/10 dark:border-white/10";
-const sharedCellClasses = "border-r p-3 last:border-r-0";
+const headColorClassName = "bg-muted dark:bg-background";
 
-interface TableRowProps {
-  heading: string;
+interface StatsHeadProps {
+  className?: string;
+  paddingClassName?: string;
   children: React.ReactNode;
 }
 
-function TableRow({ heading, children }: TableRowProps) {
+function FirstColumnHead({
+  className,
+  paddingClassName,
+  children,
+}: StatsHeadProps) {
   return (
-    <tr className={cn("border-b last:border-0", sharedBorderClasses)}>
-      <TableHeading>{heading}</TableHeading>
-      {children}
-    </tr>
-  );
-}
-
-interface TableHeadingProps {
-  children: React.ReactNode;
-}
-
-function TableHeading({ children }: TableHeadingProps) {
-  return (
-    <th
+    <TableHead
       className={cn(
-        "w-36 bg-zinc-100 font-normal text-black/50 dark:bg-zinc-900/50 dark:text-white/30",
-        sharedBorderClasses,
-        sharedCellClasses,
+        "sticky left-0 w-36 p-0 sm:w-40",
+        headColorClassName,
+        className,
       )}
     >
-      {children}
-    </th>
-  );
-}
-
-interface TableCellProps {
-  children: React.ReactNode;
-}
-
-function TableCell({ children }: TableCellProps) {
-  return (
-    <td
-      className={cn(
-        "min-w-[7rem] text-black/90 last:border-r-0 dark:text-white/90",
-        sharedBorderClasses,
-        sharedCellClasses,
-      )}
-    >
-      {children}
-    </td>
+      <div className={cn("w-36 sm:w-40", paddingClassName)}>{children}</div>
+    </TableHead>
   );
 }

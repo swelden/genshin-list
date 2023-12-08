@@ -10,11 +10,7 @@ export function AscensionSection({ stats }: AscensionSectionProps) {
   return (
     <Section className="overflow-hidden">
       <SectionHeader>Ascensions</SectionHeader>
-      <StatsTable
-        data={stats.data}
-        numCols={stats.headings.length}
-        topHeadings={stats.headings}
-      />
+      <StatsTable data={stats.data} topHeadings={stats.headings} />
     </Section>
   );
 }

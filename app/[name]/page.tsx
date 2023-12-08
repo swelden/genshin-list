@@ -63,7 +63,7 @@ interface HeroSectionProps {
 
 function HeroSection({ character }: HeroSectionProps) {
   return (
-    <div className="grid-cols-10 text-sm sm:container lg:grid xl:text-base">
+    <div className="text-sm sm:container lg:grid xl:text-base">
       <div className="col-span-full row-span-full overflow-hidden sm:overflow-visible lg:flex lg:items-center lg:justify-center">
         <div className="relative -left-1/4 -z-10 flex w-[150%] flex-col items-center justify-center lg:left-0 lg:w-full">
           <Image
@@ -77,9 +77,8 @@ function HeroSection({ character }: HeroSectionProps) {
           <div className="absolute bottom-0 z-0 h-24 w-full bg-gradient-to-t from-background"></div>
         </div>
       </div>
-
       <DetailHeader character={character} />
-      <div className="col-span-3 col-end-[-1] row-span-full flex flex-col items-center justify-center gap-2">
+      <div className="col-span-full row-span-full ml-auto flex flex-col items-center justify-center gap-2 lg:max-w-md">
         <AttributeSection character={character} />
       </div>
     </div>
@@ -93,9 +92,9 @@ interface DetailHeaderProps {
 function DetailHeader({ character }: DetailHeaderProps) {
   // TODO: find better way of preventing long names from covering gacha image
   return (
-    <div className="col-span-5 col-start-1 row-span-full mb-8 flex items-center">
+    <div className="col-span-full row-span-full mb-8 flex items-center">
       <div className="flex flex-col gap-2 px-5 sm:px-4">
-        <div className="flex w-fit items-center gap-2 rounded-lg bg-background/90 pr-3 lg:backdrop-blur-sm">
+        <div className="flex w-fit items-center gap-2 rounded-lg bg-background/80 pr-3 lg:backdrop-blur-md">
           <IconImage
             src={formatLocalImageUrl("/elements", character.element)}
             alt={character.element}
@@ -112,6 +111,9 @@ function DetailHeader({ character }: DetailHeaderProps) {
           <CharacterBadge text={character.weapontype} />
           <CharacterBadge text={character.substat} />
           <CharacterBadge text={`${character.rarity}-star`} />
+        </div>
+        <div className="mt-4 rounded-lg bg-background/40 pr-3 text-muted-foreground lg:max-w-xs lg:backdrop-blur-lg">
+          {character.description}
         </div>
       </div>
     </div>
