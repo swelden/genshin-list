@@ -4,6 +4,7 @@ import type { CharacterFilter } from "@/data/types";
 import {
   formatImageUrl,
   formatLocalImageUrl,
+  formatLongNumber,
   formatNameUrl,
 } from "@/lib/utils";
 import { Card, CardImage, CardLabel } from "@/components/ui/card";
@@ -45,6 +46,7 @@ interface ItemCardProps {
   alt: string;
   size: number;
   unoptimized?: boolean;
+  shortenLongNumber?: boolean; // format long numbers => 7,050,900 => 7.05M
 }
 
 export function ItemCard({
@@ -53,7 +55,13 @@ export function ItemCard({
   alt,
   size,
   unoptimized = true,
+  shortenLongNumber = true,
 }: ItemCardProps) {
+  const formattedLabel =
+    shortenLongNumber && typeof label === "number"
+      ? formatLongNumber(label)
+      : label;
+
   return (
     <Card>
       <CardImage
@@ -64,7 +72,7 @@ export function ItemCard({
         height={size}
         unoptimized={unoptimized}
       />
-      <CardLabel>{label}</CardLabel>
+      <CardLabel>{formattedLabel}</CardLabel>
     </Card>
   );
 }

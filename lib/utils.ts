@@ -29,6 +29,14 @@ export function formatLocalImageUrl(
   return `/images${dir}/${imageFile.toLowerCase()}.png`;
 }
 
+export function formatLongNumber(value: number | bigint) {
+  return Intl.NumberFormat("en-US", {
+    notation: "compact",
+    compactDisplay: "short",
+    maximumFractionDigits: 2,
+  }).format(value);
+}
+
 export function pick<T extends {}, K extends keyof T>(obj: T, ...keys: K[]) {
   return Object.fromEntries(
     keys.filter((key) => key in obj).map((key) => [key, obj[key]]),
