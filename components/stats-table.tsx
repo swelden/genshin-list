@@ -45,7 +45,7 @@ export function StatsTable({ data, topHeadings }: StatsTableProps) {
 
 const headColorClassName = "bg-muted dark:bg-background";
 
-interface StatsHeadProps {
+interface FirstColumnHeadProps {
   className?: string;
   paddingClassName?: string;
   children: React.ReactNode;
@@ -55,9 +55,10 @@ function FirstColumnHead({
   className,
   paddingClassName,
   children,
-}: StatsHeadProps) {
+}: FirstColumnHeadProps) {
   return (
     <TableHead
+      scope="row"
       className={cn(
         "sticky left-0 w-36 p-0 sm:w-40",
         headColorClassName,
