@@ -1,10 +1,8 @@
-"use client";
-
 import * as React from "react";
 
 import type { Attributes, CharacterSortKeys } from "@/data/types";
 import { Button } from "@/components/ui/button";
-import { AttributeFilter } from "@/components/filters/attr-filter";
+import { FilterSheet } from "@/components/filters/filter-sheet";
 import { Search } from "@/components/filters/search-filter";
 import { SortDropdown } from "@/components/filters/sort-filter";
 import { Icons } from "@/components/icons";
@@ -17,7 +15,6 @@ type FiltersProps = {
   setAttrFilter: React.Dispatch<React.SetStateAction<Attributes>>;
 };
 
-// NOTE: might use memo for components to prevent rerender on isOpen change
 export function FilterHub({
   setFilter,
   setSortKey,
@@ -25,23 +22,15 @@ export function FilterHub({
   attrFilter,
   setAttrFilter,
 }: FiltersProps) {
-  const [isOpen, setIsOpen] = React.useState(false);
-
   return (
     <div className="grid grid-cols-1 items-center justify-between gap-4 lg:grid-cols-2">
       <Search setFilter={setFilter} />
       {/* TODO: update mobile styles */}
       <div className="flex gap-4">
-        <FilterBtn isOpen={isOpen} setIsOpen={setIsOpen} className="" />
+        <FilterSheet attrFilter={attrFilter} setAttrFilter={setAttrFilter} />
         <SortDropdown setSortKey={setSortKey} className="w-full" />
         <ReverseBtn setIsReversed={setIsReversed} className="" />
       </div>
-      {isOpen && (
-        <AttributeFilter
-          attrFilter={attrFilter}
-          setAttrFilter={setAttrFilter}
-        />
-      )}
     </div>
   );
 }
@@ -60,26 +49,6 @@ function ReverseBtn({ setIsReversed, className }: ReverseBtnProps) {
       size={"icon"}
     >
       <Icons.reverse className="h-7 w-7" />
-    </Button>
-  );
-}
-
-interface FilterBtnProps {
-  isOpen: boolean;
-  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  className?: string;
-}
-
-function FilterBtn({ isOpen, setIsOpen, className }: FilterBtnProps) {
-  return (
-    <Button
-      onClick={() => setIsOpen(!isOpen)}
-      aria-label="Filter"
-      aria-expanded={isOpen}
-      className={className}
-      size={"icon"}
-    >
-      <Icons.filter className="h-6 w-6" />
     </Button>
   );
 }

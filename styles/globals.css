@@ -26,6 +26,11 @@
     --card: var(--genshin-brown);
     --card-foreground: var(--genshin-blue);
 
+    --sheet: 212 25% 20%;
+    --sheet-border: 210 17% 24%;
+    --sheet-btn-border: 212 11% 30%;
+    --sheet-btn-border-selected: 39 15% 78%;
+
     --border: 240 5.9% 90%;
 
     --primary: var(--genshin-blue);

@@ -59,6 +59,15 @@ module.exports = {
           foreground: "hsl(var(--card-foreground))",
         },
 
+        sheet: {
+          DEFAULT: "hsl(var(--sheet))",
+          border: "hsl(var(--sheet-border))",
+          "btn-border": {
+            DEFAULT: "hsl(var(--sheet-btn-border))",
+            selected: "hsl(var(--sheet-btn-border-selected))",
+          },
+        },
+
         border: "hsl(var(--border))",
 
         primary: {
