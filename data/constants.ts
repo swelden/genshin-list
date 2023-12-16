@@ -31,6 +31,16 @@ export const REGIONS = [
 export const CHARACTER_RARITIES = ["4", "5"] as const;
 export const ITEM_RARITIES = ["1", "2", "3", "4", "5"] as const;
 
+export const WEEKDAYS = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+] as const;
+
 export const LEVELS = [
   [1, "-"],
   [20, "-"],

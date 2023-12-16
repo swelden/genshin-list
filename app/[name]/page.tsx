@@ -8,6 +8,7 @@ import {
   formatImageUrl,
   formatLocalImageUrl,
   formatNameUrl,
+  unformatNameUrl,
 } from "@/lib/utils";
 import { IconImage } from "@/components/ui/icon-image";
 import {
@@ -19,35 +20,19 @@ import {
   PassiveTalentSection,
 } from "@/components/sections";
 
-type PageProps = { params: { name: string } };
-
-export async function generateMetadata(
-  { params: { name } }: PageProps,
-  parent: ResolvingMetadata,
-): Promise<Metadata> {
-  const { character } = getNamePageProps(name.replace(/-/g, " "));
-  // optionally access and extend (rather than replace) parent metadata
-  const previousImages = (await parent).openGraph?.images || [];
-
-  return {
-    title: character.name,
-    description: `${character.name} is a playable ${character.rarity}-star ${character.element} ${character.weapontype} character. ${character.description}`,
-    openGraph: {
-      images: [...previousImages],
-    },
-  };
-}
-
 export default function CharacterPage({ params: { name } }: PageProps) {
-  const { character, materials, talents, constellations } = getNamePageProps(
-    name.replace(/-/g, " "),
+  const { character, talents, constellations } = getNamePageProps(
+    unformatNameUrl(name),
   );
 
   return (
     <main className="relative flex flex-col gap-8 sm:overflow-hidden">
       <HeroSection character={character} />
       <div className="grid gap-8 sm:container">
-        <MaterialCalculatorSection materials={materials} />
+        <MaterialCalculatorSection
+          name={character.name}
+          weekdays={character.weekdays}
+        />
         <AscensionSection stats={character.stats} />
         <ActiveTalentSection actives={talents.actives} />
         <PassiveTalentSection passives={talents.passives} />
@@ -107,7 +92,6 @@ function DetailHeader({ character }: DetailHeaderProps) {
         </div>
         <div className="flex flex-wrap gap-2">
           <CharacterBadge text={character.element} />
-          {/* <CharacterBadge text={character.region} /> */}
           <CharacterBadge text={character.weapontype} />
           <CharacterBadge text={character.substat} />
           <CharacterBadge text={`${character.rarity}-star`} />
@@ -149,6 +133,27 @@ function StarRating({ rarity }: StarRatingProps) {
       ))}
     </div>
   );
+}
+
+// GENERATE PAGE DATA
+
+type PageProps = { params: { name: string } };
+
+export async function generateMetadata(
+  { params: { name } }: PageProps,
+  parent: ResolvingMetadata,
+): Promise<Metadata> {
+  const { character } = getNamePageProps(name.replace(/-/g, " "));
+  // optionally access and extend (rather than replace) parent metadata
+  const previousImages = (await parent).openGraph?.images || [];
+
+  return {
+    title: character.name,
+    description: `${character.name} is a playable ${character.rarity}-star ${character.element} ${character.weapontype} character. ${character.description}`,
+    openGraph: {
+      images: [...previousImages],
+    },
+  };
 }
 
 export const dynamicParams = false;

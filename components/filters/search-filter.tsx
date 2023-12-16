@@ -1,28 +1,27 @@
+"use client";
+
 import * as React from "react";
 import { SearchIcon, X } from "lucide-react";
 
 import { cn } from "@/lib/utils";
+import { useSearchQuery } from "@/hooks/use-characters";
 import { Input } from "@/components/ui/input";
 
-interface SearchProps {
-  setFilter: React.Dispatch<React.SetStateAction<string>>;
-}
+interface SearchProps {}
 
-export function Search({ setFilter }: SearchProps) {
-  const [value, setValue] = React.useState("");
+export function Search({}: SearchProps) {
+  const [searchQuery, setSearchQuery] = useSearchQuery();
 
-  const hasValue = value !== "";
+  const hasValue = searchQuery !== "";
 
   // Input Field handler
   const handleUserInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(e.target.value);
-    setFilter(e.target.value);
+    setSearchQuery(e.target.value);
   };
 
   // Reset Input Field handler
   const resetInputField = () => {
-    setValue("");
-    setFilter("");
+    setSearchQuery("");
   };
 
   return (
@@ -37,7 +36,7 @@ export function Search({ setFilter }: SearchProps) {
           type="text"
           aria-label="Search"
           placeholder="Search for Characters..."
-          value={value}
+          value={searchQuery}
           onChange={handleUserInput}
           spellCheck="false"
         />

@@ -22,6 +22,10 @@ export function formatNameUrl(name: string) {
   return name.toLowerCase().replace(/\s/g, "-");
 }
 
+export function unformatNameUrl(nameUrl: string) {
+  return nameUrl.replace(/-/g, " ");
+}
+
 export function formatLocalImageUrl(
   dir: "/" | "/elements" | "/weapons",
   imageFile: string,
@@ -35,6 +39,13 @@ export function formatLongNumber(value: number | bigint) {
     compactDisplay: "short",
     maximumFractionDigits: 2,
   }).format(value);
+}
+
+export function sortStringAsNumber(a: string, b: string) {
+  return a.localeCompare(b, undefined, {
+    numeric: true,
+    sensitivity: "base",
+  });
 }
 
 export function pick<T extends {}, K extends keyof T>(obj: T, ...keys: K[]) {

@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { Provider as JotaiProvider } from "jotai";
 
 import { siteConfig } from "@/data/site";
 import { genshinFont } from "@/lib/fonts";
@@ -63,7 +64,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
           <div className="relative flex flex-col gap-6">
             <div className="flex min-h-screen flex-col">
               <Navbar />
-              {children}
+              <JotaiProvider>{children}</JotaiProvider>
             </div>
             <Footer />
           </div>

@@ -14,6 +14,7 @@ import {
   ITEM_RARITIES,
   REGIONS,
   WEAPONS,
+  WEEKDAYS,
 } from "@/data/constants";
 
 export type Element = (typeof ELEMENTS)[number];
@@ -21,6 +22,7 @@ export type Weapon = (typeof WEAPONS)[number];
 export type Region = (typeof REGIONS)[number];
 export type CharacterRarity = (typeof CHARACTER_RARITIES)[number];
 export type ItemRarity = (typeof ITEM_RARITIES)[number];
+export type Weekday = (typeof WEEKDAYS)[number];
 
 export type Character = ReturnType<typeof formatCharacter>;
 

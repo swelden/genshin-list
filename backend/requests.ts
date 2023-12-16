@@ -20,7 +20,7 @@ import {
   LEVELS,
   LVL_TO_ASCENSION,
 } from "@/data/constants";
-import type { MaterialCount, MaterialInfo } from "@/data/types";
+import type { MaterialCount, MaterialInfo, Weekday } from "@/data/types";
 
 export function getCharacterNames() {
   const names = api(
@@ -89,6 +89,18 @@ export function getConstellationInfo(name: string) {
   );
 
   return formatConstellations(constellationResponse);
+}
+
+export function getCharacterWeekdays(name: string) {
+  const { talentMaterialData } = getCharacterTalentMaterialInfo(name);
+
+  for (const material of Object.values(talentMaterialData)) {
+    if (material.daysofweek) {
+      return material.daysofweek;
+    }
+  }
+
+  return [];
 }
 
 export function getCharacterMaterialInfo(name: string) {

@@ -1,6 +1,7 @@
 import * as z from "zod";
 
 import { formatMarkdown } from "@/backend/markdown";
+import { getCharacterWeekdays } from "@/backend/requests";
 import type {
   CharacterDB,
   CombatAttribute,
@@ -31,6 +32,7 @@ export function formatCharacter(character: CharacterDB) {
     affiliation: character.affiliation,
     birthday: character.birthdaymmdd,
     constellation: character.constellation,
+    weekdays: getCharacterWeekdays(character.name),
     va: character.cv,
     stats: formatCharStats(character.stats, character.substatText),
     gachaSplash: character.images.filename_gachaSplash,

@@ -1,37 +1,22 @@
-import type { AllMaterialInfo } from "@/data/types";
+"use client";
+
 import { formatImageUrl } from "@/lib/utils";
-import { useMaterialContext } from "@/contexts/material-context";
+import {
+  useCalculatedMaterials,
+  useMaterialNameToInfo,
+} from "@/hooks/use-materials";
 import { ItemCard } from "@/components/card-templates";
 
-interface MaterialListProps {
-  materialNameToInfo: AllMaterialInfo["nameToInfo"];
-}
+interface MaterialListProps {}
 
-export function MaterialList({ materialNameToInfo }: MaterialListProps) {
-  const { characterMaterials, talentMaterials } = useMaterialContext()!;
-  // NOTE: shouldn't need to use useMemo
-  const totalMaterials = Object.entries(
-    mergeMaterials(characterMaterials, talentMaterials),
-  ).sort(([aName], [bName]) => {
-    const aIsCharMat = characterMaterials[aName] !== undefined;
-    const bIsCharMat = characterMaterials[bName] !== undefined;
-
-    if (aIsCharMat === bIsCharMat) {
-      return (
-        materialNameToInfo[aName]!.sortorder -
-        materialNameToInfo[bName]!.sortorder
-      );
-    } else if (aIsCharMat) {
-      return -1; // sort a before b
-    } else {
-      return 1; // sort b before a
-    }
-  });
+export function MaterialList({}: MaterialListProps) {
+  const calculatedMaterials = useCalculatedMaterials();
+  const materialNameToInfo = useMaterialNameToInfo();
 
   return (
     // NOTE: might remove mora card and replace it with "Required (mora icon) [Amount]" center below cards
     <div className="flex flex-wrap justify-center gap-4 xl:justify-end">
-      {totalMaterials.map(([material, count]) => {
+      {calculatedMaterials.map(([material, count]) => {
         return (
           <div
             className="w-[5.25rem] lg:w-[5.875rem] 2xl:w-[6.5rem]"
@@ -48,27 +33,11 @@ export function MaterialList({ materialNameToInfo }: MaterialListProps) {
           </div>
         );
       })}
-      {totalMaterials.length === 0 && (
+      {calculatedMaterials.length === 0 && (
         <div className="min-w-max rounded bg-gradient-to-b from-[#323947] to-[#4a5366] p-4 text-white">
           No Materials
         </div>
       )}
     </div>
   );
-}
-
-export function mergeMaterials(...materials: Record<string, number>[]) {
-  const merged: Record<string, number> = {};
-
-  materials.forEach((material) => {
-    for (const [name, count] of Object.entries(material)) {
-      if (merged.hasOwnProperty(name)) {
-        merged[name] += count;
-      } else {
-        merged[name] = count;
-      }
-    }
-  });
-
-  return merged;
 }

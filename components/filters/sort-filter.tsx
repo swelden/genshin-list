@@ -5,6 +5,7 @@ import { Check } from "lucide-react";
 
 import type { CharacterSortKeys } from "@/data/types";
 import { cn } from "@/lib/utils";
+import { useSetSortKey } from "@/hooks/use-characters";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -23,11 +24,11 @@ const options: SelectOption<CharacterSortKeys>[] = [
 ];
 
 interface SortDropdownProps {
-  setSortKey: React.Dispatch<React.SetStateAction<CharacterSortKeys>>;
   className?: string;
 }
 
-export function SortDropdown({ setSortKey, className }: SortDropdownProps) {
+export function SortDropdown({ className }: SortDropdownProps) {
+  const setSortKey = useSetSortKey();
   const [selectedOption, setSelectedOption] = React.useState(options[0]!);
 
   const handleChange = (event: SelectOption<CharacterSortKeys>) => {

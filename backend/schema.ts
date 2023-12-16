@@ -6,6 +6,7 @@ import {
   ITEM_RARITIES,
   REGIONS,
   WEAPONS,
+  WEEKDAYS,
 } from "@/data/constants";
 import { myRound } from "@/lib/utils";
 
@@ -207,18 +208,7 @@ export const MaterialDBSchema = z.object({
 
   dropDomainId: z.number().optional(),
   dropDomainName: z.string().optional(),
-  daysOfWeek: z
-    .enum([
-      "Sunday",
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday",
-    ])
-    .array()
-    .optional(), // for domain
+  daysOfWeek: z.enum(WEEKDAYS).array().optional(), // for domain
 
   sources: z.string().array(),
 

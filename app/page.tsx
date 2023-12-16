@@ -1,12 +1,11 @@
-import { getAllCharacters } from "@/data/retrieve";
-import { MainCharacterFilterList } from "@/components/main-character-filter-list";
+import { CharacterList } from "@/components/character-list";
+import { FilterHub } from "@/components/filters/filter-hub";
 
 export default function Home() {
-  const allCharacters = getAllCharacters();
-
   return (
     <main className="container flex flex-col gap-6">
-      <MainCharacterFilterList allCharacters={allCharacters} />
+      <FilterHub />
+      <CharacterList />
     </main>
   );
 }

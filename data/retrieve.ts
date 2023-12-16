@@ -1,7 +1,6 @@
 import {
   getCharacterFilterInfo,
   getCharacterInfo,
-  getCharacterMaterialInfo,
   getCharacterNames,
   getConstellationInfo,
   getTalentInfo,
@@ -11,12 +10,10 @@ export function getNamePageProps(name: string) {
   const characterProps = getCharacterInfo(name);
   const talentProps = getTalentInfo(name);
   const constellationProps = getConstellationInfo(name);
-  const materialProps = getCharacterMaterialInfo(name);
 
   return {
     character: characterProps,
     talents: talentProps,
-    materials: materialProps,
     constellations: constellationProps,
   };
 }
