@@ -7,6 +7,11 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Icons } from "@/components/icons";
 
+export interface DropdownOption<T> {
+  readonly label: React.ReactNode;
+  readonly value: T;
+}
+
 const DropdownMenu = React.forwardRef<
   React.ElementRef<typeof Listbox>,
   React.ComponentPropsWithoutRef<typeof Listbox> & {

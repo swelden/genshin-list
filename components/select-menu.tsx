@@ -2,16 +2,12 @@ import * as React from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import { Check } from "lucide-react";
 
+import type { DropdownOption } from "@/components/ui/dropdown-menu";
 import { Icons } from "@/components/icons";
 
-export interface SelectOption<T> {
-  label: string;
-  value: T;
-}
-
 interface SelectMenuProps<T> {
-  options: SelectOption<T>[];
-  currentValue: SelectOption<T>;
+  options: DropdownOption<T>[];
+  currentValue: DropdownOption<T>;
   handleChange: (value: T) => void;
 }
 
@@ -24,7 +20,9 @@ export function SelectMenu<T extends {}>({
     <Listbox value={currentValue.value} onChange={handleChange}>
       <div className="relative">
         <Listbox.Button className="relative w-full cursor-pointer rounded-md bg-zinc-100 py-1.5 pl-4 pr-10 text-left shadow-sm ring-1 ring-black/5 transition-colors hover:bg-zinc-200 dark:bg-zinc-700 hover:dark:bg-zinc-600">
-          <span className="block truncate">{currentValue.label}</span>
+          <span className="flex items-center truncate">
+            {currentValue.label}
+          </span>
           <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2 text-gray-400">
             <Icons.dropdown className="h-6 w-6 min-w-[1.5rem]" />
           </span>
@@ -50,7 +48,7 @@ export function SelectMenu<T extends {}>({
               >
                 {({ selected }) => (
                   <>
-                    <span className="block truncate">{label}</span>
+                    <span className="flex items-center truncate">{label}</span>
                     {selected && (
                       <span className="absolute inset-y-0 right-0 flex items-center pr-3 text-amber-600 dark:text-amber-400">
                         <Check className="h-4 w-4" />

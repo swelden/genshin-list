@@ -15,17 +15,13 @@ import {
   talentMatsAtom,
   talentOptionsAtom,
 } from "@/hooks/use-materials";
-
-interface Option {
-  readonly label: string;
-  readonly value: number;
-}
+import type { DropdownOption } from "@/components/ui/dropdown-menu";
 
 interface HydrateAtomsProps {
   materials: AllMaterialInfo;
-  levelOptions: Option[];
+  levelOptions: DropdownOption<number>[];
   levelMats: Item[][];
-  talentOptions: Option[];
+  talentOptions: DropdownOption<number>[];
   talentMats: Item[][];
   children: React.ReactNode;
 }

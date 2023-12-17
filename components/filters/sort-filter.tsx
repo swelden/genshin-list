@@ -11,10 +11,10 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
+  type DropdownOption,
 } from "@/components/ui/dropdown-menu";
-import type { SelectOption } from "@/components/select-menu";
 
-const options: SelectOption<CharacterSortKeys>[] = [
+const options: DropdownOption<CharacterSortKeys>[] = [
   { label: "Version", value: "version" },
   { label: "Element", value: "element" },
   { label: "Weapon", value: "weapontype" },
@@ -31,7 +31,7 @@ export function SortDropdown({ className }: SortDropdownProps) {
   const setSortKey = useSetSortKey();
   const [selectedOption, setSelectedOption] = React.useState(options[0]!);
 
-  const handleChange = (event: SelectOption<CharacterSortKeys>) => {
+  const handleChange = (event: DropdownOption<CharacterSortKeys>) => {
     setSelectedOption(event);
     setSortKey(event.value);
   };

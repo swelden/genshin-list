@@ -14,8 +14,9 @@ import {
   useSkillMin,
   useTalentOptions,
 } from "@/hooks/use-materials";
+import type { DropdownOption } from "@/components/ui/dropdown-menu";
 import { Icons } from "@/components/icons";
-import { SelectMenu, type SelectOption } from "@/components/select-menu";
+import { SelectMenu } from "@/components/select-menu";
 
 export function MaterialCalculator() {
   return (
@@ -111,7 +112,7 @@ interface RangeSelectorProps {
   max: number;
   setMin: React.Dispatch<React.SetStateAction<number>>;
   setMax: React.Dispatch<React.SetStateAction<number>>;
-  options: SelectOption<number>[];
+  options: DropdownOption<number>[];
 }
 
 function RangeSelector({
