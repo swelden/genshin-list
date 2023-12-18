@@ -17,10 +17,9 @@ export function MaterialCalculatorSection({
     <MaterialProvider name={name}>
       <Section>
         <SectionHeader>Material Calculator</SectionHeader>
-        <div className="grid gap-6 xl:grid-cols-[20rem,_auto]">
+        <div className="grid gap-6 xl:grid-cols-[20rem,_auto] 2xl:grid-cols-[auto,_66.5rem]">
           <MaterialCalculator />
-          {/* NOTE: might put "Required Materials" in center and move daysofweek */}
-          <div>
+          <div className="flex flex-col">
             <DaysOfWeek weekdays={weekdays} />
             <MaterialList />
           </div>
@@ -31,15 +30,11 @@ export function MaterialCalculatorSection({
 }
 
 function DaysOfWeek({ weekdays }: { weekdays: Weekday[] }) {
-  // TODO: change Talents: weekday, weekday to => (S) M (T) W T [(F)] S
-  //() => means talent avaiable that day - [] => means current day indicator
   return (
-    <div className="mb-4 text-center xl:mb-1 xl:text-right">
+    <div className="mb-4 flex justify-center xl:mb-1 xl:justify-start">
       <span className="">
         Talents: {/*comment is to leave space*/}
-        <span className="text-black/80 dark:text-white/80">
-          {weekdays.join(", ")}
-        </span>
+        <span className="text-muted-foreground">{weekdays.join(", ")}</span>
       </span>
     </div>
   );

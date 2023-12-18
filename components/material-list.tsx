@@ -15,7 +15,7 @@ export function MaterialList({}: MaterialListProps) {
 
   return (
     // NOTE: might remove mora card and replace it with "Required (mora icon) [Amount]" center below cards
-    <div className="flex flex-wrap justify-center gap-4 xl:justify-end">
+    <div className="flex flex-wrap justify-center gap-4 xl:justify-start">
       {calculatedMaterials.map(([material, count]) => {
         return (
           <div
