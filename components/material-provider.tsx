@@ -4,7 +4,7 @@ import { getCharacterMaterialInfo } from "@/backend/requests";
 import type { MaterialCount } from "@/data/types";
 import { sortStringAsNumber } from "@/lib/utils";
 import { HydrateMaterialAtoms } from "@/components/hydrate-materials";
-import { Icons } from "@/components/icons";
+import { formatAscension } from "@/components/icons";
 
 interface MaterialProviderProps
   extends React.ComponentProps<typeof JotaiProvider> {
@@ -44,12 +44,7 @@ function getOptionsMats(materialCosts: MaterialCount) {
     if (key.endsWith("+")) {
       const strippedKey = key.slice(0, -1);
       return {
-        label: (
-          <>
-            {strippedKey}
-            <Icons.ascensionstar className="ml-1 h-5 w-5" />
-          </>
-        ),
+        label: formatAscension(strippedKey),
         value: idx,
       } as const;
     }

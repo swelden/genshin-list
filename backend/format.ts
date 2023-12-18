@@ -13,6 +13,7 @@ import type {
 import { LEVELS } from "@/data/constants";
 import type { ActiveCategory, Character } from "@/data/types";
 import { formatAmbrUrl, myRound, pick } from "@/lib/utils";
+import { formatAscension } from "@/components/icons";
 
 /**
  * Reformats genshin-db character info to expected format.
@@ -154,9 +155,15 @@ export function formatConstellations(constellations: ConstellationDB) {
 // Get array of stats at all ascension levels and include lvl 1 and 90
 function formatCharStats(statsFunc: StatFunction, substat: string) {
   // ascension levels at 20, 40, 50, 60, 70, 80
-  const headings = LEVELS.map(
-    ([level, isAscended]) => `Lv.${level}${isAscended === "+" ? "+" : ""}`,
-  );
+  const headings = LEVELS.map(([level, isAscended]) => {
+    const levelHead = `Lv.${level}`;
+
+    if (isAscended === "+") {
+      return formatAscension(levelHead);
+    }
+
+    return levelHead;
+  });
 
   const statResults = LEVELS.map(([level, isAscended]) =>
     statsFunc(level, isAscended),

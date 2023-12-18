@@ -21,7 +21,9 @@ export function StatsTable({ data, topHeadings }: StatsTableProps) {
           <FirstColumnHead paddingClassName="px-4">Level</FirstColumnHead>
           {topHeadings.map((heading, i) => (
             <TableHead key={i} className={cn("border-l", headColorClassName)}>
-              {heading}
+              <span className="flex flex-nowrap items-center whitespace-nowrap">
+                {heading}
+              </span>
             </TableHead>
           ))}
         </TableRow>

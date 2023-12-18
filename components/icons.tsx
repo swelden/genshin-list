@@ -65,3 +65,12 @@ export const Icons = {
     </svg>
   ),
 } as const;
+
+export function formatAscension(label: string, className?: string) {
+  return (
+    <>
+      {label}
+      <Icons.ascensionstar className={cn("ml-1 h-5 w-5", className)} />
+    </>
+  );
+}
