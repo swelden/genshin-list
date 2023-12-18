@@ -1,10 +1,8 @@
 "use client";
 
 import * as React from "react";
-import { Check } from "lucide-react";
 
 import type { CharacterSortKeys } from "@/data/types";
-import { cn } from "@/lib/utils";
 import { useSetSortKey } from "@/hooks/use-characters";
 import {
   DropdownMenu,
@@ -48,18 +46,7 @@ export function SortDropdown({ className }: SortDropdownProps) {
       <DropdownMenuContent>
         {options.map((option) => (
           <DropdownMenuItem key={option.value} value={option}>
-            <div
-              className={cn(
-                "relative flex h-full w-full items-center justify-between rounded-full p-0.5 px-3 transition-colors duration-75",
-                "ui-active:bg-secondary-hover ui-active:active:bg-primary ui-active:active:text-primary-foreground",
-              )}
-            >
-              {option.label}
-              <Check
-                className="hidden h-6 w-6 ui-selected:flex"
-                strokeWidth={4}
-              />
-            </div>
+            {option.label}
           </DropdownMenuItem>
         ))}
       </DropdownMenuContent>

@@ -2,9 +2,11 @@
 
 import * as React from "react";
 import { Listbox, Transition } from "@headlessui/react";
+import { Check } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { Icons } from "@/components/icons";
 
 export interface DropdownOption<T> {
@@ -34,7 +36,9 @@ const DropdownMenuTrigger = React.forwardRef<
     className={cn("w-full justify-between truncate", className)}
     {...props}
   >
-    <span className="w-full truncate text-left">{children}</span>
+    <span className="flex w-full items-center truncate text-left">
+      {children}
+    </span>
     <Icons.dropdown className="h-7 w-7" />
   </Listbox.Button>
 ));
@@ -55,8 +59,10 @@ const DropdownMenuContent = React.forwardRef<
   >
     <Listbox.Options
       ref={ref}
+      as={ScrollArea}
       className={cn(
-        "absolute z-50 flex w-full flex-col gap-[0.125rem] overflow-hidden rounded-3xl bg-secondary p-[0.3125rem] text-secondary-foreground shadow-xl ring-1 ring-black/20 focus:outline-none",
+        "z-50 flex w-full flex-col gap-[0.125rem] overflow-hidden rounded-3xl bg-secondary p-[0.3125rem] text-secondary-foreground shadow-xl ring-1 ring-black/20 focus:outline-none",
+        "!absolute max-h-60 sm:max-h-80",
         className,
       )}
       {...props}
@@ -67,15 +73,38 @@ DropdownMenuContent.displayName = "DropdownMenuContent";
 
 const DropdownMenuItem = React.forwardRef<
   React.ElementRef<typeof Listbox.Option>,
-  React.ComponentPropsWithoutRef<typeof Listbox.Option>
->(({ value, className, ...props }, ref) => (
-  <Listbox.Option
-    ref={ref}
-    value={value}
-    className={cn("flex h-11 select-none text-xl outline-none", className)}
-    {...props}
-  />
-));
+  Omit<React.ComponentPropsWithoutRef<typeof Listbox.Option>, "children"> & {
+    innerClassName?: string;
+    checkClassName?: string;
+    children?: React.ReactNode;
+  }
+>(
+  (
+    { value, className, innerClassName, checkClassName, children, ...props },
+    ref,
+  ) => (
+    <Listbox.Option
+      ref={ref}
+      value={value}
+      className={cn("flex h-11 select-none text-xl outline-none", className)}
+      {...props}
+    >
+      <div
+        className={cn(
+          "relative flex h-full w-full items-center justify-between rounded-full p-0.5 px-3 transition-colors duration-75",
+          "ui-active:bg-secondary-hover ui-active:active:bg-primary ui-active:active:text-primary-foreground",
+          innerClassName,
+        )}
+      >
+        {children}
+        <Check
+          className={cn("hidden h-6 w-6 ui-selected:flex", checkClassName)}
+          strokeWidth={4}
+        />
+      </div>
+    </Listbox.Option>
+  ),
+);
 DropdownMenuItem.displayName = "DropdownMenuItem";
 
 export {

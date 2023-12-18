@@ -47,7 +47,7 @@ function getOptionsMats(materialCosts: MaterialCount) {
         label: (
           <>
             {strippedKey}
-            <Icons.ascensionstar className="ml-1.5 h-5 w-5" />
+            <Icons.ascensionstar className="ml-1 h-5 w-5" />
           </>
         ),
         value: idx,

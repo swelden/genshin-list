@@ -1,4 +1,5 @@
 import type { Active } from "@/data/types";
+import { Button } from "@/components/ui/button";
 import {
   CollapsibleContent,
   CollapsibleTrigger,
@@ -36,10 +37,10 @@ function ActiveTalentAttributes({ talent }: ActiveTalentAttributesProps) {
   return (
     <CollapsibleWithState className="group mt-4">
       <CollapsibleTrigger asChild>
-        <button className="flex max-w-max rounded-full bg-zinc-100 p-2 pl-4 ring-1 ring-black/5 transition-colors hover:bg-zinc-200 dark:bg-zinc-700 hover:dark:bg-zinc-600">
-          <span className="pr-1.5">{talent.category} Stats</span>
-          <Icons.dropdown className="h-6 w-6 min-w-[1.5rem] transition-transform group-data-[state=open]:rotate-180" />
-        </button>
+        <Button variant="secondary">
+          {talent.category} Stats
+          <Icons.dropdown className="ml-1.5 h-6 w-6 min-w-[1.5rem] transition-transform group-data-[state=open]:rotate-180" />
+        </Button>
       </CollapsibleTrigger>
       <CollapsibleContent className="mt-4">
         <StatsTable

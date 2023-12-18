@@ -1,5 +1,7 @@
 "use client";
 
+import * as React from "react";
+
 import {
   useAttackMax,
   useAttackMin,
@@ -14,9 +16,15 @@ import {
   useSkillMin,
   useTalentOptions,
 } from "@/hooks/use-materials";
-import type { DropdownOption } from "@/components/ui/dropdown-menu";
+import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+  type DropdownOption,
+} from "@/components/ui/dropdown-menu";
 import { Icons } from "@/components/icons";
-import { SelectMenu } from "@/components/select-menu";
 
 export function MaterialCalculator() {
   return (
@@ -90,18 +98,12 @@ function LevelTemplateSelector() {
 
   return (
     <div className="mt-2 grid grid-cols-2 gap-3">
-      <button
-        className="rounded-md bg-zinc-200 p-2 transition-colors hover:bg-zinc-300 dark:bg-zinc-900 hover:dark:bg-black/60"
-        onClick={setNoLevels}
-      >
+      <Button onClick={setNoLevels} variant="secondary">
         Clear
-      </button>
-      <button
-        className="rounded-md bg-zinc-200 p-2 transition-colors hover:bg-zinc-300 dark:bg-zinc-900 hover:dark:bg-black/60"
-        onClick={setMaxLevels}
-      >
+      </Button>
+      <Button onClick={setMaxLevels} variant="secondary">
         Max
-      </button>
+      </Button>
     </div>
   );
 }
@@ -127,20 +129,64 @@ function RangeSelector({
     <div className="w-full">
       <h3 className="mb-1">{title}</h3>
       <div className="grid grid-cols-[1fr_24px_1fr] items-center justify-center gap-2">
-        <SelectMenu
+        <CalculatorDropdown
+          curValue={min}
+          setValue={setMin}
           options={options}
-          currentValue={options[min]!}
-          handleChange={setMin}
         />
         <div className="flex w-full items-center justify-center text-gray-600">
           <Icons.rightarrow className="h-6 w-6 min-w-[1.5rem]" />
         </div>
-        <SelectMenu
+        <CalculatorDropdown
+          curValue={max}
+          setValue={setMax}
           options={options}
-          currentValue={options[max]!}
-          handleChange={setMax}
         />
       </div>
     </div>
+  );
+}
+
+interface CalculatorDropdownProps {
+  curValue: number;
+  setValue: React.Dispatch<React.SetStateAction<number>>;
+  options: DropdownOption<number>[];
+  className?: string;
+}
+
+function CalculatorDropdown({
+  curValue,
+  setValue,
+  options,
+  className,
+}: CalculatorDropdownProps) {
+  const selectedOption = options[curValue]!;
+
+  const handleChange = (event: DropdownOption<number>) => {
+    setValue(event.value);
+  };
+
+  return (
+    <DropdownMenu
+      value={selectedOption}
+      onChange={handleChange}
+      className={className}
+    >
+      <DropdownMenuTrigger className="h-10 py-1 text-base ui-open:shadow-inner ui-open:ring-3">
+        {selectedOption.label}
+      </DropdownMenuTrigger>
+      <DropdownMenuContent>
+        {options.map((option) => (
+          <DropdownMenuItem
+            key={option.value}
+            value={option}
+            innerClassName="py-1"
+            checkClassName="h-5 w-5"
+          >
+            <span className="flex items-center">{option.label}</span>
+          </DropdownMenuItem>
+        ))}
+      </DropdownMenuContent>
+    </DropdownMenu>
   );
 }
