@@ -19,7 +19,7 @@ export function MaterialList({}: MaterialListProps) {
       {calculatedMaterials.map(([material, count]) => {
         return (
           <div
-            className="w-[5.25rem] lg:w-[5.875rem] 2xl:w-[6.5rem]"
+            className="w-[5.25rem] lg:w-24"
             title={material}
             key={`${material}`}
           >

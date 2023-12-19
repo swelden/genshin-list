@@ -17,7 +17,7 @@ export function MaterialCalculatorSection({
     <MaterialProvider name={name}>
       <Section>
         <SectionHeader>Material Calculator</SectionHeader>
-        <div className="grid gap-6 xl:grid-cols-[20rem,_auto] 2xl:grid-cols-[auto,_66.5rem]">
+        <div className="grid gap-6 xl:grid-cols-[20rem,_auto]">
           <MaterialCalculator />
           <div className="flex flex-col">
             <DaysOfWeek weekdays={weekdays} />
