@@ -3,7 +3,7 @@
 import * as React from "react";
 
 import type { CharacterSortKeys } from "@/data/types";
-import { useSetSortKey } from "@/hooks/use-characters";
+import { useSortKey } from "@/hooks/use-characters";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -26,8 +26,10 @@ interface SortDropdownProps {
 }
 
 export function SortDropdown({ className }: SortDropdownProps) {
-  const setSortKey = useSetSortKey();
-  const [selectedOption, setSelectedOption] = React.useState(options[0]!);
+  const [sortKey, setSortKey] = useSortKey();
+  const [selectedOption, setSelectedOption] = React.useState(
+    () => options.find((option) => option.value === sortKey)!,
+  );
 
   const handleChange = (event: DropdownOption<CharacterSortKeys>) => {
     setSelectedOption(event);
