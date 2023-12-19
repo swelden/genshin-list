@@ -92,7 +92,7 @@ function DetailHeader({ character }: DetailHeaderProps) {
         </div>
         <div className="flex flex-wrap gap-2">
           <CharacterBadge text={character.element} />
-          <CharacterBadge text={character.weapontype} />
+          <CharacterBadge text={character.weapon} />
           <CharacterBadge text={character.substat} />
           <CharacterBadge text={`${character.rarity}-star`} />
         </div>
@@ -149,7 +149,7 @@ export async function generateMetadata(
 
   return {
     title: character.name,
-    description: `${character.name} is a playable ${character.rarity}-star ${character.element} ${character.weapontype} character. ${character.description}`,
+    description: `${character.name} is a playable ${character.rarity}-star ${character.element} ${character.weapon} character. ${character.description}`,
     openGraph: {
       images: [...previousImages],
     },

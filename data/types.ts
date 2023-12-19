@@ -46,7 +46,7 @@ export type AllMaterialInfo = ReturnType<typeof getCharacterMaterialInfo>;
 export type Attribute = Element | Weapon | Region | CharacterRarity;
 export interface Attributes {
   element: Set<Element>;
-  weapontype: Set<Weapon>;
+  weapon: Set<Weapon>;
   region: Set<Region>;
   rarity: Set<CharacterRarity>;
 }

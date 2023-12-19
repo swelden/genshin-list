@@ -15,7 +15,7 @@ import {
 const options: DropdownOption<CharacterSortKeys>[] = [
   { label: "Version", value: "version" },
   { label: "Element", value: "element" },
-  { label: "Weapon", value: "weapontype" },
+  { label: "Weapon", value: "weapon" },
   { label: "Region", value: "region" },
   { label: "Rarity", value: "rarity" }, // NOTE: might label Quality
   { label: "Name", value: "name" },

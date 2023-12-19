@@ -41,7 +41,7 @@ export function FilterSheet({}: FilterSheetProps) {
           </SheetHeader>
           <div className="mt-8 flex h-full flex-col gap-8 overflow-auto px-7 pb-28">
             <FilterContainer attrData={ELEMENTS} category="element" />
-            <FilterContainer attrData={WEAPONS} category="weapontype" />
+            <FilterContainer attrData={WEAPONS} category="weapon" />
             <FilterContainer attrData={REGIONS} category="region" />
             <FilterContainer attrData={CHARACTER_RARITIES} category="rarity" />
           </div>

@@ -16,7 +16,7 @@ const sortKeyAtom = atom<CharacterSortKeys>("version");
 const isReversedAtom = atom(true);
 const attrFilterAtom = atom<Attributes>({
   element: new Set<Element>(),
-  weapontype: new Set<Weapon>(),
+  weapon: new Set<Weapon>(),
   region: new Set<Region>(),
   rarity: new Set<CharacterRarity>(),
   // TODO: add weekdays you can get talents
