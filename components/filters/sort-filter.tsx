@@ -40,9 +40,7 @@ export function SortDropdown({ className }: SortDropdownProps) {
       onChange={handleChange}
       className={className}
     >
-      <DropdownMenuTrigger className="ui-open:shadow-inner ui-open:ring-3">
-        Sort by {selectedOption.label}
-      </DropdownMenuTrigger>
+      <DropdownMenuTrigger>Sort by {selectedOption.label}</DropdownMenuTrigger>
       <DropdownMenuContent>
         {options.map((option) => (
           <DropdownMenuItem key={option.value} value={option}>

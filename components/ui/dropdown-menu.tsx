@@ -33,7 +33,10 @@ const DropdownMenuTrigger = React.forwardRef<
   <Listbox.Button
     ref={ref}
     as={Button}
-    className={cn("w-full justify-between truncate", className)}
+    className={cn(
+      "w-full justify-between truncate ui-open:shadow-inner ui-open:ring-3",
+      className,
+    )}
     {...props}
   >
     <span className="flex w-full items-center truncate text-left">
@@ -46,29 +49,35 @@ DropdownMenuTrigger.displayName = "DropdownMenuTrigger";
 
 const DropdownMenuContent = React.forwardRef<
   React.ElementRef<typeof Listbox.Options>,
-  React.ComponentPropsWithoutRef<typeof Listbox.Options>
->(({ className, ...props }, ref) => (
-  <Transition
-    as={React.Fragment}
-    enter="transition duration-100 ease-out"
-    enterFrom="transform scale-95 opacity-0"
-    enterTo="transform scale-100 opacity-100"
-    leave="transition duration-75 ease-out"
-    leaveFrom="transform scale-100 opacity-100"
-    leaveTo="transform scale-95 opacity-0"
-  >
-    <Listbox.Options
-      ref={ref}
-      as={ScrollArea}
-      className={cn(
-        "z-50 flex w-full flex-col gap-[0.125rem] overflow-hidden rounded-3xl bg-secondary p-[0.3125rem] text-secondary-foreground shadow-xl ring-1 ring-black/20 focus:outline-none",
-        "!absolute max-h-60 sm:max-h-80",
-        className,
-      )}
-      {...props}
-    />
-  </Transition>
-));
+  React.ComponentPropsWithoutRef<typeof Listbox.Options> & {
+    scrollable?: boolean;
+  }
+>(({ className, scrollable = false, ...props }, ref) => {
+  const Comp = scrollable ? ScrollArea : "ul";
+
+  return (
+    <Transition
+      as={React.Fragment}
+      enter="transition duration-100 ease-out"
+      enterFrom="transform scale-95 opacity-0"
+      enterTo="transform scale-100 opacity-100"
+      leave="transition duration-75 ease-out"
+      leaveFrom="transform scale-100 opacity-100"
+      leaveTo="transform scale-95 opacity-0"
+    >
+      <Listbox.Options
+        ref={ref}
+        as={Comp}
+        className={cn(
+          "z-50 flex w-full flex-col gap-[0.125rem] overflow-hidden rounded-3xl bg-secondary p-[0.3125rem] text-secondary-foreground shadow-xl ring-1 ring-black/20 focus:outline-none",
+          scrollable ? "!absolute max-h-60 pr-3 sm:max-h-80" : "absolute",
+          className,
+        )}
+        {...props}
+      />
+    </Transition>
+  );
+});
 DropdownMenuContent.displayName = "DropdownMenuContent";
 
 const DropdownMenuItem = React.forwardRef<

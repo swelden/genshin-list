@@ -172,13 +172,10 @@ function CalculatorDropdown({
       onChange={handleChange}
       className={className}
     >
-      <DropdownMenuTrigger
-        className="ui-open:shadow-inner ui-open:ring-3"
-        size="small"
-      >
+      <DropdownMenuTrigger size="small">
         {selectedOption.label}
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="pr-3">
+      <DropdownMenuContent scrollable>
         {options.map((option) => (
           <DropdownMenuItem
             key={option.value}
