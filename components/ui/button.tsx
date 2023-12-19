@@ -22,8 +22,8 @@ const buttonVariants = cva(
         secondary:
           "bg-secondary text-secondary-foreground ring-secondary-ring active:bg-secondary-active active:text-secondary-foreground-active active:ring-secondary-ring-active",
         brown:
-          "bg-genshin-brown text-genshin-blue ring-ring-yellow active:bg-genshin-brown-active active:text-genshin-brown-foreground-active active:ring-ring-white-active",
-        blue: "bg-genshin-blue text-genshin-brown ring-ring-yellow active:bg-genshin-blue-active active:text-genshin-blue-foreground-active active:ring-ring-yellow-active",
+          "bg-btn-brown text-btn-brown-foreground ring-btn-brown-ring active:bg-btn-brown-active active:text-btn-brown-active-foreground active:ring-btn-brown-active-ring",
+        blue: "bg-btn-blue text-btn-blue-foreground ring-btn-blue-ring active:bg-btn-blue-active active:text-btn-blue-active-foreground active:ring-btn-blue-active-ring",
       },
       size: buttonSizeClassNames,
     },
@@ -55,7 +55,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 Button.displayName = "Button";
 
 const CircleButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, children, ...props }, ref) => {
+  ({ className, variant, children, ...props }, ref) => {
     return (
       <button
         className={cn(
@@ -67,6 +67,7 @@ const CircleButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
         {...props}
       >
         <Button
+          variant={variant}
           className={cn(
             "peer z-[1] p-0 transition-all duration-300 group-hover:shadow-inner group-hover:ring-3 group-hover:transition-none",
             "h-11 w-11 group-hover:h-[3.25rem] group-hover:w-[3.25rem]",
@@ -79,6 +80,8 @@ const CircleButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
           className={cn(
             "absolute left-1/2 top-1/2 z-0 flex -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-primary-outline transition-all duration-300",
             "h-14 w-14 group-hover:h-12 group-hover:w-12",
+            variant === "brown" && "bg-btn-brown-outline",
+            variant === "blue" && "bg-btn-blue-outline",
           )}
         ></div>
       </button>

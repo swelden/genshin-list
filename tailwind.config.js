@@ -34,12 +34,33 @@ module.exports = {
         genshin: {
           brown: "hsl(var(--genshin-brown))",
           blue: "hsl(var(--genshin-blue))",
-          "brown-active": "hsl(var(--genshin-brown-active))",
-          "blue-active": "hsl(var(--genshin-blue-active))",
-          "brown-foreground-active":
-            "hsl(var(--genshin-brown-foreground-active))",
-          "blue-foreground-active":
-            "hsl(var(--genshin-blue-foreground-active))",
+        },
+
+        btn: {
+          brown: {
+            DEFAULT: "hsl(var(--btn-brown))",
+            foreground: "hsl(var(--btn-brown-foreground))",
+            outline: "hsl(var(--btn-brown-outline))",
+            hover: "hsl(var(--btn-brown-hover))",
+            ring: "hsl(var(--btn-brown-ring))",
+            active: {
+              DEFAULT: "hsl(var(--btn-brown-active))",
+              foreground: "hsl(var(--btn-brown-active-foreground))",
+              ring: "hsl(var(--btn-brown-active-ring))",
+            },
+          },
+          blue: {
+            DEFAULT: "hsl(var(--btn-blue))",
+            foreground: "hsl(var(--btn-blue-foreground))",
+            outline: "hsl(var(--btn-blue-outline))",
+            hover: "hsl(var(--btn-blue-hover))",
+            ring: "hsl(var(--btn-blue-ring))",
+            active: {
+              DEFAULT: "hsl(var(--btn-blue-active))",
+              foreground: "hsl(var(--btn-blue-active-foreground))",
+              ring: "hsl(var(--btn-blue-active-ring))",
+            },
+          },
         },
 
         background: "hsl(var(--background))",
@@ -103,13 +124,7 @@ module.exports = {
           foreground: "hsl(var(--accent-foreground))",
         },
 
-        ring: {
-          DEFAULT: "hsl(var(--ring))",
-          white: "hsl(var(--ring-white))",
-          "white-active": "hsl(var(--ring-white-active))",
-          yellow: "hsl(var(--ring-yellow))",
-          "yellow-active": "hsl(var(--ring-yellow-active))",
-        },
+        ring: "hsl(var(--ring))",
       },
       ringWidth: {
         3: "3px",
