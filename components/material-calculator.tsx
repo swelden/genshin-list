@@ -28,7 +28,7 @@ import { Icons } from "@/components/icons";
 
 export function MaterialCalculator() {
   return (
-    <div className="flex w-full flex-col gap-4 lg:px-11 xl:px-0">
+    <div className="flex w-full flex-col gap-4 md:px-11 lg:px-0">
       <LevelCalculator />
       <TalentCalculator />
       <LevelTemplateSelector />

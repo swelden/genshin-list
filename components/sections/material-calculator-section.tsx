@@ -17,7 +17,7 @@ export function MaterialCalculatorSection({
     <MaterialProvider name={name}>
       <Section>
         <SectionHeader>Material Calculator</SectionHeader>
-        <div className="grid gap-6 xl:grid-cols-[20rem,_auto]">
+        <div className="grid gap-6 lg:grid-cols-[20rem,_auto]">
           <MaterialCalculator />
           <div className="flex flex-col">
             <DaysOfWeek weekdays={weekdays} />
@@ -31,7 +31,7 @@ export function MaterialCalculatorSection({
 
 function DaysOfWeek({ weekdays }: { weekdays: Weekday[] }) {
   return (
-    <div className="mb-4 flex justify-center xl:mb-1 xl:justify-start">
+    <div className="mb-4 flex justify-center lg:mb-1 lg:justify-start">
       <span className="">
         Talents: {/*comment is to leave space*/}
         <span className="text-muted-foreground">{weekdays.join(", ")}</span>
