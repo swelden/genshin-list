@@ -114,14 +114,18 @@ const DropdownMenuItem = React.forwardRef<
     >
       <div
         className={cn(
-          "relative flex h-full w-full items-center justify-between rounded-full p-0.5 px-3 transition-colors duration-75",
+          "relative flex h-full w-full items-center justify-between rounded-full px-3 transition-colors duration-75",
           "ui-active:bg-secondary-hover ui-active:active:bg-primary ui-active:active:text-primary-foreground",
           innerClassName,
         )}
       >
         {children}
         <Check
-          className={cn("hidden h-6 w-6 ui-selected:flex", checkClassName)}
+          className={cn(
+            "hidden h-6 w-6 ui-selected:flex",
+            size === "small" && "h-5 w-5",
+            checkClassName,
+          )}
           strokeWidth={4}
         />
       </div>

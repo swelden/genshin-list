@@ -177,13 +177,7 @@ function CalculatorDropdown({
       </DropdownMenuTrigger>
       <DropdownMenuContent scrollable>
         {options.map((option) => (
-          <DropdownMenuItem
-            key={option.value}
-            value={option}
-            size="small"
-            innerClassName="py-1"
-            checkClassName="h-5 w-5"
-          >
+          <DropdownMenuItem key={option.value} value={option} size="small">
             <span className="flex items-center">{option.label}</span>
           </DropdownMenuItem>
         ))}
