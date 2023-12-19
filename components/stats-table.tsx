@@ -10,7 +10,7 @@ import {
 
 interface StatsTableProps {
   data: Active["attributes"];
-  topHeadings: string[];
+  topHeadings: React.ReactNode[];
 }
 
 export function StatsTable({ data, topHeadings }: StatsTableProps) {
