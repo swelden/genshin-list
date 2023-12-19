@@ -8,8 +8,6 @@
     --genshin-blue: 221 16% 35%;
 
     --ring: 240 5.9% 10%;
-    --ring-white: 0 0% 100%;
-    --ring-yellow: 41 100% 85%;
 
     --background: 0 0% 100%;
     --foreground: 240 10% 3.9%;
@@ -33,19 +31,33 @@
 
     --border: 240 5.9% 90%;
 
+    /* These variables are to support only brown/blue buttons */
+    --genshin-brown-active: 37 19% 63%;
+    --genshin-brown-foreground-active: 0 0% 100%;
+    --genshin-blue-active: 38 100% 90%;
+    --genshin-blue-foreground-active: 35 16% 56%;
+    --ring-white: 0 0% 100%;
+    --ring-white-active: var(--genshin-brown-active); /* transparent */
+    --ring-yellow: 41 100% 85%;
+    --ring-yellow-active: 43 4% 69%;
+
     --primary: var(--genshin-blue);
     --primary-foreground: var(--genshin-brown);
-    --primary-active: 20 9% 62%;
+    --primary-foreground-active: var(--genshin-blue-foreground-active);
+    --primary-active: var(--genshin-blue-active);
     --primary-outline: 242 12% 56%;
     --primary-hover: 218 12% 43%;
     --primary-ring: var(--ring-yellow);
+    --primary-ring-active: var(--ring-yellow-active);
 
     --secondary: var(--genshin-brown);
     --secondary-foreground: var(--genshin-blue);
-    --secondary-active: 20 9% 62%;
+    --secondary-foreground-active: var(--genshin-brown-foreground-active);
+    --secondary-active: var(--genshin-brown-active);
     --secondary-outline: 242 12% 56%;
     --secondary-hover: 41 26% 81%;
     --secondary-ring: var(--ring-white);
+    --secondary-ring-active: var(--ring-white-active);
 
     --accent: 240 4.8% 95.9%;
     --accent-foreground: 240 5.9% 10%;
@@ -85,17 +97,21 @@
 
     --primary: var(--genshin-brown);
     --primary-foreground: var(--genshin-blue);
-    --primary-active: 20 9% 62%;
+    --primary-foreground-active: var(--genshin-brown-foreground-active);
+    --primary-active: var(--genshin-brown-active);
     --primary-outline: 242 12% 56%;
     --primary-hover: 41 26% 81%;
     --primary-ring: var(--ring-white);
+    --primary-ring-active: var(--ring-white-active);
 
     --secondary: var(--genshin-blue);
     --secondary-foreground: var(--genshin-brown);
-    --secondary-active: 20 9% 62%;
+    --secondary-foreground-active: var(--genshin-blue-foreground-active);
+    --secondary-active: var(--genshin-blue-active);
     --secondary-outline: 242 12% 56%;
     --secondary-hover: 218 12% 43%;
     --secondary-ring: var(--ring-yellow);
+    --secondary-ring-active: var(--ring-yellow-active);
 
     --accent: 240 3.7% 15.9%;
     --accent-foreground: 0 0% 98%;

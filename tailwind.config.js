@@ -34,6 +34,12 @@ module.exports = {
         genshin: {
           brown: "hsl(var(--genshin-brown))",
           blue: "hsl(var(--genshin-blue))",
+          "brown-active": "hsl(var(--genshin-brown-active))",
+          "blue-active": "hsl(var(--genshin-blue-active))",
+          "brown-foreground-active":
+            "hsl(var(--genshin-brown-foreground-active))",
+          "blue-foreground-active":
+            "hsl(var(--genshin-blue-foreground-active))",
         },
 
         background: "hsl(var(--background))",
@@ -73,19 +79,23 @@ module.exports = {
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
+          "foreground-active": "hsl(var(--primary-foreground-active))",
           active: "hsl(var(--primary-active))",
           outline: "hsl(var(--primary-outline))",
           hover: "hsl(var(--primary-hover))",
           ring: "hsl(var(--primary-ring))",
+          "ring-active": "hsl(var(--primary-ring-active))",
         },
 
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
           foreground: "hsl(var(--secondary-foreground))",
+          "foreground-active": "hsl(var(--secondary-foreground-active))",
           active: "hsl(var(--secondary-active))",
           outline: "hsl(var(--secondary-outline))",
           hover: "hsl(var(--secondary-hover))",
           ring: "hsl(var(--secondary-ring))",
+          "ring-active": "hsl(var(--secondary-ring-active))",
         },
 
         accent: {
@@ -96,7 +106,9 @@ module.exports = {
         ring: {
           DEFAULT: "hsl(var(--ring))",
           white: "hsl(var(--ring-white))",
+          "white-active": "hsl(var(--ring-white-active))",
           yellow: "hsl(var(--ring-yellow))",
+          "yellow-active": "hsl(var(--ring-yellow-active))",
         },
       },
       ringWidth: {
