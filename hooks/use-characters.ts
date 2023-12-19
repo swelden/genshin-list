@@ -62,6 +62,10 @@ export function useIsReversed() {
   return useAtom(isReversedAtom);
 }
 
+export function useSetIsReversed() {
+  return useSetAtom(isReversedAtom);
+}
+
 export function useAttrFilter() {
   return useAtom(attrFilterAtom);
 }

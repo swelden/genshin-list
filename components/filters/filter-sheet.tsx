@@ -25,7 +25,7 @@ export function FilterSheet({}: FilterSheetProps) {
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <Button size={"icon"}>
+        <Button size="icon">
           <Icons.filter className="h-6 w-6" />
         </Button>
       </SheetTrigger>
@@ -48,8 +48,8 @@ export function FilterSheet({}: FilterSheetProps) {
           <SheetFooter className="mt-auto px-7">
             {/* TODO: add "Clear" button */}
             <SheetClose asChild>
-              {/* TODO: if no change in filter then it has a transparent bg */}
-              <Button className="my-7 h-16 text-2xl" size="full">
+              {/* TODO: add disabled prop */}
+              <Button className="my-7 w-full" variant="brown" size="big">
                 Confirm Filter
               </Button>
             </SheetClose>

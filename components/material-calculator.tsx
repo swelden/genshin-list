@@ -172,14 +172,18 @@ function CalculatorDropdown({
       onChange={handleChange}
       className={className}
     >
-      <DropdownMenuTrigger className="h-10 py-1 text-base ui-open:shadow-inner ui-open:ring-3">
+      <DropdownMenuTrigger
+        className="ui-open:shadow-inner ui-open:ring-3"
+        size="small"
+      >
         {selectedOption.label}
       </DropdownMenuTrigger>
-      <DropdownMenuContent>
+      <DropdownMenuContent className="pr-3">
         {options.map((option) => (
           <DropdownMenuItem
             key={option.value}
             value={option}
+            size="small"
             innerClassName="py-1"
             checkClassName="h-5 w-5"
           >

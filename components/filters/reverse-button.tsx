@@ -1,6 +1,6 @@
 "use client";
 
-import { useIsReversed } from "@/hooks/use-characters";
+import { useSetIsReversed } from "@/hooks/use-characters";
 import { Button } from "@/components/ui/button";
 import { Icons } from "@/components/icons";
 
@@ -9,13 +9,13 @@ interface ReverseBtnProps {
 }
 
 export function ReverseBtn({ className }: ReverseBtnProps) {
-  const [_isReversed, setIsReversed] = useIsReversed();
+  const setIsReversed = useSetIsReversed();
   return (
     <Button
       onClick={() => setIsReversed((prev) => !prev)}
       aria-label="Reverse"
       className={className}
-      size={"icon"}
+      size="icon"
     >
       <Icons.reverse className="h-7 w-7" />
     </Button>

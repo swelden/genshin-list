@@ -5,7 +5,7 @@ import { Listbox, Transition } from "@headlessui/react";
 import { Check } from "lucide-react";
 
 import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
+import { Button, buttonSizeClassNames } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Icons } from "@/components/icons";
 
@@ -77,16 +77,30 @@ const DropdownMenuItem = React.forwardRef<
     innerClassName?: string;
     checkClassName?: string;
     children?: React.ReactNode;
+    size?: keyof typeof buttonSizeClassNames;
   }
 >(
   (
-    { value, className, innerClassName, checkClassName, children, ...props },
+    {
+      value,
+      className,
+      innerClassName,
+      checkClassName,
+      children,
+      size = "default",
+      ...props
+    },
     ref,
   ) => (
     <Listbox.Option
       ref={ref}
       value={value}
-      className={cn("flex h-11 select-none text-xl outline-none", className)}
+      className={cn(
+        "flex select-none outline-none",
+        buttonSizeClassNames[size],
+        "p-0", // reset buttonSizeClassNames padding
+        className,
+      )}
       {...props}
     >
       <div
