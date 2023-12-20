@@ -26,17 +26,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Icons } from "@/components/icons";
 
-export function MaterialCalculator() {
-  return (
-    <div className="flex w-full flex-col gap-4 md:px-11 lg:px-0">
-      <LevelCalculator />
-      <TalentCalculator />
-      <LevelTemplateSelector />
-    </div>
-  );
-}
-
-function LevelCalculator() {
+export function LevelRangeSelector() {
   const levelOptions = useLevelOptions();
   const [levelMin, setLevelMin] = useLevelMin();
   const [levelMax, setLevelMax] = useLevelMax();
@@ -53,46 +43,58 @@ function LevelCalculator() {
   );
 }
 
-function TalentCalculator() {
+export function AttackRangeSelector() {
   const talentOptions = useTalentOptions();
   const [attackMin, setAttackMin] = useAttackMin();
   const [attackMax, setAttackMax] = useAttackMax();
+
+  return (
+    <RangeSelector
+      title="Attack"
+      min={attackMin}
+      max={attackMax}
+      setMin={setAttackMin}
+      setMax={setAttackMax}
+      options={talentOptions}
+    />
+  );
+}
+
+export function SkillRangeSelector() {
+  const talentOptions = useTalentOptions();
   const [skillMin, setSkillMin] = useSkillMin();
   const [skillMax, setSkillMax] = useSkillMax();
+
+  return (
+    <RangeSelector
+      title="Skill"
+      min={skillMin}
+      max={skillMax}
+      setMin={setSkillMin}
+      setMax={setSkillMax}
+      options={talentOptions}
+    />
+  );
+}
+
+export function BurstRangeSelector() {
+  const talentOptions = useTalentOptions();
   const [burstMin, setBurstMin] = useBurstMin();
   const [burstMax, setBurstMax] = useBurstMax();
 
   return (
-    <>
-      <RangeSelector
-        title="Attack"
-        min={attackMin}
-        max={attackMax}
-        setMin={setAttackMin}
-        setMax={setAttackMax}
-        options={talentOptions}
-      />
-      <RangeSelector
-        title="Skill"
-        min={skillMin}
-        max={skillMax}
-        setMin={setSkillMin}
-        setMax={setSkillMax}
-        options={talentOptions}
-      />
-      <RangeSelector
-        title="Burst"
-        min={burstMin}
-        max={burstMax}
-        setMin={setBurstMin}
-        setMax={setBurstMax}
-        options={talentOptions}
-      />
-    </>
+    <RangeSelector
+      title="Burst"
+      min={burstMin}
+      max={burstMax}
+      setMin={setBurstMin}
+      setMax={setBurstMax}
+      options={talentOptions}
+    />
   );
 }
 
-function LevelTemplateSelector() {
+export function RangeTemplateSelector() {
   const setNoLevels = useSetNoLevels();
   const setMaxLevels = useSetMaxLevels();
 
@@ -162,14 +164,10 @@ function CalculatorDropdown({
 }: CalculatorDropdownProps) {
   const selectedOption = options[curValue]!;
 
-  const handleChange = (event: DropdownOption<number>) => {
-    setValue(event.value);
-  };
-
   return (
     <DropdownMenu
-      value={selectedOption}
-      onChange={handleChange}
+      value={selectedOption.value}
+      onChange={setValue}
       className={className}
     >
       <DropdownMenuTrigger size="small">
@@ -177,7 +175,11 @@ function CalculatorDropdown({
       </DropdownMenuTrigger>
       <DropdownMenuContent scrollable>
         {options.map((option) => (
-          <DropdownMenuItem key={option.value} value={option} size="small">
+          <DropdownMenuItem
+            key={option.value}
+            value={option.value}
+            size="small"
+          >
             <span className="flex items-center">{option.label}</span>
           </DropdownMenuItem>
         ))}

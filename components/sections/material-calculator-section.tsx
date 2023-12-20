@@ -1,8 +1,14 @@
 import type { Weekday } from "@/data/types";
 import { Section, SectionHeader } from "@/components/ui/section";
-import { MaterialCalculator } from "@/components/material-calculator";
 import { MaterialList } from "@/components/material-list";
 import { MaterialProvider } from "@/components/material-provider";
+import {
+  AttackRangeSelector,
+  BurstRangeSelector,
+  LevelRangeSelector,
+  RangeTemplateSelector,
+  SkillRangeSelector,
+} from "@/components/material-range-selectors";
 
 interface MaterialCalculatorSectionProps {
   name: string;
@@ -18,7 +24,13 @@ export function MaterialCalculatorSection({
       <Section>
         <SectionHeader>Material Calculator</SectionHeader>
         <div className="grid gap-6 lg:grid-cols-[20rem,_auto]">
-          <MaterialCalculator />
+          <div className="flex w-full flex-col gap-4 md:px-11 lg:px-0">
+            <LevelRangeSelector />
+            <AttackRangeSelector />
+            <SkillRangeSelector />
+            <BurstRangeSelector />
+            <RangeTemplateSelector />
+          </div>
           <div className="flex flex-col">
             <DaysOfWeek weekdays={weekdays} />
             <MaterialList />
