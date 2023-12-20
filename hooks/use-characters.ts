@@ -10,9 +10,13 @@ import type {
   Region,
   Weapon,
 } from "@/data/types";
+import type { DropdownOption } from "@/components/ui/dropdown-menu";
+import { sortOptions } from "@/components/filters/sort-filter";
 
 const searchQueryAtom = atom("");
-const sortKeyAtom = atom<CharacterSortKeys>("version");
+const sortOptionAtom = atom<DropdownOption<CharacterSortKeys>>(
+  sortOptions[0] ?? { label: "Version", value: "version" },
+);
 const isReversedAtom = atom(true);
 const attrFilterAtom = atom<Attributes>({
   element: new Set<Element>(),
@@ -26,7 +30,7 @@ const filteredCharactersAtom = atom((get) => {
   const characters = get(charactersAtom);
   const attrFilter = get(attrFilterAtom);
   const isReversed = get(isReversedAtom);
-  const sortKey = get(sortKeyAtom);
+  const sortKey = get(sortOptionAtom).value;
   const lcFilter = get(searchQueryAtom).toLowerCase(); // case insensitive
 
   return characters
@@ -50,12 +54,8 @@ export function useSearchQuery() {
   return useAtom(searchQueryAtom);
 }
 
-export function useSortKey() {
-  return useAtom(sortKeyAtom);
-}
-
-export function useSetSortKey() {
-  return useSetAtom(sortKeyAtom);
+export function useSortOption() {
+  return useAtom(sortOptionAtom);
 }
 
 export function useIsReversed() {

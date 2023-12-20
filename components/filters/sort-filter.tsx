@@ -3,7 +3,7 @@
 import * as React from "react";
 
 import type { CharacterSortKeys } from "@/data/types";
-import { useSortKey } from "@/hooks/use-characters";
+import { useSortOption } from "@/hooks/use-characters";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -12,39 +12,31 @@ import {
   type DropdownOption,
 } from "@/components/ui/dropdown-menu";
 
-const options: DropdownOption<CharacterSortKeys>[] = [
+export const sortOptions: DropdownOption<CharacterSortKeys>[] = [
   { label: "Version", value: "version" },
   { label: "Element", value: "element" },
   { label: "Weapon", value: "weapon" },
   { label: "Region", value: "region" },
   { label: "Rarity", value: "rarity" }, // NOTE: might label Quality
   { label: "Name", value: "name" },
-];
+] as const;
 
 interface SortDropdownProps {
   className?: string;
 }
 
 export function SortDropdown({ className }: SortDropdownProps) {
-  const [sortKey, setSortKey] = useSortKey();
-  const [selectedOption, setSelectedOption] = React.useState(
-    () => options.find((option) => option.value === sortKey)!,
-  );
-
-  const handleChange = (event: DropdownOption<CharacterSortKeys>) => {
-    setSelectedOption(event);
-    setSortKey(event.value);
-  };
+  const [sortOption, setSortOption] = useSortOption();
 
   return (
     <DropdownMenu
-      value={selectedOption}
-      onChange={handleChange}
+      value={sortOption}
+      onChange={setSortOption}
       className={className}
     >
-      <DropdownMenuTrigger>Sort by {selectedOption.label}</DropdownMenuTrigger>
+      <DropdownMenuTrigger>Sort by {sortOption.label}</DropdownMenuTrigger>
       <DropdownMenuContent>
-        {options.map((option) => (
+        {sortOptions.map((option) => (
           <DropdownMenuItem key={option.value} value={option}>
             {option.label}
           </DropdownMenuItem>
