@@ -20,7 +20,7 @@ import { Icons } from "@/components/icons";
 
 interface FilterSheetProps {}
 
-// TODO: add MobileFilterSheet
+// TODO: add  more mobile styles
 export function FilterSheet({}: FilterSheetProps) {
   return (
     <Sheet>
@@ -30,12 +30,12 @@ export function FilterSheet({}: FilterSheetProps) {
         </Button>
       </SheetTrigger>
       <SheetContent
-        className="flex w-[400px] flex-col bg-sheet/90 bg-gradient-to-b from-sheet from-60% p-0 px-1 sm:w-full sm:max-w-2xl"
-        side="left"
+        className="flex flex-col bg-sheet/90 bg-gradient-to-b from-sheet from-60% p-0 px-1"
+        side="leftBottom"
       >
         <div className="flex h-full flex-col border-x-2 border-sheet-border">
           <SheetHeader className="px-7 pt-8">
-            <SheetTitle className="border-b-2 border-sheet-border pb-6 text-2xl text-[#D3BC8E]">
+            <SheetTitle className="border-b-2 border-sheet-border pb-6 text-left text-2xl text-[#D3BC8E]">
               Filter
             </SheetTitle>
           </SheetHeader>

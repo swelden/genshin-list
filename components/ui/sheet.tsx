@@ -21,7 +21,7 @@ const SheetOverlay = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <SheetPrimitive.Overlay
     className={cn(
-      "fixed inset-0 z-50 bg-background/80 backdrop-blur-sm data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
+      "fixed inset-0 z-50 bg-background/50 backdrop-blur-[2px] data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
       className,
     )}
     {...props}
@@ -41,6 +41,11 @@ const sheetVariants = cva(
         left: "inset-y-0 left-0 h-full w-3/4 border-r data-[state=closed]:slide-out-to-left data-[state=open]:slide-in-from-left sm:max-w-sm",
         right:
           "inset-y-0 right-0 h-full w-3/4  border-l data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right sm:max-w-sm",
+        leftBottom: cn(
+          "md:inset-y-0 md:left-0 md:h-full md:max-w-2xl md:border-r md:data-[state=closed]:slide-out-to-left md:data-[state=open]:slide-in-from-left", // left
+          "inset-x-0 bottom-0 h-5/6 border-t data-[state=closed]:slide-out-to-bottom data-[state=open]:slide-in-from-bottom", // bottom
+          "md:border-t-0 md:data-[state=closed]:slide-out-to-bottom-[0%] md:data-[state=open]:slide-in-from-bottom-[0%]", // reset bottom styles
+        ),
       },
     },
     defaultVariants: {
