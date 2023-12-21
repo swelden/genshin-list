@@ -23,7 +23,7 @@ const IconImage = ({
         alt={alt}
         src={src}
         fill
-        unoptimized={true}
+        unoptimized
         className={cn(invert && "invert dark:filter-none", imageClassName)}
       />
     </div>

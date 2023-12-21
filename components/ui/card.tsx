@@ -1,5 +1,6 @@
 import * as React from "react";
 import Image, { type ImageProps } from "next/image";
+import CardBG from "@/public/images/card-bg.png";
 import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
 
@@ -11,7 +12,7 @@ const cardVariants = cva(
     variants: {
       hover: {
         default:
-          "outline-none ring-offset-ring-white transition hocus:ring-offset-3 motion-safe:hocus:scale-105",
+          "ring-offset-ring-white outline-none transition hocus:ring-offset-3 motion-safe:hocus:scale-105",
       },
     },
   },
@@ -62,6 +63,13 @@ const CardImage = ({
   ...props
 }: CardImageProps) => (
   <div className={cn(cardImageVariants({ gradient, className }))}>
+    <Image
+      alt=""
+      src={CardBG}
+      fill
+      unoptimized
+      className="pointer-events-none"
+    />
     <Image className={cn(imageClassName)} alt={alt} {...props} />
     {children}
   </div>
