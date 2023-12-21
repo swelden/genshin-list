@@ -41,6 +41,10 @@ export function formatLongNumber(value: number | bigint) {
   }).format(value);
 }
 
+export function sortString(a: string, b: string) {
+  return a.localeCompare(b);
+}
+
 export function sortStringAsNumber(a: string, b: string) {
   return a.localeCompare(b, undefined, {
     numeric: true,

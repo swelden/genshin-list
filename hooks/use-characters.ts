@@ -7,8 +7,21 @@ import type {
   CharacterSortKeys,
   FilterAttributes,
 } from "@/data/types";
+import { sortString, sortStringAsNumber } from "@/lib/utils";
 import type { DropdownOption } from "@/components/ui/dropdown-menu";
 import { sortOptions } from "@/components/filters/sort-filter";
+
+const sortFunctions: Record<
+  CharacterSortKeys,
+  (a: string, b: string) => number
+> = {
+  name: sortString,
+  weapon: sortString,
+  element: sortString,
+  region: sortString,
+  rarity: sortStringAsNumber,
+  version: sortStringAsNumber,
+} as const;
 
 const searchQueryAtom = atom("");
 const sortOptionAtom = atom<DropdownOption<CharacterSortKeys>>(
@@ -23,6 +36,7 @@ const filteredCharactersAtom = atom((get) => {
   const isReversed = get(isReversedAtom);
   const sortKey = get(sortOptionAtom).value;
   const lcFilter = get(searchQueryAtom).toLowerCase(); // case insensitive
+  const sortFunction = sortFunctions[sortKey];
 
   return characters
     .filter(
@@ -39,8 +53,8 @@ const filteredCharactersAtom = atom((get) => {
     )
     .sort(
       isReversed
-        ? (b, a) => a[sortKey].localeCompare(b[sortKey])
-        : (a, b) => a[sortKey].localeCompare(b[sortKey]),
+        ? (b, a) => sortFunction(a[sortKey], b[sortKey])
+        : (a, b) => sortFunction(a[sortKey], b[sortKey]),
     );
 });
 
