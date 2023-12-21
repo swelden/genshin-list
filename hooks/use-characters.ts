@@ -1,14 +1,11 @@
 import { atom, useAtom, useAtomValue, useSetAtom } from "jotai";
 
+import { getInitialFilterAttributes } from "@/data/constants";
 import { getAllCharacters } from "@/data/retrieve";
 import type {
-  Attributes,
   CharacterFilter,
-  CharacterRarity,
   CharacterSortKeys,
-  Element,
-  Region,
-  Weapon,
+  FilterAttributes,
 } from "@/data/types";
 import type { DropdownOption } from "@/components/ui/dropdown-menu";
 import { sortOptions } from "@/components/filters/sort-filter";
@@ -18,13 +15,7 @@ const sortOptionAtom = atom<DropdownOption<CharacterSortKeys>>(
   sortOptions[0] ?? { label: "Version", value: "version" },
 );
 const isReversedAtom = atom(true);
-const attrFilterAtom = atom<Attributes>({
-  element: new Set<Element>(),
-  weapon: new Set<Weapon>(),
-  region: new Set<Region>(),
-  rarity: new Set<CharacterRarity>(),
-  // TODO: add weekdays you can get talents
-});
+const attrFilterAtom = atom<FilterAttributes>(getInitialFilterAttributes());
 const charactersAtom = atom<CharacterFilter[]>(getAllCharacters());
 const filteredCharactersAtom = atom((get) => {
   const characters = get(charactersAtom);
@@ -37,11 +28,14 @@ const filteredCharactersAtom = atom((get) => {
     .filter(
       (character) =>
         character.name.toLowerCase().includes(lcFilter) &&
-        Object.entries(attrFilter).every(([key, value]) =>
-          value.size === 0
-            ? true
-            : value.has(character[key as keyof CharacterFilter]),
-        ),
+        Object.entries(attrFilter).every(([key, filterSet]) => {
+          if (filterSet.size === 0) {
+            return true;
+          }
+
+          const characterValue = character[key as keyof CharacterFilter];
+          return (filterSet as Set<unknown>).has(characterValue);
+        }),
     )
     .sort(
       isReversed

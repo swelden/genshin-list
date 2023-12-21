@@ -1,3 +1,5 @@
+import type { CharacterRarity, Element, Region, Weapon } from "@/data/types";
+
 export const ELEMENTS = [
   "Pyro",
   "Hydro",
@@ -40,6 +42,16 @@ export const WEEKDAYS = [
   "Friday",
   "Saturday",
 ] as const;
+
+export function getInitialFilterAttributes() {
+  return {
+    element: new Set<Element>(),
+    weapon: new Set<Weapon>(),
+    region: new Set<Region>(),
+    rarity: new Set<CharacterRarity>(),
+    // TODO: add weekdays you can get talents
+  } as const;
+}
 
 export const LEVELS = [
   [1, "-"],

@@ -4,7 +4,7 @@ import {
   REGIONS,
   WEAPONS,
 } from "@/data/constants";
-import type { Attribute, Attributes } from "@/data/types";
+import type { FilterAttribute, FilterAttributes } from "@/data/types";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -62,8 +62,8 @@ export function FilterSheet({}: FilterSheetProps) {
 }
 
 interface FilterContainerProps {
-  attrData: Readonly<Attribute[]>;
-  category: keyof Attributes;
+  attrData: Readonly<FilterAttribute[]>;
+  category: keyof FilterAttributes;
 }
 
 function FilterContainer({ attrData, category }: FilterContainerProps) {

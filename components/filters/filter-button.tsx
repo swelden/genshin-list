@@ -2,26 +2,26 @@
 
 import { Check } from "lucide-react";
 
-import type { Attribute, Attributes } from "@/data/types";
+import type { FilterAttribute, FilterAttributes } from "@/data/types";
 import { cn } from "@/lib/utils";
 import { useAttrFilter } from "@/hooks/use-characters";
 
 interface FilterButtonProps {
-  attr: Attribute;
-  category: keyof Attributes;
+  attr: FilterAttribute;
+  category: keyof FilterAttributes;
 }
 
 export function FilterButton({ attr, category }: FilterButtonProps) {
   const [attrFilter, setAttrFilter] = useAttrFilter();
-  const handleFilter = (attr: Attribute) => {
-    const newSet = new Set<Attribute>(attrFilter[category]);
+  const handleFilter = (attr: FilterAttribute) => {
+    const newSet = new Set<FilterAttribute>(attrFilter[category]);
 
     newSet.has(attr) ? newSet.delete(attr) : newSet.add(attr);
 
     setAttrFilter({ ...attrFilter, [category]: newSet });
   };
 
-  const isSelected = (attrFilter[category] as Set<Attribute>).has(attr);
+  const isSelected = (attrFilter[category] as Set<FilterAttribute>).has(attr);
 
   return (
     <button

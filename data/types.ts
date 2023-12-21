@@ -11,6 +11,7 @@ import type { Item } from "@/backend/schema";
 import {
   CHARACTER_RARITIES,
   ELEMENTS,
+  getInitialFilterAttributes,
   ITEM_RARITIES,
   REGIONS,
   WEAPONS,
@@ -43,10 +44,5 @@ export type MaterialInfo = Record<string, Material>; // Material name to Materia
 export type MaterialCount = Record<string, Item[]>; // Material name to Item
 export type AllMaterialInfo = ReturnType<typeof getCharacterMaterialInfo>;
 
-export type Attribute = Element | Weapon | Region | CharacterRarity;
-export interface Attributes {
-  element: Set<Element>;
-  weapon: Set<Weapon>;
-  region: Set<Region>;
-  rarity: Set<CharacterRarity>;
-}
+export type FilterAttribute = Element | Weapon | Region | CharacterRarity;
+export type FilterAttributes = ReturnType<typeof getInitialFilterAttributes>;

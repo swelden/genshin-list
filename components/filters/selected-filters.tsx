@@ -2,6 +2,7 @@
 
 import { Trash2 } from "lucide-react";
 
+import { getInitialFilterAttributes } from "@/data/constants";
 import { cn } from "@/lib/utils";
 import { useAttrFilter } from "@/hooks/use-characters";
 import { DragArea } from "@/components/ui/drag-area";
@@ -17,12 +18,7 @@ export function SelectedFilters({ className }: SelectedFiltersProps) {
   const isEmpty = filterSets.every((filterSet) => filterSet.size === 0);
 
   function clearFilters() {
-    setAttrFilter({
-      element: new Set(),
-      weapon: new Set(),
-      region: new Set(),
-      rarity: new Set(),
-    });
+    setAttrFilter(getInitialFilterAttributes());
   }
 
   return (
