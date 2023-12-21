@@ -16,6 +16,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { FilterButton } from "@/components/filters/filter-button";
+import { SelectedFilters } from "@/components/filters/selected-filters";
 import { Icons } from "@/components/icons";
 
 interface FilterSheetProps {}
@@ -45,11 +46,11 @@ export function FilterSheet({}: FilterSheetProps) {
             <FilterContainer attrData={REGIONS} category="region" />
             <FilterContainer attrData={CHARACTER_RARITIES} category="rarity" />
           </div>
-          <SheetFooter className="mt-auto px-7">
-            {/* TODO: add "Clear" button */}
+          <SheetFooter className="mt-auto flex-col px-7 pt-4 sm:flex-col">
+            <SelectedFilters className="mb-7" />
             <SheetClose asChild>
               {/* TODO: add disabled prop */}
-              <Button className="my-7 w-full" variant="brown" size="big">
+              <Button className="mb-7 w-full" variant="brown" size="big">
                 Confirm Filter
               </Button>
             </SheetClose>
