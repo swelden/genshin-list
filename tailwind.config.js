@@ -34,6 +34,8 @@ module.exports = {
         genshin: {
           brown: "hsl(var(--genshin-brown))",
           blue: "hsl(var(--genshin-blue))",
+          green: "hsl(var(--genshin-green))",
+          red: "hsl(var(--genshin-red))",
         },
 
         btn: {
@@ -59,6 +61,15 @@ module.exports = {
               DEFAULT: "hsl(var(--btn-blue-active))",
               foreground: "hsl(var(--btn-blue-active-foreground))",
               ring: "hsl(var(--btn-blue-active-ring))",
+            },
+          },
+          dark: {
+            DEFAULT: "hsl(var(--btn-dark))",
+            foreground: "hsl(var(--btn-dark-foreground))",
+            hover: "hsl(var(--btn-dark-hover))",
+            active: {
+              DEFAULT: "hsl(var(--btn-dark-active))",
+              foreground: "hsl(var(--btn-dark-active-foreground))",
             },
           },
         },

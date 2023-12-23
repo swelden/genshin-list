@@ -6,6 +6,8 @@
   :root {
     --genshin-brown: 39 34% 89%;
     --genshin-blue: 221 16% 35%;
+    --genshin-green: 87 77% 48%;
+    --genshin-red: 0 99% 68%;
 
     --ring: 240 5.9% 10%;
 
@@ -48,6 +50,12 @@
     --btn-blue-active: 38 100% 90%;
     --btn-blue-active-foreground: 35 16% 56%;
     --btn-blue-active-ring: 43 4% 69%;
+
+    --btn-dark: 0 0% 20%;
+    --btn-dark-foreground: 0 0% 100%;
+    --btn-dark-hover: 0 0% 25%;
+    --btn-dark-active: 46 100% 79%;
+    --btn-dark-active-foreground: 45 58% 35%;
 
     --primary: var(--btn-blue);
     --primary-foreground: var(--btn-blue-foreground);

@@ -28,16 +28,16 @@ export function FilterButton({ attr, category }: FilterButtonProps) {
       key={attr}
       onClick={() => handleFilter(attr)}
       className={cn(
-        "flex h-16 items-center gap-3 overflow-hidden border-2 border-sheet-btn-border px-3 text-left text-xl text-genshin-brown outline-none ring-offset-secondary transition active:!ring-0 hocus:ring-4 hocus:ring-white",
+        "flex h-12 flex-nowrap items-center gap-3 overflow-hidden whitespace-nowrap border-2 border-sheet-btn-border px-3 text-left text-base text-genshin-brown outline-none ring-offset-secondary transition active:!ring-0 hocus:ring-4 hocus:ring-white md:h-16 md:text-xl",
         isSelected &&
           "border-sheet-btn-border-selected bg-genshin-brown text-genshin-blue ring-2 ring-genshin-brown",
       )}
     >
       {/* need to position absolute to transition border color on circle */}
-      <div className="relative aspect-square h-7 w-7">
+      <div className="relative hidden aspect-square h-7 w-7 md:block">
         <Check
           className={cn(
-            "absolute inset-0 h-full w-full text-[#84D71C]",
+            "absolute inset-0 h-full w-full text-genshin-green",
             !isSelected && "hidden",
           )}
           strokeWidth="3"

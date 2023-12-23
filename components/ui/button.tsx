@@ -7,13 +7,14 @@ import { cn } from "@/lib/utils";
 
 const buttonSizeClassNames = {
   default: "h-11 px-5 py-2 text-xl", // medium
+  big: "h-16 text-2xl",
   icon: "h-11 w-24 px-5 py-2 text-xl",
   small: "h-10 px-5 py-1 text-base",
-  big: "h-16 text-2xl",
+  xsmall: "h-8 px-4 py-1 text-base",
 } as const;
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center whitespace-nowrap rounded-full outline-none ring-0 ring-inset transition disabled:pointer-events-none disabled:bg-transparent disabled:text-[#8D8F90] disabled:ring-3 disabled:ring-[#3F4854] hocus:shadow-inner hocus:ring-3",
+  "inline-flex flex-nowrap items-center justify-center whitespace-nowrap rounded-full outline-none ring-0 ring-inset transition disabled:pointer-events-none disabled:bg-transparent disabled:text-[#8D8F90] disabled:ring-3 disabled:ring-[#3F4854] hocus:shadow-inner hocus:ring-3",
   {
     variants: {
       variant: {
@@ -24,6 +25,7 @@ const buttonVariants = cva(
         brown:
           "bg-btn-brown text-btn-brown-foreground ring-btn-brown-ring active:bg-btn-brown-active active:text-btn-brown-active-foreground active:ring-btn-brown-active-ring",
         blue: "bg-btn-blue text-btn-blue-foreground ring-btn-blue-ring active:bg-btn-blue-active active:text-btn-blue-active-foreground active:ring-btn-blue-active-ring",
+        dark: "bg-btn-dark text-btn-dark-foreground active:!bg-btn-dark-active active:!text-btn-dark-active-foreground hocus:bg-btn-dark-hover hocus:ring-0",
       },
       size: buttonSizeClassNames,
     },
