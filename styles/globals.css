@@ -6,8 +6,9 @@
   :root {
     --genshin-brown: 39 34% 89%;
     --genshin-blue: 221 16% 35%;
-    --genshin-green: 87 77% 48%;
-    --genshin-red: 0 99% 68%;
+
+    --icon-green: 87 77% 48%;
+    --icon-red: 0 99% 68%;
 
     --ring: 240 5.9% 10%;
 

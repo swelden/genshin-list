@@ -34,8 +34,11 @@ module.exports = {
         genshin: {
           brown: "hsl(var(--genshin-brown))",
           blue: "hsl(var(--genshin-blue))",
-          green: "hsl(var(--genshin-green))",
-          red: "hsl(var(--genshin-red))",
+        },
+
+        icon: {
+          green: "hsl(var(--icon-green))",
+          red: "hsl(var(--icon-red))",
         },
 
         btn: {

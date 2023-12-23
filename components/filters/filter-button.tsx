@@ -37,7 +37,7 @@ export function FilterButton({ attr, category }: FilterButtonProps) {
       <div className="relative hidden aspect-square h-7 w-7 md:block">
         <Check
           className={cn(
-            "absolute inset-0 h-full w-full text-genshin-green",
+            "absolute inset-0 h-full w-full text-icon-green",
             !isSelected && "hidden",
           )}
           strokeWidth="3"
