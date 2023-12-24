@@ -9,7 +9,16 @@ export const Icons = {
         d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
         stroke="currentColor"
         fill="currentColor"
-      ></path>
+      />
+    </svg>
+  ),
+  genshinclose: (props: IconProps) => (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" {...props}>
+      <path
+        d="M3.821 4.022c0-.11.09-.2.2-.2h2.65a.2.2 0 01.142.341l-.594.595a.2.2 0 000 .282l3.64 3.64a.2.2 0 00.282 0l3.64-3.64a.2.2 0 000-.282l-.595-.595a.2.2 0 01.142-.341h2.65c.11 0 .2.09.2.2v2.65a.2.2 0 01-.341.141l-.595-.594a.2.2 0 00-.283 0l-3.64 3.64a.2.2 0 000 .283l3.64 3.64a.2.2 0 00.283 0l.595-.595a.2.2 0 01.341.141v2.65a.2.2 0 01-.2.2h-2.65a.2.2 0 01-.141-.34l.594-.595a.2.2 0 000-.283l-3.64-3.64a.2.2 0 00-.283 0l-3.64 3.64a.2.2 0 000 .283l.595.594a.2.2 0 01-.141.342h-2.65a.2.2 0 01-.2-.2v-2.65a.2.2 0 01.34-.142l.595.594a.2.2 0 00.283 0l3.64-3.64a.2.2 0 000-.282l-3.64-3.64a.2.2 0 00-.283 0l-.594.594a.2.2 0 01-.342-.141v-2.65z"
+        stroke="currentColor"
+        fill="currentColor"
+      />
     </svg>
   ),
   dropdown: (props: IconProps) => (
@@ -28,7 +37,7 @@ export const Icons = {
         d="M487.976 0H24.028C2.71 0-8.047 25.866 7.058 40.971L192 225.941V432c0 7.831 3.821 15.17 10.237 19.662l80 55.98C298.02 518.69 320 507.493 320 487.98V225.941l184.947-184.97C520.021 25.896 509.338 0 487.976 0z"
         stroke="currentColor"
         fill="currentColor"
-      ></path>
+      />
     </svg>
   ),
   reverse: ({ className, ...props }: IconProps) => (
@@ -43,7 +52,7 @@ export const Icons = {
         strokeWidth={1.5}
         stroke="currentColor"
         fill="currentColor"
-      ></path>
+      />
     </svg>
   ),
   rightarrow: (props: IconProps) => (
