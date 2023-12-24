@@ -1,5 +1,10 @@
 import type { Character } from "@/data/types";
-import { Section, SectionHeader } from "@/components/ui/section";
+import {
+  Section,
+  SectionContent,
+  SectionHeader,
+} from "@/components/ui/section";
+import { Separator } from "@/components/ui/separator";
 import { StatsTable } from "@/components/stats-table";
 
 interface AscensionSectionProps {
@@ -10,7 +15,10 @@ export function AscensionSection({ stats }: AscensionSectionProps) {
   return (
     <Section className="overflow-hidden">
       <SectionHeader>Ascensions</SectionHeader>
-      <StatsTable data={stats.data} topHeadings={stats.headings} />
+      <Separator className="my-4" invert />
+      <SectionContent>
+        <StatsTable data={stats.data} topHeadings={stats.headings} />
+      </SectionContent>
     </Section>
   );
 }

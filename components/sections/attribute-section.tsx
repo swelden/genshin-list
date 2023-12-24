@@ -1,5 +1,10 @@
 import type { Character } from "@/data/types";
-import { Section, SectionHeader } from "@/components/ui/section";
+import {
+  Section,
+  SectionContent,
+  SectionHeader,
+} from "@/components/ui/section";
+import { Separator } from "@/components/ui/separator";
 import {
   Table,
   TableBody,
@@ -16,18 +21,21 @@ export function AttributeSection({ character }: AttributeSectionProps) {
   return (
     <Section className="w-full lg:bg-section/80 lg:p-3 lg:backdrop-blur-lg">
       <SectionHeader>Attributes</SectionHeader>
-      <Table className="text-base">
-        <TableBody>
-          <AttrRow title="Birthday" info={character.birthday} />
-          <AttrRow title="Constellation" info={character.constellation} />
-          <AttrRow title="Title" info={character.title} />
-          <AttrRow title="Region" info={character.region} />
-          {/* <AttrRow title="Element" info={character.element} /> */}
-          <AttrRow title="Affiliation" info={character.affiliation} />
-          <AttrRow title="English VA" info={character.va.english} />
-          <AttrRow title="Version" info={character.version} />
-        </TableBody>
-      </Table>
+      <Separator className="my-4" invert />
+      <SectionContent>
+        <Table className="text-base">
+          <TableBody>
+            <AttrRow title="Birthday" info={character.birthday} />
+            <AttrRow title="Constellation" info={character.constellation} />
+            <AttrRow title="Title" info={character.title} />
+            <AttrRow title="Region" info={character.region} />
+            {/* <AttrRow title="Element" info={character.element} /> */}
+            <AttrRow title="Affiliation" info={character.affiliation} />
+            <AttrRow title="English VA" info={character.va.english} />
+            <AttrRow title="Version" info={character.version} />
+          </TableBody>
+        </Table>
+      </SectionContent>
     </Section>
   );
 }

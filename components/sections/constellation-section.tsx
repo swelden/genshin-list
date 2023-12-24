@@ -1,5 +1,10 @@
 import type { Constellation } from "@/data/types";
-import { Section, SectionHeader } from "@/components/ui/section";
+import {
+  Section,
+  SectionContent,
+  SectionHeader,
+} from "@/components/ui/section";
+import { Separator } from "@/components/ui/separator";
 import { SectionRow } from "@/components/sections/section-row";
 
 interface ConstellationSectionProps {
@@ -12,13 +17,16 @@ export function ConstellationSection({
   return (
     <Section>
       <SectionHeader>Constellations</SectionHeader>
-      {constellations.map((constellation, index) => (
-        <SectionRow
-          talent={constellation}
-          isAbsoluteIconPath={true}
-          key={`${index}-${constellation.name}`} // NOTE: Aloy has same constellation name for each constellation
-        />
-      ))}
+      <Separator className="my-4" invert />
+      <SectionContent>
+        {constellations.map((constellation, index) => (
+          <SectionRow
+            talent={constellation}
+            isAbsoluteIconPath={true}
+            key={`${index}-${constellation.name}`} // Aloy has same constellation name for each constellation
+          />
+        ))}
+      </SectionContent>
     </Section>
   );
 }
