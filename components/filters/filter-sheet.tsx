@@ -23,7 +23,6 @@ import { Icons } from "@/components/icons";
 
 interface FilterSheetProps {}
 
-// TODO: add  more mobile styles
 export function FilterSheet({}: FilterSheetProps) {
   return (
     <Sheet>
@@ -35,6 +34,7 @@ export function FilterSheet({}: FilterSheetProps) {
       <SheetContent
         className="flex flex-col bg-sheet/90 bg-gradient-to-b from-sheet from-60% p-0 px-1"
         side="leftBottom"
+        variant="brown"
       >
         <div className="flex h-full flex-col border-x-2 border-sheet-border">
           <SheetHeader className="px-4 pt-8 md:px-7">

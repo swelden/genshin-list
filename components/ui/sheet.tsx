@@ -5,7 +5,7 @@ import * as SheetPrimitive from "@radix-ui/react-dialog";
 import { cva, type VariantProps } from "class-variance-authority";
 
 import { cn } from "@/lib/utils";
-import { CircleButton } from "@/components/ui/button";
+import { buttonVariants, CircleButton } from "@/components/ui/button";
 import { Icons } from "@/components/icons";
 
 const Sheet = SheetPrimitive.Root;
@@ -57,12 +57,13 @@ const sheetVariants = cva(
 
 interface SheetContentProps
   extends React.ComponentPropsWithoutRef<typeof SheetPrimitive.Content>,
-    VariantProps<typeof sheetVariants> {}
+    VariantProps<typeof sheetVariants>,
+    VariantProps<typeof buttonVariants> {}
 
 const SheetContent = React.forwardRef<
   React.ElementRef<typeof SheetPrimitive.Content>,
   SheetContentProps
->(({ side = "right", className, children, ...props }, ref) => (
+>(({ side = "right", className, children, variant, ...props }, ref) => (
   <SheetPortal>
     <SheetOverlay />
     <SheetPrimitive.Content
@@ -72,7 +73,7 @@ const SheetContent = React.forwardRef<
     >
       {children}
       <SheetPrimitive.Close asChild className="absolute right-4 top-4">
-        <CircleButton>
+        <CircleButton variant={variant}>
           <Icons.genshinclose className="h-9 w-9" />
           <span className="sr-only">Close</span>
         </CircleButton>
