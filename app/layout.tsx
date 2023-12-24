@@ -1,8 +1,8 @@
 import type { Metadata, Viewport } from "next";
-import { Provider as JotaiProvider } from "jotai";
 
 import { siteConfig } from "@/data/site";
 import { genshinFont } from "@/lib/fonts";
+import { CharacterProvider } from "@/components/character-provider";
 import { Footer } from "@/components/footer";
 import { Navbar } from "@/components/navbar";
 import { ThemeProvider } from "@/components/theme-provider";
@@ -64,7 +64,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
           <div className="relative flex flex-col gap-6">
             <div className="flex min-h-screen flex-col">
               <Navbar />
-              <JotaiProvider>{children}</JotaiProvider>
+              <CharacterProvider>{children}</CharacterProvider>
             </div>
             <Footer />
           </div>

@@ -1,7 +1,6 @@
 import { atom, useAtom, useAtomValue, useSetAtom } from "jotai";
 
 import { getInitialFilterAttributes } from "@/data/constants";
-import { getAllCharacters } from "@/data/retrieve";
 import type {
   CharacterFilter,
   CharacterSortKeys,
@@ -29,7 +28,7 @@ const sortOptionAtom = atom<DropdownOption<CharacterSortKeys>>(
 );
 const isReversedAtom = atom(true);
 const attrFilterAtom = atom<FilterAttributes>(getInitialFilterAttributes());
-const charactersAtom = atom<CharacterFilter[]>(getAllCharacters());
+export const charactersAtom = atom<CharacterFilter[]>([]); // hydrate
 const filteredCharactersAtom = atom((get) => {
   const characters = get(charactersAtom);
   const attrFilter = get(attrFilterAtom);
