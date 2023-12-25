@@ -3,17 +3,17 @@ import { ReverseBtn } from "@/components/filters/reverse-button";
 import { Search } from "@/components/filters/search-filter";
 import { SortDropdown } from "@/components/filters/sort-filter";
 
-type FiltersProps = {};
+type FilterHubProps = {};
 
-export function FilterHub({}: FiltersProps) {
+export function FilterHub({}: FilterHubProps) {
   return (
-    <div className="grid grid-cols-1 items-center justify-between gap-4 lg:grid-cols-2">
+    <div className="grid grid-cols-1 items-center justify-between gap-2 sm:gap-4 lg:grid-cols-2">
       <Search />
-      {/* TODO: update mobile styles */}
-      <div className="flex gap-4">
-        <FilterSheet />
-        <SortDropdown className="w-full" />
-        <ReverseBtn className="" />
+      <div className="grid grid-cols-2 gap-2 sm:grid-cols-[auto_1fr_auto] sm:gap-4">
+        <FilterSheet className="hidden sm:flex" />
+        <SortDropdown className="col-span-full w-full sm:col-span-1" />
+        <FilterSheet className="flex w-full sm:hidden" />
+        <ReverseBtn className="w-full" />
       </div>
     </div>
   );

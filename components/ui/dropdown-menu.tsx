@@ -28,8 +28,10 @@ DropdownMenu.displayName = "DropdownMenu";
 
 const DropdownMenuTrigger = React.forwardRef<
   React.ElementRef<typeof Button>,
-  React.ComponentPropsWithoutRef<typeof Button>
->(({ className, children, ...props }, ref) => (
+  React.ComponentPropsWithoutRef<typeof Button> & {
+    truncate?: boolean;
+  }
+>(({ className, truncate = false, children, ...props }, ref) => (
   <Listbox.Button
     ref={ref}
     as={Button}
@@ -39,7 +41,14 @@ const DropdownMenuTrigger = React.forwardRef<
     )}
     {...props}
   >
-    <span className="flex w-full items-center truncate text-left">
+    <span
+      className={cn(
+        "w-full items-center text-left",
+        truncate
+          ? "inline-block truncate"
+          : "flex overflow-hidden whitespace-nowrap",
+      )}
+    >
       {children}
     </span>
     <Icons.dropdown className="h-7 w-7" />

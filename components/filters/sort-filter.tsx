@@ -34,7 +34,9 @@ export function SortDropdown({ className }: SortDropdownProps) {
       onChange={setSortOption}
       className={className}
     >
-      <DropdownMenuTrigger>Sort by {sortOption.label}</DropdownMenuTrigger>
+      <DropdownMenuTrigger truncate>
+        Sort by {sortOption.label}
+      </DropdownMenuTrigger>
       <DropdownMenuContent>
         {sortOptions.map((option) => (
           <DropdownMenuItem key={option.value} value={option}>

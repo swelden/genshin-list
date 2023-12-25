@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 const buttonSizeClassNames = {
   default: "h-11 px-5 py-2 text-xl", // medium
   big: "h-16 text-2xl",
-  icon: "h-11 w-24 px-5 py-2 text-xl",
+  icon: "aspect-square h-11 w-11 text-xl sm:aspect-auto sm:w-24 sm:px-5 sm:py-2",
   small: "h-10 px-5 py-1 text-base",
   xsmall: "h-8 px-4 py-1 text-base",
 } as const;
