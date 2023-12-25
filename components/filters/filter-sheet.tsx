@@ -1,3 +1,7 @@
+"use client";
+
+import * as React from "react";
+
 import {
   CHARACTER_RARITIES,
   ELEMENTS,
@@ -5,6 +9,8 @@ import {
   WEAPONS,
 } from "@/data/constants";
 import type { FilterAttribute, FilterAttributes } from "@/data/types";
+import { isEqualSets } from "@/lib/utils";
+import { useAttrFilter } from "@/hooks/use-characters";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
@@ -26,8 +32,13 @@ interface FilterSheetProps {
 }
 
 export function FilterSheet({ className }: FilterSheetProps) {
+  const [attrFilter, setAttrFilter] = useAttrFilter();
+  const [curFilter, setCurFilter] = React.useState(attrFilter);
+
+  const hasChanged = isEqualFilters(attrFilter, curFilter) === false;
+
   return (
-    <Sheet>
+    <Sheet onOpenChange={() => setCurFilter(attrFilter)}>
       <SheetTrigger asChild>
         <Button size="icon" className={className}>
           <Icons.filter className="h-6 w-6" />
@@ -52,27 +63,49 @@ export function FilterSheet({ className }: FilterSheetProps) {
 
           <ScrollArea thumbClassName="bg-genshin-brown/80 border-genshin-brown/80">
             <div className="mt-4 flex h-full flex-col gap-8 px-4 pb-28 md:px-7">
-              <FilterContainer attrData={ELEMENTS} category="element" />
-              <FilterContainer attrData={WEAPONS} category="weapon" />
-              <FilterContainer attrData={REGIONS} category="region" />
               <FilterContainer
-                attrData={CHARACTER_RARITIES}
+                category="element"
+                attrData={ELEMENTS}
+                attrFilter={curFilter}
+                setAttrFilter={setCurFilter}
+              />
+              <FilterContainer
+                category="weapon"
+                attrData={WEAPONS}
+                attrFilter={curFilter}
+                setAttrFilter={setCurFilter}
+              />
+              <FilterContainer
+                category="region"
+                attrData={REGIONS}
+                attrFilter={curFilter}
+                setAttrFilter={setCurFilter}
+              />
+              <FilterContainer
                 category="rarity"
+                attrData={CHARACTER_RARITIES}
+                attrFilter={curFilter}
+                setAttrFilter={setCurFilter}
               />
             </div>
           </ScrollArea>
 
           <SheetFooter className="relative mt-auto flex-col px-4 pt-4 sm:flex-col sm:space-x-0 md:px-7 md:pt-6">
             <SelectedFilters
+              attrFilter={curFilter}
+              setAttrFilter={setCurFilter}
               className="absolute inset-0 -top-9 mx-4 md:mx-7"
               transparent
             />
             <SheetClose asChild>
-              {/* TODO: add disabled prop */}
               <Button
+                onClick={() => {
+                  setAttrFilter(curFilter);
+                }}
                 className="mb-7 h-14 w-full md:h-16"
                 variant="brown"
                 size="big"
+                disabled={!hasChanged}
               >
                 Confirm Filter
               </Button>
@@ -85,11 +118,18 @@ export function FilterSheet({ className }: FilterSheetProps) {
 }
 
 interface FilterContainerProps {
-  attrData: Readonly<FilterAttribute[]>;
   category: keyof FilterAttributes;
+  attrData: Readonly<FilterAttribute[]>;
+  attrFilter: FilterAttributes;
+  setAttrFilter: (attrFilter: FilterAttributes) => void;
 }
 
-function FilterContainer({ attrData, category }: FilterContainerProps) {
+function FilterContainer({
+  category,
+  attrData,
+  attrFilter,
+  setAttrFilter,
+}: FilterContainerProps) {
   return (
     <div>
       <span className="text-xl capitalize text-[#BBB9B2] md:text-2xl">
@@ -97,9 +137,23 @@ function FilterContainer({ attrData, category }: FilterContainerProps) {
       </span>
       <div className="mt-5 grid grid-cols-3 gap-3">
         {attrData.map((attr) => (
-          <FilterButton key={attr} attr={attr} category={category} />
+          <FilterButton
+            key={attr}
+            attr={attr}
+            category={category}
+            attrFilter={attrFilter}
+            setAttrFilter={setAttrFilter}
+          />
         ))}
       </div>
     </div>
   );
+}
+
+function isEqualFilters(
+  aFilters: FilterAttributes,
+  bFilters: FilterAttributes,
+) {
+  const filterKeys = Object.keys(aFilters) as (keyof FilterAttributes)[];
+  return filterKeys.every((key) => isEqualSets(aFilters[key], bFilters[key]));
 }

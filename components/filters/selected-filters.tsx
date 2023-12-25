@@ -3,21 +3,24 @@
 import { Trash2 } from "lucide-react";
 
 import { getInitialFilterAttributes } from "@/data/constants";
+import type { FilterAttributes } from "@/data/types";
 import { cn } from "@/lib/utils";
-import { useAttrFilter } from "@/hooks/use-characters";
 import { Button } from "@/components/ui/button";
 import { DragArea } from "@/components/ui/drag-area";
 
 interface SelectedFiltersProps {
+  attrFilter: FilterAttributes;
+  setAttrFilter: (attrFilter: FilterAttributes) => void;
   className?: string;
   transparent?: boolean;
 }
 
 export function SelectedFilters({
+  attrFilter,
+  setAttrFilter,
   className,
   transparent = false,
 }: SelectedFiltersProps) {
-  const [attrFilter, setAttrFilter] = useAttrFilter();
   const filterSets = Object.values(attrFilter) as Set<string>[];
 
   const isEmpty = filterSets.every((filterSet) => filterSet.size === 0);

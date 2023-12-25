@@ -52,6 +52,12 @@ export function sortStringAsNumber(a: string, b: string) {
   });
 }
 
+export function isEqualSets(a: Set<unknown>, b: Set<unknown>) {
+  if (a === b) return true;
+  if (a.size !== b.size) return false;
+  return Array.from(a).every((x) => b.has(x));
+}
+
 export function pick<T extends {}, K extends keyof T>(obj: T, ...keys: K[]) {
   return Object.fromEntries(
     keys.filter((key) => key in obj).map((key) => [key, obj[key]]),
