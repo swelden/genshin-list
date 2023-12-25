@@ -9,7 +9,7 @@ export function Navbar() {
       <div className="container flex items-center justify-between">
         <Link
           href="/"
-          className="rounded p-2 text-2xl font-semibold"
+          className="rounded p-2 text-2xl font-semibold sm:text-3xl"
           aria-label={`${siteConfig.name} Home`}
         >
           {siteConfig.name}
