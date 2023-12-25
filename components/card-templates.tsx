@@ -21,7 +21,7 @@ export function CharacterCard({ character, size }: CharacterCardProps) {
       <Link href={formatNameUrl(character.name)}>
         <CardImage
           src={formatImageUrl(character.icon)}
-          alt={character.name}
+          alt=""
           gradient={character.rarity === "5" ? "gold" : "purple"}
           width={size}
           height={size}

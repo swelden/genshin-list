@@ -14,7 +14,7 @@ export const Footer = () => {
           href={siteConfig.links.github}
           rel="noopener noreferrer"
           target="_blank"
-          className="rounded text-blue-600 dark:text-blue-400"
+          className="rounded text-blue-600 underline dark:text-blue-400"
         >
           GitHub
         </a>

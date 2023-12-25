@@ -18,6 +18,7 @@ export function ReverseBtn({ className }: ReverseBtnProps) {
       size="icon"
     >
       <Icons.reverse className="h-7 w-7" />
+      <span className="sr-only">Reverse</span>
     </Button>
   );
 }

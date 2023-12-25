@@ -42,6 +42,7 @@ export function FilterSheet({ className }: FilterSheetProps) {
       <SheetTrigger asChild>
         <Button size="icon" className={className}>
           <Icons.filter className="h-6 w-6" />
+          <span className="sr-only">Filter</span>
         </Button>
       </SheetTrigger>
       <SheetContent
