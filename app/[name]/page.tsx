@@ -29,6 +29,7 @@ export default function CharacterPage({ params: { name } }: PageProps) {
     <main className="relative flex flex-col gap-8 sm:overflow-hidden">
       <HeroSection character={character} />
       <div className="grid gap-8 sm:container">
+        <AttributeSection character={character} className="lg:hidden" />
         <MaterialCalculatorSection
           name={character.name}
           weekdays={character.weekdays}
@@ -48,9 +49,9 @@ interface HeroSectionProps {
 
 function HeroSection({ character }: HeroSectionProps) {
   return (
-    <div className="text-sm sm:container lg:grid xl:text-base">
-      <div className="col-span-full row-span-full overflow-hidden sm:overflow-visible lg:flex lg:items-center lg:justify-center">
-        <div className="relative -left-1/4 -z-10 flex w-[150%] flex-col items-center justify-center lg:left-0 lg:w-full">
+    <div className="sm:container md:grid">
+      <div className="col-span-full row-span-full overflow-hidden sm:overflow-visible md:flex md:items-center md:justify-center">
+        <div className="relative -left-1/4 -z-10 flex w-[150%] flex-col items-center justify-center md:left-0 md:w-full">
           <Image
             src={formatImageUrl(character.gachaSplash)}
             alt={character.name}
@@ -58,13 +59,15 @@ function HeroSection({ character }: HeroSectionProps) {
             height={960}
             priority={true}
           />
-          {/* TODO: make after pseudo-element */}
-          <div className="absolute bottom-0 z-0 h-24 w-full bg-gradient-to-t from-background"></div>
+          <div className="absolute bottom-0 z-0 h-24 w-full bg-gradient-to-t from-background" />
         </div>
       </div>
       <DetailHeader character={character} />
-      <div className="col-span-full row-span-full ml-auto flex flex-col items-center justify-center gap-2 lg:max-w-md">
-        <AttributeSection character={character} />
+      <div className="col-span-full row-span-full row-start-2 ml-auto hidden max-w-md items-center justify-center gap-2 lg:flex">
+        <AttributeSection
+          character={character}
+          className="bg-section/80 p-3 backdrop-blur-lg"
+        />
       </div>
     </div>
   );
@@ -75,18 +78,19 @@ interface DetailHeaderProps {
 }
 
 function DetailHeader({ character }: DetailHeaderProps) {
-  // TODO: find better way of preventing long names from covering gacha image
   return (
-    <div className="col-span-full row-span-full mb-8 flex items-center">
+    <div className="col-span-full row-span-full flex items-center">
       <div className="flex flex-col gap-2 px-5 sm:px-4">
-        <div className="flex w-fit items-center gap-2 rounded-lg bg-background/80 pr-3 lg:backdrop-blur-md">
+        <div className="flex w-fit items-center gap-2 rounded-lg md:bg-background/50 md:pr-3 md:backdrop-blur-md">
           <IconImage
             src={formatLocalImageUrl("/elements", character.element)}
             alt={character.element}
             className="h-[4.25rem] w-[4.25rem]"
           />
           <div className="flex flex-col py-5 sm:py-4">
-            <h1 className="mb-1 text-3xl">{character.name}</h1>
+            <h1 className="mb-1 text-3xl text-foreground md:text-2xl lg:text-3xl">
+              {character.name}
+            </h1>
             <StarRating rarity={character.rarity} />
           </div>
         </div>
@@ -96,7 +100,7 @@ function DetailHeader({ character }: DetailHeaderProps) {
           <CharacterBadge text={character.substat} />
           <CharacterBadge text={`${character.rarity}-star`} />
         </div>
-        <div className="mt-4 rounded-lg bg-background/40 pr-3 text-muted-foreground lg:max-w-xs lg:backdrop-blur-lg">
+        <div className="mt-4 rounded-lg text-base text-muted-foreground md:max-w-xs md:bg-background/50 md:px-2 md:py-1.5 md:text-sm md:backdrop-blur-lg lg:text-base">
           {character.description}
         </div>
       </div>
@@ -110,7 +114,7 @@ interface CharacterBadgeProps {
 
 function CharacterBadge({ text }: CharacterBadgeProps) {
   return (
-    <div className="rounded bg-zinc-300/50 px-2 py-1 text-xs dark:bg-zinc-700/70 lg:backdrop-blur-sm">
+    <div className="rounded bg-zinc-300/50 px-2 py-1 text-xs dark:bg-zinc-700/70 md:backdrop-blur-sm">
       {text}
     </div>
   );

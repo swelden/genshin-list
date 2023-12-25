@@ -1,4 +1,5 @@
 import type { Character } from "@/data/types";
+import { cn } from "@/lib/utils";
 import {
   Section,
   SectionContent,
@@ -15,11 +16,15 @@ import {
 
 interface AttributeSectionProps {
   character: Character;
+  className?: string;
 }
 
-export function AttributeSection({ character }: AttributeSectionProps) {
+export function AttributeSection({
+  character,
+  className,
+}: AttributeSectionProps) {
   return (
-    <Section className="w-full lg:bg-section/80 lg:p-3 lg:backdrop-blur-lg">
+    <Section className={cn("overflow-hidden", className)}>
       <SectionHeader>Attributes</SectionHeader>
       <Separator className="my-4" invert />
       <SectionContent>
