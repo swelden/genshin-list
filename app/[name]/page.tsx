@@ -50,7 +50,7 @@ interface HeroSectionProps {
 function HeroSection({ character }: HeroSectionProps) {
   return (
     <div className="sm:container md:grid">
-      <div className="col-span-full row-span-full overflow-hidden sm:overflow-visible md:flex md:items-center md:justify-center">
+      <div className="col-span-full row-span-full overflow-hidden sm:overflow-visible md:flex md:items-center md:justify-center md:overflow-hidden">
         <div className="relative -left-1/4 -z-10 flex w-[150%] flex-col items-center justify-center md:left-0 md:w-full">
           <Image
             src={formatImageUrl(character.gachaSplash)}
