@@ -10,9 +10,13 @@ import { DragArea } from "@/components/ui/drag-area";
 
 interface SelectedFiltersProps {
   className?: string;
+  transparent?: boolean;
 }
 
-export function SelectedFilters({ className }: SelectedFiltersProps) {
+export function SelectedFilters({
+  className,
+  transparent = false,
+}: SelectedFiltersProps) {
   const [attrFilter, setAttrFilter] = useAttrFilter();
   const filterSets = Object.values(attrFilter) as Set<string>[];
 
@@ -26,7 +30,10 @@ export function SelectedFilters({ className }: SelectedFiltersProps) {
     !isEmpty && (
       <div
         className={cn(
-          "relative flex h-9 max-w-3xl overflow-hidden rounded-full bg-[#C5C1BA]",
+          "relative flex h-9 max-w-3xl overflow-hidden rounded-full",
+          transparent
+            ? "bg-gradient-to-l from-[#C5C1BA] from-30% to-[#C5C1BA]/90"
+            : "bg-[#C5C1BA]",
           className,
         )}
       >
@@ -77,6 +84,11 @@ function BlurEffect() {
 // to prevent last item from hiding in drag area
 function EndPadding() {
   return (
-    <div className="min-h-[1px] min-w-[1px] bg-transparent px-2">&nbsp;</div>
+    <div
+      className="min-h-[1px] min-w-[1px] select-none bg-transparent px-2"
+      aria-hidden
+    >
+      &nbsp;
+    </div>
   );
 }

@@ -21,27 +21,33 @@ import { FilterButton } from "@/components/filters/filter-button";
 import { SelectedFilters } from "@/components/filters/selected-filters";
 import { Icons } from "@/components/icons";
 
-interface FilterSheetProps {}
+interface FilterSheetProps {
+  className?: string;
+}
 
-export function FilterSheet({}: FilterSheetProps) {
+export function FilterSheet({ className }: FilterSheetProps) {
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <Button size="icon">
+        <Button size="icon" className={className}>
           <Icons.filter className="h-6 w-6" />
         </Button>
       </SheetTrigger>
       <SheetContent
         className="flex flex-col bg-sheet/90 bg-gradient-to-b from-sheet from-60% p-0 px-1"
+        closeClassName="top-2 md:top-4"
         side="leftBottom"
         variant="brown"
       >
         <div className="flex h-full flex-col border-x-2 border-sheet-border">
-          <SheetHeader className="px-4 pt-8 md:px-7">
+          <SheetHeader className="px-4 pt-6 md:px-7 md:pt-8">
             <SheetTitle className="text-left text-2xl text-[#D3BC8E]">
               Filter
             </SheetTitle>
-            <Separator className="mb-4 mt-6" lineClassName="bg-sheet-border" />
+            <Separator
+              className="my-4 md:mt-6"
+              lineClassName="bg-sheet-border"
+            />
           </SheetHeader>
 
           <ScrollArea thumbClassName="bg-genshin-brown/80 border-genshin-brown/80">
@@ -56,8 +62,11 @@ export function FilterSheet({}: FilterSheetProps) {
             </div>
           </ScrollArea>
 
-          <SheetFooter className="mt-auto flex-col px-4 pt-4 sm:flex-col sm:space-x-0 md:px-7">
-            <SelectedFilters className="mb-7" />
+          <SheetFooter className="relative mt-auto flex-col px-4 pt-4 sm:flex-col sm:space-x-0 md:px-7 md:pt-6">
+            <SelectedFilters
+              className="absolute inset-0 -top-9 mx-4 md:mx-7"
+              transparent
+            />
             <SheetClose asChild>
               {/* TODO: add disabled prop */}
               <Button
