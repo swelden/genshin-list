@@ -4,7 +4,7 @@ Genshin List is a web app to help filter and display characters from the game Ge
 
 Built with [Next.js](https://nextjs.org/), [TypeScript](https://www.typescriptlang.org/), and [Tailwind CSS](https://tailwindcss.com/)
 
-![genshin-list-demo](https://user-images.githubusercontent.com/44013073/174478424-8ddb7914-504e-42ce-b9bb-33210e1dd116.jpg)
+![genshin-list-demo](/public/og.jpg)
 
 ## Getting Started
 
