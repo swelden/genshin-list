@@ -15,7 +15,8 @@ interface StatsTableProps {
 
 export function StatsTable({ data, topHeadings }: StatsTableProps) {
   return (
-    <Table containerClassName="border rounded-lg">
+    // NOTE: make sure -mx-[] is eqaul to p-[] in section
+    <Table containerClassName="border-y sm:border sm:rounded-lg sm:mx-0 -mx-4 w-auto sm:w-full">
       <TableBody>
         <TableRow>
           <FirstColumnHead paddingClassName="px-4">Level</FirstColumnHead>
