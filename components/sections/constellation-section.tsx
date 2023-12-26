@@ -22,7 +22,6 @@ export function ConstellationSection({
         {constellations.map((constellation, index) => (
           <SectionRow
             talent={constellation}
-            isAbsoluteIconPath={true}
             key={`${index}-${constellation.name}`} // Aloy has same constellation name for each constellation
           />
         ))}

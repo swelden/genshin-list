@@ -12,7 +12,7 @@ import type {
 } from "@/backend/schema";
 import { LEVELS } from "@/data/constants";
 import type { ActiveCategory, Character } from "@/data/types";
-import { formatAmbrUrl, myRound, pick } from "@/lib/utils";
+import { myRound, pick } from "@/lib/utils";
 import { formatAscension } from "@/components/icons";
 
 /**
@@ -137,7 +137,7 @@ function formatConstellation(
   return {
     name: constellation.name,
     description: formatMarkdown(constellation.descriptionRaw),
-    icon: formatAmbrUrl(icon),
+    icon: icon,
   };
 }
 

@@ -10,20 +10,26 @@ export function myRound(num: number, precision: number) {
   return Math.round((num + Number.EPSILON) * multiplier) / multiplier;
 }
 
-export function formatImageUrl(url: string) {
-  return `https://res.cloudinary.com/genshin/image/upload/sprites/${url}.png`;
-}
-
-export function formatAmbrUrl(url: string) {
-  return `https://api.ambr.top/assets/UI/${url}.png`;
-}
-
 export function formatNameUrl(name: string) {
   return name.toLowerCase().replace(/\s/g, "-");
 }
 
 export function unformatNameUrl(nameUrl: string) {
   return nameUrl.replace(/-/g, " ");
+}
+
+export function formatImageUrl(url: string) {
+  // control where all images are retrieved from
+  // do not retrieve images from "mihoyo.com" (it sends cookies)
+  return formatAmbrUrl(url);
+}
+
+export function formatCloudinaryUrl(url: string) {
+  return `https://res.cloudinary.com/genshin/image/upload/sprites/${url}.png`;
+}
+
+export function formatAmbrUrl(url: string) {
+  return `https://api.ambr.top/assets/UI/${url}.png`;
 }
 
 export function formatLocalImageUrl(
@@ -43,6 +49,10 @@ export function formatLongNumber(value: number | bigint) {
 
 export function sortString(a: string, b: string) {
   return a.localeCompare(b);
+}
+
+export function sortNumber(a: number, b: number) {
+  return a - b;
 }
 
 export function sortStringAsNumber(a: string, b: string) {

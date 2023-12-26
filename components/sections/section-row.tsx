@@ -5,20 +5,14 @@ import { IconImage } from "@/components/ui/icon-image";
 interface SectionRowProps {
   talent: Active | Passive | Constellation;
   children?: React.ReactNode;
-  isAbsoluteIconPath?: boolean;
 }
 
-export function SectionRow({
-  talent,
-  children,
-  isAbsoluteIconPath = false,
-}: SectionRowProps) {
+export function SectionRow({ talent, children }: SectionRowProps) {
   return (
     <div className="border-b pb-4 last:border-0 last:pb-0" key={talent.name}>
       <div className="flex items-center gap-2">
         <IconImage
-          // NOTE: do not retrieve images from "mihoyo.com" (it sends cookies)
-          src={isAbsoluteIconPath ? talent.icon : formatImageUrl(talent.icon)}
+          src={formatImageUrl(talent.icon)}
           alt={talent.name}
           className="h-12 w-12"
           invert={true}

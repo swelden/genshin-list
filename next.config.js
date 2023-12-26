@@ -5,12 +5,12 @@ const nextConfig = {
       {
         protocol: "https",
         hostname: "res.cloudinary.com",
-        pathname: "/genshin/image/upload/**",
+        pathname: "/genshin/image/upload/sprites/**",
       },
       {
         protocol: "https",
         hostname: "api.ambr.top",
-        pathname: "/assets/**",
+        pathname: "/assets/UI/**",
       },
     ],
   },
