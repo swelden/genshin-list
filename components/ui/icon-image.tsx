@@ -23,7 +23,7 @@ const IconImage = ({
         alt={alt}
         src={src}
         fill
-        unoptimized
+        unoptimized // https://vercel.com/docs/image-optimization/limits-and-pricing
         className={cn(invert && "invert dark:filter-none", imageClassName)}
       />
     </div>

@@ -70,7 +70,7 @@ export function ItemCard({
         gradient="default"
         width={size}
         height={size}
-        unoptimized={unoptimized}
+        unoptimized={unoptimized} // https://vercel.com/docs/image-optimization/limits-and-pricing
       />
       <CardLabel>{formattedLabel}</CardLabel>
     </Card>
