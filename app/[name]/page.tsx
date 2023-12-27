@@ -114,7 +114,7 @@ interface CharacterBadgeProps {
 
 function CharacterBadge({ text }: CharacterBadgeProps) {
   return (
-    <div className="rounded bg-zinc-300/50 px-2 py-1 text-xs dark:bg-zinc-700/70 md:backdrop-blur-sm">
+    <div className="rounded bg-zinc-300/50 px-2 py-1 text-xs md:backdrop-blur-sm dark:bg-zinc-700/70">
       {text}
     </div>
   );
