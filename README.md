@@ -1,4 +1,4 @@
-# [Genshin List](https://genshin-list.vercel.app)
+# [Genshin List](https://genshinlist.vercel.app)
 
 [View Original Deployment](https://genshin-list-git-original-swelden.vercel.app/)
 
