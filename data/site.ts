@@ -1,6 +1,6 @@
 export type SiteConfig = typeof siteConfig;
 
-const BASE_URL = "https://genshin-list.vercel.app";
+const BASE_URL = "https://genshinlist.vercel.app";
 
 export const siteConfig = {
   name: "Genshin List",

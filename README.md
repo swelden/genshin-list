@@ -1,4 +1,4 @@
-# [Genshin List](https://genshin-list.vercel.app)
+# [Genshin List](https://genshinlist.vercel.app)
 
 Genshin List is a web app to help filter and display characters from the game Genshin Impact. The character cards can be clicked on to see a more in-depth description of stats, facts, and abilities. Each character's page includes a calculator that lists the required materials to level up, ascend and upgrade talents within a given range.
 
