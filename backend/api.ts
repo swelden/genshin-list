@@ -1,3 +1,5 @@
+import "server-only";
+
 import * as genshindb from "genshin-db";
 import * as z from "zod";
 
