@@ -82,7 +82,12 @@ export const LVL_TO_ASCENSION = {
 // https://genshin-impact.fandom.com/wiki/Character_EXP
 // "Wanderer's Advice": green, "Adventurer's Experience": blue, "Hero's Wit": purple,
 export const LEVEL_EXP_BOOKS_MORA = {
-  1: {},
+  1: {
+    "Wanderer's Advice": 0,
+    "Adventurer's Experience": 0,
+    "Hero's Wit": 0,
+    Mora: 0,
+  },
   20: {
     "Wanderer's Advice": 1,
     "Adventurer's Experience": 0,
@@ -125,4 +130,11 @@ export const LEVEL_EXP_BOOKS_MORA = {
     "Hero's Wit": 171,
     Mora: 684800,
   },
-} as const;
+} as const satisfies Record<number, LevelMaterials>;
+
+interface LevelMaterials {
+  "Wanderer's Advice": number;
+  "Adventurer's Experience": number;
+  "Hero's Wit": number;
+  Mora: number;
+}

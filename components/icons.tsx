@@ -73,7 +73,7 @@ export const Icons = {
       />
     </svg>
   ),
-} as const;
+} as const satisfies Record<string, (props: IconProps) => JSX.Element>;
 
 export function formatAscension(label: string, className?: string) {
   return (
