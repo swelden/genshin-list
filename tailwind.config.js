@@ -164,7 +164,6 @@ module.exports = {
   },
   plugins: [
     require("tailwindcss-animate"),
-    require("@headlessui/tailwindcss"),
     plugin(function ({ addVariant }) {
       addVariant("hocus", ["&:hover", "&:focus-visible"]);
     }),

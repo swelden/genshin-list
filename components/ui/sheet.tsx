@@ -83,7 +83,7 @@ const SheetContent = React.forwardRef<
           className={cn("absolute right-4 top-4", closeClassName)}
         >
           <CircleButton variant={variant}>
-            <Icons.genshinclose className="h-9 w-9" />
+            <Icons.genshinclose className="size-9" />
             <span className="sr-only">Close</span>
           </CircleButton>
         </SheetPrimitive.Close>

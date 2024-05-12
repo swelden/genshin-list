@@ -47,7 +47,7 @@ function ActiveTalentAttributes({ talent }: ActiveTalentAttributesProps) {
       <CollapsibleTrigger asChild>
         <Button variant="secondary">
           {talent.category} Stats
-          <Icons.dropdown className="ml-1.5 h-6 w-6 min-w-[1.5rem] transition-transform group-data-[state=open]:rotate-180" />
+          <Icons.dropdown className="ml-1.5 size-6 min-w-6 transition-transform group-data-[state=open]:rotate-180" />
         </Button>
       </CollapsibleTrigger>
       <CollapsibleContent className="mt-4">

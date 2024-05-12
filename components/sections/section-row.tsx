@@ -14,7 +14,7 @@ export function SectionRow({ talent, children }: SectionRowProps) {
         <IconImage
           src={formatImageUrl(talent.icon)}
           alt={talent.name}
-          className="h-12 w-12"
+          className="size-12"
           invert={true}
         />
         <h3 className="text-lg">{talent.name}</h3>

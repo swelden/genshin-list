@@ -34,7 +34,7 @@ export function StatsTable({ data, topHeadings }: StatsTableProps) {
             <TableRow key={label}>
               <FirstColumnHead paddingClassName="p-4">{label}</FirstColumnHead>
               {params.map((param, i) => (
-                <TableCell key={i} className="min-w-[7rem] border-l">
+                <TableCell key={i} className="min-w-28 border-l">
                   {param}
                 </TableCell>
               ))}

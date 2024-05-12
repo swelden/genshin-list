@@ -38,18 +38,18 @@ export function FilterButton({
       )}
     >
       {/* need to position absolute to transition border color on circle */}
-      <div className="relative hidden aspect-square h-7 w-7 md:block">
+      <div className="relative hidden aspect-square size-7 md:block">
         <Check
           className={cn(
-            "absolute inset-0 h-full w-full text-icon-green",
+            "absolute inset-0 size-full text-icon-green",
             !isSelected && "hidden",
           )}
           strokeWidth="3"
         />
         <div
           className={cn(
-            "absolute inset-0 h-full w-full rounded-full border-2 border-sheet-btn-border transition-colors",
-            isSelected && "h-0 w-0 scale-0 border-genshin-brown",
+            "absolute inset-0 size-full rounded-full border-2 border-sheet-btn-border transition-colors",
+            isSelected && "size-0 scale-0 border-genshin-brown",
           )}
         />
       </div>

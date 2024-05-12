@@ -30,7 +30,7 @@ export function CharacterCard({ character, size }: CharacterCardProps) {
             <IconImage
               src={formatLocalImageUrl("/elements", character.element)}
               alt={character.element}
-              className="h-[1.875rem] w-[1.875rem]"
+              className="size-[1.875rem]"
             />
           </div>
         </CardImage>

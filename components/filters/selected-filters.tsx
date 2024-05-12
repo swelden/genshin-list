@@ -32,6 +32,7 @@ export function SelectedFilters({
   return (
     !isEmpty && (
       <div
+        /* eslint-disable tailwindcss/no-contradicting-classname */
         className={cn(
           "relative flex h-9 max-w-3xl overflow-hidden rounded-full",
           transparent
@@ -59,7 +60,7 @@ export function SelectedFilters({
             className="h-full pl-1"
           >
             <div className="mr-2 flex aspect-square h-full items-center justify-center rounded-full bg-btn-dark">
-              <Trash2 className="h-4 w-4 text-icon-red" />
+              <Trash2 className="size-4 text-icon-red" />
             </div>
             Clear
           </Button>
@@ -88,7 +89,7 @@ function BlurEffect() {
 function EndPadding() {
   return (
     <div
-      className="min-h-[1px] min-w-[1px] select-none bg-transparent px-2"
+      className="min-h-px min-w-px select-none bg-transparent px-2"
       aria-hidden
     >
       &nbsp;

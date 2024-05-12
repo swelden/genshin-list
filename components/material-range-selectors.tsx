@@ -137,7 +137,7 @@ function RangeSelector({
           options={options}
         />
         <div className="flex w-full items-center justify-center text-gray-600">
-          <Icons.rightarrow className="h-6 w-6 min-w-[1.5rem]" />
+          <Icons.rightarrow className="size-6 min-w-6" />
         </div>
         <CalculatorDropdown
           curValue={max}

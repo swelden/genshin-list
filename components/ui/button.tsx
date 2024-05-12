@@ -62,7 +62,7 @@ const CircleButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
       <button
         className={cn(
           "group relative flex cursor-pointer items-center justify-center rounded-full",
-          "h-14 w-14",
+          "size-14",
           className,
         )}
         ref={ref}
@@ -72,7 +72,7 @@ const CircleButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
           variant={variant}
           className={cn(
             "peer z-[1] p-0 transition-all duration-300 group-hover:shadow-inner group-hover:ring-3 group-hover:transition-none",
-            "h-11 w-11 group-hover:h-[3.25rem] group-hover:w-[3.25rem]",
+            "size-11 group-hover:size-[3.25rem]",
           )}
           asChild
         >
@@ -81,7 +81,7 @@ const CircleButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
         <div
           className={cn(
             "absolute left-1/2 top-1/2 z-0 flex -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-primary-outline transition-all duration-300",
-            "h-14 w-14 group-hover:h-12 group-hover:w-12",
+            "size-14 group-hover:size-12",
             variant === "brown" && "bg-btn-brown-outline",
             variant === "blue" && "bg-btn-blue-outline",
           )}

@@ -46,7 +46,7 @@ const Separator = React.forwardRef<
       <div
         className={cn(
           "bg-border",
-          orientation === "horizontal" ? "h-[1px] w-full" : "h-full w-[1px]",
+          orientation === "horizontal" ? "h-px w-full" : "h-full w-px",
           lineClassName,
         )}
       />

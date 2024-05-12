@@ -85,7 +85,7 @@ function DetailHeader({ character }: DetailHeaderProps) {
           <IconImage
             src={formatLocalImageUrl("/elements", character.element)}
             alt={character.element}
-            className="h-[4.25rem] w-[4.25rem]"
+            className="size-[4.25rem]"
           />
           <div className="flex flex-col py-5 sm:py-4">
             <h1 className="mb-1 text-3xl text-foreground md:text-2xl lg:text-3xl">
@@ -114,7 +114,7 @@ interface CharacterBadgeProps {
 
 function CharacterBadge({ text }: CharacterBadgeProps) {
   return (
-    <div className="rounded bg-zinc-300/50 px-2 py-1 text-xs md:backdrop-blur-sm dark:bg-zinc-700/70">
+    <div className="rounded bg-zinc-300/50 px-2 py-1 text-xs dark:bg-zinc-700/70 md:backdrop-blur-sm">
       {text}
     </div>
   );
@@ -132,7 +132,7 @@ function StarRating({ rarity }: StarRatingProps) {
           key={`star-${i}`}
           src={formatLocalImageUrl("/", "star-rating")}
           alt="Star rating"
-          className="h-[1.125rem] w-[1.125rem]"
+          className="size-[1.125rem]"
         />
       ))}
     </div>

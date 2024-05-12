@@ -41,7 +41,7 @@ export function FilterSheet({ className }: FilterSheetProps) {
     <Sheet onOpenChange={() => setCurFilter(attrFilter)}>
       <SheetTrigger asChild>
         <Button size="icon" className={className}>
-          <Icons.filter className="h-6 w-6" />
+          <Icons.filter className="size-6" />
           <span className="sr-only">Filter</span>
         </Button>
       </SheetTrigger>

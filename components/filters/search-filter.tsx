@@ -27,7 +27,7 @@ export function Search({}: SearchProps) {
   return (
     <div className="rounded-full shadow-sm ring-0 ring-primary-ring/80 transition focus-within:shadow focus-within:ring-1">
       <div className="flex h-11 items-center rounded-full text-foreground ring-2 ring-inset ring-border transition focus-within:ring-primary-ring">
-        <SearchIcon className="ml-3 h-5 w-5" />
+        <SearchIcon className="ml-3 size-5" />
         <Input
           className={cn(
             "h-8 flex-1 rounded-r-full bg-transparent px-2 py-0 text-lg",
@@ -42,7 +42,7 @@ export function Search({}: SearchProps) {
         />
         {hasValue && (
           <button className="px-3 py-2" onClick={resetInputField}>
-            <X className="h-5 w-5" />
+            <X className="size-5" />
           </button>
         )}
       </div>

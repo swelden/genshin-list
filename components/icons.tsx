@@ -79,7 +79,7 @@ export function formatAscension(label: string, className?: string) {
   return (
     <>
       {label}
-      <Icons.ascensionstar className={cn("ml-1 h-5 w-5", className)} />
+      <Icons.ascensionstar className={cn("ml-1 size-5", className)} />
     </>
   );
 }

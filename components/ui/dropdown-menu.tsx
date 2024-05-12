@@ -1,7 +1,13 @@
 "use client";
 
 import * as React from "react";
-import { Listbox, Transition } from "@headlessui/react";
+import {
+  Listbox,
+  ListboxButton,
+  ListboxOption,
+  ListboxOptions,
+  Transition,
+} from "@headlessui/react";
 import { Check } from "lucide-react";
 
 import { cn } from "@/lib/utils";
@@ -32,11 +38,11 @@ const DropdownMenuTrigger = React.forwardRef<
     truncate?: boolean;
   }
 >(({ className, truncate = false, children, ...props }, ref) => (
-  <Listbox.Button
+  <ListboxButton
     ref={ref}
     as={Button}
     className={cn(
-      "w-full justify-between truncate ui-open:shadow-inner ui-open:ring-3",
+      "w-full justify-between truncate data-[open]:shadow-inner data-[open]:ring-3",
       className,
     )}
     {...props}
@@ -51,14 +57,14 @@ const DropdownMenuTrigger = React.forwardRef<
     >
       {children}
     </span>
-    <Icons.dropdown className="h-7 w-7" />
-  </Listbox.Button>
+    <Icons.dropdown className="size-7" />
+  </ListboxButton>
 ));
 DropdownMenuTrigger.displayName = "DropdownMenuTrigger";
 
 const DropdownMenuContent = React.forwardRef<
-  React.ElementRef<typeof Listbox.Options>,
-  React.ComponentPropsWithoutRef<typeof Listbox.Options> & {
+  React.ElementRef<typeof ListboxOptions>,
+  React.ComponentPropsWithoutRef<typeof ListboxOptions> & {
     scrollable?: boolean;
   }
 >(({ className, scrollable = false, ...props }, ref) => {
@@ -74,11 +80,11 @@ const DropdownMenuContent = React.forwardRef<
       leaveFrom="transform scale-100 opacity-100"
       leaveTo="transform scale-95 opacity-0"
     >
-      <Listbox.Options
+      <ListboxOptions
         ref={ref}
         as={Comp}
         className={cn(
-          "z-50 flex w-full flex-col gap-[0.125rem] overflow-hidden rounded-3xl bg-secondary p-[0.3125rem] text-secondary-foreground shadow-xl ring-1 ring-black/20 focus:outline-none",
+          "z-50 flex w-full flex-col gap-0.5 overflow-hidden rounded-3xl bg-secondary p-[0.3125rem] text-secondary-foreground shadow-xl ring-1 ring-black/20 focus:outline-none",
           scrollable ? "!absolute max-h-60 pr-3 sm:max-h-80" : "absolute",
           className,
         )}
@@ -90,8 +96,8 @@ const DropdownMenuContent = React.forwardRef<
 DropdownMenuContent.displayName = "DropdownMenuContent";
 
 const DropdownMenuItem = React.forwardRef<
-  React.ElementRef<typeof Listbox.Option>,
-  Omit<React.ComponentPropsWithoutRef<typeof Listbox.Option>, "children"> & {
+  React.ElementRef<typeof ListboxOption>,
+  Omit<React.ComponentPropsWithoutRef<typeof ListboxOption>, "children"> & {
     innerClassName?: string;
     checkClassName?: string;
     children?: React.ReactNode;
@@ -110,7 +116,7 @@ const DropdownMenuItem = React.forwardRef<
     },
     ref,
   ) => (
-    <Listbox.Option
+    <ListboxOption
       ref={ref}
       value={value}
       className={cn(
@@ -123,22 +129,22 @@ const DropdownMenuItem = React.forwardRef<
     >
       <div
         className={cn(
-          "relative flex h-full w-full items-center justify-between rounded-full px-3 transition-colors duration-75",
-          "ui-active:bg-secondary-hover ui-active:active:bg-primary ui-active:active:text-primary-foreground",
+          "relative flex size-full items-center justify-between rounded-full px-3 transition-colors duration-75",
+          "data-[active]:bg-secondary-hover data-[active]:active:bg-primary data-[active]:active:text-primary-foreground",
           innerClassName,
         )}
       >
         {children}
         <Check
           className={cn(
-            "hidden h-6 w-6 ui-selected:flex",
-            size === "small" && "h-5 w-5",
+            "hidden size-6 data-[selected]:flex",
+            size === "small" && "size-5",
             checkClassName,
           )}
           strokeWidth={4}
         />
       </div>
-    </Listbox.Option>
+    </ListboxOption>
   ),
 );
 DropdownMenuItem.displayName = "DropdownMenuItem";
