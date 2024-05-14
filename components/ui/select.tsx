@@ -37,10 +37,11 @@ const SelectTrigger = React.forwardRef<
   React.ComponentPropsWithoutRef<typeof Button> & {
     truncate?: boolean;
   }
->(({ className, truncate = false, children, ...props }, ref) => (
+>(({ className, size, truncate = false, children, ...props }, ref) => (
   <ListboxButton
     ref={ref}
     as={Button}
+    size={size}
     className={cn(
       "w-full justify-between truncate data-[open]:shadow-inner data-[open]:ring-3",
       className,
@@ -57,7 +58,9 @@ const SelectTrigger = React.forwardRef<
     >
       {children}
     </span>
-    <Icons.dropdown className="size-7" />
+    <span aria-hidden="true">
+      <Icons.dropdown className={cn("size-7", size === "small" && "size-6")} />
+    </span>
   </ListboxButton>
 ));
 SelectTrigger.displayName = "SelectTrigger";
@@ -88,6 +91,7 @@ const SelectContent = React.forwardRef<
           scrollable ? "!absolute max-h-60 pr-3 sm:max-h-80" : "absolute",
           className,
         )}
+        modal={false}
         {...props}
       />
     </Transition>
@@ -135,14 +139,16 @@ const SelectItem = React.forwardRef<
         )}
       >
         {children}
-        <Check
-          className={cn(
-            "hidden size-6 group-data-[selected]:flex",
-            size === "small" && "size-5",
-            checkClassName,
-          )}
-          strokeWidth={4}
-        />
+        <span aria-hidden="true">
+          <Check
+            className={cn(
+              "hidden size-6 group-data-[selected]:flex",
+              size === "small" && "size-5",
+              checkClassName,
+            )}
+            strokeWidth={4}
+          />
+        </span>
       </div>
     </ListboxOption>
   ),
