@@ -120,7 +120,7 @@ const SelectItem = React.forwardRef<
       ref={ref}
       value={value}
       className={cn(
-        "flex select-none outline-none",
+        "group flex select-none outline-none",
         buttonSizeClassNames[size],
         "p-0", // reset buttonSizeClassNames padding
         className,
@@ -130,14 +130,14 @@ const SelectItem = React.forwardRef<
       <div
         className={cn(
           "relative flex size-full items-center justify-between rounded-full px-3 transition-colors duration-75",
-          "data-[active]:bg-secondary-hover data-[active]:active:bg-primary data-[active]:active:text-primary-foreground",
+          "group-data-[focus]:bg-secondary-hover group-data-[focus]:active:bg-primary group-data-[focus]:active:text-primary-foreground",
           innerClassName,
         )}
       >
         {children}
         <Check
           className={cn(
-            "hidden size-6 data-[selected]:flex",
+            "hidden size-6 group-data-[selected]:flex",
             size === "small" && "size-5",
             checkClassName,
           )}
