@@ -3,21 +3,21 @@ import { atom, useAtom, useAtomValue, useSetAtom } from "jotai";
 import type { Item } from "@/backend/schema";
 import type { AllMaterialInfo } from "@/data/types";
 import { sortStringAsNumber } from "@/lib/utils";
-import type { DropdownOption } from "@/components/ui/dropdown-menu";
+import type { SelectOption } from "@/components/ui/select";
 
 // NOTE: exported atoms are initialized with useHydrateAtom
 
 export const materialNameToInfoAtom = atom<AllMaterialInfo["nameToInfo"]>({});
 
 // ASCENSION/LEVEL
-export const levelOptionsAtom = atom<DropdownOption<number>[]>([]);
+export const levelOptionsAtom = atom<SelectOption<number>[]>([]);
 export const levelMatsAtom = atom<Item[][]>([]);
 
 const levelMinAtom = atom(0);
 export const levelMaxAtom = atom(13);
 
 // TALENTS
-export const talentOptionsAtom = atom<DropdownOption<number>[]>([]);
+export const talentOptionsAtom = atom<SelectOption<number>[]>([]);
 export const talentMatsAtom = atom<Item[][]>([]);
 
 const attackMinAtom = atom(0);
