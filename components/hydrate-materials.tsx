@@ -15,13 +15,13 @@ import {
   talentMatsAtom,
   talentOptionsAtom,
 } from "@/hooks/use-materials";
-import type { DropdownOption } from "@/components/ui/dropdown-menu";
+import type { SelectOption } from "@/components/ui/select";
 
 interface HydrateAtomsProps {
   materials: AllMaterialInfo;
-  levelOptions: DropdownOption<number>[];
+  levelOptions: SelectOption<number>[];
   levelMats: Item[][];
-  talentOptions: DropdownOption<number>[];
+  talentOptions: SelectOption<number>[];
   talentMats: Item[][];
   children: React.ReactNode;
 }

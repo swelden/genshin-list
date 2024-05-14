@@ -15,12 +15,12 @@ import { Button, buttonSizeClassNames } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Icons } from "@/components/icons";
 
-export interface DropdownOption<T> {
+export interface SelectOption<T> {
   readonly label: React.ReactNode;
   readonly value: T;
 }
 
-const DropdownMenu = React.forwardRef<
+const Select = React.forwardRef<
   React.ElementRef<typeof Listbox>,
   React.ComponentPropsWithoutRef<typeof Listbox> & {
     children: React.ReactNode;
@@ -30,9 +30,9 @@ const DropdownMenu = React.forwardRef<
     <div className={cn("relative", className)}>{children}</div>
   </Listbox>
 ));
-DropdownMenu.displayName = "DropdownMenu";
+Select.displayName = "Select";
 
-const DropdownMenuTrigger = React.forwardRef<
+const SelectTrigger = React.forwardRef<
   React.ElementRef<typeof Button>,
   React.ComponentPropsWithoutRef<typeof Button> & {
     truncate?: boolean;
@@ -60,9 +60,9 @@ const DropdownMenuTrigger = React.forwardRef<
     <Icons.dropdown className="size-7" />
   </ListboxButton>
 ));
-DropdownMenuTrigger.displayName = "DropdownMenuTrigger";
+SelectTrigger.displayName = "SelectTrigger";
 
-const DropdownMenuContent = React.forwardRef<
+const SelectContent = React.forwardRef<
   React.ElementRef<typeof ListboxOptions>,
   React.ComponentPropsWithoutRef<typeof ListboxOptions> & {
     scrollable?: boolean;
@@ -93,9 +93,9 @@ const DropdownMenuContent = React.forwardRef<
     </Transition>
   );
 });
-DropdownMenuContent.displayName = "DropdownMenuContent";
+SelectContent.displayName = "SelectContent";
 
-const DropdownMenuItem = React.forwardRef<
+const SelectItem = React.forwardRef<
   React.ElementRef<typeof ListboxOption>,
   Omit<React.ComponentPropsWithoutRef<typeof ListboxOption>, "children"> & {
     innerClassName?: string;
@@ -147,11 +147,6 @@ const DropdownMenuItem = React.forwardRef<
     </ListboxOption>
   ),
 );
-DropdownMenuItem.displayName = "DropdownMenuItem";
+SelectItem.displayName = "SelectItem";
 
-export {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-};
+export { Select, SelectContent, SelectItem, SelectTrigger };

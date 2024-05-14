@@ -18,12 +18,12 @@ import {
 } from "@/hooks/use-materials";
 import { Button } from "@/components/ui/button";
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-  type DropdownOption,
-} from "@/components/ui/dropdown-menu";
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  type SelectOption,
+} from "@/components/ui/select";
 import { Icons } from "@/components/icons";
 
 export function LevelRangeSelector() {
@@ -116,7 +116,7 @@ interface RangeSelectorProps {
   max: number;
   setMin: React.Dispatch<React.SetStateAction<number>>;
   setMax: React.Dispatch<React.SetStateAction<number>>;
-  options: DropdownOption<number>[];
+  options: SelectOption<number>[];
 }
 
 function RangeSelector({
@@ -152,7 +152,7 @@ function RangeSelector({
 interface CalculatorDropdownProps {
   curValue: number;
   setValue: React.Dispatch<React.SetStateAction<number>>;
-  options: DropdownOption<number>[];
+  options: SelectOption<number>[];
   className?: string;
 }
 
@@ -165,25 +165,19 @@ function CalculatorDropdown({
   const selectedOption = options[curValue]!;
 
   return (
-    <DropdownMenu
+    <Select
       value={selectedOption.value}
       onChange={setValue}
       className={className}
     >
-      <DropdownMenuTrigger size="small">
-        {selectedOption.label}
-      </DropdownMenuTrigger>
-      <DropdownMenuContent scrollable>
+      <SelectTrigger size="small">{selectedOption.label}</SelectTrigger>
+      <SelectContent scrollable>
         {options.map((option) => (
-          <DropdownMenuItem
-            key={option.value}
-            value={option.value}
-            size="small"
-          >
+          <SelectItem key={option.value} value={option.value} size="small">
             <span className="flex items-center">{option.label}</span>
-          </DropdownMenuItem>
+          </SelectItem>
         ))}
-      </DropdownMenuContent>
-    </DropdownMenu>
+      </SelectContent>
+    </Select>
   );
 }
