@@ -18,11 +18,13 @@ import {
   Sheet,
   SheetClose,
   SheetContent,
+  SheetDescription,
   SheetFooter,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import { VisuallyHidden } from "@/components/ui/visually-hidden";
 import { FilterButton } from "@/components/filters/filter-button";
 import { SelectedFilters } from "@/components/filters/selected-filters";
 import { Icons } from "@/components/icons";
@@ -56,6 +58,11 @@ export function FilterSheet({ className }: FilterSheetProps) {
             <SheetTitle className="text-left text-2xl text-[#D3BC8E]">
               Filter
             </SheetTitle>
+            <VisuallyHidden>
+              <SheetDescription>
+                Filter characters by their attributes.
+              </SheetDescription>
+            </VisuallyHidden>
             <Separator
               className="my-4 md:mt-6"
               lineClassName="bg-sheet-border"
