@@ -72,7 +72,7 @@ const SelectTrigger = React.forwardRef<
   >
     <span
       className={cn(
-        "w-full items-center text-left",
+        "w-full select-none items-center text-left",
         truncate
           ? "inline-block truncate"
           : "flex overflow-hidden whitespace-nowrap",
