@@ -100,7 +100,7 @@ function calculateMaterialsRange(
     for (const value of costs.slice(start + 1, end + 1)) {
       for (const { name, count } of value) {
         if (count > 0) {
-          if (materials.hasOwnProperty(name)) {
+          if (materials[name]) {
             materials[name] += count;
           } else {
             materials[name] = count;
@@ -118,7 +118,7 @@ function mergeMaterials(...materials: Record<string, number>[]) {
 
   materials.forEach((material) => {
     for (const [name, count] of Object.entries(material)) {
-      if (merged.hasOwnProperty(name)) {
+      if (merged[name]) {
         merged[name] += count;
       } else {
         merged[name] = count;
