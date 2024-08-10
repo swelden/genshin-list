@@ -6,6 +6,16 @@ import * as ScrollAreaPrimitive from "@radix-ui/react-scroll-area";
 import { cn } from "@/lib/utils";
 
 const ScrollArea = React.forwardRef<
+  React.ElementRef<typeof ScrollAreaRoot>,
+  React.ComponentPropsWithoutRef<typeof ScrollAreaRoot>
+>(({ className, children, ...props }, ref) => (
+  <ScrollAreaRoot ref={ref} {...props}>
+    <ScrollAreaViewport>{children}</ScrollAreaViewport>
+  </ScrollAreaRoot>
+));
+ScrollArea.displayName = ScrollAreaPrimitive.Root.displayName;
+
+const ScrollAreaRoot = React.forwardRef<
   React.ElementRef<typeof ScrollAreaPrimitive.Root>,
   React.ComponentPropsWithoutRef<typeof ScrollAreaPrimitive.Root> & {
     scrollbarClassName?: string;
@@ -21,9 +31,7 @@ const ScrollArea = React.forwardRef<
       className={cn("relative overflow-hidden", className)}
       {...props}
     >
-      <ScrollAreaPrimitive.Viewport className="size-full rounded-[inherit]">
-        {children}
-      </ScrollAreaPrimitive.Viewport>
+      {children}
       <ScrollBar
         className={scrollbarClassName}
         thumbClassName={thumbClassName}
@@ -32,7 +40,21 @@ const ScrollArea = React.forwardRef<
     </ScrollAreaPrimitive.Root>
   ),
 );
-ScrollArea.displayName = ScrollAreaPrimitive.Root.displayName;
+ScrollAreaRoot.displayName = "ScrollAreaRoot";
+
+const ScrollAreaViewport = React.forwardRef<
+  React.ElementRef<typeof ScrollAreaPrimitive.Viewport>,
+  React.ComponentPropsWithoutRef<typeof ScrollAreaPrimitive.Viewport>
+>(({ className, children, ...props }, ref) => (
+  <ScrollAreaPrimitive.Viewport
+    ref={ref}
+    className={cn("size-full rounded-[inherit]", className)}
+    {...props}
+  >
+    {children}
+  </ScrollAreaPrimitive.Viewport>
+));
+ScrollAreaViewport.displayName = "ScrollAreaViewport";
 
 const ScrollBar = React.forwardRef<
   React.ElementRef<typeof ScrollAreaPrimitive.ScrollAreaScrollbar>,
@@ -65,4 +87,4 @@ const ScrollBar = React.forwardRef<
 ));
 ScrollBar.displayName = ScrollAreaPrimitive.ScrollAreaScrollbar.displayName;
 
-export { ScrollArea, ScrollBar };
+export { ScrollAreaRoot, ScrollAreaViewport, ScrollArea, ScrollBar };

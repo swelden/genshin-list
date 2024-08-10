@@ -20,6 +20,7 @@ import { Button } from "@/components/ui/button";
 import {
   Select,
   SelectContent,
+  SelectGroup,
   SelectItem,
   SelectTrigger,
   type SelectOption,
@@ -165,18 +166,18 @@ function CalculatorDropdown({
   const selectedOption = options[curValue]!;
 
   return (
-    <Select
-      value={selectedOption.value}
-      onChange={setValue}
-      className={className}
-    >
-      <SelectTrigger size="small">{selectedOption.label}</SelectTrigger>
+    <Select value={selectedOption.value} onValueChange={setValue}>
+      <SelectTrigger size="small" className={className}>
+        {selectedOption.label}
+      </SelectTrigger>
       <SelectContent scrollable>
-        {options.map((option) => (
-          <SelectItem key={option.value} value={option.value} size="small">
-            <span className="flex items-center">{option.label}</span>
-          </SelectItem>
-        ))}
+        <SelectGroup>
+          {options.map((option) => (
+            <SelectItem key={option.value} value={option.value} size="small">
+              <span className="flex items-center">{option.label}</span>
+            </SelectItem>
+          ))}
+        </SelectGroup>
       </SelectContent>
     </Select>
   );

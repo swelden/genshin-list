@@ -1,18 +1,15 @@
 "use client";
 
 import * as React from "react";
-import {
-  Listbox,
-  ListboxButton,
-  ListboxOption,
-  ListboxOptions,
-  Transition,
-} from "@headlessui/react";
+import * as SelectPrimitive from "@radix-ui/react-select";
 import { Check } from "lucide-react";
 
 import { cn } from "@/lib/utils";
-import { Button, buttonSizeClassNames } from "@/components/ui/button";
-import { ScrollArea } from "@/components/ui/scroll-area";
+import { buttonSizeClassNames, buttonVariants } from "@/components/ui/button";
+import {
+  ScrollAreaRoot,
+  ScrollAreaViewport,
+} from "@/components/ui/scroll-area";
 import { Icons } from "@/components/icons";
 
 export interface SelectOption<T> {
@@ -20,30 +17,24 @@ export interface SelectOption<T> {
   readonly value: T;
 }
 
-const Select = React.forwardRef<
-  React.ElementRef<typeof Listbox>,
-  React.ComponentPropsWithoutRef<typeof Listbox> & {
-    children: React.ReactNode;
-  }
->(({ className, children, ...props }, ref) => (
-  <Listbox ref={ref} {...props}>
-    <div className={cn("relative", className)}>{children}</div>
-  </Listbox>
-));
-Select.displayName = "Select";
+const Select = SelectPrimitive.Root;
+
+const SelectGroup = SelectPrimitive.Group;
+
+const SelectValue = SelectPrimitive.Value;
 
 const SelectTrigger = React.forwardRef<
-  React.ElementRef<typeof Button>,
-  React.ComponentPropsWithoutRef<typeof Button> & {
+  React.ElementRef<typeof SelectPrimitive.Trigger>,
+  React.ComponentPropsWithoutRef<typeof SelectPrimitive.Trigger> & {
+    size?: keyof typeof buttonSizeClassNames;
     truncate?: boolean;
   }
 >(({ className, size, truncate = false, children, ...props }, ref) => (
-  <ListboxButton
+  <SelectPrimitive.Trigger
     ref={ref}
-    as={Button}
-    size={size}
     className={cn(
-      "w-full justify-between truncate data-[open]:shadow-inner data-[open]:ring-3",
+      buttonVariants({ variant: "default", size }),
+      "w-full justify-between truncate data-[state=open]:shadow-inner data-[state=open]:ring-3",
       className,
     )}
     {...props}
@@ -58,50 +49,76 @@ const SelectTrigger = React.forwardRef<
     >
       {children}
     </span>
-    <span aria-hidden="true">
-      <Icons.dropdown className={cn("size-7", size === "small" && "size-6")} />
+    <span>
+      <SelectPrimitive.Icon asChild>
+        <Icons.dropdown
+          className={cn("size-7", size === "small" && "size-6")}
+        />
+      </SelectPrimitive.Icon>
     </span>
-  </ListboxButton>
+  </SelectPrimitive.Trigger>
 ));
-SelectTrigger.displayName = "SelectTrigger";
+SelectTrigger.displayName = SelectPrimitive.Trigger.displayName;
 
 const SelectContent = React.forwardRef<
-  React.ElementRef<typeof ListboxOptions>,
-  React.ComponentPropsWithoutRef<typeof ListboxOptions> & {
+  React.ElementRef<typeof SelectPrimitive.Content>,
+  React.ComponentPropsWithoutRef<typeof SelectPrimitive.Content> & {
     scrollable?: boolean;
   }
->(({ className, scrollable = false, ...props }, ref) => {
-  const Comp = scrollable ? ScrollArea : "ul";
-
-  return (
-    <Transition
-      as={React.Fragment}
-      enter="transition duration-100 ease-out"
-      enterFrom="transform scale-95 opacity-0"
-      enterTo="transform scale-100 opacity-100"
-      leave="transition duration-75 ease-out"
-      leaveFrom="transform scale-100 opacity-100"
-      leaveTo="transform scale-95 opacity-0"
-    >
-      <ListboxOptions
+>(
+  (
+    { className, scrollable = false, children, position = "popper", ...props },
+    ref,
+  ) => (
+    <SelectPrimitive.Portal>
+      <SelectPrimitive.Content
         ref={ref}
-        as={Comp}
         className={cn(
-          "z-50 flex w-full flex-col gap-0.5 overflow-hidden rounded-3xl bg-secondary p-[0.3125rem] text-secondary-foreground shadow-xl ring-1 ring-black/20 focus:outline-none",
-          scrollable ? "!absolute max-h-60 pr-3 sm:max-h-80" : "absolute",
+          "relative z-50 overflow-hidden rounded-3xl bg-secondary text-secondary-foreground shadow-xl ring-1 ring-black/20 focus:outline-none data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
+          position === "popper" &&
+            "data-[side=bottom]:translate-y-1 data-[side=left]:-translate-x-1 data-[side=right]:translate-x-1 data-[side=top]:-translate-y-1",
           className,
         )}
-        modal={false}
+        position={position}
+        sideOffset={-4}
         {...props}
-      />
-    </Transition>
-  );
-});
-SelectContent.displayName = "SelectContent";
+      >
+        <ScrollAreaRoot type="always" className="size-full">
+          <SelectPrimitive.Viewport
+            asChild
+            className={cn(
+              "p-[0.3125rem]",
+              scrollable && "h-60 pr-3 sm:h-80",
+              position === "popper" &&
+                "w-full min-w-[var(--radix-select-trigger-width)]",
+            )}
+          >
+            <ScrollAreaViewport style={{ overflowY: undefined }}>
+              {children}
+            </ScrollAreaViewport>
+          </SelectPrimitive.Viewport>
+        </ScrollAreaRoot>
+      </SelectPrimitive.Content>
+    </SelectPrimitive.Portal>
+  ),
+);
+SelectContent.displayName = SelectPrimitive.Content.displayName;
+
+const SelectLabel = React.forwardRef<
+  React.ElementRef<typeof SelectPrimitive.Label>,
+  React.ComponentPropsWithoutRef<typeof SelectPrimitive.Label>
+>(({ className, ...props }, ref) => (
+  <SelectPrimitive.Label
+    ref={ref}
+    className={cn("py-1.5 pl-8 pr-2 text-sm font-semibold", className)}
+    {...props}
+  />
+));
+SelectLabel.displayName = SelectPrimitive.Label.displayName;
 
 const SelectItem = React.forwardRef<
-  React.ElementRef<typeof ListboxOption>,
-  Omit<React.ComponentPropsWithoutRef<typeof ListboxOption>, "children"> & {
+  React.ElementRef<typeof SelectPrimitive.Item>,
+  React.ComponentPropsWithoutRef<typeof SelectPrimitive.Item> & {
     innerClassName?: string;
     checkClassName?: string;
     children?: React.ReactNode;
@@ -110,7 +127,6 @@ const SelectItem = React.forwardRef<
 >(
   (
     {
-      value,
       className,
       innerClassName,
       checkClassName,
@@ -120,9 +136,8 @@ const SelectItem = React.forwardRef<
     },
     ref,
   ) => (
-    <ListboxOption
+    <SelectPrimitive.Item
       ref={ref}
-      value={value}
       className={cn(
         "group flex select-none outline-none",
         buttonSizeClassNames[size],
@@ -134,25 +149,35 @@ const SelectItem = React.forwardRef<
       <div
         className={cn(
           "relative flex size-full items-center justify-between rounded-full px-3 transition-colors duration-75",
-          "group-data-[focus]:bg-secondary-hover group-data-[focus]:active:bg-primary group-data-[focus]:active:text-primary-foreground",
+          "group-data-[highlighted]:bg-secondary-hover group-data-[highlighted]:active:bg-primary group-data-[highlighted]:active:text-primary-foreground",
           innerClassName,
         )}
       >
-        {children}
-        <span aria-hidden="true">
-          <Check
-            className={cn(
-              "hidden size-6 group-data-[selected]:flex",
-              size === "small" && "size-5",
-              checkClassName,
-            )}
-            strokeWidth={4}
-          />
+        <SelectPrimitive.ItemText>{children}</SelectPrimitive.ItemText>
+        <span>
+          <SelectPrimitive.ItemIndicator>
+            <Check
+              className={cn(
+                "hidden size-6 group-data-[state=checked]:flex",
+                size === "small" && "size-5",
+                checkClassName,
+              )}
+              strokeWidth={4}
+            />
+          </SelectPrimitive.ItemIndicator>
         </span>
       </div>
-    </ListboxOption>
+    </SelectPrimitive.Item>
   ),
 );
-SelectItem.displayName = "SelectItem";
+SelectItem.displayName = SelectPrimitive.Item.displayName;
 
-export { Select, SelectContent, SelectItem, SelectTrigger };
+export {
+  Select,
+  SelectGroup,
+  SelectValue,
+  SelectTrigger,
+  SelectContent,
+  SelectLabel,
+  SelectItem,
+};

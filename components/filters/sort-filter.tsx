@@ -7,6 +7,7 @@ import { useSortOption } from "@/hooks/use-characters";
 import {
   Select,
   SelectContent,
+  SelectGroup,
   SelectItem,
   SelectTrigger,
 } from "@/components/ui/select";
@@ -28,14 +29,18 @@ export function SortDropdown({ className }: SortDropdownProps) {
   const [sortOption, setSortOption] = useSortOption();
 
   return (
-    <Select value={sortOption} onChange={setSortOption} className={className}>
-      <SelectTrigger truncate>Sort by {sortOptions[sortOption]}</SelectTrigger>
+    <Select value={sortOption} onValueChange={setSortOption}>
+      <SelectTrigger truncate className={className}>
+        Sort by {sortOptions[sortOption]}
+      </SelectTrigger>
       <SelectContent>
-        {Object.entries(sortOptions).map(([value, label]) => (
-          <SelectItem key={value} value={value}>
-            {label}
-          </SelectItem>
-        ))}
+        <SelectGroup>
+          {Object.entries(sortOptions).map(([value, label]) => (
+            <SelectItem key={value} value={value}>
+              {label}
+            </SelectItem>
+          ))}
+        </SelectGroup>
       </SelectContent>
     </Select>
   );
