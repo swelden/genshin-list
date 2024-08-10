@@ -5,7 +5,7 @@ import * as React from "react";
 import type { CharacterSortKeys } from "@/data/types";
 import { useSortOption } from "@/hooks/use-characters";
 import {
-  Select,
+  DelayedSelect,
   SelectContent,
   SelectGroup,
   SelectItem,
@@ -29,7 +29,7 @@ export function SortDropdown({ className }: SortDropdownProps) {
   const [sortOption, setSortOption] = useSortOption();
 
   return (
-    <Select
+    <DelayedSelect
       value={sortOption}
       onValueChange={(value: string) =>
         setSortOption(value as CharacterSortKeys)
@@ -47,6 +47,6 @@ export function SortDropdown({ className }: SortDropdownProps) {
           ))}
         </SelectGroup>
       </SelectContent>
-    </Select>
+    </DelayedSelect>
   );
 }

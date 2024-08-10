@@ -23,6 +23,37 @@ const SelectGroup = SelectPrimitive.Group;
 
 const SelectValue = SelectPrimitive.Value;
 
+// This is a solution to the issue of selection also invoking whatever is underneath the select content
+// Based off solution suggested here: https://github.com/radix-ui/primitives/issues/1658#issuecomment-1517705980
+// https://github.com/radix-ui/primitives/issues/1658#issuecomment-2223420483
+const DelayedSelect = ({
+  children,
+  ...props
+}: React.ComponentPropsWithoutRef<typeof SelectPrimitive.Root>) => {
+  const [delayedOpen, setDelayedOpen] = React.useState(false);
+
+  const handleOpenChange = (newOpenState: boolean) => {
+    if (newOpenState) {
+      setDelayedOpen(newOpenState);
+    } else {
+      setTimeout(() => {
+        setDelayedOpen(newOpenState);
+      }, 100);
+    }
+  };
+
+  return (
+    <SelectPrimitive.Root
+      open={delayedOpen}
+      onOpenChange={handleOpenChange}
+      {...props}
+    >
+      {children}
+    </SelectPrimitive.Root>
+  );
+};
+DelayedSelect.displayName = "DelayedSelect";
+
 const SelectTrigger = React.forwardRef<
   React.ElementRef<typeof SelectPrimitive.Trigger>,
   React.ComponentPropsWithoutRef<typeof SelectPrimitive.Trigger> & {
@@ -174,6 +205,7 @@ SelectItem.displayName = SelectPrimitive.Item.displayName;
 
 export {
   Select,
+  DelayedSelect,
   SelectGroup,
   SelectValue,
   SelectTrigger,
