@@ -166,14 +166,21 @@ function CalculatorDropdown({
   const selectedOption = options[curValue]!;
 
   return (
-    <Select value={selectedOption.value} onValueChange={setValue}>
+    <Select
+      value={selectedOption.value.toString()}
+      onValueChange={(value: string) => setValue(Number(value))}
+    >
       <SelectTrigger size="small" className={className}>
         {selectedOption.label}
       </SelectTrigger>
       <SelectContent scrollable>
         <SelectGroup>
           {options.map((option) => (
-            <SelectItem key={option.value} value={option.value} size="small">
+            <SelectItem
+              key={option.value}
+              value={option.value.toString()}
+              size="small"
+            >
               <span className="flex items-center">{option.label}</span>
             </SelectItem>
           ))}

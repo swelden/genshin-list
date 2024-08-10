@@ -29,7 +29,12 @@ export function SortDropdown({ className }: SortDropdownProps) {
   const [sortOption, setSortOption] = useSortOption();
 
   return (
-    <Select value={sortOption} onValueChange={setSortOption}>
+    <Select
+      value={sortOption}
+      onValueChange={(value: string) =>
+        setSortOption(value as CharacterSortKeys)
+      }
+    >
       <SelectTrigger truncate className={className}>
         Sort by {sortOptions[sortOption]}
       </SelectTrigger>
