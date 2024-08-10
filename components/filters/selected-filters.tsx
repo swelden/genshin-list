@@ -42,7 +42,7 @@ export function SelectedFilters({
         )}
       >
         <DragArea>
-          <div className="flex h-full items-center gap-1.5 p-1 pr-4">
+          <div className="flex h-full select-none items-center gap-1.5 p-1 pr-4">
             {filterSets.map((filterSet) =>
               Array.from(filterSet).map((filter) => (
                 <FilterIndicator key={filter} filter={filter} />
