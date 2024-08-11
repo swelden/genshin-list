@@ -145,14 +145,14 @@ export function getMinMatOption() {
   return { label: "1", value: 0 };
 }
 
-function getRecommendedMatOption<T>(
-  options: SelectOption<T>[],
+function getRecommendedMatOption(
+  options: SelectOption<number>[],
   nToLast: number,
 ) {
   return options.at(-nToLast) ?? getMinMatOption();
 }
 
-function getMaxMatOption<T>(options: SelectOption<T>[]) {
+function getMaxMatOption(options: SelectOption<number>[]) {
   return options.at(-1) ?? getMinMatOption();
 }
 

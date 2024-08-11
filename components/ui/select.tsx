@@ -14,19 +14,21 @@ import { Button, buttonSizeClassNames } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Icons } from "@/components/icons";
 
-export interface SelectOption<T> {
+type SelectValue = string | number;
+
+export interface SelectOption<TValue extends SelectValue> {
   readonly label: React.ReactNode;
-  readonly value: T;
+  readonly value: TValue;
 }
 
-function Select<Item>({
+function Select<TValue extends SelectValue>({
   items,
   selectedItem,
   setSelectedItem,
   className,
   children,
   ...props
-}: React.ComponentPropsWithoutRef<typeof SelectContextProvider<Item>> & {
+}: React.ComponentPropsWithoutRef<typeof SelectContextProvider<TValue>> & {
   className?: string;
 }) {
   return (
@@ -81,11 +83,17 @@ const SelectTrigger = React.forwardRef<
 });
 SelectTrigger.displayName = "SelectTrigger";
 
-function SelectContent({ scrollable = false }: { scrollable?: boolean }) {
+const SelectContent = React.forwardRef<
+  React.ElementRef<typeof ScrollArea>,
+  React.ComponentPropsWithoutRef<typeof ScrollArea> & {
+    scrollable?: boolean;
+  }
+>(({ scrollable = false, ...props }, ref) => {
   const { items, isOpen, menuProps } = useSelectContext();
 
   return (
     <ScrollArea
+      ref={ref}
       {...menuProps}
       className={cn(
         "!absolute z-50 flex w-full flex-col overflow-hidden rounded-3xl bg-secondary text-secondary-foreground focus:outline-none",
@@ -97,6 +105,7 @@ function SelectContent({ scrollable = false }: { scrollable?: boolean }) {
         isOpen && "p-[0.3125rem]",
         scrollable && "max-h-60 pr-3 sm:max-h-80",
       )}
+      {...props}
     >
       <ul>
         {isOpen &&
@@ -106,13 +115,15 @@ function SelectContent({ scrollable = false }: { scrollable?: boolean }) {
       </ul>
     </ScrollArea>
   );
-}
+});
+SelectContent.displayName = "SelectContent";
 
-function SelectItem<Item>({
+function SelectItem<TValue extends SelectValue>({
   item,
   index,
-}: {
-  item: SelectOption<Item>;
+  ...props
+}: React.ComponentPropsWithoutRef<"li"> & {
+  item: SelectOption<TValue>;
   index: number;
 }) {
   const { highlightedIndex, size, selectedItem, getItemProps } =
@@ -127,6 +138,7 @@ function SelectItem<Item>({
         buttonSizeClassNames[size ?? "default"],
         "p-0",
       )}
+      {...props}
     >
       <div
         className={cn(
@@ -151,34 +163,34 @@ function SelectItem<Item>({
   );
 }
 
-interface SelectContextType<Item> {
-  items: SelectOption<Item>[];
+interface SelectContextType<TValue extends SelectValue> {
+  items: SelectOption<TValue>[];
   isOpen: boolean;
-  selectedItem: SelectOption<Item>;
+  selectedItem: SelectOption<TValue>;
   highlightedIndex: number;
   toggleButtonProps: UseSelectGetToggleButtonReturnValue;
   menuProps: UseSelectGetMenuReturnValue;
-  getItemProps: UseSelectPropGetters<Item>["getItemProps"];
+  getItemProps: UseSelectPropGetters<SelectOption<TValue>>["getItemProps"];
   size?: keyof typeof buttonSizeClassNames;
 }
 
 const SelectContext = createSelectContext();
 
-interface SelectContextProviderProps<Item> {
-  items: SelectOption<Item>[];
-  selectedItem: SelectOption<Item>;
-  setSelectedItem: React.Dispatch<React.SetStateAction<SelectOption<Item>>>;
+interface SelectContextProviderProps<TValue extends SelectValue> {
+  items: SelectOption<TValue>[];
+  selectedItem: SelectOption<TValue>;
+  setSelectedItem: React.Dispatch<React.SetStateAction<SelectOption<TValue>>>;
   size?: keyof typeof buttonSizeClassNames;
   children: React.ReactNode;
 }
 
-function SelectContextProvider<Item>({
+function SelectContextProvider<TValue extends SelectValue>({
   children,
   items,
   selectedItem,
   setSelectedItem,
   size,
-}: SelectContextProviderProps<Item>) {
+}: SelectContextProviderProps<TValue>) {
   const {
     isOpen,
     highlightedIndex,
@@ -220,8 +232,8 @@ function useSelectContext() {
   return context;
 }
 
-function createSelectContext<Item>() {
-  return React.createContext<SelectContextType<Item> | null>(null);
+function createSelectContext<TValue extends SelectValue>() {
+  return React.createContext<SelectContextType<TValue> | null>(null);
 }
 
 export { Select, SelectTrigger, SelectContent };
