@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 import { siteConfig } from "@/data/site";
 import { genshinFont } from "@/lib/fonts";
@@ -69,6 +70,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
             <Footer />
           </div>
         </ThemeProvider>
+        <SpeedInsights />
       </body>
     </html>
   );
