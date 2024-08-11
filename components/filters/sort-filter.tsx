@@ -3,11 +3,7 @@
 import * as React from "react";
 
 import { sortOptions, useSortOption } from "@/hooks/use-characters";
-import {
-  Select,
-  SelectContent,
-  SelectTrigger,
-} from "@/components/ui/select-downshift";
+import { Select, SelectContent, SelectTrigger } from "@/components/ui/select";
 
 interface SortDropdownProps {
   className?: string;

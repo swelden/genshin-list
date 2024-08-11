@@ -1,15 +1,17 @@
 "use client";
 
 import * as React from "react";
-import * as SelectPrimitive from "@radix-ui/react-select";
+import {
+  useSelect,
+  type UseSelectGetMenuReturnValue,
+  type UseSelectGetToggleButtonReturnValue,
+  type UseSelectPropGetters,
+} from "downshift";
 import { Check } from "lucide-react";
 
 import { cn } from "@/lib/utils";
-import { buttonSizeClassNames, buttonVariants } from "@/components/ui/button";
-import {
-  ScrollAreaRoot,
-  ScrollAreaViewport,
-} from "@/components/ui/scroll-area";
+import { Button, buttonSizeClassNames } from "@/components/ui/button";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { Icons } from "@/components/icons";
 
 export interface SelectOption<T> {
@@ -17,199 +19,209 @@ export interface SelectOption<T> {
   readonly value: T;
 }
 
-const Select = SelectPrimitive.Root;
-
-const SelectGroup = SelectPrimitive.Group;
-
-const SelectValue = SelectPrimitive.Value;
-
-// This is a solution to the issue of selection also invoking whatever is underneath the select content
-// Based off solution suggested here: https://github.com/radix-ui/primitives/issues/1658#issuecomment-1517705980
-// https://github.com/radix-ui/primitives/issues/1658#issuecomment-2223420483
-const DelayedSelect = ({
+function Select<Item>({
+  items,
+  selectedItem,
+  setSelectedItem,
+  className,
   children,
   ...props
-}: React.ComponentPropsWithoutRef<typeof SelectPrimitive.Root>) => {
-  const [delayedOpen, setDelayedOpen] = React.useState(false);
-
-  const handleOpenChange = (newOpenState: boolean) => {
-    if (newOpenState) {
-      setDelayedOpen(newOpenState);
-    } else {
-      setTimeout(() => {
-        setDelayedOpen(newOpenState);
-      }, 100);
-    }
-  };
-
+}: React.ComponentPropsWithoutRef<typeof SelectContextProvider<Item>> & {
+  className?: string;
+}) {
   return (
-    <SelectPrimitive.Root
-      open={delayedOpen}
-      onOpenChange={handleOpenChange}
+    <SelectContextProvider
+      items={items}
+      selectedItem={selectedItem}
+      setSelectedItem={setSelectedItem}
       {...props}
     >
-      {children}
-    </SelectPrimitive.Root>
+      <div className={cn("relative", className)}>{children}</div>
+    </SelectContextProvider>
   );
-};
-DelayedSelect.displayName = "DelayedSelect";
+}
 
 const SelectTrigger = React.forwardRef<
-  React.ElementRef<typeof SelectPrimitive.Trigger>,
-  React.ComponentPropsWithoutRef<typeof SelectPrimitive.Trigger> & {
-    size?: keyof typeof buttonSizeClassNames;
+  React.ElementRef<typeof Button>,
+  React.ComponentPropsWithoutRef<typeof Button> & {
     truncate?: boolean;
   }
->(({ className, size, truncate = false, children, ...props }, ref) => (
-  <SelectPrimitive.Trigger
-    ref={ref}
-    className={cn(
-      buttonVariants({ variant: "default", size }),
-      "w-full justify-between truncate data-[state=open]:shadow-inner data-[state=open]:ring-3",
-      className,
-    )}
-    {...props}
-  >
-    <span
+>(({ className, truncate = false, children, ...props }, ref) => {
+  const { toggleButtonProps, isOpen, size } = useSelectContext();
+
+  return (
+    <Button
+      ref={ref}
+      size={size}
       className={cn(
-        "w-full select-none items-center text-left",
-        truncate
-          ? "inline-block truncate"
-          : "flex overflow-hidden whitespace-nowrap",
+        "w-full justify-between truncate",
+        isOpen && "shadow-inner ring-3",
+        className,
       )}
+      {...toggleButtonProps}
+      {...props}
     >
-      {children}
-    </span>
-    <span>
-      <SelectPrimitive.Icon asChild>
+      <span
+        className={cn(
+          "w-full items-center text-left",
+          truncate
+            ? "inline-block truncate"
+            : "flex overflow-hidden whitespace-nowrap",
+        )}
+      >
+        {children}
+      </span>
+      <span aria-hidden="true">
         <Icons.dropdown
           className={cn("size-7", size === "small" && "size-6")}
         />
-      </SelectPrimitive.Icon>
-    </span>
-  </SelectPrimitive.Trigger>
-));
-SelectTrigger.displayName = SelectPrimitive.Trigger.displayName;
+      </span>
+    </Button>
+  );
+});
+SelectTrigger.displayName = "SelectTrigger";
 
-const SelectContent = React.forwardRef<
-  React.ElementRef<typeof SelectPrimitive.Content>,
-  React.ComponentPropsWithoutRef<typeof SelectPrimitive.Content> & {
-    scrollable?: boolean;
-  }
->(
-  (
-    { className, scrollable = false, children, position = "popper", ...props },
-    ref,
-  ) => (
-    <SelectPrimitive.Portal>
-      <SelectPrimitive.Content
-        ref={ref}
-        className={cn(
-          "relative z-50 overflow-hidden rounded-3xl bg-secondary text-secondary-foreground shadow-xl ring-1 ring-black/20 focus:outline-none data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
-          position === "popper" &&
-            "data-[side=bottom]:translate-y-1 data-[side=left]:-translate-x-1 data-[side=right]:translate-x-1 data-[side=top]:-translate-y-1",
-          className,
-        )}
-        position={position}
-        sideOffset={-4}
-        {...props}
-      >
-        <ScrollAreaRoot type="always" className="size-full">
-          <SelectPrimitive.Viewport
-            asChild
-            className={cn(
-              "p-[0.3125rem]",
-              scrollable && "h-60 pr-3 sm:h-80",
-              position === "popper" &&
-                "w-full min-w-[var(--radix-select-trigger-width)]",
-            )}
-          >
-            <ScrollAreaViewport style={{ overflowY: undefined }}>
-              {children}
-            </ScrollAreaViewport>
-          </SelectPrimitive.Viewport>
-        </ScrollAreaRoot>
-      </SelectPrimitive.Content>
-    </SelectPrimitive.Portal>
-  ),
-);
-SelectContent.displayName = SelectPrimitive.Content.displayName;
+function SelectContent({ scrollable = false }: { scrollable?: boolean }) {
+  const { items, isOpen, menuProps } = useSelectContext();
 
-const SelectLabel = React.forwardRef<
-  React.ElementRef<typeof SelectPrimitive.Label>,
-  React.ComponentPropsWithoutRef<typeof SelectPrimitive.Label>
->(({ className, ...props }, ref) => (
-  <SelectPrimitive.Label
-    ref={ref}
-    className={cn("py-1.5 pl-8 pr-2 text-sm font-semibold", className)}
-    {...props}
-  />
-));
-SelectLabel.displayName = SelectPrimitive.Label.displayName;
-
-const SelectItem = React.forwardRef<
-  React.ElementRef<typeof SelectPrimitive.Item>,
-  React.ComponentPropsWithoutRef<typeof SelectPrimitive.Item> & {
-    innerClassName?: string;
-    checkClassName?: string;
-    children?: React.ReactNode;
-    size?: keyof typeof buttonSizeClassNames;
-  }
->(
-  (
-    {
-      className,
-      innerClassName,
-      checkClassName,
-      children,
-      size = "default",
-      ...props
-    },
-    ref,
-  ) => (
-    <SelectPrimitive.Item
-      ref={ref}
+  return (
+    <ScrollArea
+      {...menuProps}
       className={cn(
-        "group flex select-none outline-none",
-        buttonSizeClassNames[size],
-        "p-0", // reset buttonSizeClassNames padding
-        className,
+        "!absolute z-50 flex w-full flex-col overflow-hidden rounded-3xl bg-secondary text-secondary-foreground focus:outline-none",
+        isOpen && "shadow-xl ring-1 ring-black/20",
+        isOpen ? "animate-in fade-in-80 zoom-in-95" : "animate-out",
+        "translate-y-0 slide-in-from-top-2",
       )}
-      {...props}
+      viewportClassName={cn(
+        isOpen && "p-[0.3125rem]",
+        scrollable && "max-h-60 pr-3 sm:max-h-80",
+      )}
+    >
+      <ul>
+        {isOpen &&
+          items.map((item, index) => (
+            <SelectItem key={`${item.value}`} item={item} index={index} />
+          ))}
+      </ul>
+    </ScrollArea>
+  );
+}
+
+function SelectItem<Item>({
+  item,
+  index,
+}: {
+  item: SelectOption<Item>;
+  index: number;
+}) {
+  const { highlightedIndex, size, selectedItem, getItemProps } =
+    useSelectContext();
+  const isSelected = selectedItem.value == item.value;
+
+  return (
+    <li
+      {...getItemProps({ item, index, "aria-selected": isSelected })}
+      className={cn(
+        "flex select-none outline-none",
+        buttonSizeClassNames[size ?? "default"],
+        "p-0",
+      )}
     >
       <div
         className={cn(
           "relative flex size-full items-center justify-between rounded-full px-3 transition-colors duration-75",
-          "group-data-[highlighted]:bg-secondary-hover group-data-[highlighted]:active:bg-primary group-data-[highlighted]:active:text-primary-foreground",
-          innerClassName,
+          highlightedIndex === index &&
+            "bg-secondary-hover active:bg-primary active:text-primary-foreground",
         )}
       >
-        <SelectPrimitive.ItemText>{children}</SelectPrimitive.ItemText>
-        <span>
-          <SelectPrimitive.ItemIndicator>
-            <Check
-              className={cn(
-                "hidden size-6 group-data-[state=checked]:flex",
-                size === "small" && "size-5",
-                checkClassName,
-              )}
-              strokeWidth={4}
-            />
-          </SelectPrimitive.ItemIndicator>
+        <span className="flex items-center">{item.label}</span>
+        <span aria-hidden="true">
+          <Check
+            className={cn(
+              "hidden size-6",
+              size === "small" && "size-5",
+              isSelected && "flex",
+            )}
+            strokeWidth={4}
+          />
         </span>
       </div>
-    </SelectPrimitive.Item>
-  ),
-);
-SelectItem.displayName = SelectPrimitive.Item.displayName;
+    </li>
+  );
+}
 
-export {
-  Select,
-  DelayedSelect,
-  SelectGroup,
-  SelectValue,
-  SelectTrigger,
-  SelectContent,
-  SelectLabel,
-  SelectItem,
-};
+interface SelectContextType<Item> {
+  items: SelectOption<Item>[];
+  isOpen: boolean;
+  selectedItem: SelectOption<Item>;
+  highlightedIndex: number;
+  toggleButtonProps: UseSelectGetToggleButtonReturnValue;
+  menuProps: UseSelectGetMenuReturnValue;
+  getItemProps: UseSelectPropGetters<Item>["getItemProps"];
+  size?: keyof typeof buttonSizeClassNames;
+}
+
+const SelectContext = createSelectContext();
+
+interface SelectContextProviderProps<Item> {
+  items: SelectOption<Item>[];
+  selectedItem: SelectOption<Item>;
+  setSelectedItem: React.Dispatch<React.SetStateAction<SelectOption<Item>>>;
+  size?: keyof typeof buttonSizeClassNames;
+  children: React.ReactNode;
+}
+
+function SelectContextProvider<Item>({
+  children,
+  items,
+  selectedItem,
+  setSelectedItem,
+  size,
+}: SelectContextProviderProps<Item>) {
+  const {
+    isOpen,
+    highlightedIndex,
+    getToggleButtonProps,
+    getMenuProps,
+    getItemProps,
+  } = useSelect({
+    items,
+    selectedItem,
+    onSelectedItemChange: ({ selectedItem: newSelectedItem }) =>
+      setSelectedItem(newSelectedItem),
+  });
+
+  return (
+    <SelectContext.Provider
+      value={{
+        items,
+        isOpen,
+        selectedItem,
+        highlightedIndex,
+        toggleButtonProps: getToggleButtonProps(),
+        menuProps: getMenuProps(),
+        getItemProps,
+        size,
+      }}
+    >
+      {children}
+    </SelectContext.Provider>
+  );
+}
+
+function useSelectContext() {
+  const context = React.useContext(SelectContext);
+  if (!context) {
+    throw new Error(
+      "useSelectContext must be used within a SelectContextProvider",
+    );
+  }
+  return context;
+}
+
+function createSelectContext<Item>() {
+  return React.createContext<SelectContextType<Item> | null>(null);
+}
+
+export { Select, SelectTrigger, SelectContent };

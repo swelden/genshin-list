@@ -18,11 +18,7 @@ import {
 } from "@/hooks/use-materials";
 import { Button } from "@/components/ui/button";
 import type { SelectOption } from "@/components/ui/select";
-import {
-  Select,
-  SelectContent,
-  SelectTrigger,
-} from "@/components/ui/select-downshift";
+import { Select, SelectContent, SelectTrigger } from "@/components/ui/select";
 import { Icons } from "@/components/icons";
 
 export function LevelRangeSelector() {
