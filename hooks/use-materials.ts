@@ -15,7 +15,7 @@ export const levelMatsAtom = atom<Item[][]>([]);
 
 const levelMinAtom = atom<SelectOption<number>>(getMinMatOption());
 export const levelMaxAtom = atom<SelectOption<number>>({
-  label: 90,
+  label: "90",
   value: 13,
 });
 
@@ -25,15 +25,21 @@ export const talentMatsAtom = atom<Item[][]>([]);
 
 const attackMinAtom = atom<SelectOption<number>>(getMinMatOption());
 export const attackMaxAtom = atom<SelectOption<number>>({
-  label: 10,
+  label: "10",
   value: 9,
 });
 
 const skillMinAtom = atom<SelectOption<number>>(getMinMatOption());
-export const skillMaxAtom = atom<SelectOption<number>>({ label: 10, value: 9 });
+export const skillMaxAtom = atom<SelectOption<number>>({
+  label: "10",
+  value: 9,
+});
 
 const burstMinAtom = atom<SelectOption<number>>(getMinMatOption());
-export const burstMaxAtom = atom<SelectOption<number>>({ label: 10, value: 9 });
+export const burstMaxAtom = atom<SelectOption<number>>({
+  label: "10",
+  value: 9,
+});
 
 // MATERIALS
 const characterMaterialsAtom = atom((get) =>
@@ -136,7 +142,7 @@ function mergeMaterials(...materials: Record<string, number>[]) {
 }
 
 export function getMinMatOption() {
-  return { label: 1, value: 0 };
+  return { label: "1", value: 0 };
 }
 
 function getRecommendedMatOption<T>(
