@@ -3,7 +3,7 @@
 import * as React from "react";
 
 import { sortOptions, useSortOption } from "@/hooks/use-characters";
-import { Select, SelectContent, SelectTrigger } from "@/components/ui/select";
+import { Select, SelectTrigger } from "@/components/ui/select";
 
 interface SortDropdownProps {
   className?: string;
@@ -11,6 +11,7 @@ interface SortDropdownProps {
 
 export function SortDropdown({ className }: SortDropdownProps) {
   const [sortOption, setSortOption] = useSortOption();
+
   return (
     <Select
       items={sortOptions}
@@ -19,7 +20,6 @@ export function SortDropdown({ className }: SortDropdownProps) {
       className={className}
     >
       <SelectTrigger>Sort by {sortOption.label}</SelectTrigger>
-      <SelectContent />
     </Select>
   );
 }

@@ -25,11 +25,13 @@ function Select<TValue extends SelectValue>({
   items,
   selectedItem,
   setSelectedItem,
+  scrollable = false,
   className,
   children,
   ...props
 }: React.ComponentPropsWithoutRef<typeof SelectContextProvider<TValue>> & {
   className?: string;
+  scrollable?: boolean;
 }) {
   return (
     <SelectContextProvider
@@ -38,7 +40,10 @@ function Select<TValue extends SelectValue>({
       setSelectedItem={setSelectedItem}
       {...props}
     >
-      <div className={cn("relative", className)}>{children}</div>
+      <div className={cn("relative", className)}>
+        {children}
+        <SelectContent scrollable={scrollable} />
+      </div>
     </SelectContextProvider>
   );
 }
@@ -236,4 +241,4 @@ function createSelectContext<TValue extends SelectValue>() {
   return React.createContext<SelectContextType<TValue> | null>(null);
 }
 
-export { Select, SelectTrigger, SelectContent };
+export { Select, SelectTrigger };

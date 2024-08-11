@@ -18,7 +18,7 @@ import {
 } from "@/hooks/use-materials";
 import { Button } from "@/components/ui/button";
 import type { SelectOption } from "@/components/ui/select";
-import { Select, SelectContent, SelectTrigger } from "@/components/ui/select";
+import { Select, SelectTrigger } from "@/components/ui/select";
 import { Icons } from "@/components/icons";
 
 export function LevelRangeSelector() {
@@ -164,9 +164,9 @@ function CalculatorDropdown({
       setSelectedItem={setValue}
       className={className}
       size="small"
+      scrollable
     >
       <SelectTrigger>{curValue.label}</SelectTrigger>
-      <SelectContent scrollable />
     </Select>
   );
 }
