@@ -2,24 +2,12 @@
 
 import * as React from "react";
 
-import type { CharacterSortKeys } from "@/data/types";
-import { useSortOption } from "@/hooks/use-characters";
+import { sortOptions, useSortOption } from "@/hooks/use-characters";
 import {
-  DelayedSelect,
+  Select,
   SelectContent,
-  SelectGroup,
-  SelectItem,
   SelectTrigger,
-} from "@/components/ui/select";
-
-const sortOptions = {
-  version: "Version",
-  element: "Element",
-  weapon: "Weapon",
-  region: "Region",
-  rarity: "Rarity", // NOTE: might label Quality
-  name: "Name",
-} as const satisfies Record<CharacterSortKeys, string>;
+} from "@/components/ui/select-downshift";
 
 interface SortDropdownProps {
   className?: string;
@@ -29,24 +17,36 @@ export function SortDropdown({ className }: SortDropdownProps) {
   const [sortOption, setSortOption] = useSortOption();
 
   return (
-    <DelayedSelect
-      value={sortOption}
-      onValueChange={(value: string) =>
-        setSortOption(value as CharacterSortKeys)
-      }
+    <Select
+      items={sortOptions}
+      selectedItem={sortOption}
+      setSelectedItem={setSortOption}
+      className={className}
     >
-      <SelectTrigger truncate className={className}>
-        Sort by {sortOptions[sortOption]}
-      </SelectTrigger>
-      <SelectContent>
-        <SelectGroup>
-          {Object.entries(sortOptions).map(([value, label]) => (
-            <SelectItem key={value} value={value}>
-              {label}
-            </SelectItem>
-          ))}
-        </SelectGroup>
-      </SelectContent>
-    </DelayedSelect>
+      <SelectTrigger />
+      <SelectContent />
+    </Select>
   );
 }
+
+// export function SortDropdown({ className }: SortDropdownProps) {
+//   const [sortOption, setSortOption] = useSortOption();
+
+//   return (
+//     <Select
+//       value={sortOption}
+//       onChange={(value: string) => setSortOption(value as CharacterSortKeys)}
+//     >
+//       <SelectTrigger truncate className={className}>
+//         Sort by {sortOptions[sortOption]}
+//       </SelectTrigger>
+//       <SelectContent>
+//         {Object.entries(sortOptions).map(([value, label]) => (
+//           <SelectItem key={value} value={value}>
+//             {label}
+//           </SelectItem>
+//         ))}
+//       </SelectContent>
+//     </Select>
+//   );
+// }

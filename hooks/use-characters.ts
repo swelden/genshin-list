@@ -7,6 +7,16 @@ import type {
   FilterAttributes,
 } from "@/data/types";
 import { sortString, sortStringAsNumber } from "@/lib/utils";
+import type { SelectOption } from "@/components/ui/select";
+
+export const sortOptions = [
+  { value: "version", label: "Version" },
+  { value: "element", label: "Element" },
+  { value: "weapon", label: "Weapon" },
+  { value: "region", label: "Region" },
+  { value: "rarity", label: "Rarity" }, // NOTE: might label Quality
+  { value: "name", label: "Name" },
+] as const satisfies SelectOption<CharacterSortKeys>[];
 
 const sortFunctions: Record<
   CharacterSortKeys,
@@ -21,7 +31,7 @@ const sortFunctions: Record<
 } as const;
 
 const searchQueryAtom = atom("");
-const sortOptionAtom = atom<CharacterSortKeys>("version");
+const sortOptionAtom = atom<SelectOption<CharacterSortKeys>>(sortOptions[0]);
 const isReversedAtom = atom(true);
 const attrFilterAtom = atom<FilterAttributes>(getInitialFilterAttributes());
 export const charactersAtom = atom<CharacterFilter[]>([]); // hydrate
@@ -29,7 +39,7 @@ const filteredCharactersAtom = atom((get) => {
   const characters = get(charactersAtom);
   const attrFilter = get(attrFilterAtom);
   const isReversed = get(isReversedAtom);
-  const sortKey = get(sortOptionAtom);
+  const sortKey = get(sortOptionAtom).value;
   const lcFilter = get(searchQueryAtom).toLowerCase(); // case insensitive
   const sortFunction = sortFunctions[sortKey];
 

@@ -25,6 +25,7 @@
     "@radix-ui/react-visually-hidden": "^1.1.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
+    "downshift": "^9.0.7",
     "genshin-db": "^5.1.7",
     "isomorphic-dompurify": "^2.14.0",
     "jotai": "^2.9.2",
