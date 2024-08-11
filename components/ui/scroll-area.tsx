@@ -6,24 +6,22 @@ import * as ScrollAreaPrimitive from "@radix-ui/react-scroll-area";
 import { cn } from "@/lib/utils";
 
 const ScrollArea = React.forwardRef<
-  React.ElementRef<typeof ScrollAreaRoot>,
-  React.ComponentPropsWithoutRef<typeof ScrollAreaRoot>
->(({ className, children, ...props }, ref) => (
-  <ScrollAreaRoot ref={ref} {...props}>
-    <ScrollAreaViewport>{children}</ScrollAreaViewport>
-  </ScrollAreaRoot>
-));
-ScrollArea.displayName = ScrollAreaPrimitive.Root.displayName;
-
-const ScrollAreaRoot = React.forwardRef<
   React.ElementRef<typeof ScrollAreaPrimitive.Root>,
   React.ComponentPropsWithoutRef<typeof ScrollAreaPrimitive.Root> & {
+    viewportClassName?: string;
     scrollbarClassName?: string;
     thumbClassName?: string;
   }
 >(
   (
-    { className, scrollbarClassName, thumbClassName, children, ...props },
+    {
+      className,
+      viewportClassName,
+      scrollbarClassName,
+      thumbClassName,
+      children,
+      ...props
+    },
     ref,
   ) => (
     <ScrollAreaPrimitive.Root
@@ -31,7 +29,11 @@ const ScrollAreaRoot = React.forwardRef<
       className={cn("relative overflow-hidden", className)}
       {...props}
     >
-      {children}
+      <ScrollAreaPrimitive.Viewport
+        className={cn("size-full rounded-[inherit]", viewportClassName)}
+      >
+        {children}
+      </ScrollAreaPrimitive.Viewport>
       <ScrollBar
         className={scrollbarClassName}
         thumbClassName={thumbClassName}
@@ -40,21 +42,7 @@ const ScrollAreaRoot = React.forwardRef<
     </ScrollAreaPrimitive.Root>
   ),
 );
-ScrollAreaRoot.displayName = "ScrollAreaRoot";
-
-const ScrollAreaViewport = React.forwardRef<
-  React.ElementRef<typeof ScrollAreaPrimitive.Viewport>,
-  React.ComponentPropsWithoutRef<typeof ScrollAreaPrimitive.Viewport>
->(({ className, children, ...props }, ref) => (
-  <ScrollAreaPrimitive.Viewport
-    ref={ref}
-    className={cn("size-full rounded-[inherit]", className)}
-    {...props}
-  >
-    {children}
-  </ScrollAreaPrimitive.Viewport>
-));
-ScrollAreaViewport.displayName = "ScrollAreaViewport";
+ScrollArea.displayName = ScrollAreaPrimitive.Root.displayName;
 
 const ScrollBar = React.forwardRef<
   React.ElementRef<typeof ScrollAreaPrimitive.ScrollAreaScrollbar>,
@@ -87,4 +75,4 @@ const ScrollBar = React.forwardRef<
 ));
 ScrollBar.displayName = ScrollAreaPrimitive.ScrollAreaScrollbar.displayName;
 
-export { ScrollAreaRoot, ScrollAreaViewport, ScrollArea, ScrollBar };
+export { ScrollArea, ScrollBar };
