@@ -17,14 +17,12 @@ import {
   useTalentOptions,
 } from "@/hooks/use-materials";
 import { Button } from "@/components/ui/button";
+import type { SelectOption } from "@/components/ui/select";
 import {
   Select,
   SelectContent,
-  SelectGroup,
-  SelectItem,
   SelectTrigger,
-  type SelectOption,
-} from "@/components/ui/select";
+} from "@/components/ui/select-downshift";
 import { Icons } from "@/components/icons";
 
 export function LevelRangeSelector() {
@@ -113,10 +111,10 @@ export function RangeTemplateSelector() {
 
 interface RangeSelectorProps {
   title: string;
-  min: number;
-  max: number;
-  setMin: React.Dispatch<React.SetStateAction<number>>;
-  setMax: React.Dispatch<React.SetStateAction<number>>;
+  min: SelectOption<number>;
+  max: SelectOption<number>;
+  setMin: React.Dispatch<React.SetStateAction<SelectOption<number>>>;
+  setMax: React.Dispatch<React.SetStateAction<SelectOption<number>>>;
   options: SelectOption<number>[];
 }
 
@@ -151,8 +149,8 @@ function RangeSelector({
 }
 
 interface CalculatorDropdownProps {
-  curValue: number;
-  setValue: React.Dispatch<React.SetStateAction<number>>;
+  curValue: SelectOption<number>;
+  setValue: React.Dispatch<React.SetStateAction<SelectOption<number>>>;
   options: SelectOption<number>[];
   className?: string;
 }
@@ -163,29 +161,48 @@ function CalculatorDropdown({
   options,
   className,
 }: CalculatorDropdownProps) {
-  const selectedOption = options[curValue]!;
-
   return (
     <Select
-      value={selectedOption.value.toString()}
-      onValueChange={(value: string) => setValue(Number(value))}
+      items={options}
+      selectedItem={curValue}
+      setSelectedItem={setValue}
+      className={className}
     >
-      <SelectTrigger size="small" className={className}>
-        {selectedOption.label}
-      </SelectTrigger>
-      <SelectContent scrollable>
-        <SelectGroup>
-          {options.map((option) => (
-            <SelectItem
-              key={option.value}
-              value={option.value.toString()}
-              size="small"
-            >
-              <span className="flex items-center">{option.label}</span>
-            </SelectItem>
-          ))}
-        </SelectGroup>
-      </SelectContent>
+      <SelectTrigger />
+      <SelectContent />
     </Select>
   );
 }
+
+// function CalculatorDropdown({
+//   curValue,
+//   setValue,
+//   options,
+//   className,
+// }: CalculatorDropdownProps) {
+//   const selectedOption = options[curValue]!;
+
+//   return (
+//     <Select
+//       value={selectedOption.value.toString()}
+//       onValueChange={(value: string) => setValue(Number(value))}
+//     >
+//       <SelectTrigger size="small" className={className}>
+//         {selectedOption.label}
+//       </SelectTrigger>
+//       <SelectContent scrollable>
+//         <SelectGroup>
+//           {options.map((option) => (
+//             <SelectItem
+//               key={option.value}
+//               value={option.value.toString()}
+//               size="small"
+//             >
+//               <span className="flex items-center">{option.label}</span>
+//             </SelectItem>
+//           ))}
+//         </SelectGroup>
+//       </SelectContent>
+//     </Select>
+//   );
+// }

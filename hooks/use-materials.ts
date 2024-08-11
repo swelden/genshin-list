@@ -13,28 +13,34 @@ export const materialNameToInfoAtom = atom<AllMaterialInfo["nameToInfo"]>({});
 export const levelOptionsAtom = atom<SelectOption<number>[]>([]);
 export const levelMatsAtom = atom<Item[][]>([]);
 
-const levelMinAtom = atom(0);
-export const levelMaxAtom = atom(13);
+const levelMinAtom = atom<SelectOption<number>>(getMinMatOption());
+export const levelMaxAtom = atom<SelectOption<number>>({
+  label: 90,
+  value: 13,
+});
 
 // TALENTS
 export const talentOptionsAtom = atom<SelectOption<number>[]>([]);
 export const talentMatsAtom = atom<Item[][]>([]);
 
-const attackMinAtom = atom(0);
-export const attackMaxAtom = atom(9);
+const attackMinAtom = atom<SelectOption<number>>(getMinMatOption());
+export const attackMaxAtom = atom<SelectOption<number>>({
+  label: 10,
+  value: 9,
+});
 
-const skillMinAtom = atom(0);
-export const skillMaxAtom = atom(9);
+const skillMinAtom = atom<SelectOption<number>>(getMinMatOption());
+export const skillMaxAtom = atom<SelectOption<number>>({ label: 10, value: 9 });
 
-const burstMinAtom = atom(0);
-export const burstMaxAtom = atom(9);
+const burstMinAtom = atom<SelectOption<number>>(getMinMatOption());
+export const burstMaxAtom = atom<SelectOption<number>>({ label: 10, value: 9 });
 
 // MATERIALS
 const characterMaterialsAtom = atom((get) =>
   calculateMaterialsRange(
     get(levelMatsAtom),
-    get(levelMinAtom),
-    get(levelMaxAtom),
+    get(levelMinAtom).value,
+    get(levelMaxAtom).value,
   ),
 );
 
@@ -42,18 +48,18 @@ const talentMaterialsAtom = atom((get) =>
   mergeMaterials(
     calculateMaterialsRange(
       get(talentMatsAtom),
-      get(attackMinAtom),
-      get(attackMaxAtom),
+      get(attackMinAtom).value,
+      get(attackMaxAtom).value,
     ),
     calculateMaterialsRange(
       get(talentMatsAtom),
-      get(skillMinAtom),
-      get(skillMaxAtom),
+      get(skillMinAtom).value,
+      get(skillMaxAtom).value,
     ),
     calculateMaterialsRange(
       get(talentMatsAtom),
-      get(burstMinAtom),
-      get(burstMaxAtom),
+      get(burstMinAtom).value,
+      get(burstMaxAtom).value,
     ),
   ),
 );
@@ -129,30 +135,45 @@ function mergeMaterials(...materials: Record<string, number>[]) {
   return merged;
 }
 
+export function getMinMatOption() {
+  return { label: 1, value: 0 };
+}
+
+function getRecommendedMatOption<T>(
+  options: SelectOption<T>[],
+  nToLast: number,
+) {
+  return options.at(-nToLast) ?? getMinMatOption();
+}
+
+function getMaxMatOption<T>(options: SelectOption<T>[]) {
+  return options.at(-1) ?? getMinMatOption();
+}
+
 // STATE TEMPLATE SETTERS
 const setNoLevelsAtom = atom(null, (_get, set) => {
-  set(levelMinAtom, 0);
-  set(levelMaxAtom, 0);
-  set(attackMinAtom, 0);
-  set(attackMaxAtom, 0);
-  set(skillMinAtom, 0);
-  set(skillMaxAtom, 0);
-  set(burstMinAtom, 0);
-  set(burstMaxAtom, 0);
+  set(levelMinAtom, getMinMatOption());
+  set(levelMaxAtom, getMinMatOption());
+  set(attackMinAtom, getMinMatOption());
+  set(attackMaxAtom, getMinMatOption());
+  set(skillMinAtom, getMinMatOption());
+  set(skillMaxAtom, getMinMatOption());
+  set(burstMinAtom, getMinMatOption());
+  set(burstMaxAtom, getMinMatOption());
 });
 
 const setRecommendedLevelsAtom = atom(null, (get, set) => {
-  set(levelMaxAtom, Math.max(get(levelOptionsAtom).length - 2, 0)); // 80+
-  set(attackMaxAtom, Math.max(get(talentOptionsAtom).length - 3, 0)); // 8
-  set(skillMaxAtom, Math.max(get(talentOptionsAtom).length - 3, 0)); // 8
-  set(burstMaxAtom, Math.max(get(talentOptionsAtom).length - 3, 0)); // 8
+  set(levelMaxAtom, getRecommendedMatOption(get(levelOptionsAtom), 1)); // 80+
+  set(attackMaxAtom, getRecommendedMatOption(get(talentOptionsAtom), 2)); // 8
+  set(skillMaxAtom, getRecommendedMatOption(get(talentOptionsAtom), 2)); // 8
+  set(burstMaxAtom, getRecommendedMatOption(get(talentOptionsAtom), 2)); // 8
 });
 
 const setMaxLevelsAtom = atom(null, (get, set) => {
-  set(levelMaxAtom, Math.max(get(levelOptionsAtom).length - 1, 0));
-  set(attackMaxAtom, Math.max(get(talentOptionsAtom).length - 1, 0));
-  set(skillMaxAtom, Math.max(get(talentOptionsAtom).length - 1, 0));
-  set(burstMaxAtom, Math.max(get(talentOptionsAtom).length - 1, 0));
+  set(levelMaxAtom, getMaxMatOption(get(levelOptionsAtom)));
+  set(attackMaxAtom, getMaxMatOption(get(talentOptionsAtom)));
+  set(skillMaxAtom, getMaxMatOption(get(talentOptionsAtom)));
+  set(burstMaxAtom, getMaxMatOption(get(talentOptionsAtom)));
 });
 
 // HOOK FUNCTIONS

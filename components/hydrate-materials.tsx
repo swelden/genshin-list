@@ -7,6 +7,7 @@ import type { AllMaterialInfo } from "@/data/types";
 import {
   attackMaxAtom,
   burstMaxAtom,
+  getMinMatOption,
   levelMatsAtom,
   levelMaxAtom,
   levelOptionsAtom,
@@ -38,12 +39,12 @@ export function HydrateMaterialAtoms({
     [materialNameToInfoAtom, materials.nameToInfo],
     [levelOptionsAtom, levelOptions],
     [levelMatsAtom, levelMats],
-    [levelMaxAtom, levelOptions.length - 1],
+    [levelMaxAtom, levelOptions.at(-1) ?? getMinMatOption()],
     [talentOptionsAtom, talentOptions],
     [talentMatsAtom, talentMats],
-    [attackMaxAtom, talentOptions.length - 1],
-    [skillMaxAtom, talentOptions.length - 1],
-    [burstMaxAtom, talentOptions.length - 1],
+    [attackMaxAtom, talentOptions.at(-1) ?? getMinMatOption()],
+    [skillMaxAtom, talentOptions.at(-1) ?? getMinMatOption()],
+    [burstMaxAtom, talentOptions.at(-1) ?? getMinMatOption()],
   ]);
   return children;
 }
