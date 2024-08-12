@@ -56,3 +56,15 @@ export type FilterKeys = keyof OmitStrict<
 >;
 export type FilterAttribute = PickValues<CharacterFilter, FilterKeys>;
 export type FilterAttributes = ReturnType<typeof getInitialFilterAttributes>;
+
+// https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img
+// https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types
+export type ImageExtension =
+  | "apng"
+  | "avif"
+  | "gif"
+  | "jpeg"
+  | "jpg"
+  | "png"
+  | "svg"
+  | "webp";

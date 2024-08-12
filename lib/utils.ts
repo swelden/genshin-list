@@ -1,6 +1,8 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 
+import type { ImageExtension } from "@/data/types";
+
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
@@ -34,9 +36,11 @@ export function formatAmbrUrl(url: string) {
 
 export function formatLocalImageUrl(
   dir: "/" | "/elements" | "/weapons",
-  imageFile: string,
+  imageFilename: string,
+  imageExtension: ImageExtension = "png",
 ) {
-  return `/images${dir}/${imageFile.toLowerCase()}.png`;
+  // make sure all images in public folder are lowercase
+  return `/images${dir}/${imageFilename.toLowerCase()}.${imageExtension}`;
 }
 
 export function formatLongNumber(value: number | bigint) {
@@ -76,11 +80,7 @@ export function pick<T extends {}, K extends keyof T>(obj: T, ...keys: K[]) {
 
 export type PickValues<T, K extends keyof T> = T[K];
 
-/**
- * Drop keys `K` from `T`, where `K` must exist in `T`.
- *
- * @see https://github.com/Microsoft/TypeScript/issues/12215#issuecomment-377567046
- */
+// https://github.com/pelotom/type-zoo/blob/master/types/index.d.ts
 export type OmitStrict<T, K extends keyof T> = T extends any
   ? Pick<T, Exclude<keyof T, K>>
   : never;
