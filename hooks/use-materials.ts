@@ -13,33 +13,21 @@ export const materialNameToInfoAtom = atom<AllMaterialInfo["nameToInfo"]>({});
 export const levelOptionsAtom = atom<SelectOption<number>[]>([]);
 export const levelMatsAtom = atom<Item[][]>([]);
 
-const levelMinAtom = atom<SelectOption<number>>(getMinMatOption());
-export const levelMaxAtom = atom<SelectOption<number>>({
-  label: "90",
-  value: 13,
-});
+export const levelMinAtom = atom<SelectOption<number>>(getMinMatOption());
+export const levelMaxAtom = atom<SelectOption<number>>(getMinMatOption());
 
 // TALENTS
 export const talentOptionsAtom = atom<SelectOption<number>[]>([]);
 export const talentMatsAtom = atom<Item[][]>([]);
 
-const attackMinAtom = atom<SelectOption<number>>(getMinMatOption());
-export const attackMaxAtom = atom<SelectOption<number>>({
-  label: "10",
-  value: 9,
-});
+export const attackMinAtom = atom<SelectOption<number>>(getMinMatOption());
+export const attackMaxAtom = atom<SelectOption<number>>(getMinMatOption());
 
-const skillMinAtom = atom<SelectOption<number>>(getMinMatOption());
-export const skillMaxAtom = atom<SelectOption<number>>({
-  label: "10",
-  value: 9,
-});
+export const skillMinAtom = atom<SelectOption<number>>(getMinMatOption());
+export const skillMaxAtom = atom<SelectOption<number>>(getMinMatOption());
 
-const burstMinAtom = atom<SelectOption<number>>(getMinMatOption());
-export const burstMaxAtom = atom<SelectOption<number>>({
-  label: "10",
-  value: 9,
-});
+export const burstMinAtom = atom<SelectOption<number>>(getMinMatOption());
+export const burstMaxAtom = atom<SelectOption<number>>(getMinMatOption());
 
 // MATERIALS
 const characterMaterialsAtom = atom((get) =>
