@@ -1,4 +1,11 @@
-import type { CharacterRarity, Element, Region, Weapon } from "@/data/types";
+import type {
+  CharacterRarity,
+  Element,
+  FilterAttribute,
+  FilterKeys,
+  Region,
+  Weapon,
+} from "@/data/types";
 
 export const ELEMENTS = [
   "Pyro",
@@ -50,7 +57,7 @@ export function getInitialFilterAttributes() {
     region: new Set<Region>(),
     rarity: new Set<CharacterRarity>(),
     // TODO: add weekdays you can get talents
-  } as const;
+  } as const satisfies Record<FilterKeys, Set<FilterAttribute>>;
 }
 
 export const LEVELS = [

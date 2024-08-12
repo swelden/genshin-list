@@ -3,6 +3,8 @@
 import * as React from "react";
 import * as CollapsiblePrimitive from "@radix-ui/react-collapsible";
 
+import type { OmitStrict } from "@/lib/utils";
+
 const Collapsible = CollapsiblePrimitive.Root;
 
 const CollapsibleTrigger = CollapsiblePrimitive.CollapsibleTrigger;
@@ -11,7 +13,7 @@ const CollapsibleContent = CollapsiblePrimitive.CollapsibleContent;
 
 const CollapsibleWithState = React.forwardRef<
   React.ElementRef<typeof Collapsible>,
-  Omit<
+  OmitStrict<
     React.ComponentPropsWithoutRef<typeof Collapsible>,
     "open" | "onOpenChange"
   >

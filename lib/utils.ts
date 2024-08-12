@@ -73,3 +73,14 @@ export function pick<T extends {}, K extends keyof T>(obj: T, ...keys: K[]) {
     keys.filter((key) => key in obj).map((key) => [key, obj[key]]),
   ) as Pick<T, K>;
 }
+
+export type PickValues<T, K extends keyof T> = T[K];
+
+/**
+ * Drop keys `K` from `T`, where `K` must exist in `T`.
+ *
+ * @see https://github.com/Microsoft/TypeScript/issues/12215#issuecomment-377567046
+ */
+export type OmitStrict<T, K extends keyof T> = T extends any
+  ? Pick<T, Exclude<keyof T, K>>
+  : never;

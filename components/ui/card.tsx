@@ -4,7 +4,7 @@ import CardBG from "@/public/images/card-bg.png";
 import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
 
-import { cn } from "@/lib/utils";
+import { cn, type OmitStrict } from "@/lib/utils";
 
 const cardVariants = cva(
   "relative overflow-hidden rounded-md bg-gradient-to-t from-card via-card shadow-md ring-1 ring-border",
@@ -47,9 +47,9 @@ const cardImageVariants = cva(
 type CardImageVariantProps = VariantProps<typeof cardImageVariants>;
 
 interface CardImageProps
-  extends Omit<ImageProps, "width" | "height" | "alt">,
+  extends OmitStrict<ImageProps, "width" | "height" | "alt">,
     Required<Pick<ImageProps, "width" | "height" | "alt">>,
-    Omit<CardImageVariantProps, "gradient">,
+    OmitStrict<CardImageVariantProps, "gradient">,
     Required<Pick<CardImageVariantProps, "gradient">> {
   imageClassName?: string;
 }
