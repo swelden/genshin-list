@@ -18,17 +18,17 @@ export const sortOptions = [
   { value: "name", label: "Name" },
 ] as const satisfies SelectOption<CharacterSortKeys>[];
 
-const sortFunctions: Record<
-  CharacterSortKeys,
-  (a: string, b: string) => number
-> = {
+const sortFunctions = {
   name: sortString,
   weapon: sortString,
   element: sortString,
   region: sortString,
   rarity: sortStringAsNumber,
   version: sortStringAsNumber,
-} as const;
+} as const satisfies Record<
+  CharacterSortKeys,
+  (a: string, b: string) => number
+>;
 
 const searchQueryAtom = atom("");
 const sortOptionAtom = atom<SelectOption<CharacterSortKeys>>(sortOptions[0]);
@@ -40,13 +40,13 @@ const filteredCharactersAtom = atom((get) => {
   const attrFilter = get(attrFilterAtom);
   const isReversed = get(isReversedAtom);
   const sortKey = get(sortOptionAtom).value;
-  const lcFilter = get(searchQueryAtom).toLowerCase(); // case insensitive
+  const nameFilter = get(searchQueryAtom).toLowerCase(); // case insensitive
   const sortFunction = sortFunctions[sortKey];
 
   return characters
     .filter(
       (character) =>
-        character.name.toLowerCase().includes(lcFilter) &&
+        character.name.toLowerCase().includes(nameFilter) &&
         Object.entries(attrFilter).every(([key, filterSet]) => {
           if (filterSet.size === 0) {
             return true;
