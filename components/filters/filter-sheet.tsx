@@ -5,6 +5,7 @@ import * as React from "react";
 import {
   CHARACTER_RARITIES,
   ELEMENTS,
+  FARMABLE_WEEKDAYS,
   REGIONS,
   WEAPONS,
 } from "@/data/constants";
@@ -86,6 +87,12 @@ export function FilterSheet({ className }: FilterSheetProps) {
               <FilterContainer
                 category="region"
                 attrData={REGIONS}
+                attrFilter={curFilter}
+                setAttrFilter={setCurFilter}
+              />
+              <FilterContainer
+                category="weekday"
+                attrData={FARMABLE_WEEKDAYS}
                 attrFilter={curFilter}
                 setAttrFilter={setCurFilter}
               />

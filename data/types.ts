@@ -11,6 +11,7 @@ import type { Item } from "@/backend/schema";
 import {
   CHARACTER_RARITIES,
   ELEMENTS,
+  FARMABLE_WEEKDAYS,
   getInitialFilterAttributes,
   ITEM_RARITIES,
   REGIONS,
@@ -25,13 +26,14 @@ export type Region = (typeof REGIONS)[number];
 export type CharacterRarity = (typeof CHARACTER_RARITIES)[number];
 export type ItemRarity = (typeof ITEM_RARITIES)[number];
 export type Weekday = (typeof WEEKDAYS)[number];
+export type FarmableWeekday = (typeof FARMABLE_WEEKDAYS)[number];
 
 export type Character = ReturnType<typeof formatCharacter>;
 
 export type CharacterFilter = ReturnType<typeof formatCharacterFilter>;
 export type CharacterSortKeys = keyof OmitStrict<
   CharacterFilter,
-  "id" | "icon"
+  "id" | "icon" | "weekday"
 >;
 
 export type Active = ReturnType<typeof formatActives>[number];

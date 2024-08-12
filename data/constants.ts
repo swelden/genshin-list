@@ -1,6 +1,7 @@
 import type {
   CharacterRarity,
   Element,
+  FarmableWeekday,
   FilterAttribute,
   FilterKeys,
   Region,
@@ -50,13 +51,19 @@ export const WEEKDAYS = [
   "Saturday",
 ] as const;
 
+export const FARMABLE_WEEKDAYS = [
+  "Mon & Thu",
+  "Tue & Fri",
+  "Wed & Sat",
+] as const;
+
 export function getInitialFilterAttributes() {
   return {
     element: new Set<Element>(),
     weapon: new Set<Weapon>(),
     region: new Set<Region>(),
     rarity: new Set<CharacterRarity>(),
-    // TODO: add weekdays you can get talents
+    weekday: new Set<FarmableWeekday>(),
   } as const satisfies Record<FilterKeys, Set<FilterAttribute>>;
 }
 

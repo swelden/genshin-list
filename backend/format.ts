@@ -1,7 +1,10 @@
 import * as z from "zod";
 
 import { formatMarkdown } from "@/backend/markdown";
-import { getCharacterWeekdays } from "@/backend/requests";
+import {
+  getCharacterFarmableWeekdays,
+  getCharacterWeekdays,
+} from "@/backend/requests";
 import type {
   CharacterDB,
   CombatAttribute,
@@ -34,6 +37,7 @@ export function formatCharacter(character: CharacterDB) {
     birthday: character.birthdaymmdd,
     constellation: character.constellation,
     weekdays: getCharacterWeekdays(character.name),
+    weekday: getCharacterFarmableWeekdays(character.name),
     va: character.cv,
     stats: formatCharStats(character.stats, character.substatText),
     gachaSplash: character.images.filename_gachaSplash,
@@ -52,6 +56,7 @@ export function formatCharacterFilter(character: Character) {
     "region",
     "rarity",
     "icon",
+    "weekday",
   );
 }
 

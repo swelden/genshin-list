@@ -20,7 +20,11 @@ import {
   LEVELS,
   LVL_TO_ASCENSION,
 } from "@/data/constants";
-import type { MaterialCount, MaterialInfo, Weekday } from "@/data/types";
+import type {
+  FarmableWeekday,
+  MaterialCount,
+  MaterialInfo,
+} from "@/data/types";
 
 export function getCharacterNames() {
   const names = api(
@@ -100,7 +104,27 @@ export function getCharacterWeekdays(name: string) {
     }
   }
 
-  return [];
+  throw new Error(`Character "${name}" is missing required daysOfWeek`);
+}
+
+export function getCharacterFarmableWeekdays(name: string): FarmableWeekday {
+  const { talentMaterialData } = getCharacterTalentMaterialInfo(name);
+
+  for (const material of Object.values(talentMaterialData)) {
+    if (material.daysofweek) {
+      const daysOfWeek = material.daysofweek;
+
+      if (daysOfWeek.includes("Monday")) {
+        return "Mon & Thu"; // Monday & Thursday
+      } else if (daysOfWeek.includes("Tuesday")) {
+        return "Tue & Fri"; // Tuesday & Friday
+      } else {
+        return "Wed & Sat"; // Wednesday & Saturday
+      }
+    }
+  }
+
+  throw new Error(`Character "${name}" is missing required daysOfWeek`);
 }
 
 export function getCharacterMaterialInfo(name: string) {
