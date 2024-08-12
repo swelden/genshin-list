@@ -70,7 +70,7 @@ const SelectTrigger = React.forwardRef<
     >
       <span
         className={cn(
-          "w-full items-center text-left",
+          "pointer-events-none items-center text-left",
           truncate
             ? "inline-block truncate"
             : "flex overflow-hidden whitespace-nowrap",
@@ -78,11 +78,10 @@ const SelectTrigger = React.forwardRef<
       >
         {children}
       </span>
-      <span aria-hidden="true">
-        <Icons.dropdown
-          className={cn("size-7", size === "small" && "size-6")}
-        />
-      </span>
+      <Icons.dropdown
+        className={cn("size-7", size === "small" && "size-6")}
+        aria-hidden
+      />
     </Button>
   );
 });
@@ -133,7 +132,7 @@ function SelectItem<TValue extends SelectValue>({
 }) {
   const { highlightedIndex, size, selectedItem, getItemProps } =
     useSelectContext();
-  const isSelected = selectedItem.value == item.value;
+  const isSelected = selectedItem.value === item.value;
 
   return (
     <li
@@ -141,7 +140,7 @@ function SelectItem<TValue extends SelectValue>({
       className={cn(
         "flex select-none outline-none",
         buttonSizeClassNames[size ?? "default"],
-        "p-0",
+        "p-0", // reset padding
       )}
       {...props}
     >
@@ -153,16 +152,15 @@ function SelectItem<TValue extends SelectValue>({
         )}
       >
         <span className="flex items-center">{item.label}</span>
-        <span aria-hidden="true">
-          <Check
-            className={cn(
-              "hidden size-6",
-              size === "small" && "size-5",
-              isSelected && "flex",
-            )}
-            strokeWidth={4}
-          />
-        </span>
+        <Check
+          className={cn(
+            "size-6",
+            size === "small" && "size-5",
+            isSelected === false && "hidden",
+          )}
+          strokeWidth={4}
+          aria-hidden
+        />
       </div>
     </li>
   );
