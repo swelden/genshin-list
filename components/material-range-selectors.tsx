@@ -166,7 +166,9 @@ function CalculatorDropdown({
       size="small"
       scrollable
     >
-      <SelectTrigger>{curValue.label}</SelectTrigger>
+      <SelectTrigger label="Select the level range">
+        {curValue.label}
+      </SelectTrigger>
     </Select>
   );
 }

@@ -19,7 +19,9 @@ export function SortDropdown({ className }: SortDropdownProps) {
       setSelectedItem={setSortOption}
       className={className}
     >
-      <SelectTrigger truncate>Sort by {sortOption.label}</SelectTrigger>
+      <SelectTrigger label="Select sorting option" truncate>
+        Sort by {sortOption.label}
+      </SelectTrigger>
     </Select>
   );
 }

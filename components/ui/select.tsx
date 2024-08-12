@@ -3,6 +3,7 @@
 import * as React from "react";
 import {
   useSelect,
+  type UseSelectGetLabelPropsReturnValue,
   type UseSelectGetMenuReturnValue,
   type UseSelectGetToggleButtonReturnValue,
   type UseSelectPropGetters,
@@ -51,38 +52,44 @@ function Select<TValue extends SelectValue>({
 const SelectTrigger = React.forwardRef<
   React.ElementRef<typeof Button>,
   React.ComponentPropsWithoutRef<typeof Button> & {
+    label: string;
     truncate?: boolean;
   }
->(({ className, truncate = false, children, ...props }, ref) => {
-  const { toggleButtonProps, isOpen, size } = useSelectContext();
+>(({ label, className, truncate = false, children, ...props }, ref) => {
+  const { isOpen, toggleButtonProps, labelProps, size } = useSelectContext();
 
   return (
-    <Button
-      ref={ref}
-      size={size}
-      className={cn(
-        "w-full justify-between truncate",
-        isOpen && "shadow-inner ring-3",
-        className,
-      )}
-      {...toggleButtonProps}
-      {...props}
-    >
-      <span
+    <>
+      <label {...labelProps} className="sr-only">
+        {label}
+      </label>
+      <Button
+        ref={ref}
+        size={size}
         className={cn(
-          "pointer-events-none items-center text-left",
-          truncate
-            ? "inline-block truncate"
-            : "flex overflow-hidden whitespace-nowrap",
+          "w-full justify-between truncate",
+          isOpen && "shadow-inner ring-3",
+          className,
         )}
+        {...toggleButtonProps}
+        {...props}
       >
-        {children}
-      </span>
-      <Icons.dropdown
-        className={cn("size-7", size === "small" && "size-6")}
-        aria-hidden
-      />
-    </Button>
+        <span
+          className={cn(
+            "pointer-events-none items-center text-left",
+            truncate
+              ? "inline-block truncate"
+              : "flex overflow-hidden whitespace-nowrap",
+          )}
+        >
+          {children}
+        </span>
+        <Icons.dropdown
+          className={cn("size-7", size === "small" && "size-6")}
+          aria-hidden
+        />
+      </Button>
+    </>
   );
 });
 SelectTrigger.displayName = "SelectTrigger";
@@ -173,6 +180,7 @@ interface SelectContextType<TValue extends SelectValue> {
   highlightedIndex: number;
   toggleButtonProps: UseSelectGetToggleButtonReturnValue;
   menuProps: UseSelectGetMenuReturnValue;
+  labelProps: UseSelectGetLabelPropsReturnValue;
   getItemProps: UseSelectPropGetters<SelectOption<TValue>>["getItemProps"];
   size?: keyof typeof buttonSizeClassNames;
 }
@@ -199,6 +207,7 @@ function SelectContextProvider<TValue extends SelectValue>({
     highlightedIndex,
     getToggleButtonProps,
     getMenuProps,
+    getLabelProps,
     getItemProps,
   } = useSelect({
     items,
@@ -216,6 +225,7 @@ function SelectContextProvider<TValue extends SelectValue>({
         highlightedIndex,
         toggleButtonProps: getToggleButtonProps(),
         menuProps: getMenuProps(),
+        labelProps: getLabelProps(),
         getItemProps,
         size,
       }}
