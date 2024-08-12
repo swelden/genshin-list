@@ -19,7 +19,7 @@ export function SortDropdown({ className }: SortDropdownProps) {
       setSelectedItem={setSortOption}
       className={className}
     >
-      <SelectTrigger>Sort by {sortOption.label}</SelectTrigger>
+      <SelectTrigger truncate>Sort by {sortOption.label}</SelectTrigger>
     </Select>
   );
 }
