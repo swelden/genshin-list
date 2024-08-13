@@ -9,6 +9,7 @@ import {
   attackMinAtom,
   burstMaxAtom,
   burstMinAtom,
+  getMaxMatOption,
   getMinMatOption,
   levelMatsAtom,
   levelMaxAtom,
@@ -39,8 +40,8 @@ export function HydrateMaterialAtoms({
   talentMats,
   children,
 }: HydrateAtomsProps) {
-  const minTalentOption = talentOptions.at(0) ?? getMinMatOption();
-  const maxTalentOption = talentOptions.at(-1) ?? getMinMatOption();
+  const minTalentOption = getMinMatOption(talentOptions);
+  const maxTalentOption = getMaxMatOption(talentOptions);
 
   useHydrateAtoms([
     [materialNameToInfoAtom, materials.nameToInfo],
@@ -49,8 +50,8 @@ export function HydrateMaterialAtoms({
     [levelOptionsAtom, levelOptions],
     [levelMatsAtom, levelMats],
 
-    [levelMinAtom, levelOptions.at(0) ?? getMinMatOption()],
-    [levelMaxAtom, levelOptions.at(-1) ?? getMinMatOption()],
+    [levelMinAtom, getMinMatOption(levelOptions)],
+    [levelMaxAtom, getMaxMatOption(levelOptions)],
 
     // TALENTS
     [talentOptionsAtom, talentOptions],

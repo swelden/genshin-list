@@ -13,21 +13,21 @@ export const materialNameToInfoAtom = atom<AllMaterialInfo["nameToInfo"]>({});
 export const levelOptionsAtom = atom<SelectOption<number>[]>([]);
 export const levelMatsAtom = atom<Item[][]>([]);
 
-export const levelMinAtom = atom<SelectOption<number>>(getMinMatOption());
-export const levelMaxAtom = atom<SelectOption<number>>(getMinMatOption());
+export const levelMinAtom = atom<SelectOption<number>>(getFallbackMatOption());
+export const levelMaxAtom = atom<SelectOption<number>>(getFallbackMatOption());
 
 // TALENTS
 export const talentOptionsAtom = atom<SelectOption<number>[]>([]);
 export const talentMatsAtom = atom<Item[][]>([]);
 
-export const attackMinAtom = atom<SelectOption<number>>(getMinMatOption());
-export const attackMaxAtom = atom<SelectOption<number>>(getMinMatOption());
+export const attackMinAtom = atom<SelectOption<number>>(getFallbackMatOption());
+export const attackMaxAtom = atom<SelectOption<number>>(getFallbackMatOption());
 
-export const skillMinAtom = atom<SelectOption<number>>(getMinMatOption());
-export const skillMaxAtom = atom<SelectOption<number>>(getMinMatOption());
+export const skillMinAtom = atom<SelectOption<number>>(getFallbackMatOption());
+export const skillMaxAtom = atom<SelectOption<number>>(getFallbackMatOption());
 
-export const burstMinAtom = atom<SelectOption<number>>(getMinMatOption());
-export const burstMaxAtom = atom<SelectOption<number>>(getMinMatOption());
+export const burstMinAtom = atom<SelectOption<number>>(getFallbackMatOption());
+export const burstMaxAtom = atom<SelectOption<number>>(getFallbackMatOption());
 
 // MATERIALS
 const characterMaterialsAtom = atom((get) =>
@@ -129,38 +129,42 @@ function mergeMaterials(...materials: Record<string, number>[]) {
   return merged;
 }
 
-export function getMinMatOption() {
+function getFallbackMatOption() {
   return { label: "1", value: 0 };
+}
+
+export function getMinMatOption(options: SelectOption<number>[]) {
+  return options.at(0) ?? getFallbackMatOption();
 }
 
 function getRecommendedMatOption(
   options: SelectOption<number>[],
   nToLast: number,
 ) {
-  return options.at(-nToLast) ?? getMinMatOption();
+  return options.at(-nToLast) ?? getFallbackMatOption();
 }
 
-function getMaxMatOption(options: SelectOption<number>[]) {
-  return options.at(-1) ?? getMinMatOption();
+export function getMaxMatOption(options: SelectOption<number>[]) {
+  return options.at(-1) ?? getFallbackMatOption();
 }
 
 // STATE TEMPLATE SETTERS
-const setNoLevelsAtom = atom(null, (_get, set) => {
-  set(levelMinAtom, getMinMatOption());
-  set(levelMaxAtom, getMinMatOption());
-  set(attackMinAtom, getMinMatOption());
-  set(attackMaxAtom, getMinMatOption());
-  set(skillMinAtom, getMinMatOption());
-  set(skillMaxAtom, getMinMatOption());
-  set(burstMinAtom, getMinMatOption());
-  set(burstMaxAtom, getMinMatOption());
+const setNoLevelsAtom = atom(null, (get, set) => {
+  set(levelMinAtom, getMinMatOption(get(levelOptionsAtom)));
+  set(levelMaxAtom, getMinMatOption(get(levelOptionsAtom)));
+  set(attackMinAtom, getMinMatOption(get(talentOptionsAtom)));
+  set(attackMaxAtom, getMinMatOption(get(talentOptionsAtom)));
+  set(skillMinAtom, getMinMatOption(get(talentOptionsAtom)));
+  set(skillMaxAtom, getMinMatOption(get(talentOptionsAtom)));
+  set(burstMinAtom, getMinMatOption(get(talentOptionsAtom)));
+  set(burstMaxAtom, getMinMatOption(get(talentOptionsAtom)));
 });
 
 const setRecommendedLevelsAtom = atom(null, (get, set) => {
-  set(levelMaxAtom, getRecommendedMatOption(get(levelOptionsAtom), 1)); // 80+
-  set(attackMaxAtom, getRecommendedMatOption(get(talentOptionsAtom), 2)); // 8
-  set(skillMaxAtom, getRecommendedMatOption(get(talentOptionsAtom), 2)); // 8
-  set(burstMaxAtom, getRecommendedMatOption(get(talentOptionsAtom), 2)); // 8
+  set(levelMaxAtom, getRecommendedMatOption(get(levelOptionsAtom), 2)); // 80+
+  set(attackMaxAtom, getRecommendedMatOption(get(talentOptionsAtom), 3)); // 8
+  set(skillMaxAtom, getRecommendedMatOption(get(talentOptionsAtom), 3)); // 8
+  set(burstMaxAtom, getRecommendedMatOption(get(talentOptionsAtom), 3)); // 8
 });
 
 const setMaxLevelsAtom = atom(null, (get, set) => {
