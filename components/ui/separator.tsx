@@ -3,6 +3,7 @@
 import * as React from "react";
 import * as SeparatorPrimitive from "@radix-ui/react-separator";
 
+import type { LocalImageFolderFiles } from "@/data/types";
 import { cn, type OmitStrict } from "@/lib/utils";
 import { IconImage } from "@/components/ui/icon-image";
 
@@ -39,7 +40,7 @@ const Separator = React.forwardRef<
       {...props}
     >
       <DecorativeEndpoint
-        src="/images/arrow-left.png"
+        src="arrow-left"
         orientation={orientation}
         invert={invert}
       />
@@ -51,7 +52,7 @@ const Separator = React.forwardRef<
         )}
       />
       <DecorativeEndpoint
-        src="/images/arrow-right.png"
+        src="arrow-right"
         orientation={orientation}
         invert={invert}
       />
@@ -65,7 +66,7 @@ function DecorativeEndpoint({
   orientation,
   invert,
 }: {
-  src: string;
+  src: LocalImageFolderFiles["/"];
   orientation: "horizontal" | "vertical";
   invert: boolean;
 }) {
@@ -75,6 +76,7 @@ function DecorativeEndpoint({
         "pointer-events-none h-[0.5625rem] w-[1.1875rem] select-none",
         orientation === "vertical" && "rotate-90",
       )}
+      folder="/"
       src={src}
       alt=""
       invert={invert}

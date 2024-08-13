@@ -1,12 +1,7 @@
 import Link from "next/link";
 
 import type { CharacterFilter } from "@/data/types";
-import {
-  formatImageUrl,
-  formatLocalImageUrl,
-  formatLongNumber,
-  formatNameUrl,
-} from "@/lib/utils";
+import { formatImageUrl, formatLongNumber, formatNameUrl } from "@/lib/utils";
 import { Card, CardImage, CardLabel } from "@/components/ui/card";
 import { IconImage } from "@/components/ui/icon-image";
 
@@ -28,7 +23,8 @@ export function CharacterCard({ character, size }: CharacterCardProps) {
         >
           <div className="absolute left-0.5 top-0.5">
             <IconImage
-              src={formatLocalImageUrl("/elements", character.element)}
+              folder="/elements"
+              src={character.element}
               alt={character.element}
               className="size-[1.875rem]"
             />

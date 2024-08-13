@@ -1,5 +1,4 @@
 import type { Active, Constellation, Passive } from "@/data/types";
-import { formatImageUrl } from "@/lib/utils";
 import { IconImage } from "@/components/ui/icon-image";
 
 interface SectionRowProps {
@@ -12,7 +11,7 @@ export function SectionRow({ talent, children }: SectionRowProps) {
     <div className="border-b pb-4 last:border-0 last:pb-0" key={talent.name}>
       <div className="flex items-center gap-2">
         <IconImage
-          src={formatImageUrl(talent.icon)}
+          src={talent.icon}
           alt={talent.name}
           className="size-12"
           invert={true}

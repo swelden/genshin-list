@@ -4,12 +4,7 @@ import Image from "next/image";
 import { getCharacterNames } from "@/backend/requests";
 import { getNamePageProps } from "@/data/retrieve";
 import type { Character, CharacterRarity } from "@/data/types";
-import {
-  formatImageUrl,
-  formatLocalImageUrl,
-  formatNameUrl,
-  unformatNameUrl,
-} from "@/lib/utils";
+import { formatImageUrl, formatNameUrl, unformatNameUrl } from "@/lib/utils";
 import { IconImage } from "@/components/ui/icon-image";
 import {
   ActiveTalentSection,
@@ -83,7 +78,8 @@ function DetailHeader({ character }: DetailHeaderProps) {
       <div className="flex flex-col gap-2 px-5 sm:px-4">
         <div className="flex w-fit items-center gap-2 rounded-lg md:bg-background/50 md:pr-3 md:backdrop-blur-md">
           <IconImage
-            src={formatLocalImageUrl("/elements", character.element)}
+            folder="/elements"
+            src={character.element}
             alt={character.element}
             className="size-[4.25rem]"
           />
@@ -129,9 +125,10 @@ function StarRating({ rarity }: StarRatingProps) {
     <div className="flex flex-nowrap gap-0.5">
       {[...Array(Number(rarity))].map((_, i) => (
         <IconImage
-          key={`star-${i}`}
-          src={formatLocalImageUrl("/", "star-rating")}
-          alt="Star rating"
+          key={i}
+          folder="/"
+          src="star-rating"
+          alt="Star"
           className="size-[1.125rem]"
         />
       ))}

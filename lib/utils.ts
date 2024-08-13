@@ -1,7 +1,7 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 
-import type { ImageExtension } from "@/data/types";
+import type { ImageExtension, LocalImageFolderFiles } from "@/data/types";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -34,13 +34,13 @@ export function formatAmbrUrl(url: string) {
   return `https://api.ambr.top/assets/UI/${url}.png`;
 }
 
-export function formatLocalImageUrl(
-  dir: "/" | "/elements" | "/weapons",
-  imageFilename: string,
+export function formatLocalImageUrl<Folder extends keyof LocalImageFolderFiles>(
+  folder: Folder,
+  imageFilename: LocalImageFolderFiles[Folder],
   imageExtension: ImageExtension = "png",
 ) {
   // make sure all images in public folder are lowercase
-  return `/images${dir}/${imageFilename.toLowerCase()}.${imageExtension}`;
+  return `/images${folder}/${imageFilename.toLowerCase()}.${imageExtension}`;
 }
 
 export function formatLongNumber(value: number | bigint) {
