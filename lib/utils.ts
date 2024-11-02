@@ -31,7 +31,7 @@ export function formatCloudinaryUrl(url: string) {
 }
 
 export function formatAmbrUrl(url: string) {
-  return `https://api.ambr.top/assets/UI/${url}.png`;
+  return `https://gi.yatta.moe/assets/UI/${url}.png`;
 }
 
 export function formatLocalImageUrl<Folder extends keyof LocalImageFolderFiles>(
