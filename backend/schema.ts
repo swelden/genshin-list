@@ -35,11 +35,19 @@ const StatResultSchema = z.object({
     ), // isPossiblePercent
 });
 
+// Using a workaround to keep function type for a Zod schema (see https://github.com/colinhacks/zod/issues/4143#issuecomment-2845134912)
+const statFunctionSchema = <T extends z.core.$ZodFunction>(schema: T) =>
+  z.custom<Parameters<T["implement"]>[0]>((fn) =>
+    schema.implement(fn as Parameters<T["implement"]>[0]),
+  );
+
 // ƒ (level: number, ascension: number | "+" | "-"): StatResult
-const StatFunctionSchema = z
-  .function()
-  .args(z.number(), z.union([z.number(), z.literal("+"), z.literal("-")]))
-  .returns(StatResultSchema);
+export const StatFunctionSchema = statFunctionSchema(
+  z.function({
+    input: [z.number(), z.union([z.number(), z.literal("+"), z.literal("-")])],
+    output: StatResultSchema,
+  }),
+);
 
 export type StatFunction = z.infer<typeof StatFunctionSchema>;
 
@@ -212,9 +220,7 @@ export const MaterialDBSchema = z.object({
 
   sources: z.string().array(),
 
-  images: z.object({
-    filename_icon: z.string(),
-  }),
+  images: z.object({ filename_icon: z.string() }),
 });
 
 export type MaterialDB = z.infer<typeof MaterialDBSchema>;
