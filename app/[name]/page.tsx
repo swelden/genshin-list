@@ -54,7 +54,7 @@ function HeroSection({ character }: HeroSectionProps) {
             height={960}
             priority={true}
           />
-          <div className="absolute bottom-0 z-0 h-24 w-full bg-gradient-to-t from-background" />
+          <div className="absolute bottom-0 z-0 h-24 w-full bg-linear-to-t from-background" />
         </div>
       </div>
       <DetailHeader character={character} />
@@ -81,7 +81,7 @@ function DetailHeader({ character }: DetailHeaderProps) {
             folder="/elements"
             src={character.element}
             alt={character.element}
-            className="size-[4.25rem]"
+            className="size-17"
           />
           <div className="flex flex-col py-5 sm:py-4">
             <h1 className="mb-1 text-3xl text-foreground md:text-2xl lg:text-3xl">
@@ -129,7 +129,7 @@ function StarRating({ rarity }: StarRatingProps) {
           folder="/"
           src="star-rating"
           alt="Star"
-          className="size-[1.125rem]"
+          className="size-4.5"
         />
       ))}
     </div>

@@ -71,8 +71,8 @@ const CircleButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
         <Button
           variant={variant}
           className={cn(
-            "peer z-[1] p-0 transition-all duration-300 group-hover:shadow-inner group-hover:ring-3 group-hover:transition-none",
-            "size-11 group-hover:size-[3.25rem]",
+            "peer z-1 p-0 transition-all duration-300 group-hover:shadow-inner group-hover:ring-3 group-hover:transition-none",
+            "size-11 group-hover:size-13",
           )}
           asChild
         >

@@ -19,7 +19,7 @@ export function MaterialList({}: MaterialListProps) {
       {calculatedMaterials.map(([material, count]) => {
         return (
           <div
-            className="w-[5.25rem] lg:w-24"
+            className="w-21 lg:w-24"
             title={material}
             key={`${material}`}
           >
@@ -34,7 +34,7 @@ export function MaterialList({}: MaterialListProps) {
         );
       })}
       {calculatedMaterials.length === 0 && (
-        <div className="min-w-max rounded bg-gradient-to-b from-[#323947] to-[#4a5366] p-4 text-white">
+        <div className="min-w-max rounded bg-linear-to-b from-[#323947] to-[#4a5366] p-4 text-white">
           No Materials
         </div>
       )}

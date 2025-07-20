@@ -30,7 +30,7 @@ export function MaterialCalculatorSection({
         <SectionHeader>Material Calculator</SectionHeader>
         <Separator className="my-4" invert />
         <SectionContent>
-          <div className="grid gap-6 lg:grid-cols-[20rem,_auto]">
+          <div className="grid gap-6 lg:grid-cols-[20rem_auto]">
             <div className="flex w-full flex-col gap-4 md:px-11 lg:px-0">
               <LevelRangeSelector />
               <AttackRangeSelector />

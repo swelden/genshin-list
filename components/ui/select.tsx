@@ -107,13 +107,13 @@ const SelectContent = React.forwardRef<
       ref={ref}
       {...menuProps}
       className={cn(
-        "!absolute z-50 flex w-full flex-col overflow-hidden rounded-3xl bg-secondary text-secondary-foreground shadow-xl ring-1 ring-black/20 focus:outline-none",
+        "absolute! z-50 flex w-full flex-col overflow-hidden rounded-3xl bg-secondary text-secondary-foreground shadow-xl ring-1 ring-black/20 focus:outline-none",
         isOpen
           ? "translate-y-0 animate-in fade-in-80 zoom-in-95 slide-in-from-top-2"
           : "hidden animate-out", // NOTE: hidden is very important
       )}
       viewportClassName={cn(
-        "p-[0.3125rem]",
+        "p-1.25",
         scrollable && "max-h-60 pr-3 sm:max-h-80",
       )}
       {...props}

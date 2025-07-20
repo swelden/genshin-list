@@ -32,7 +32,7 @@ export function FilterButton({
       key={attr}
       onClick={() => handleFilter(attr)}
       className={cn(
-        "flex h-12 flex-nowrap items-center gap-3 overflow-hidden whitespace-nowrap border-2 border-sheet-btn-border px-3 text-left text-base text-genshin-brown outline-none ring-offset-secondary transition active:!ring-0 hocus:ring-4 hocus:ring-white md:h-16 md:text-xl",
+        "flex h-12 flex-nowrap items-center gap-3 overflow-hidden whitespace-nowrap border-2 border-sheet-btn-border px-3 text-left text-base text-genshin-brown outline-none ring-offset-secondary transition active:ring-0! hocus:ring-4 hocus:ring-white md:h-16 md:text-xl",
         isChecked &&
           "border-sheet-btn-border-selected bg-genshin-brown text-genshin-blue ring-2 ring-genshin-brown",
       )}

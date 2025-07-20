@@ -49,7 +49,7 @@ export function FilterSheet({ className }: FilterSheetProps) {
         </Button>
       </SheetTrigger>
       <SheetContent
-        className="flex flex-col bg-sheet/90 bg-gradient-to-b from-sheet from-60% p-0 px-1"
+        className="flex flex-col bg-sheet/90 bg-linear-to-b from-sheet from-60% p-0 px-1"
         closeClassName="top-2 md:top-4"
         side="leftBottom"
         variant="brown"

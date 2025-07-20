@@ -36,7 +36,7 @@ export function SelectedFilters({
         className={cn(
           "relative flex h-9 max-w-3xl overflow-hidden rounded-full",
           transparent
-            ? "bg-gradient-to-l from-[#C5C1BA] from-30% to-[#C5C1BA]/90"
+            ? "bg-linear-to-l from-[#C5C1BA] from-30% to-[#C5C1BA]/90"
             : "bg-[#C5C1BA]",
           className,
         )}
@@ -81,7 +81,7 @@ function FilterIndicator({ filter }: { filter: string }) {
 function BlurEffect() {
   return (
     // make sure -left-[x] is equal to w-[x]
-    <div className="absolute -left-3 top-0 h-full w-3 bg-gradient-to-l from-[#C5C1BA]" />
+    <div className="absolute -left-3 top-0 h-full w-3 bg-linear-to-l from-[#C5C1BA]" />
   );
 }
 

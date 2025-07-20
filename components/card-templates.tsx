@@ -26,7 +26,7 @@ export function CharacterCard({ character, size }: CharacterCardProps) {
               folder="/elements"
               src={character.element}
               alt={character.element}
-              className="size-[1.875rem]"
+              className="size-7.5"
             />
           </div>
         </CardImage>

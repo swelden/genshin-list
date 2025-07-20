@@ -7,7 +7,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn, type OmitStrict } from "@/lib/utils";
 
 const cardVariants = cva(
-  "relative overflow-hidden rounded-md bg-gradient-to-t from-card via-card shadow-md ring-1 ring-border",
+  "relative overflow-hidden rounded-md bg-linear-to-t from-card via-card shadow-md ring-1 ring-border",
   {
     variants: {
       hover: {
@@ -35,10 +35,10 @@ const cardImageVariants = cva(
   {
     variants: {
       gradient: {
-        default: "bg-gradient-to-t from-[#4a5366] to-[#323947]", // item
-        purple: "bg-gradient-to-t from-[#9c75b7] to-[#5e5789]", // 4 star
-        gold: "bg-gradient-to-t from-[#b27330] to-[#945c2c]", // 5 star
-        red: "bg-gradient-to-t from-[#b4455a] to-[#9b3c56]", // collab
+        default: "bg-linear-to-t from-[#4a5366] to-[#323947]", // item
+        purple: "bg-linear-to-t from-[#9c75b7] to-[#5e5789]", // 4 star
+        gold: "bg-linear-to-t from-[#b27330] to-[#945c2c]", // 5 star
+        red: "bg-linear-to-t from-[#b4455a] to-[#9b3c56]", // collab
       },
     },
   },

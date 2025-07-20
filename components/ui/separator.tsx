@@ -73,7 +73,7 @@ function DecorativeEndpoint({
   return (
     <IconImage
       className={cn(
-        "pointer-events-none h-[0.5625rem] w-[1.1875rem] select-none",
+        "pointer-events-none h-2.25 w-4.75 select-none",
         orientation === "vertical" && "rotate-90",
       )}
       folder="/"
