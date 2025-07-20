@@ -15,7 +15,13 @@ import {
   PassiveTalentSection,
 } from "@/components/sections";
 
-export default function CharacterPage({ params: { name } }: PageProps) {
+export default async function CharacterPage(props: PageProps) {
+  const params = await props.params;
+
+  const {
+    name
+  } = params;
+
   const { character, talents, constellations } = getNamePageProps(
     unformatNameUrl(name),
   );
@@ -138,12 +144,15 @@ function StarRating({ rarity }: StarRatingProps) {
 
 // GENERATE PAGE DATA
 
-type PageProps = { params: { name: string } };
+type PageProps = { params: Promise<{ name: string }> };
 
-export async function generateMetadata(
-  { params: { name } }: PageProps,
-  parent: ResolvingMetadata,
-): Promise<Metadata> {
+export async function generateMetadata(props: PageProps, parent: ResolvingMetadata): Promise<Metadata> {
+  const params = await props.params;
+
+  const {
+    name
+  } = params;
+
   const { character } = getNamePageProps(name.replace(/-/g, " "));
   // optionally access and extend (rather than replace) parent metadata
   const previousImages = (await parent).openGraph?.images || [];

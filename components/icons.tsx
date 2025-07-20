@@ -1,5 +1,7 @@
 import { cn } from "@/lib/utils";
 
+import type { JSX } from "react";
+
 type IconProps = React.HTMLAttributes<SVGElement>;
 
 export const Icons = {
