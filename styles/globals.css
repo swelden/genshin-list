@@ -149,7 +149,7 @@ html.dark {
   --cursor-genshin: url(/images/genshin-cursor.png), auto;
 
   --color-genshin-brown: var(--genshin-brown);
-  --color-genshin-blue: var;
+  --color-genshin-blue: var(--genshin-blue);
 
   --color-icon-green: var(--icon-green);
   --color-icon-red: var(--icon-red);
