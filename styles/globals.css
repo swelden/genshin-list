@@ -1,5 +1,6 @@
 @import "tailwindcss";
-@plugin 'tailwindcss-animate';
+@import "tw-animate-css";
+
 @custom-variant hocus (&:is(:hover, :focus-visible));
 
 :root {
