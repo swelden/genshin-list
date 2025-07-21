@@ -11,13 +11,13 @@ const CollapsibleTrigger = CollapsiblePrimitive.CollapsibleTrigger;
 
 const CollapsibleContent = CollapsiblePrimitive.CollapsibleContent;
 
-const CollapsibleWithState = React.forwardRef<
-  React.ElementRef<typeof Collapsible>,
-  OmitStrict<
-    React.ComponentPropsWithoutRef<typeof Collapsible>,
-    "open" | "onOpenChange"
-  >
->(({ className, ...props }, ref) => {
+function CollapsibleWithState({
+  className,
+  ...props
+}: OmitStrict<
+  React.ComponentProps<typeof Collapsible>,
+  "open" | "onOpenChange"
+>) {
   const [open, setOpen] = React.useState(false);
 
   return (
@@ -25,12 +25,10 @@ const CollapsibleWithState = React.forwardRef<
       open={open}
       onOpenChange={setOpen}
       className={className}
-      ref={ref}
       {...props}
     />
   );
-});
-CollapsibleWithState.displayName = "CollapsibleWithState";
+}
 
 export {
   Collapsible,

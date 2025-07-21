@@ -30,7 +30,7 @@ function Select<TValue extends SelectValue>({
   className,
   children,
   ...props
-}: React.ComponentPropsWithoutRef<typeof SelectContextProvider<TValue>> & {
+}: React.ComponentProps<typeof SelectContextProvider<TValue>> & {
   className?: string;
   scrollable?: boolean;
 }) {
@@ -49,13 +49,16 @@ function Select<TValue extends SelectValue>({
   );
 }
 
-const SelectTrigger = React.forwardRef<
-  React.ElementRef<typeof Button>,
-  React.ComponentPropsWithoutRef<typeof Button> & {
-    label: string;
-    truncate?: boolean;
-  }
->(({ label, className, truncate = false, children, ...props }, ref) => {
+function SelectTrigger({
+  label,
+  className,
+  truncate = false,
+  children,
+  ...props
+}: React.ComponentProps<typeof Button> & {
+  label: string;
+  truncate?: boolean;
+}) {
   const { isOpen, toggleButtonProps, labelProps, size } = useSelectContext();
 
   return (
@@ -64,7 +67,6 @@ const SelectTrigger = React.forwardRef<
         {label}
       </label>
       <Button
-        ref={ref}
         size={size}
         className={cn(
           "w-full justify-between truncate",
@@ -91,20 +93,18 @@ const SelectTrigger = React.forwardRef<
       </Button>
     </>
   );
-});
-SelectTrigger.displayName = "SelectTrigger";
+}
 
-const SelectContent = React.forwardRef<
-  React.ElementRef<typeof ScrollArea>,
-  React.ComponentPropsWithoutRef<typeof ScrollArea> & {
-    scrollable?: boolean;
-  }
->(({ scrollable = false, ...props }, ref) => {
+function SelectContent({
+  scrollable = false,
+  ...props
+}: React.ComponentProps<typeof ScrollArea> & {
+  scrollable?: boolean;
+}) {
   const { items, isOpen, menuProps } = useSelectContext();
 
   return (
     <ScrollArea
-      ref={ref}
       {...menuProps}
       className={cn(
         "bg-secondary text-secondary-foreground absolute! z-50 flex w-full flex-col overflow-hidden rounded-3xl shadow-xl ring-1 ring-black/20 focus:outline-none",
@@ -124,14 +124,13 @@ const SelectContent = React.forwardRef<
         ))}
     </ScrollArea>
   );
-});
-SelectContent.displayName = "SelectContent";
+}
 
 function SelectItem<TValue extends SelectValue>({
   item,
   index,
   ...props
-}: React.ComponentPropsWithoutRef<"div"> & {
+}: React.ComponentProps<"div"> & {
   item: SelectOption<TValue>;
   index: number;
 }) {

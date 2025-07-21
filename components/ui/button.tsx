@@ -42,68 +42,72 @@ export interface ButtonProps
   asChild?: boolean;
 }
 
-const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, asChild = false, ...props }, ref) => {
-    const Comp = asChild ? Slot : "button";
-    return (
-      <Comp
-        className={cn(buttonVariants({ variant, size, className }))}
-        ref={ref}
-        {...props}
-      />
-    );
-  },
-);
-Button.displayName = "Button";
+function Button({
+  className,
+  variant,
+  size,
+  asChild = false,
+  ...props
+}: ButtonProps) {
+  const Comp = asChild ? Slot : "button";
+  return (
+    <Comp
+      className={cn(buttonVariants({ variant, size, className }))}
+      {...props}
+    />
+  );
+}
 
-const CircleButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, children, ...props }, ref) => {
-    return (
-      <button
+function CircleButton({
+  className,
+  variant,
+  children,
+  ...props
+}: React.ComponentProps<typeof Button>) {
+  return (
+    <button
+      className={cn(
+        "group relative flex cursor-pointer items-center justify-center rounded-full",
+        "size-14",
+        className,
+      )}
+      {...props}
+    >
+      <Button
+        variant={variant}
         className={cn(
-          "group relative flex cursor-pointer items-center justify-center rounded-full",
-          "size-14",
-          className,
+          "peer z-1 p-0 transition-all duration-300 group-hover:shadow-inner group-hover:ring-3 group-hover:transition-none",
+          "size-11 group-hover:size-13",
         )}
-        ref={ref}
-        {...props}
+        asChild
       >
-        <Button
-          variant={variant}
-          className={cn(
-            "peer z-1 p-0 transition-all duration-300 group-hover:shadow-inner group-hover:ring-3 group-hover:transition-none",
-            "size-11 group-hover:size-13",
-          )}
-          asChild
-        >
-          <div>{children}</div>
-        </Button>
-        <div
-          className={cn(
-            "bg-primary-outline absolute top-1/2 left-1/2 z-0 flex -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full transition-all duration-300",
-            "size-14 group-hover:size-12",
-            variant === "brown" && "bg-btn-brown-outline",
-            variant === "blue" && "bg-btn-blue-outline",
-          )}
-        ></div>
-      </button>
-    );
-  },
-);
-CircleButton.displayName = "CircleButton";
+        <div>{children}</div>
+      </Button>
+      <div
+        className={cn(
+          "bg-primary-outline absolute top-1/2 left-1/2 z-0 flex -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full transition-all duration-300",
+          "size-14 group-hover:size-12",
+          variant === "brown" && "bg-btn-brown-outline",
+          variant === "blue" && "bg-btn-blue-outline",
+        )}
+      ></div>
+    </button>
+  );
+}
 
-const LinkButton = React.forwardRef<
-  React.ElementRef<typeof Link>,
-  React.ComponentPropsWithoutRef<typeof Link>
->(({ className, href, ...props }, ref) => (
-  <Link
-    ref={ref}
-    href={href}
-    className={cn(buttonVariants({ variant: "default" }), className)}
-    {...props}
-  />
-));
-LinkButton.displayName = "LinkButton";
+function LinkButton({
+  className,
+  href,
+  ...props
+}: React.ComponentProps<typeof Link>) {
+  return (
+    <Link
+      href={href}
+      className={cn(buttonVariants({ variant: "default" }), className)}
+      {...props}
+    />
+  );
+}
 
 export {
   Button,

@@ -7,29 +7,22 @@ import type { LocalImageFolderFiles } from "@/data/types";
 import { cn, type OmitStrict } from "@/lib/utils";
 import { IconImage } from "@/components/ui/icon-image";
 
-const Separator = React.forwardRef<
-  React.ElementRef<typeof SeparatorPrimitive.Root>,
-  OmitStrict<
-    React.ComponentPropsWithoutRef<typeof SeparatorPrimitive.Root>,
-    "children"
-  > & {
-    invert?: boolean;
-    lineClassName?: string;
-  }
->(
-  (
-    {
-      className,
-      lineClassName,
-      orientation = "horizontal",
-      decorative = true,
-      invert = false,
-      ...props
-    },
-    ref,
-  ) => (
+function Separator({
+  className,
+  lineClassName,
+  orientation = "horizontal",
+  decorative = true,
+  invert = false,
+  ...props
+}: OmitStrict<
+  React.ComponentProps<typeof SeparatorPrimitive.Root>,
+  "children"
+> & {
+  invert?: boolean;
+  lineClassName?: string;
+}) {
+  return (
     <SeparatorPrimitive.Root
-      ref={ref}
       decorative={decorative}
       orientation={orientation}
       className={cn(
@@ -57,9 +50,8 @@ const Separator = React.forwardRef<
         invert={invert}
       />
     </SeparatorPrimitive.Root>
-  ),
-);
-Separator.displayName = SeparatorPrimitive.Root.displayName;
+  );
+}
 
 function DecorativeEndpoint({
   src,
