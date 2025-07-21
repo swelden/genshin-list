@@ -51,6 +51,10 @@ export const StatFunctionSchema = statFunctionSchema(
 
 export type StatFunction = z.infer<typeof StatFunctionSchema>;
 
+export const FormatSchema = z.enum(["I", "F1", "F2", "F1P", "F2P", "P"]);
+
+export type Format = z.infer<typeof FormatSchema>;
+
 export const CharacterDBSchema = z.object({
   id: z.number(),
   name: z.string(),

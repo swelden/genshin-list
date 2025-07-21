@@ -5,13 +5,15 @@ import {
   getCharacterFarmableWeekdays,
   getCharacterWeekdays,
 } from "@/backend/requests";
-import type {
-  CharacterDB,
-  CombatAttribute,
-  ConstellationDB,
-  MaterialDB,
-  StatFunction,
-  TalentDB,
+import {
+  FormatSchema,
+  type CharacterDB,
+  type CombatAttribute,
+  type ConstellationDB,
+  type Format,
+  type MaterialDB,
+  type StatFunction,
+  type TalentDB,
 } from "@/backend/schema";
 import { LEVELS } from "@/data/constants";
 import type { ActiveCategory, Character } from "@/data/types";
@@ -175,18 +177,20 @@ function formatCharStats(statsFunc: StatFunction, substat: string) {
   );
 
   const labelsKeyMap = [
-    { label: "Base HP", key: "hp" },
-    { label: "Base ATK", key: "attack" },
-    { label: "Base DEF", key: "defense" },
-    { label: substat, key: "specialized" },
+    { label: "Base HP", key: "hp", format: "I", precision: 0 },
+    { label: "Base ATK", key: "attack", format: "I", precision: 0 },
+    { label: "Base DEF", key: "defense", format: "I", precision: 0 },
+    { label: substat, key: "specialized", format: "P", precision: 1 },
   ] as const;
 
   return {
     headings: headings,
-    data: labelsKeyMap.map(({ label, key }) => {
+    data: labelsKeyMap.map(({ label, key, format, precision }) => {
       return {
         label: label,
-        params: statResults.map((result) => result[key]),
+        params: statResults.map((result) =>
+          formatValue(result[key], format, precision),
+        ),
       };
     }),
   };
@@ -234,33 +238,39 @@ function formatTalentParams(
     (_match, ...args) => {
       const { paramNum, format } = args.at(-1) as {
         paramNum: string; // `param${number}`
-        format: string; // "I" | "F1" | "F2" | "F1P" | "F2P" | "P"
+        format: Format; // "I" | "F1" | "F2" | "F1P" | "F2P" | "P"
       };
+
+      const safeFormat = FormatSchema.parse(format);
 
       if (paramNum in parameters) {
         const paramValues = parameters[paramNum]!; // zod ensures there is an associated number[]
         const value = z.number().parse(paramValues[talentlevel]);
 
         // FormatSchema ensures 1st index is a number if it includes an F
-        const precision = format.startsWith("F") ? parseInt(format[1]!) : 0;
+        const precision = safeFormat.startsWith("F") ? parseInt(format[1]!) : 0;
 
-        if (format === "I") {
-          // integer
-          return Math.round(value).toString();
-        } else if (format.endsWith("P")) {
-          // percent
-          return `${myRound(value * 100, precision)}%`;
-        } else if (format.startsWith("F")) {
-          // float
-          return myRound(value, precision).toString();
-        } else {
-          return value.toString();
-        }
+        return formatValue(value, safeFormat, precision);
       } else {
         throw new Error(`genshindb includes invalid paramNum: ${paramNum}`);
       }
     },
   );
+}
+
+function formatValue(value: number, format: Format, precision: number) {
+  if (format === "I") {
+    // integer
+    return Math.round(value).toString();
+  } else if (format.endsWith("P")) {
+    // percent
+    return `${myRound(value * 100, precision)}%`;
+  } else if (format.startsWith("F")) {
+    // float
+    return myRound(value, precision).toString();
+  } else {
+    return value.toString();
+  }
 }
 
 export function formatMaterial(material: MaterialDB) {
