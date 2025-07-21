@@ -211,8 +211,11 @@ function SelectContextProvider<TValue extends SelectValue>({
   } = useSelect({
     items,
     selectedItem,
-    onSelectedItemChange: ({ selectedItem: newSelectedItem }) =>
-      setSelectedItem(newSelectedItem),
+    onSelectedItemChange: ({ selectedItem: newSelectedItem }) => {
+      if (newSelectedItem) {
+        setSelectedItem(newSelectedItem);
+      }
+    },
   });
 
   return (
