@@ -1,154 +1,260 @@
 @import "tailwindcss";
+@plugin 'tailwindcss-animate';
+@custom-variant hocus (&:is(:hover, :focus-visible));
 
-@layer base {
-  :root {
-    --genshin-brown: 39 34% 89%;
-    --genshin-blue: 221 16% 35%;
+:root {
+  --genshin-brown: hsl(39 34% 89%);
+  --genshin-blue: hsl(221 16% 35%);
 
-    --icon-green: 87 77% 48%;
-    --icon-red: 0 99% 68%;
+  --icon-green: hsl(87 77% 48%);
+  --icon-red: hsl(0 99% 68%);
 
-    --ring: 240 5.9% 10%;
+  --ring: hsl(240 5.9% 10%);
 
-    --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
+  --background: hsl(0 0% 100%);
+  --foreground: hsl(240 10% 3.9%);
 
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
+  --muted: hsl(240 4.8% 95.9%);
+  --muted-foreground: hsl(240 3.8% 46.1%);
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
+  --popover: hsl(0 0% 100%);
+  --popover-foreground: hsl(240 10% 3.9%);
 
-    --section: 0 0% 100%;
-    --section-foreground: 240 10% 3.9%;
+  --section: hsl(0 0% 100%);
+  --section-foreground: hsl(240 10% 3.9%);
 
-    --card: var(--genshin-brown);
-    --card-foreground: var(--genshin-blue);
+  --card: var(--genshin-brown);
+  --card-foreground: var(--genshin-blue);
 
-    --sheet: 212 25% 20%;
-    --sheet-border: 210 17% 24%;
-    --sheet-btn-border: 212 11% 30%;
-    --sheet-btn-border-selected: 39 15% 78%;
+  --sheet: hsl(212 25% 20%);
+  --sheet-border: hsl(210 17% 24%);
+  --sheet-btn-border: hsl(212 11% 30%);
+  --sheet-btn-border-selected: hsl(39 15% 78%);
 
-    --border: 240 5.9% 90%;
+  --border: hsl(240 5.9% 90%);
 
-    --btn-brown: var(--genshin-brown);
-    --btn-brown-foreground: var(--genshin-blue);
-    --btn-brown-outline: 242 12% 56%;
-    --btn-brown-hover: 41 26% 81%;
-    --btn-brown-ring: 0 0% 100%;
-    --btn-brown-active: 37 19% 63%;
-    --btn-brown-active-foreground: 0 0% 100%;
-    --btn-brown-active-ring: var(--btn-brown-active); /* transparent */
+  --btn-brown: var(--genshin-brown);
+  --btn-brown-foreground: var(--genshin-blue);
+  --btn-brown-outline: hsl(242 12% 56%);
+  --btn-brown-hover: hsl(41 26% 81%);
+  --btn-brown-ring: hsl(0 0% 100%);
+  --btn-brown-active: hsl(37 19% 63%);
+  --btn-brown-active-foreground: hsl(0 0% 100%);
+  --btn-brown-active-ring: var(--btn-brown-active); /* transparent */
 
-    --btn-blue: var(--genshin-blue);
-    --btn-blue-foreground: var(--genshin-brown);
-    --btn-blue-outline: 242 12% 56%;
-    --btn-blue-hover: 218 12% 43%;
-    --btn-blue-ring: 41 100% 85%;
-    --btn-blue-active: 38 100% 90%;
-    --btn-blue-active-foreground: 35 16% 56%;
-    --btn-blue-active-ring: 43 4% 69%;
+  --btn-blue: var(--genshin-blue);
+  --btn-blue-foreground: var(--genshin-brown);
+  --btn-blue-outline: hsl(242 12% 56%);
+  --btn-blue-hover: hsl(218 12% 43%);
+  --btn-blue-ring: hsl(41 100% 85%);
+  --btn-blue-active: hsl(38 100% 90%);
+  --btn-blue-active-foreground: hsl(35 16% 56%);
+  --btn-blue-active-ring: hsl(43 4% 69%);
 
-    --btn-dark: 0 0% 20%;
-    --btn-dark-foreground: 0 0% 100%;
-    --btn-dark-hover: 0 0% 25%;
-    --btn-dark-active: 46 100% 79%;
-    --btn-dark-active-foreground: 45 58% 35%;
+  --btn-dark: hsl(0 0% 20%);
+  --btn-dark-foreground: hsl(0 0% 100%);
+  --btn-dark-hover: hsl(0 0% 25%);
+  --btn-dark-active: hsl(46 100% 79%);
+  --btn-dark-active-foreground: hsl(45 58% 35%);
 
-    --primary: var(--btn-blue);
-    --primary-foreground: var(--btn-blue-foreground);
-    --primary-foreground-active: var(--btn-blue-active-foreground);
-    --primary-active: var(--btn-blue-active);
-    --primary-outline: var(--btn-blue-outline);
-    --primary-hover: var(--btn-blue-hover);
-    --primary-ring: var(--btn-blue-ring);
-    --primary-ring-active: var(--btn-blue-active-ring);
+  --primary: var(--btn-blue);
+  --primary-foreground: var(--btn-blue-foreground);
+  --primary-foreground-active: var(--btn-blue-active-foreground);
+  --primary-active: var(--btn-blue-active);
+  --primary-outline: var(--btn-blue-outline);
+  --primary-hover: var(--btn-blue-hover);
+  --primary-ring: var(--btn-blue-ring);
+  --primary-ring-active: var(--btn-blue-active-ring);
 
-    --secondary: var(--btn-brown);
-    --secondary-foreground: var(--btn-brown-foreground);
-    --secondary-foreground-active: var(--btn-brown-active-foreground);
-    --secondary-active: var(--btn-brown-active);
-    --secondary-outline: var(--btn-brown-outline);
-    --secondary-hover: var(--btn-brown-hover);
-    --secondary-ring: var(--btn-brown-ring);
-    --secondary-ring-active: var(--btn-brown-active-ring);
+  --secondary: var(--btn-brown);
+  --secondary-foreground: var(--btn-brown-foreground);
+  --secondary-foreground-active: var(--btn-brown-active-foreground);
+  --secondary-active: var(--btn-brown-active);
+  --secondary-outline: var(--btn-brown-outline);
+  --secondary-hover: var(--btn-brown-hover);
+  --secondary-ring: var(--btn-brown-ring);
+  --secondary-ring-active: var(--btn-brown-active-ring);
 
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.9% 10%;
+  --accent: hsl(240 4.8% 95.9%);
+  --accent-foreground: hsl(240 5.9% 10%);
 
-    --radius: 0.5rem;
+  --radius: 0.5rem;
 
-    /* colors */
-    --gold: 35 66.5% 48%;
-    --pyro: 0 100% 68%;
-    --hydro: 210 100% 62%;
-    --dendro: 111 52% 57%;
-    --electro: 300 68.7% 64.9%;
-    --anemo: 158 52% 60%;
-    --cryo: 180 52.7% 56.9%;
-    --geo: 35 69.7% 54.7%;
-  }
+  /* colors */
+  --gold: hsl(35 66.5% 48%);
+  --pyro: hsl(0 100% 68%);
+  --hydro: hsl(210 100% 62%);
+  --dendro: hsl(111 52% 57%);
+  --electro: hsl(300 68.7% 64.9%);
+  --anemo: hsl(158 52% 60%);
+  --cryo: hsl(180 52.7% 56.9%);
+  --geo: hsl(35 69.7% 54.7%);
+}
 
-  html.dark {
-    --ring: 240 4.9% 83.9%;
+html.dark {
+  --ring: hsl(240 4.9% 83.9%);
 
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
+  --background: hsl(240 10% 3.9%);
+  --foreground: hsl(0 0% 98%);
 
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
+  --muted: hsl(240 3.7% 15.9%);
+  --muted-foreground: hsl(240 5% 64.9%);
 
-    --popover: 240 10% 3.9%;
-    --popover-foreground: 0 0% 98%;
+  --popover: hsl(240 10% 3.9%);
+  --popover-foreground: hsl(0 0% 98%);
 
-    --section: 24 9.8% 10%;
-    --section-foreground: 0 0% 95%;
+  --section: hsl(24 9.8% 10%);
+  --section-foreground: hsl(0 0% 95%);
 
-    --card: var(--genshin-brown);
-    --card-foreground: var(--genshin-blue);
+  --card: var(--genshin-brown);
+  --card-foreground: var(--genshin-blue);
 
-    --border: 240 3.7% 15.9%;
+  --border: hsl(240 3.7% 15.9%);
 
-    --primary: var(--btn-brown);
-    --primary-foreground: var(--btn-brown-foreground);
-    --primary-foreground-active: var(--btn-brown-active-foreground);
-    --primary-active: var(--btn-brown-active);
-    --primary-outline: var(--btn-brown-outline);
-    --primary-hover: var(--btn-brown-hover);
-    --primary-ring: var(--btn-brown-ring);
-    --primary-ring-active: var(--btn-brown-active-ring);
+  --primary: var(--btn-brown);
+  --primary-foreground: var(--btn-brown-foreground);
+  --primary-foreground-active: var(--btn-brown-active-foreground);
+  --primary-active: var(--btn-brown-active);
+  --primary-outline: var(--btn-brown-outline);
+  --primary-hover: var(--btn-brown-hover);
+  --primary-ring: var(--btn-brown-ring);
+  --primary-ring-active: var(--btn-brown-active-ring);
 
-    --secondary: var(--btn-blue);
-    --secondary-foreground: var(--btn-blue-foreground);
-    --secondary-foreground-active: var(--btn-blue-active-foreground);
-    --secondary-active: var(--btn-blue-active);
-    --secondary-outline: var(--btn-blue-outline);
-    --secondary-hover: var(--btn-blue-hover);
-    --secondary-ring: var(--btn-blue-ring);
-    --secondary-ring-active: var(--btn-blue-active-ring);
+  --secondary: var(--btn-blue);
+  --secondary-foreground: var(--btn-blue-foreground);
+  --secondary-foreground-active: var(--btn-blue-active-foreground);
+  --secondary-active: var(--btn-blue-active);
+  --secondary-outline: var(--btn-blue-outline);
+  --secondary-hover: var(--btn-blue-hover);
+  --secondary-ring: var(--btn-blue-ring);
+  --secondary-ring-active: var(--btn-blue-active-ring);
 
-    --accent: 240 3.7% 15.9%;
-    --accent-foreground: 0 0% 98%;
+  --accent: hsl(240 3.7% 15.9%);
+  --accent-foreground: hsl(0 0% 98%);
 
-    /* colors */
-    --gold: 41 100% 75.1%;
-    --pyro: 0 100% 80%;
-    --hydro: 210 100% 75.1%;
-    --dendro: 111 100% 76.7%;
-    --electro: 300 100% 83.7%;
-    --anemo: 161 100% 75.1%;
-    --cryo: 180 100% 80%;
-    --geo: 45 100% 80%;
-  }
+  /* colors */
+  --gold: hsl(41 100% 75.1%);
+  --pyro: hsl(0 100% 80%);
+  --hydro: hsl(210 100% 75.1%);
+  --dendro: hsl(111 100% 76.7%);
+  --electro: hsl(300 100% 83.7%);
+  --anemo: hsl(161 100% 75.1%);
+  --cryo: hsl(180 100% 80%);
+  --geo: hsl(45 100% 80%);
+}
+
+@theme inline {
+  --font-family-genshin: var(--font-genshin);
+  --cursor-genshin: url(/images/genshin-cursor.png), auto;
+
+  --color-genshin-brown: var(--genshin-brown);
+  --color-genshin-blue: var;
+
+  --color-icon-green: var(--icon-green);
+  --color-icon-red: var(--icon-red);
+
+  --color-ring: var(--ring);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+
+  --color-section: var(--section);
+  --color-section-foreground: var(--section-foreground);
+
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+
+  --color-sheet: var(--sheet);
+  --color-sheet-border: var(--sheet-border);
+  --color-sheet-btn-border: var(--sheet-btn-border);
+  --color-sheet-btn-border-selected: var(--sheet-btn-border-selected);
+
+  --color-border: var(--border);
+
+  --color-btn-brown: var(--btn-brown);
+  --color-btn-brown-foreground: var(--btn-brown-foreground);
+  --color-btn-brown-outline: var(--btn-brown-outline);
+  --color-btn-brown-hover: var(--btn-brown-hover);
+  --color-btn-brown-ring: var(--btn-brown-ring);
+  --color-btn-brown-active: var(--btn-brown-active);
+  --color-btn-brown-active-foreground: var(--btn-brown-active-foreground);
+  --color-btn-brown-active-ring: var(--btn-brown-active-ring); /* transparent */
+
+  --color-btn-blue: var(--btn-blue);
+  --color-btn-blue-foreground: var(--btn-blue-foreground);
+  --color-btn-blue-outline: var(--btn-blue-outline);
+  --color-btn-blue-hover: var(--btn-blue-hover);
+  --color-btn-blue-ring: var(--btn-blue-ring);
+  --color-btn-blue-active: var(--btn-blue-active);
+  --color-btn-blue-active-foreground: var(--btn-blue-active-foreground);
+  --color-btn-blue-active-ring: var(--btn-blue-active-ring);
+
+  --color-btn-dark: var(--btn-dark);
+  --color-btn-dark-foreground: var(--btn-dark-foreground);
+  --color-btn-dark-hover: var(--btn-dark-hover);
+  --color-btn-dark-active: var(--btn-dark-active);
+  --color-btn-dark-active-foreground: var(--btn-dark-active-foreground);
+
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-foreground-active: var(--primary-foreground-active);
+  --color-primary-active: var(--primary-active);
+  --color-primary-outline: var(--primary-outline);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-ring: var(--primary-ring);
+  --color-primary-ring-active: var(--primary-ring-active);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary-foreground-active: var(--secondary-foreground-active);
+  --color-secondary-active: var(--secondary-active);
+  --color-secondary-outline: var(--secondary-outline);
+  --color-secondary-hover: var(--secondary-hover);
+  --color-secondary-ring: var(--secondary-ring);
+  --color-secondary-ring-active: var(--secondary-ring-active);
+
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  /* colors */
+  --color-gold: var(--gold);
+  --color-pyro: var(--pyro);
+  --color-hydro: var(--hydro);
+  --color-dendro: var(--dendro);
+  --color-electro: var(--electro);
+  --color-anemo: var(--anemo);
+  --color-cryo: var(--cryo);
+  --color-geo: var(--geo);
+
+  --ring-width-3: 3px;
+  --ring-offset-width-3: 3px;
+
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+}
+
+@utility container {
+  margin-inline: auto;
+  padding-inline: 2rem;
 }
 
 @layer base {
-  * {
-    @apply border-border;
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--border, currentColor);
   }
   body {
-    @apply cursor-genshin bg-background text-foreground;
+    @apply bg-background text-foreground cursor-[var(--cursor-genshin)];
   }
 }
 
