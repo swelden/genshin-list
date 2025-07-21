@@ -175,20 +175,28 @@ export const TalentDBSchema = z
     }),
   })
   // check and error if talent exists but associated image does not
-  .superRefine((val, ctx) => {
-    if (val.combatsp && val.images.filename_combatsp === undefined) {
-      ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+  .check((ctx) => {
+    if (
+      ctx.value.combatsp &&
+      ctx.value.images.filename_combatsp === undefined
+    ) {
+      ctx.issues.push({
+        code: "custom",
         message: "combatsp is missing required images.filename_combatsp",
         path: ["images", "filename_combatsp"],
+        input: ctx.value,
       });
     }
 
-    if (val.passive4 && val.images.filename_passive4 === undefined) {
-      ctx.addIssue({
-        code: z.ZodIssueCode.custom,
+    if (
+      ctx.value.passive4 &&
+      ctx.value.images.filename_passive4 === undefined
+    ) {
+      ctx.issues.push({
+        code: "custom",
         message: "passive4 is missing required images.filename_passive4",
         path: ["images", "filename_passive4"],
+        input: ctx.value,
       });
     }
   });
