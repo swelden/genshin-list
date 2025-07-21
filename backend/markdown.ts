@@ -1,4 +1,4 @@
-import { sanitize } from "isomorphic-dompurify";
+import DOMPurify from "isomorphic-dompurify";
 
 const hexColorToTailwind: Record<string, string> = {
   "#FFD780FF": "text-gold",
@@ -12,7 +12,7 @@ const hexColorToTailwind: Record<string, string> = {
 };
 
 export function formatMarkdown(text: string) {
-  return sanitize(
+  return DOMPurify.sanitize(
     text
       .replace(
         // <color=#FFD780FF>content</color> => <span class="text-gold">content</span>
