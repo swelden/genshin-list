@@ -42,6 +42,7 @@ export function formatMarkdown(text: string) {
       // {LAYOUT_DEVICE#Action} => Action
       .replace(/\{LAYOUT_(?!PC)[^}]*\}/g, "") // remove all layouts except PC
       .replace(/\{LAYOUT_PC#([^}]*)\}/g, "$1") // only take action after the #
+      .replace(/\{LINK.*\}([^}]*)\{\/LINK\}/g, "$1") // remove link tags {LINKN1113000}word{/LINK}
       .replace(
         /<i>([^<]*)<\/i>/g,
         '<i class="text-section-foreground/60">$1</i>',
