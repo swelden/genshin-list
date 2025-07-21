@@ -21,7 +21,7 @@ export function CharacterCard({ character, size }: CharacterCardProps) {
           width={size}
           height={size}
         >
-          <div className="absolute left-0.5 top-0.5">
+          <div className="absolute top-0.5 left-0.5">
             <IconImage
               folder="/elements"
               src={character.element}

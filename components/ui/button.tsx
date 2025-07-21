@@ -14,7 +14,7 @@ const buttonSizeClassNames = {
 } as const;
 
 const buttonVariants = cva(
-  "inline-flex flex-nowrap items-center justify-center whitespace-nowrap rounded-full outline-none ring-0 ring-inset transition disabled:pointer-events-none disabled:bg-transparent disabled:text-[#8D8F90] disabled:ring-3 disabled:ring-[#3F4854] hocus:shadow-inner hocus:ring-3",
+  "hocus:shadow-inner hocus:ring-3 inline-flex flex-nowrap items-center justify-center rounded-full whitespace-nowrap ring-0 transition outline-none ring-inset disabled:pointer-events-none disabled:bg-transparent disabled:text-[#8D8F90] disabled:ring-3 disabled:ring-[#3F4854]",
   {
     variants: {
       variant: {
@@ -80,7 +80,7 @@ const CircleButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
         </Button>
         <div
           className={cn(
-            "absolute left-1/2 top-1/2 z-0 flex -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-primary-outline transition-all duration-300",
+            "bg-primary-outline absolute top-1/2 left-1/2 z-0 flex -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full transition-all duration-300",
             "size-14 group-hover:size-12",
             variant === "brown" && "bg-btn-brown-outline",
             variant === "blue" && "bg-btn-blue-outline",

@@ -25,8 +25,8 @@ export function Search({}: SearchProps) {
   };
 
   return (
-    <div className="rounded-full shadow-sm ring-0 ring-primary-ring/80 transition focus-within:shadow focus-within:ring-1">
-      <div className="flex h-11 items-center rounded-full text-foreground ring-2 ring-inset ring-border transition focus-within:ring-primary-ring">
+    <div className="ring-primary-ring/80 rounded-full shadow-sm ring-0 transition focus-within:shadow focus-within:ring-1">
+      <div className="text-foreground ring-border focus-within:ring-primary-ring flex h-11 items-center rounded-full ring-2 transition ring-inset">
         <SearchIcon className="ml-3 size-5" />
         <Input
           className={cn(

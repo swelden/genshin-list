@@ -19,7 +19,7 @@ export function SectionRow({ talent, children }: SectionRowProps) {
         <h3 className="text-lg">{talent.name}</h3>
       </div>
       <div
-        className="mt-2 text-section-foreground/75"
+        className="text-section-foreground/75 mt-2"
         dangerouslySetInnerHTML={{
           // talent description is sanitized in backend/markdown
           __html: talent.description,

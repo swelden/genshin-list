@@ -2,7 +2,7 @@ import { siteConfig } from "@/data/site";
 
 export const Footer = () => {
   return (
-    <footer className="container mt-auto flex flex-col items-center justify-center gap-2 px-4 py-6 text-center text-sm text-foreground/90">
+    <footer className="text-foreground/90 container mt-auto flex flex-col items-center justify-center gap-2 px-4 py-6 text-center text-sm">
       <p className="">
         <strong>Genshin List</strong> is not affiliated with or endorsed by
         HoYoverse.

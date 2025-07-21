@@ -7,12 +7,12 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn, type OmitStrict } from "@/lib/utils";
 
 const cardVariants = cva(
-  "relative overflow-hidden rounded-md bg-linear-to-t from-card via-card shadow-md ring-1 ring-border",
+  "from-card via-card ring-border relative overflow-hidden rounded-md bg-linear-to-t shadow-md ring-1",
   {
     variants: {
       hover: {
         default:
-          "ring-offset-ring-white outline-none transition hocus:ring-offset-3 motion-safe:hocus:scale-105",
+          "ring-offset-ring-white hocus:ring-offset-3 motion-safe:hocus:scale-105 transition outline-none",
       },
     },
   },
@@ -84,7 +84,7 @@ const CardLabel = ({
   <div className="relative w-full px-2 py-0.5" {...props}>
     <span
       className={cn(
-        "relative block w-full truncate text-center capitalize text-card-foreground",
+        "text-card-foreground relative block w-full truncate text-center capitalize",
         className,
       )}
     >

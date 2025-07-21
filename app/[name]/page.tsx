@@ -18,9 +18,7 @@ import {
 export default async function CharacterPage(props: PageProps) {
   const params = await props.params;
 
-  const {
-    name
-  } = params;
+  const { name } = params;
 
   const { character, talents, constellations } = getNamePageProps(
     unformatNameUrl(name),
@@ -60,7 +58,7 @@ function HeroSection({ character }: HeroSectionProps) {
             height={960}
             priority={true}
           />
-          <div className="absolute bottom-0 z-0 h-24 w-full bg-linear-to-t from-background" />
+          <div className="from-background absolute bottom-0 z-0 h-24 w-full bg-linear-to-t" />
         </div>
       </div>
       <DetailHeader character={character} />
@@ -82,7 +80,7 @@ function DetailHeader({ character }: DetailHeaderProps) {
   return (
     <div className="col-span-full row-span-full flex items-center">
       <div className="flex flex-col gap-2 px-5 sm:px-4">
-        <div className="flex w-fit items-center gap-2 rounded-lg md:bg-background/50 md:pr-3 md:backdrop-blur-md">
+        <div className="md:bg-background/50 flex w-fit items-center gap-2 rounded-lg md:pr-3 md:backdrop-blur-md">
           <IconImage
             folder="/elements"
             src={character.element}
@@ -90,7 +88,7 @@ function DetailHeader({ character }: DetailHeaderProps) {
             className="size-17"
           />
           <div className="flex flex-col py-5 sm:py-4">
-            <h1 className="mb-1 text-3xl text-foreground md:text-2xl lg:text-3xl">
+            <h1 className="text-foreground mb-1 text-3xl md:text-2xl lg:text-3xl">
               {character.name}
             </h1>
             <StarRating rarity={character.rarity} />
@@ -102,7 +100,7 @@ function DetailHeader({ character }: DetailHeaderProps) {
           <CharacterBadge text={character.substat} />
           <CharacterBadge text={`${character.rarity}-star`} />
         </div>
-        <div className="mt-4 rounded-lg text-base text-muted-foreground md:max-w-xs md:bg-background/50 md:px-2 md:py-1.5 md:text-sm md:backdrop-blur-lg lg:text-base">
+        <div className="text-muted-foreground md:bg-background/50 mt-4 rounded-lg text-base md:max-w-xs md:px-2 md:py-1.5 md:text-sm md:backdrop-blur-lg lg:text-base">
           {character.description}
         </div>
       </div>
@@ -116,7 +114,7 @@ interface CharacterBadgeProps {
 
 function CharacterBadge({ text }: CharacterBadgeProps) {
   return (
-    <div className="rounded bg-zinc-300/50 px-2 py-1 text-xs dark:bg-zinc-700/70 md:backdrop-blur-sm">
+    <div className="rounded bg-zinc-300/50 px-2 py-1 text-xs md:backdrop-blur-sm dark:bg-zinc-700/70">
       {text}
     </div>
   );
@@ -146,12 +144,13 @@ function StarRating({ rarity }: StarRatingProps) {
 
 type PageProps = { params: Promise<{ name: string }> };
 
-export async function generateMetadata(props: PageProps, parent: ResolvingMetadata): Promise<Metadata> {
+export async function generateMetadata(
+  props: PageProps,
+  parent: ResolvingMetadata,
+): Promise<Metadata> {
   const params = await props.params;
 
-  const {
-    name
-  } = params;
+  const { name } = params;
 
   const { character } = getNamePageProps(name.replace(/-/g, " "));
   // optionally access and extend (rather than replace) parent metadata

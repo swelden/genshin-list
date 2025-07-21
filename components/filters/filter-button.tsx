@@ -32,9 +32,9 @@ export function FilterButton({
       key={attr}
       onClick={() => handleFilter(attr)}
       className={cn(
-        "flex h-12 flex-nowrap items-center gap-3 overflow-hidden whitespace-nowrap border-2 border-sheet-btn-border px-3 text-left text-base text-genshin-brown outline-none ring-offset-secondary transition active:ring-0! hocus:ring-4 hocus:ring-white md:h-16 md:text-xl",
+        "border-sheet-btn-border text-genshin-brown ring-offset-secondary hocus:ring-4 hocus:ring-white flex h-12 flex-nowrap items-center gap-3 overflow-hidden border-2 px-3 text-left text-base whitespace-nowrap transition outline-none active:ring-0! md:h-16 md:text-xl",
         isChecked &&
-          "border-sheet-btn-border-selected bg-genshin-brown text-genshin-blue ring-2 ring-genshin-brown",
+          "border-sheet-btn-border-selected bg-genshin-brown text-genshin-blue ring-genshin-brown ring-2",
       )}
       role="checkbox"
       aria-checked={isChecked}
@@ -43,15 +43,15 @@ export function FilterButton({
       <div className="relative hidden aspect-square size-7 md:block">
         <Check
           className={cn(
-            "absolute inset-0 size-full text-icon-green",
+            "text-icon-green absolute inset-0 size-full",
             !isChecked && "hidden",
           )}
           strokeWidth="3"
         />
         <div
           className={cn(
-            "absolute inset-0 size-full rounded-full border-2 border-sheet-btn-border transition-colors",
-            isChecked && "size-0 scale-0 border-genshin-brown",
+            "border-sheet-btn-border absolute inset-0 size-full rounded-full border-2 transition-colors",
+            isChecked && "border-genshin-brown size-0 scale-0",
           )}
         />
       </div>

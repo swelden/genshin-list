@@ -49,12 +49,12 @@ export function FilterSheet({ className }: FilterSheetProps) {
         </Button>
       </SheetTrigger>
       <SheetContent
-        className="flex flex-col bg-sheet/90 bg-linear-to-b from-sheet from-60% p-0 px-1"
+        className="bg-sheet/90 from-sheet flex flex-col bg-linear-to-b from-60% p-0 px-1"
         closeClassName="top-2 md:top-4"
         side="leftBottom"
         variant="brown"
       >
-        <div className="flex h-full flex-col border-x-2 border-sheet-border">
+        <div className="border-sheet-border flex h-full flex-col border-x-2">
           <SheetHeader className="px-4 pt-6 md:px-7 md:pt-8">
             <SheetTitle className="text-left text-2xl text-[#D3BC8E]">
               Filter
@@ -147,7 +147,7 @@ function FilterContainer({
 }: FilterContainerProps) {
   return (
     <div>
-      <span className="text-xl capitalize text-[#BBB9B2] md:text-2xl">
+      <span className="text-xl text-[#BBB9B2] capitalize md:text-2xl">
         {category}
       </span>
       <div className="mt-5 grid grid-cols-3 gap-3">

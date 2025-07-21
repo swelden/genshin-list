@@ -42,7 +42,7 @@ export function SelectedFilters({
         )}
       >
         <DragArea>
-          <div className="flex h-full select-none items-center gap-1.5 p-1 pr-4">
+          <div className="flex h-full items-center gap-1.5 p-1 pr-4 select-none">
             {filterSets.map((filterSet) =>
               Array.from(filterSet).map((filter) => (
                 <FilterIndicator key={filter} filter={filter} />
@@ -59,8 +59,8 @@ export function SelectedFilters({
             size="xsmall"
             className="h-full pl-1"
           >
-            <div className="mr-2 flex aspect-square h-full items-center justify-center rounded-full bg-btn-dark">
-              <Trash2 className="size-4 text-icon-red" />
+            <div className="bg-btn-dark mr-2 flex aspect-square h-full items-center justify-center rounded-full">
+              <Trash2 className="text-icon-red size-4" />
             </div>
             Clear
           </Button>
@@ -72,7 +72,7 @@ export function SelectedFilters({
 
 function FilterIndicator({ filter }: { filter: string }) {
   return (
-    <div className="flex h-full items-center justify-center whitespace-nowrap rounded-full bg-btn-dark-foreground px-3 text-sm text-btn-dark">
+    <div className="bg-btn-dark-foreground text-btn-dark flex h-full items-center justify-center rounded-full px-3 text-sm whitespace-nowrap">
       {filter === "4" || filter === "5" ? `${filter}-Star` : filter}
     </div>
   );
@@ -81,7 +81,7 @@ function FilterIndicator({ filter }: { filter: string }) {
 function BlurEffect() {
   return (
     // make sure -left-[x] is equal to w-[x]
-    <div className="absolute -left-3 top-0 h-full w-3 bg-linear-to-l from-[#C5C1BA]" />
+    <div className="absolute top-0 -left-3 h-full w-3 bg-linear-to-l from-[#C5C1BA]" />
   );
 }
 
@@ -89,7 +89,7 @@ function BlurEffect() {
 function EndPadding() {
   return (
     <div
-      className="min-h-px min-w-px select-none bg-transparent px-2"
+      className="min-h-px min-w-px bg-transparent px-2 select-none"
       aria-hidden
     >
       &nbsp;

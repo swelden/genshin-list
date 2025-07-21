@@ -18,11 +18,7 @@ export function MaterialList({}: MaterialListProps) {
     <div className="flex flex-wrap justify-center gap-4 lg:justify-start">
       {calculatedMaterials.map(([material, count]) => {
         return (
-          <div
-            className="w-21 lg:w-24"
-            title={material}
-            key={`${material}`}
-          >
+          <div className="w-21 lg:w-24" title={material} key={`${material}`}>
             <ItemCard
               label={count}
               src={formatImageUrl(materialNameToInfo[material]!.icon)}
