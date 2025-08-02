@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+@custom-variant dark (&:where(.dark, .dark *));
 @custom-variant hocus (&:is(:hover, :focus-visible));
 
 :root {
