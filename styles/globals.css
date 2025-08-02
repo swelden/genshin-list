@@ -32,6 +32,9 @@
   --sheet-btn-border: hsl(212 11% 30%);
   --sheet-btn-border-selected: hsl(39 15% 78%);
 
+  --badge: oklch(0.97 0 0);
+  --badge-foreground: oklch(0.205 0 0);
+
   --border: hsl(240 5.9% 90%);
 
   --btn-brown: var(--genshin-brown);
@@ -110,6 +113,9 @@ html.dark {
   --card: var(--genshin-brown);
   --card-foreground: var(--genshin-blue);
 
+  --badge: oklch(0.269 0 0);
+  --badge-foreground: oklch(0.985 0 0);
+
   --border: hsl(240 3.7% 15.9%);
 
   --primary: var(--btn-brown);
@@ -175,6 +181,9 @@ html.dark {
   --color-sheet-border: var(--sheet-border);
   --color-sheet-btn-border: var(--sheet-btn-border);
   --color-sheet-btn-border-selected: var(--sheet-btn-border-selected);
+
+  --color-badge: var(--badge);
+  --color-badge-foreground: var(--badge-foreground);
 
   --color-border: var(--border);
 
