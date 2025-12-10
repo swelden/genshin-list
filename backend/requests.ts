@@ -36,7 +36,7 @@ export function getCharacterNames() {
     z.string().array(),
   );
 
-  const charactersNotIncluded = new Set(["Aether", "Lumine"]);
+  const charactersNotIncluded = new Set(["Aether", "Lumine", "Manekin", "Manekina"]);
   const filteredCharacterNames = names.filter(
     (character) => !charactersNotIncluded.has(character),
   );
